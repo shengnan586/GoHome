@@ -173,6 +173,14 @@
               </li>
             </ul>
           </div>
+          <div class="checkall_wrap">
+            <span>
+              我同意《BUG服务协议》《房客规则》《意外健康险保险告知书》《会员服务协议》及房东规定的退订规则及入住要求
+            </span>
+          </div>
+          <div class="push_order">
+            提交订单
+          </div>
         </div>
       </div>
     </div>

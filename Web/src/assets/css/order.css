@@ -272,6 +272,7 @@ span.wTitle {
     background-color: #f5f5f5;
     display: block;
     padding: 20px 0;
+    margin-bottom: 40px;
 }
 
 .rule_wrap ul.rule_detail {
@@ -309,4 +310,19 @@ span.wTitle {
 .rule_wrap ul.rule_detail li>h3 {
     font-size: 12px;
     margin: 0;
+}
+.order_wrap .checkall_wrap span{
+    font-size: 14px;
+}
+.push_order{
+    width: 180px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    background: #39b54a;
+    border-radius: 4px;
+    margin: 30px 0;
+    cursor: pointer;
 }
