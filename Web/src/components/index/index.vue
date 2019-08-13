@@ -2,9 +2,7 @@
   <div>
     <div>
       <carousel></carousel> 
-      <div class="search">
-        
-      </div>
+      
     </div>
   </div>
 </template>

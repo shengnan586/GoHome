@@ -3,7 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors=require("cors");
 /*引入路由模块*/
-const test=require("./routes/test.js");
+// const test=require("./routes/test.js");
+const area=require("./routes/areaRouter.js");
 
 var app = express();
 var server = app.listen(3003);
@@ -16,5 +17,6 @@ app.use(bodyParser.urlencoded({extended:false}));
 //托管静态资源到public目录下
 app.use(express.static('public'));
 /*使用路由器来管理路由*/
-app.use("/test",test);
+//app.use("/test",test);
+app.use("/area",area);
 
