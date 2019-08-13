@@ -1,0 +1,235 @@
+h1,h2,h3,h4,h5,h6 {
+    font-weight: normal;
+}
+
+body {
+    font-family: Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC";
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.25;
+    color: #212121 !important;
+    background: #fff !important;
+    outline: none;
+}
+
+.mg_center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1240px;
+}
+
+.order_wrap .order_left {
+    float: left;
+    width: 880px;
+    margin-right: 20px;
+    background: #fff;
+}
+
+.order_step_panel {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    background: #fafafa;
+}
+
+.order_step_panel .item_step {
+    position: relative;
+    flex: 0 0 auto;
+    margin-right: 100px;
+}
+
+.order_step_panel .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+}
+
+.order_step_panel .dot_wrapper {
+    width: 80px;
+}
+
+.order_step_panel .main .dot {
+    display: block;
+    margin: 0 auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    background: #26a69a;
+}
+
+.order_step_panel .main .dot.dot_off {
+    background: #fafafa;
+    border: 1px solid #bdbdbd;
+}
+
+.order_step_panel .step_txt.step_txt_cur {
+    color: #212121;
+}
+
+.order_step_panel .step_txt {
+    margin-top: 15px;
+    width: 80px;
+    color: rgba(33, 33, 33, 0.4);
+    font-size: 17px;
+    text-align: center;
+}
+
+.order_step_panel .line.line_off {
+    border-color: #e8e8e8;
+}
+
+.order_step_panel .line {
+    position: absolute;
+    top: 8px;
+    left: 60px;
+    padding: 0;
+    width: 140px;
+    height: 0;
+    border-top: 2px solid #26a69a;
+}
+
+.order_info_wrap {
+    padding-bottom: 30px;
+    border-bottom: 2px solid #eeeeee;
+}
+
+.order_left h3 {
+    color: #212121;
+    font-size: 20px;
+    margin: 30px 0;
+}
+
+.order_left h4 {
+    font-size: 16px;
+    color: #212121;
+}
+
+.calender_wrap_order {
+    position: relative;
+}
+
+.book_info_wrap .book_info_box {
+    display: inline-flex;
+    align-items: flex-start;
+}
+
+span.wTitle {
+    float: left;
+    margin-right: 24px;
+    font-size: 16px;
+    width: 80px;
+    line-height: 40px;
+}
+.date_box{
+    position: relative;
+}
+
+.date_box .date_txt {
+    font-size: 14px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.date_box i{
+    position: absolute;
+    top: 20%;
+    left: 80%;
+}
+
+.order_wrap .info_wrap {
+    width: 100%;
+    padding: 0 20px 15px 20px;
+    border: 1px solid #eeeeee;
+    margin-top: 30px;
+    box-sizing: border-box;
+}
+
+.info_input_wrap {
+    margin-top: 20px;
+    position: relative;
+}
+
+.info_input_wrap .detail_wrap {
+    margin-top: 36px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.info_input_wrap .detail_wrap label {
+    flex: 0 0 80px;
+    margin-right: 0;
+    color: #212121;
+    font-size: 14px;
+    line-height: 38px;
+    text-align: left;
+}
+
+.name_panel,
+.id_card_panel,
+.mobile_panel,
+.num_panel {
+    position: relative;
+}
+
+.info_wrap .el-input {
+    position: relative;
+    font-size: 14px;
+    display: inline-block;
+    width: auto;
+}
+
+.info_input_wrap input[type='text'] {
+    padding: 0 10px ;
+    width: 220px ;
+    height: 40px ;
+    line-height: 40px ;
+    color: #212121 ;
+    font-size: 14px ;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px ;
+    margin-bottom: 0 ;
+}
+
+.el-alert_content {
+    display: inline-block;
+    padding: 0 8px;
+}
+
+.el-alert_title {
+    font-size: 13px;
+    line-height: 18px;
+    color: #ff0000;
+}
+
+.error_panel {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    color: #ff0000;
+    font-size: 12px;
+    height: 22px;
+    line-height: 22px;
+}
+
+.error_panel .el-alert--warning {
+    padding: 5px 0;
+    background-color: transparent;
+    color: #ff0000;
+}
+
+.info_wrap .el-select{
+    width: 120px;
+    height: 40px;
+    position: relative;
+}
+
+.el-select select{
+    border: 1px solid #e0e0e0 !important;
+}
+.el-select i{
+    position: absolute;
+    left:93px;
+    top: 25%;
+    pointer-events: none;
+}
