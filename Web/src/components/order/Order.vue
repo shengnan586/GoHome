@@ -36,8 +36,7 @@
           <div class="book_info_box">
             <span class="wTitle">入住时段：</span>
             <div class="date_box">
-              <laydate class="date_txt">
-              </laydate>
+              <laydate class="date_txt"></laydate>
               <i class="iconfont icon-rili"></i>
             </div>
           </div>
@@ -62,7 +61,8 @@
                     max="30"
                     maxlength="30"
                     placeholder="请确保信息真实 "
-                    class="el-input_inner"  v-model="uname"
+                    class="el-input_inner"
+                    v-model="uname"
                   />
                 </div>
                 <div class="error_panel">
@@ -88,7 +88,8 @@
                     max="30"
                     maxlength="30"
                     placeholder="请确保信息真实 "
-                    class="el-input_inner"  v-model="id_card"
+                    class="el-input_inner"
+                    v-model="id_card"
                   />
                 </div>
                 <div class="error_panel">
@@ -111,7 +112,8 @@
                     max="30"
                     maxlength="30"
                     placeholder="请确保信息真实 "
-                    class="el-input_inner" v-model="phone"
+                    class="el-input_inner"
+                    v-model="phone"
                   />
                 </div>
                 <div class="error_panel">
@@ -141,24 +143,57 @@
             </div>
           </div>
         </div>
+        <!-- 预定人信息  -->
+        <div class="order_info_wrap">
+          <h3>预订人信息</h3>
+          <div class="order_box">
+            <!-- 昵称 -->
+            <div class="nickname">
+              <label>昵称：</label>
+              <span v-text="nickName"></span>
+            </div>
+            <!-- 手机号 -->
+            <div class="phone">
+              <label>手机号：</label>
+              <span v-text="userPhone"></span>
+            </div>
+          </div>
+        </div>
+        <!-- 退订须知 -->
+        <div class="order_info_wrap rule">
+          <h3>退订须知</h3>
+          <!--  -->
+          <div class="rule_wrap">
+            <ul class="rule_detail">
+              <li>
+                <h3>9月21日14:00前取消，所有金额全部退还</h3>
+              </li>
+              <li>
+                <h3>9月21日14:00后取消，扣除未入住首日房费</h3> 
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
     <div class="order_right"></div>
   </div>
 </template>
 <script>
-import layDate from "../laydate.vue"
+import layDate from "../laydate.vue";
 export default {
   data() {
     return {
-      date:"2018-02-01 - 2019-03-02",//入住日期
-      uname:"",//姓名
-      phone:"",//手机号
-      id_card:"",//身份证号
-      val:2,//入住人数 
-    }
+      date: "2018-02-01 - 2019-03-02", //入住日期
+      uname: "", //姓名
+      phone: "", //手机号
+      id_card: "", //身份证号
+      val: 2, //入住人数
+      nickName: "shengnan586", //昵称
+      userPhone: "15140617114"
+    };
   },
-  components:{"laydate":layDate}
+  components: { laydate: layDate }
 };
 </script>
 <style >

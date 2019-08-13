@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="text" @focus="test" id="test1" style="width:auto; font-size:14px; margin-bottom:0;" readonly/>
+    <input type="text" @focus="test" id="test1" style="width:230px; font-size:14px; margin-bottom:0;" readonly/>
   </div>
 </template>
 <script>

@@ -1,5 +1,14 @@
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: normal;
+}
+
+li {
+    list-style: none outside none;
 }
 
 body {
@@ -116,12 +125,13 @@ body {
 
 span.wTitle {
     float: left;
-    margin-right: 24px;
+    margin-right: 20px;
     font-size: 16px;
     width: 80px;
     line-height: 40px;
 }
-.date_box{
+
+.date_box {
     position: relative;
 }
 
@@ -131,9 +141,9 @@ span.wTitle {
     cursor: pointer;
 }
 
-.date_box i{
+.date_box i {
     position: absolute;
-    top: 20%;
+    top: 22%;
     left: 80%;
 }
 
@@ -180,15 +190,15 @@ span.wTitle {
 }
 
 .info_input_wrap input[type='text'] {
-    padding: 0 10px ;
-    width: 220px ;
-    height: 40px ;
-    line-height: 40px ;
-    color: #212121 ;
-    font-size: 14px ;
+    padding: 0 10px;
+    width: 220px;
+    height: 40px;
+    line-height: 40px;
+    color: #212121;
+    font-size: 14px;
     border: 1px solid #e0e0e0;
-    border-radius: 2px ;
-    margin-bottom: 0 ;
+    border-radius: 2px;
+    margin-bottom: 0;
 }
 
 .el-alert_content {
@@ -218,18 +228,85 @@ span.wTitle {
     color: #ff0000;
 }
 
-.info_wrap .el-select{
+.info_wrap .el-select {
     width: 120px;
     height: 40px;
     position: relative;
 }
 
-.el-select select{
+.el-select select {
     border: 1px solid #e0e0e0 !important;
 }
-.el-select i{
+
+.el-select i {
     position: absolute;
-    left:93px;
+    left: 93px;
     top: 25%;
     pointer-events: none;
+}
+
+.order_info_wrap .order_box {
+    font-size: 16px;
+    color: #212121;
+    display: flex;
+    align-items: center;
+}
+
+.order_info_wrap .order_box div {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.order_info_wrap .order_box div span {
+    margin-right: 15px;
+}
+
+.order_info_wrap.rule {
+    padding-bottom: 40px;
+    border: none;
+}
+
+.rule_wrap {
+    background-color: #f5f5f5;
+    display: block;
+    padding: 20px 0;
+}
+
+.rule_wrap ul.rule_detail {
+    margin: 0 20px 0 30px;
+}
+
+.rule_wrap ul li {
+    padding: 10px 20px;
+    position: relative;
+}
+
+.rule_wrap ul.rule_detail li:before {
+    display: inline-block;
+    content: "";
+    background: url(../img/clock.png) no-repeat center;
+    background-size: 100% 100%;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 0px;
+    top: 12px;
+}
+
+.rule_wrap ul.rule_detail li:first-child:after {
+    display: inline-block;
+    content: "";
+    width: 1px;
+    height: 13px;
+    background-color: #212121;
+    position: absolute;
+    top: 30px;
+    left: 5px;
+}
+
+.rule_wrap ul.rule_detail li>h3 {
+    font-size: 12px;
+    margin: 0;
 }
