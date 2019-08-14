@@ -54,21 +54,21 @@
                 真实姓名：
               </label>
               <div class="name_panel">
-                <div class="el-input">
-                  <input
+                <div class="el-input" >
+                  <input id="uname"
                     type="text"
                     autocomplete="off"
                     max="30"
                     maxlength="30"
                     placeholder="请确保信息真实 "
                     class="el-input_inner"
-                    v-model="uname"
+                    v-model="uname" @blur="uname_blur" :class="{inputborder:inputname=='uname'}"  @focus="clear"
                   />
                 </div>
-                <div class="error_panel">
+                <div class="error_panel"  :style="{display:blurinput[0]=='uname'?'block':'none'}">
                   <i class="iconfont icon-jinggao"></i>
                   <div class="el-alert_content">
-                    <span class="el-alert_title">请填写真实姓名</span>
+                    <span class="el-alert_title">{{warn_name}}</span>
                   </div>
                 </div>
               </div>
@@ -82,20 +82,20 @@
               </label>
               <div class="id_card_panel">
                 <div class="el-input">
-                  <input
+                  <input id="id_card"
                     type="text"
                     autocomplete="off"
                     max="30"
                     maxlength="30"
                     placeholder="请确保信息真实 "
                     class="el-input_inner"
-                    v-model="id_card"
+                    v-model="id_card" @blur="card" :class="{inputborder:inputname=='id_card'}"  @focus="clear"
                   />
                 </div>
-                <div class="error_panel">
+                <div class="error_panel "  :style="{display:blurinput[1]=='id_card'?'block':'none'}">
                   <i class="iconfont icon-jinggao"></i>
-                  <div class="el-alert_content">
-                    <span class="el-alert_title">请输入身份证号</span>
+                  <div class="el-alert_content ">
+                    <span class="el-alert_title">{{warn_id_card}}</span>
                   </div>
                 </div>
               </div>
@@ -106,20 +106,20 @@
               <label>手机号：</label>
               <div class="mobile_panel">
                 <div class="el-input">
-                  <input
+                  <input id="phone"
                     type="text"
                     autocomplete="off"
                     max="30"
                     maxlength="30"
                     placeholder="请确保信息真实 "
                     class="el-input_inner"
-                    v-model="phone"
+                    v-model="phone" @blur="call" :class="{inputborder:inputname=='phone'}"  @focus="clear"
                   />
                 </div>
-                <div class="error_panel">
+                <div class="error_panel"  :style="{display:blurinput[2]=='phone'?'block':'none'}">
                   <i class="iconfont icon-jinggao"></i>
                   <div class="el-alert_content">
-                    <span class="el-alert_title">请输入手机号</span>
+                    <span class="el-alert_title">{{warn_phone}}</span>
                   </div>
                 </div>
               </div>
@@ -178,7 +178,7 @@
               我同意《BUG服务协议》《房客规则》《意外健康险保险告知书》《会员服务协议》及房东规定的退订规则及入住要求
             </span>
           </div>
-          <div class="push_order">
+          <div class="push_order" @click="submit">
             提交订单
           </div>
         </div>
@@ -188,20 +188,92 @@
   </div>
 </template>
 <script>
-import layDate from "../laydate.vue";
+import layDate from "../laydate/laydate.vue";
 export default {
   data() {
     return {
       date: "2018-02-01 - 2019-03-02", //入住日期
       uname: "", //姓名
-      phone: "", //手机号
       id_card: "", //身份证号
+      phone: "", //手机号
       val: 2, //入住人数
       nickName: "shengnan586", //昵称
-      userPhone: "15140617114"
+      userPhone: "15140617114",
+      warn_name:"",
+      warn_id_card:"",
+      warn_phone:"",
+      inputname:"",
+      blurinput:["","",""]
     };
   },
-  components: { laydate: layDate }
+  components: { laydate: layDate },
+  methods: {
+    // 获得焦点事件
+    clear(e){
+      this.inputname=e.target.id;
+      if(e.target.id=="uname"){
+        this.blurinput[0]="";
+      }else if(e.target.id=="id_card"){
+        this.blurinput[1]="";
+      }else{
+        this.blurinput[2]="";
+      }
+    },
+    // 用户名失去焦点正则判断
+    uname_blur(e){
+      this.inputname="";
+      var reg=/^[\u2E80-\u9FFF]+$/;
+      if(!this.uname){
+        this.warn_name="请填写真实姓名";
+        this.blurinput[0]=e.target.id;
+      }else{
+        if(!reg.test(this.uname)){
+          this.warn_name="仅可使用汉字";
+          this.blurinput[0]=e.target.id;
+        }else{
+          this.warn_name="";
+          this.blurinput[0]="";
+        }
+      }
+    },
+    // 身份证号失去焦点正则判断
+    card(e){
+      this.inputname="";
+      var reg=/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+      if(this.id_card==""){
+        this.warn_id_card="请填写身份证号";
+        this.blurinput[1]=e.target.id;
+      }else{
+        if(!reg.test(this.id_card)){
+          this.warn_id_card="身份证号有误";
+          this.blurinput[1]=e.target.id;
+        }else{
+          this.warn_id_card="";
+          this.blurinput[1]="";
+        }
+      }
+    },
+    // 手机号失去焦点正则判断
+    call(e){
+      this.inputname="";
+      var reg=/^1(3|4|5|7|8)\d{9}$/;
+      if(this.phone==""){
+        this.warn_phone="请填写手机号";
+        this.blurinput[2]=e.target.id;
+      }else{
+        if(!reg.test(this.phone)){
+          this.warn_phone="手机号号有误";
+          this.blurinput[2]=e.target.id;
+        }else{
+          this.warn_phone="";
+          this.blurinput[2]="";
+        }
+      }
+    },
+    submit(){
+      
+    }
+  },
 };
 </script>
 <style >
@@ -209,4 +281,5 @@ export default {
 @import url("../../assets/css/order.css");
 @import url("../../assets/css/font_5yphq9cnd0n/iconfont.css");
 @import url("../../assets/css/font_d5zt1pasnrv/iconfont.css");
+
 </style>

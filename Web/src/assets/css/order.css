@@ -189,6 +189,10 @@ span.wTitle {
     width: auto;
 }
 
+input[type='text'].el-input_inner:hover {
+    border: 1px solid #c0c4cc;
+}
+
 .info_input_wrap input[type='text'] {
     padding: 0 10px;
     width: 220px;
@@ -199,6 +203,7 @@ span.wTitle {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
     margin-bottom: 0;
+    transition: border .2s linear;
 }
 
 .el-alert_content {
@@ -311,10 +316,12 @@ span.wTitle {
     font-size: 12px;
     margin: 0;
 }
-.order_wrap .checkall_wrap span{
+
+.order_wrap .checkall_wrap span {
     font-size: 14px;
 }
-.push_order{
+
+.push_order {
     width: 180px;
     height: 45px;
     line-height: 45px;
@@ -325,4 +332,8 @@ span.wTitle {
     border-radius: 4px;
     margin: 30px 0;
     cursor: pointer;
+}
+
+.inputborder {
+    border: 1px solid #212121 !important;
 }
