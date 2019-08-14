@@ -188,8 +188,9 @@ span.wTitle {
     display: inline-block;
     width: auto;
 }
-input[type='text'].el-input_inner:hover{
-    border:1px solid #c0c4cc;
+
+input[type='text'].el-input_inner:hover {
+    border: 1px solid #c0c4cc;
 }
 
 .info_input_wrap input[type='text'] {
@@ -315,10 +316,12 @@ input[type='text'].el-input_inner:hover{
     font-size: 12px;
     margin: 0;
 }
-.order_wrap .checkall_wrap span{
+
+.order_wrap .checkall_wrap span {
     font-size: 14px;
 }
-.push_order{
+
+.push_order {
     width: 180px;
     height: 45px;
     line-height: 45px;
@@ -329,4 +332,8 @@ input[type='text'].el-input_inner:hover{
     border-radius: 4px;
     margin: 30px 0;
     cursor: pointer;
+}
+
+.inputborder {
+    border: 1px solid #212121 !important;
 }

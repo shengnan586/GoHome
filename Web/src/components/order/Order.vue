@@ -178,7 +178,7 @@
               我同意《BUG服务协议》《房客规则》《意外健康险保险告知书》《会员服务协议》及房东规定的退订规则及入住要求
             </span>
           </div>
-          <div class="push_order">
+          <div class="push_order" @click="submit">
             提交订单
           </div>
         </div>
@@ -208,6 +208,7 @@ export default {
   },
   components: { laydate: layDate },
   methods: {
+    // 获得焦点事件
     clear(e){
       this.inputname=e.target.id;
       if(e.target.id=="uname"){
@@ -218,6 +219,7 @@ export default {
         this.blurinput[2]="";
       }
     },
+    // 用户名失去焦点正则判断
     uname_blur(e){
       this.inputname="";
       var reg=/^[\u2E80-\u9FFF]+$/;
@@ -234,6 +236,7 @@ export default {
         }
       }
     },
+    // 身份证号失去焦点正则判断
     card(e){
       this.inputname="";
       var reg=/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
@@ -250,6 +253,7 @@ export default {
         }
       }
     },
+    // 手机号失去焦点正则判断
     call(e){
       this.inputname="";
       var reg=/^1(3|4|5|7|8)\d{9}$/;
@@ -265,6 +269,9 @@ export default {
           this.blurinput[2]="";
         }
       }
+    },
+    submit(){
+      
     }
   },
 };
@@ -274,7 +281,5 @@ export default {
 @import url("../../assets/css/order.css");
 @import url("../../assets/css/font_5yphq9cnd0n/iconfont.css");
 @import url("../../assets/css/font_d5zt1pasnrv/iconfont.css");
-.inputborder{
-  border:1px solid #212121 !important;
-}
+
 </style>
