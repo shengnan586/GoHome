@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import "../../assets/laydate/layDate-v5.0.9/laydate/laydate.js";
+import "../../assets/laydate/laydate.js";
 export default {
   methods: {
     formatDate(date) {
@@ -59,7 +59,7 @@ export default {
 };
 </script>
 <style>
-@import url("../../assets/laydate/layDate-v5.0.9/laydate/theme/default/laydate.css");
+@import url("../../assets/laydate/theme/default/laydate.css");
 .layui-laydate-content .laydate-day-mark::after {
   background-color: transparent;
 }
