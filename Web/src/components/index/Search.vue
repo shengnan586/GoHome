@@ -1,7 +1,7 @@
 <template>
   <div class="search">
-    <select id="city">
-      <option value=""></option>
+    <select id="city" v-model="selectedAreaId">
+      <option v-for="(area,i) of areaList" :key="i" :value="area.id" v-text="area.aTypeName"></option>
     </select>
   </div>
 </template>
@@ -9,7 +9,8 @@
 export default {
   data() {
     return { 
-      areaList:[]
+      areaList:[],
+      selectedAreaId:""
     }
   },
   created(){
@@ -17,10 +18,14 @@ export default {
   },
   methods: {
     load(){
-      this.axios("area",{params:{aParentId:1,aType:0}}).then(result=>{
-        console.log(result);
+      this.axios.get("area",{params:{aParentId:1,aType:0}}).then(result=>{
         this.areaList=result.data;
       });
+    }
+  },
+  watch: {
+    selectedAreaId(){
+      console.log(this.selectedAreaId);
     }
   },
 };
