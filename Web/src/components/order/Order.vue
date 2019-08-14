@@ -188,7 +188,7 @@
   </div>
 </template>
 <script>
-import layDate from "../laydate.vue";
+import layDate from "../laydate/laydate.vue";
 export default {
   data() {
     return {
