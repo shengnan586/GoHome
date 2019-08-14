@@ -1,11 +1,16 @@
 <template>
   <div>
-    <input type="text" @focus="test" id="test1" style="width:230px; font-size:14px; margin-bottom:0;" readonly/>
+    <input type="text" @focus="test" id="test1" style="width:230px; font-size:14px; margin-bottom:0; padding:10px 11px;"  readonly/>
   </div>
 </template>
 <script>
 import "../../assets/laydate/laydate.js";
 export default {
+  data() {
+    return {
+      orderDate:null
+    }
+  },
   methods: {
     formatDate(date) {
       var y = date.getFullYear();
@@ -40,22 +45,29 @@ export default {
       mark: obj,
       calendar: true,
       zIndex: 9999,
-      done: function(value, date) {
+      //回调函数改为箭头函数，目的为了将this变为vue对象
+      done: (value, date)=>{
         var arr = value.split(" - ");
         var start = arr[0],
           end = arr[1];
         var startTime = new Date(start); //入住时间
         var endTime = new Date(end); //离开时间
         var days = (endTime - startTime) / 1000 / 24 / 60 / 60; //入住天数
-        var orderDate = {
+        this.orderDate = {
           start,
           end,
           days
         };
-        return orderDate;
+
+        //把选中的时间段传递给父组件
+        this.$emit("getValue",this.orderDate);
+        //console.log(this.orderDate)
+        //return orderDate;
       }
     });
-  }
+  },
+ 
+  
 };
 </script>
 <style>

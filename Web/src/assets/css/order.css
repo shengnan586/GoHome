@@ -167,7 +167,7 @@ span.wTitle {
 }
 
 .info_input_wrap .detail_wrap label {
-    flex: 0 0 80px;
+    flex: 0 0 81px;
     margin-right: 0;
     color: #212121;
     font-size: 14px;
@@ -240,7 +240,13 @@ input[type='text'].el-input_inner:hover {
 }
 
 .el-select select {
-    border: 1px solid #e0e0e0 !important;
+    border: 1px solid #e0e0e0 ;
+    height: 40px;
+    width: 112px;
+    padding-left: 10px;
+    font-size: 14px;
+    outline: none;
+    appearance:none;
 }
 
 .el-select i {

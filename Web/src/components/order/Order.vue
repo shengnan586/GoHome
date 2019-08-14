@@ -36,7 +36,8 @@
           <div class="book_info_box">
             <span class="wTitle">入住时段：</span>
             <div class="date_box">
-              <laydate class="date_txt"></laydate>
+              <!-- 时间子组件，自定义时间getValue用于获取选中的入住时间段 -->
+              <laydate  @getValue="getDateValue" class="date_txt"></laydate>
               <i class="iconfont icon-rili"></i>
             </div>
           </div>
@@ -203,11 +204,16 @@ export default {
       warn_id_card:"",
       warn_phone:"",
       inputname:"",
-      blurinput:["","",""]
+      blurinput:["","",""],
+      orderDate:null//保存时间控件返回的对象
     };
   },
   components: { laydate: layDate },
   methods: {
+    //获取时间控件返回的时间对象{入住时间、离开时间、天数}
+    getDateValue(orderDate){
+      this.orderDate=orderDate;
+    },
     // 获得焦点事件
     clear(e){
       this.inputname=e.target.id;
@@ -262,7 +268,7 @@ export default {
         this.blurinput[2]=e.target.id;
       }else{
         if(!reg.test(this.phone)){
-          this.warn_phone="手机号号有误";
+          this.warn_phone="手机号码有误";
           this.blurinput[2]=e.target.id;
         }else{
           this.warn_phone="";
@@ -271,8 +277,19 @@ export default {
       }
     },
     submit(){
-      
-    }
+      console.log(this.orderDate);
+      var url="/order/order";
+      // var orderID=new Date().toLocaleString();
+      var obj = {realName:this.uname,cardID:this.id_card,phone:this.phone,peopleNumber:this.val};
+      this.axios.post(url,obj).then(res=>{
+        if(res.data.code==1){
+          alert("提交成功");
+        }else{
+          alert("提交失败");
+        }
+      })
+    },
+
   },
 };
 </script>
