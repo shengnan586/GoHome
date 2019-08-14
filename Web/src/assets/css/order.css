@@ -188,6 +188,9 @@ span.wTitle {
     display: inline-block;
     width: auto;
 }
+input[type='text'].el-input_inner:hover{
+    border:1px solid #c0c4cc;
+}
 
 .info_input_wrap input[type='text'] {
     padding: 0 10px;
@@ -199,6 +202,7 @@ span.wTitle {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
     margin-bottom: 0;
+    transition: border .2s linear;
 }
 
 .el-alert_content {
