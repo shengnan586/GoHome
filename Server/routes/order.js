@@ -4,9 +4,9 @@ const pool=require("../pool");
 
 router.post("/order",(req,res)=>{
     var obj=req.body;
-    var sql="INSERT INTO home_business_orderList (realName,cardID,phone,peopleNumber) values(?,?,?,?)";
+    var sql="INSERT INTO home_business_orderList (realName,cardID,phone,peopleNumber,checkinDate,checkoutDate,days,orderId,id,hid,payStatus,payTime,orderPrice,orderStatus,uid) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     console.log(obj);
-    pool.query(sql,[obj.realName,obj.cardID,obj.phone,obj.peopleNumber],(err,result)=>{
+    pool.query(sql,[obj.realName,obj.cardID,obj.phone,obj.peopleNumber,obj.checkinDate,obj.checkoutDate,obj.days,obj.orderId,obj.id,obj.hid,obj.payStatus,obj.payTime,obj.orderPrice,obj.orderStatus,obj.uid],(err,result)=>{
         if(err) throw err;
         if(result.affectedRows>0){
             res.send({code:1,msg:"提交成功"})
