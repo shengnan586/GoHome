@@ -2,12 +2,13 @@
   <div>
     <div>
       <carousel></carousel> 
-      
+      <search></search>
     </div>
   </div>
 </template>
 <script>
 import Carousel from "./Carousel.vue"
+import Search from "./Search.vue"
 export default {
   data() {
     return {
@@ -15,7 +16,8 @@ export default {
     }
   },
   components:{
-    "carousel":Carousel
+    "carousel":Carousel,
+    "search":Search
   }
 }
 </script>

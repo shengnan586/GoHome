@@ -8,6 +8,11 @@ Vue.config.productionTip = false
 //6:全局设置post 时候表音的数据组织格式为 application/x-www-form-urlencoded
 //Vue.http.options.emulateJSON = true;
 
+//引入axios模块
+import Axios from 'axios';
+Axios.defaults.baseURL="http://127.0.0.1:3003/"
+Axios.defaults.withCredentials=true;
+Vue.prototype.axios=Axios;
 
 new Vue({
   router,

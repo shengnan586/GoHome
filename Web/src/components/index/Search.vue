@@ -12,9 +12,15 @@ export default {
       areaList:[]
     }
   },
+  created(){
+    this.load()
+  },
   methods: {
     load(){
-
+      this.axios("area",{params:{aParentId:1,aType:0}}).then(result=>{
+        console.log(result);
+        this.areaList=result.data;
+      });
     }
   },
 };
