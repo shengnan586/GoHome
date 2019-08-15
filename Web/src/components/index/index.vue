@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div>
+    <div class="">
       <carousel></carousel> 
-      <search></search>
+      <search class="search"></search>
     </div>
   </div>
 </template>

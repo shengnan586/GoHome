@@ -335,10 +335,8 @@ export default {
   },
 };
 </script>
-<style >
-@import url("../../assets/css/font_kqc3z77i4jc/iconfont.css");
+<style scoped>
+@import url("../../assets/css/font_zl650w5ajr/iconfont.css");
 @import url("../../assets/css/order.css");
-@import url("../../assets/css/font_5yphq9cnd0n/iconfont.css");
-@import url("../../assets/css/font_d5zt1pasnrv/iconfont.css");
 
 </style>
