@@ -1,33 +1,7 @@
 <template>
    <div class="container">
    <!-- 条件筛选框-->
-        <div class="searchBar">
-            <div class="searchBar_l">
-                <ul class="searchBar_l_ul" >
-                    <li >
-                        <div>
-                            <input type="text" id="cityIpt" placeholder="北京" readonly="readonly"/>
-                        </div>
-                    </li>
-                    <li>
-                        
-                        <input type="text" id="start" placeholder="入住日期" readonly="readonly" style="cursor: pointer;" class=""/>
-                        
-                    </li>
-                    <li>
-                        
-                            <input type="text" id="end" placeholder="离开日期" readonly="readonly" style="cursor: pointer;" class=""/>
-                        
-                    </li>
-                    <li>
-                        <div>
-                            <input type="text" id="personNumIpt" placeholder="入住人数" readonly="readonly" style="cursor: pointer;" class=""/>
-                        </div>
-                    </li>
-                    
-                </ul>
-                <button id="searchBtn">开始搜索</button>
-            </div>
+        <div class="searchBar"> 
             <div class="search_list">
                <table class="search_tab">
                     <tr>
@@ -66,13 +40,14 @@
     <!--商品列表 --> 
         <div class="productItem" v-for="(p ,i) of arr" :key="i">
             <a class="divImg" href="javascript:;">
-                <img src="../../public/ChAFfVqqEhuATQSyAAzlNSICA1s060.JPG_Z_1200_800.jpg" alt="">
+                <img src="../../../public/ChAFfVqqEhuATQSyAAzlNSICA1s060.JPG_Z_1200_800.jpg" alt="">
             </a>
             <div class="divMsg" >
-                <a href=":;" id="aTitle">万科金色领域24 | 广佛线地铁上盖 | 北欧风公寓 | 配套设施齐全 | 千灯湖公园 | 交通便利</a>
-                <h5>整套公寓·可住两人</h5>
+                <a href=":;" id="aTitle">{{p.houseTitle}}</a>
+                <h5>整套公寓·可住{{p.peopleNumber
+}}人</h5>
                 <p>
-                <span>￥480</span> 
+                <span>￥{{p.cashMoney}}</span> 
                 每晚</p>
                 <div>
                     <span>1人fd居</span>
@@ -82,7 +57,7 @@
             </div>
             <div class="divHost">
                 <a href="javascript:;">
-                    <img src="../../public/Draven.png" alt="">
+                    <img src="../../../public/Draven.png" alt="">
                 </a>
                 <p>房东</p>
                 <p>德莱文</p>
@@ -97,6 +72,25 @@ export default {
         return{
             arr:[]
         }
+    },
+    methods: {
+        loadmore(){
+            var url="order/productlist"
+            console.log(2)
+            this.axios.get(url).then(res=>{
+            if(res.data.code==-1){
+                console.log(-1);
+            }else{
+                console.log(res.data.data)
+                this.arr=res.data.data;
+            }
+            })
+        }
+    },
+    created(){
+          console.log(3)
+          this.loadmore();
+          
     }
 }
 </script>
