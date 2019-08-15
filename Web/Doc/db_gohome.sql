@@ -55,22 +55,22 @@ drop table if exists home_dic_type;
 create table home_business_User
 (
    id                   int not null auto_increment comment 'ID',
-   UserName             varchar(20) comment 'ÓÃ»§Ãû',
-   upwd                 varchar(20) comment 'ÃÜÂë',
-   phone                varchar(20) comment 'ÊÖ»úºÅ',
-   email                varchar(20) comment 'ÓÊÏä',
-   realName             varchar(20) comment 'ÕæÊµĞÕÃû',
-   cardID               varchar(18) comment 'Éí·İÖ¤ºÅ',
-   sex                  int comment 'ĞÔ±ğ£¨0£ºÅ®£»1£ºÄĞ£©',
-   birthday             varchar(12) comment '³öÉúÈÕÆÚ',
-   isHoster             int comment 'ÊÇ·ñÎª·¿¶«£¨0£º·ñ£»1£ºÊÇ£©',
-   point                int comment '»ı·Ö',
-   porn                 varchar(20) comment 'ÑûÇëÂë',
-   porned               varchar(20) comment '±»ÑûÇëÂë',
+   UserName             varchar(20) comment 'ï¿½Ã»ï¿½ï¿½ï¿½',
+   upwd                 varchar(32) comment 'ï¿½ï¿½ï¿½ï¿½',
+   phone                varchar(20) comment 'ï¿½Ö»ï¿½ï¿½ï¿½',
+   email                varchar(20) comment 'ï¿½ï¿½ï¿½ï¿½',
+   realName             varchar(20) comment 'ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½',
+   cardID               varchar(18) comment 'ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½',
+   sex                  int comment 'ï¿½Ô±ï¿½0ï¿½ï¿½Å®ï¿½ï¿½1ï¿½ï¿½ï¿½Ğ£ï¿½',
+   birthday             varchar(12) comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+   isHoster             int comment 'ï¿½Ç·ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½Ç£ï¿½',
+   point                int comment 'ï¿½ï¿½ï¿½ï¿½',
+   porn                 varchar(20) comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+   porned               varchar(20) comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
    primary key (id)
 );
 
-alter table home_business_User comment 'ÓÃ»§±í';
+alter table home_business_User comment 'ï¿½Ã»ï¿½ï¿½ï¿½';
 
 /*==============================================================*/
 /* Table: home_business_house                                   */
@@ -78,27 +78,29 @@ alter table home_business_User comment 'ÓÃ»§±í';
 create table home_business_house
 (
    id                   int not null auto_increment comment 'ID',
-   roomSize             double comment 'Ãæ»ı',
-   daId                 int comment '»§ĞÍid',
-   aId                  int comment 'ËùÊôµØÇøid',
-   address              varchar(100) comment 'ÏêÏ¸µØÖ·',
-   houseTypeId          int comment '·¿ÎİÀàĞÍid',
-   rentalTypeId         int comment '³ö×âÀàĞÍid',
-   toiletId             int comment 'ÎÀÉú¼äÀàĞÍid',
-   peopleNumber         int comment 'ÒË¾ÓÈËÊı',
-   houseTitle           varchar(100) comment '·¿Ô´±êÌâ',
-   traffic              varchar(500) comment '½»Í¨Çé¿ö',
-   normalPrice          decimal(10,2) comment 'Õı³£¼Û¸ñ',
-   festivalPrice        decimal(10,2) comment '½Ú¼ÙÈÕ¼Û¸ñ',
-   specialPrice         decimal(10,2) comment 'ÌØ¼Û·¿',
-   isCash               int comment 'ÊÇ·ñÊÕÑº½ğ£¨0£º·ñ£»1£ºÊÇ£©',
-   cashMoney            decimal(10,2) comment 'Ñº½ğ½ğ¶î',
-   otherMoney           varchar(200) comment 'ÆäËû·ÑÓÃ',
-   otherAsk             varchar(200) comment 'ÆäËûÒªÇó',
+   roomSize             double comment 'ï¿½ï¿½ï¿½',
+   daId                 int comment 'ï¿½ï¿½ï¿½ï¿½id',
+   aId                  int comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id',
+   address              varchar(100) comment 'ï¿½ï¿½Ï¸ï¿½ï¿½Ö·',
+   houseTypeId          int comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id',
+   rentalTypeId         int comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id',
+   toiletId             int comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id',
+   peopleNumber         int comment 'ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½',
+   houseTitle           varchar(100) comment 'ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½',
+   traffic              varchar(500) comment 'ï¿½ï¿½Í¨ï¿½ï¿½ï¿½',
+   normalPrice          decimal(10,2) comment 'ï¿½ï¿½ï¿½ï¿½ï¿½Û¸ï¿½',
+   festivalPrice        decimal(10,2) comment 'ï¿½Ú¼ï¿½ï¿½Õ¼Û¸ï¿½',
+   specialPrice         decimal(10,2) comment 'ï¿½Ø¼Û·ï¿½',
+   isCash               int comment 'ï¿½Ç·ï¿½ï¿½ï¿½Ñºï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½Ç£ï¿½',
+   cashMoney            decimal(10,2) comment 'Ñºï¿½ï¿½ï¿½ï¿½',
+   otherMoney           varchar(200) comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+   otherAsk             varchar(200) comment 'ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½',
+   longitude            varchar(20) comment 'ç»åº¦',
+   latitude             varchar(20) comment 'çº¬åº¦',
    primary key (id)
 );
 
-alter table home_business_house comment '·¿Îİ±í';
+alter table home_business_house comment 'ï¿½ï¿½ï¿½İ±ï¿½';
 
 /*==============================================================*/
 /* Table: home_business_house_bed                               */
@@ -106,12 +108,12 @@ alter table home_business_house comment '·¿Îİ±í';
 create table home_business_house_bed
 (
    id                   int not null auto_increment,
-   hId                  int comment '·¿Îİid',
-   bId                  int comment '´²ÆÌid',
+   hId                  int comment 'ï¿½ï¿½ï¿½ï¿½id',
+   bId                  int comment 'ï¿½ï¿½ï¿½ï¿½id',
    primary key (id)
 );
 
-alter table home_business_house_bed comment '·¿Îİ--´²ÆÌ±í';
+alter table home_business_house_bed comment 'ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½ï¿½Ì±ï¿½';
 
 /*==============================================================*/
 /* Table: home_business_house_collect_img                       */
@@ -119,12 +121,12 @@ alter table home_business_house_bed comment '·¿Îİ--´²ÆÌ±í';
 create table home_business_house_collect_img
 (
    id                   int not null auto_increment,
-   uId                  int comment 'ÓÃ»§id',
-   hId                  int comment '·¿Îİid',
+   uId                  int comment 'ï¿½Ã»ï¿½id',
+   hId                  int comment 'ï¿½ï¿½ï¿½ï¿½id',
    primary key (id)
 );
 
-alter table home_business_house_collect_img comment 'ÊÕ²Ø±í';
+alter table home_business_house_collect_img comment 'ï¿½Õ²Ø±ï¿½';
 
 /*==============================================================*/
 /* Table: home_business_house_img                               */
@@ -132,13 +134,13 @@ alter table home_business_house_collect_img comment 'ÊÕ²Ø±í';
 create table home_business_house_img
 (
    id                   int not null auto_increment comment 'id',
-   hId                  int comment '·¿Îİid',
+   hId                  int comment 'ï¿½ï¿½ï¿½ï¿½id',
    ImgUrl               varchar(50) comment 'Í¼Æ¬URL',
-   ImgSize              varchar(10) comment 'Í¼Æ¬´óĞ¡£¨sm/md/lg',
+   ImgSize              varchar(10) comment 'Í¼Æ¬ï¿½ï¿½Ğ¡ï¿½ï¿½sm/md/lg',
    primary key (id)
 );
 
-alter table home_business_house_img comment '·¿ÎİÍ¼Æ¬±í';
+alter table home_business_house_img comment 'ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½';
 
 /*==============================================================*/
 /* Table: home_business_house_install                           */
@@ -146,12 +148,12 @@ alter table home_business_house_img comment '·¿ÎİÍ¼Æ¬±í';
 create table home_business_house_install
 (
    id                   int not null auto_increment comment 'int',
-   hId                  int comment '·¿Îİid',
-   installId            int comment 'ÉèÊ©id',
+   hId                  int comment 'ï¿½ï¿½ï¿½ï¿½id',
+   installId            int comment 'ï¿½ï¿½Ê©id',
    primary key (id)
 );
 
-alter table home_business_house_install comment '·¿Îİ--ÉèÊ©±í';
+alter table home_business_house_install comment 'ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½Ê©ï¿½ï¿½';
 
 /*==============================================================*/
 /* Table: home_business_house_msg                               */
@@ -159,13 +161,13 @@ alter table home_business_house_install comment '·¿Îİ--ÉèÊ©±í';
 create table home_business_house_msg
 (
    id                   int not null auto_increment comment 'id',
-   uId                  int comment 'ÓÃ»§id',
-   hId                  int comment '·¿Îİid',
-   msgContent           varchar(100) comment 'ÏûÏ¢ÄÚÈİ',
+   uId                  int comment 'ï¿½Ã»ï¿½id',
+   hId                  int comment 'ï¿½ï¿½ï¿½ï¿½id',
+   msgContent           varchar(100) comment 'ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½',
    primary key (id)
 );
 
-alter table home_business_house_msg comment 'Í¨Öª±í';
+alter table home_business_house_msg comment 'Í¨Öªï¿½ï¿½';
 
 /*==============================================================*/
 /* Table: home_business_orderList                               */
@@ -173,24 +175,24 @@ alter table home_business_house_msg comment 'Í¨Öª±í';
 create table home_business_orderList
 (
    id                   int not null auto_increment comment 'id',
-   orderId              varchar(50) comment '¶©µ¥±àºÅ',
-   uId                  int comment 'ÓÃ»§id',
-   hid                  int comment '·¿Îİid',
-   checkinDate          varchar(20) comment 'Èë×¡Ê±¼ä',
-   checkoutDate         varchar(20) comment 'Àë¿ªÊ±¼ä',
-   realName             varchar(20) comment 'Èë×¡ÈËÕæÊµĞÕÃû',
-   cardID               varchar(18) comment 'Èë×¡ÈËÉí·İÖ¤ºÅ',
-   phone                varchar(20) comment 'Èë×¡ÈËÊÖ»úºÅ',
-   peopleNumber         int comment 'Èë×¡ÈËÊı',
-   days                 int comment 'Èë×¡ÌìÊı',
-   payStatus            int comment '¸¶¿î×´Ì¬£¨0£ºÎ´¸¶¿î£»1£ºÒÑ¸¶¿î',
-   payTime              varchar(50) comment '¸¶¿îÊ±¼ä',
-   orderPrice           decimal(10,2) comment '¶©µ¥¼Û¸ñ',
-   orderStatus          int comment '¶©µ¥×´Ì¬£¨1£º´ıÖ§¸¶£»2£º´ıÈë×¡£»3£ºÈë×¡ÖĞ£»4£ºÒÑÍê³É£»5£ºÒÑÈ¡Ïû',
+   orderId              varchar(50) comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+   uId                  int comment 'ï¿½Ã»ï¿½id',
+   hid                  int comment 'ï¿½ï¿½ï¿½ï¿½id',
+   checkinDate          varchar(20) comment 'ï¿½ï¿½×¡Ê±ï¿½ï¿½',
+   checkoutDate         varchar(20) comment 'ï¿½ë¿ªÊ±ï¿½ï¿½',
+   realName             varchar(20) comment 'ï¿½ï¿½×¡ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½',
+   cardID               varchar(18) comment 'ï¿½ï¿½×¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½',
+   phone                varchar(20) comment 'ï¿½ï¿½×¡ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½',
+   peopleNumber         int comment 'ï¿½ï¿½×¡ï¿½ï¿½ï¿½ï¿½',
+   days                 int comment 'ï¿½ï¿½×¡ï¿½ï¿½ï¿½ï¿½',
+   payStatus            int comment 'ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½0ï¿½ï¿½Î´ï¿½ï¿½ï¿½î£»1ï¿½ï¿½ï¿½Ñ¸ï¿½ï¿½ï¿½',
+   payTime              varchar(50) comment 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
+   orderPrice           decimal(10,2) comment 'ï¿½ï¿½ï¿½ï¿½ï¿½Û¸ï¿½',
+   orderStatus          int comment 'ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¡ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½×¡ï¿½Ğ£ï¿½4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½5ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½',
    primary key (id)
 );
 
-alter table home_business_orderList comment '¶©µ¥±í';
+alter table home_business_orderList comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 
 /*==============================================================*/
 /* Table: home_dic_apartment                                    */
@@ -198,15 +200,15 @@ alter table home_business_orderList comment '¶©µ¥±í';
 create table home_dic_apartment
 (
    id                   int not null auto_increment comment 'id',
-   bedroom              int comment 'ÊÒ',
-   saloon               int comment 'Ìü',
-   toilet               int comment 'ÎÀÉú¼ä',
-   kitchen              int comment '³ø·¿',
-   balcony              int comment 'ÑôÌ¨',
+   bedroom              int comment 'ï¿½ï¿½',
+   saloon               int comment 'ï¿½ï¿½',
+   toilet               int comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+   kitchen              int comment 'ï¿½ï¿½ï¿½ï¿½',
+   balcony              int comment 'ï¿½ï¿½Ì¨',
    primary key (id)
 );
 
-alter table home_dic_apartment comment '»§ĞÍ±í';
+alter table home_dic_apartment comment 'ï¿½ï¿½ï¿½Í±ï¿½';
 
 /*==============================================================*/
 /* Table: home_dic_area                                         */
@@ -214,13 +216,13 @@ alter table home_dic_apartment comment '»§ĞÍ±í';
 create table home_dic_area
 (
    id                   int not null auto_increment comment 'id',
-   aTypeName            varchar(50) comment 'µØÇøÃû³Æ£¨Çø¡¢½Ö¡¢µØÌú£©',
-   aParentId            int comment 'ËùÊôµØÇø£¨°Ö°Ö£©',
-   aType                int comment 'Çø£º0/µØÌú£º1',
+   aTypeName            varchar(50) comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+   aParentId            int comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö°Ö£ï¿½',
+   aType                int comment 'ï¿½ï¿½ï¿½ï¿½0/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1',
    primary key (id)
 );
 
-alter table home_dic_area comment 'µØÇø±í';
+alter table home_dic_area comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 
 /*==============================================================*/
 /* Table: home_dic_bed                                          */
@@ -228,15 +230,15 @@ alter table home_dic_area comment 'µØÇø±í';
 create table home_dic_bed
 (
    id                   int not null auto_increment comment 'id',
-   bedType              varchar(20) comment '´²ĞÍ£¨µ¥ÈË´²¡¢Ë«ÈË´²µÈ£©',
-   width                int comment '¿í',
-   extent               int comment '³¤',
-   num                  int comment '¸öÊı',
-   description          varchar(200) comment 'ÃèÊö',
+   bedType              varchar(20) comment 'ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½Ë´ï¿½ï¿½ï¿½Ë«ï¿½Ë´ï¿½ï¿½È£ï¿½',
+   width                int comment 'ï¿½ï¿½',
+   extent               int comment 'ï¿½ï¿½',
+   num                  int comment 'ï¿½ï¿½ï¿½ï¿½',
+   description          varchar(200) comment 'ï¿½ï¿½ï¿½ï¿½',
    primary key (id)
 );
 
-alter table home_dic_bed comment '´²ÆÌĞÅÏ¢±í';
+alter table home_dic_bed comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½';
 
 /*==============================================================*/
 /* Table: home_dic_installation                                 */
@@ -244,13 +246,13 @@ alter table home_dic_bed comment '´²ÆÌĞÅÏ¢±í';
 create table home_dic_installation
 (
    id                   int not null auto_increment comment 'id',
-   installName          varchar(20) comment 'ÉèÊ©Ãû³Æ',
-   installType          int comment 'ÉèÊ©ÀàĞÍ£¨1£ºÎÀÔ¡£»2£ºµçÆ÷£»3£ºÉèÊ©£»4£ºÒªÇó£©',
-   fontStyle            varchar(20) comment 'Í¼±ê×ÖÌåÀàĞÍ',
+   installName          varchar(20) comment 'ï¿½ï¿½Ê©ï¿½ï¿½ï¿½ï¿½',
+   installType          int comment 'ï¿½ï¿½Ê©ï¿½ï¿½ï¿½Í£ï¿½1ï¿½ï¿½ï¿½ï¿½Ô¡ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½Ê©ï¿½ï¿½4ï¿½ï¿½Òªï¿½ï¿½',
+   fontStyle            varchar(20) comment 'Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
    primary key (id)
 );
 
-alter table home_dic_installation comment 'ÅäÌ×ÉèÊ©±í';
+alter table home_dic_installation comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê©ï¿½ï¿½';
 
 /*==============================================================*/
 /* Table: home_dic_type                                         */
@@ -258,13 +260,13 @@ alter table home_dic_installation comment 'ÅäÌ×ÉèÊ©±í';
 create table home_dic_type
 (
    id                   int not null auto_increment,
-   typeName             varchar(50) comment 'ÀàĞÍÃû³Æ',
-   description          varchar(200) comment 'ÃèÊö',
-   dicType              int comment '1:·¿ÎİÀàĞÍ£»2³ö×âÀàĞÍ£»3£ºÎÀÉú¼äÀàĞÍ',
+   typeName             varchar(50) comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+   description          varchar(200) comment 'ï¿½ï¿½ï¿½ï¿½',
+   dicType              int comment '1:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
    primary key (id)
 );
 
-alter table home_dic_type comment '·¿ÎİÀàĞÍ¡¢³ö×âÀàĞÍ¡¢ÎÀÉú¼äÀàĞÍ';
+alter table home_dic_type comment 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 
 
 
