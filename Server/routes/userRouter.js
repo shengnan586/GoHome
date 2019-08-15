@@ -26,20 +26,17 @@ router.get("/login_go",(req,res)=>{
     })
   });
 //功能2 完成注册的操作
-
-/*router.post("/reg_go",(req,res)=>{
-    console.log(111)
-    // var obj=req.body;
-    // var sql="INSERT INTO home_business_User SET ?";
-    // pool.query(sql,[obj],(res,result)=>{
-    //     console.log(result)
-    //     if(err)throw err;
-    //     if(result.affectedRows>0){
-    //         res.send({code:1,msg:"注册成功"})
-    //     }else{
-    //         res.send({code:-1,msg:"注册失败"})
-    //     }
-    // })
-    res.send("sdfsdf");
-})*/
+router.post("/reg",(req,res)=>{
+ var obj=req.body;
+    var sql="INSERT INTO home_business_User SET ?";
+    pool.query(sql,[obj],(err,result)=>{
+        console.log(result)
+        if(err)throw err;
+        if(result.affectedRows>0){
+            res.send({code:1,msg:"注册成功"})
+        }else{
+            res.send({code:-1,msg:"注册失败"})
+        }
+    })
+});
 module.exports=router;

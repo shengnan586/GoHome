@@ -69,16 +69,16 @@ export default {
       }
     },
     reg(){
-        /*var url="user/reg_go";
-        this.axios.post("url",{params:{phone:this.phone,upwd:this.upwd}}).then(res=>{
-            if(res.data.code==-1){
+        var url="user/reg";
+        this.axios.post(url,{phone:this.phone,upwd:this.upwd}).then(res=>{
+            if(res.data.code==1){
                 console.log("注册成功")
                 this.$router.push("/Login_go")
             }
-            if(res.data.code==1){
+            if(res.data.code==-1){
                 console.log("注册失败")
             }
-        })*/
+        })
     }
   }
 };
