@@ -6,6 +6,7 @@ const cors=require("cors");
 // const test=require("./routes/test.js");
 const area=require("./routes/areaRouter.js");
 const order=require("./routes/order.js");
+const ar=require("./routes/ar.js");
 
 var app = express();
 var server = app.listen(3003);
@@ -25,5 +26,6 @@ app.use(express.static('public'));
 /*使用路由器来管理路由*/
 //app.use("/test",test);
 app.use("/area",area);
-app.use("/order",order)
+app.use("/order",order);
+app.use("/ar",ar);
 
