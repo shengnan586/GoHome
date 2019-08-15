@@ -17,14 +17,22 @@ body {
     font-weight: normal;
     line-height: 1.25;
     color: #212121 !important;
-    background: #fff !important;
+    background-color: #fff !important;
     outline: none;
+}
+.app-container{
+    background-color: #fff;
 }
 
 .mg_center {
     margin-left: auto;
     margin-right: auto;
     width: 1240px;
+}
+.mg_center::before,.mg_center::after{
+    content: "";
+    display: block;
+    clear: both;
 }
 
 .order_wrap .order_left {
