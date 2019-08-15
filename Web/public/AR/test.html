@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Skybox</title>
+    <style>
+        *{box-sizing: border-box;margin: 0;padding: 0}
+        body {
+            background:#777;
+            font-weight: bold;
+            overflow:hidden;
+        }
+        #parent{
+            width:100%;
+            height: 100px;
+            padding:5px 0px;
+            background-color:rgba(0,0,0,0.5);
+            position: absolute;
+            bottom:100px;
+            z-index:10;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            transition: all 2s linear;
+            /* opacity: 1; */
+        }
+        #parent>.items{
+            position: relative;
+            margin:0px 15px;
+            height: 90px;
+            width: 90px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #parent>.items>.items_word{
+            width: 100%;
+            height:20px;
+            z-index: 11;
+            background-color:rgba(0,0,0,0.5);
+            position: absolute;
+            bottom: 0px;
+            padding-top:2px;
+            padding-bottom: 5px;
+            color: #fff;
+            font-size: 12px;
+        }
+        #parent>.items>img{
+            height: 90px;
+        }
+        #vr_btn{
+            position: absolute;
+            bottom: 25px;
+            left:10px;
+            width: 55px;
+            z-index: 10;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="output"></div>
+<div id="parent">
+    <div class="items">
+        <img id="img1" src="Image/1_0_f.jpg">
+        <div class="items_word">客厅</div>
+    </div>
+    <div class="items">
+        <img id="img2" src="Image/1_1_f.jpg">
+        <div class="items_word">厨房</div>
+    </div>
+    <div class="items">
+        <img id="img3" src="Image/1_2_f.jpg">
+        <div class="items_word">洗手间</div>
+    </div>
+    <div class="items">
+        <img id="img4" src="Image/1_3_r.jpg">
+        <div class="items_word">主卧</div>
+    </div>
+</div>
+<img src="Image/vr-btn-scene.png" id="vr_btn">
+<script src="./js/three.min.js"></script>
+<script src="./js/controls/OrbitControls.js"></script>
+<script src="ar.js"></script>
+
+</body>
+</html>
