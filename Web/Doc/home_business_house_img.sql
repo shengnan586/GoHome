@@ -1,3 +1,4 @@
+/*1号房 没有阳台*/
 insert into home_business_house_img values(null,1,'1_0_b.jpg','md');
 insert into home_business_house_img values(null,1,'1_0_d.jpg','md');
 insert into home_business_house_img values(null,1,'1_0_f.jpg','md');
@@ -26,6 +27,7 @@ insert into home_business_house_img values(null,1,'1_3_l.jpg','md');
 insert into home_business_house_img values(null,1,'1_3_r.jpg','md');
 insert into home_business_house_img values(null,1,'1_3_u.jpg','md');
 
+/*2号房 有阳台*/
 insert into home_business_house_img values(null,2,'2_0_b.jpg','md');
 insert into home_business_house_img values(null,2,'2_0_d.jpg','md');
 insert into home_business_house_img values(null,2,'2_0_f.jpg','md');
@@ -61,7 +63,7 @@ insert into home_business_house_img values(null,2,'2_4_l.jpg','md');
 insert into home_business_house_img values(null,2,'2_4_r.jpg','md');
 insert into home_business_house_img values(null,2,'2_4_u.jpg','md');
 
-
+/*3号房 有阳台*/
 insert into home_business_house_img values(null,3,'3_0_b.jpg','md');
 insert into home_business_house_img values(null,3,'3_0_d.jpg','md');
 insert into home_business_house_img values(null,3,'3_0_f.jpg','md');
@@ -97,6 +99,7 @@ insert into home_business_house_img values(null,3,'3_4_l.jpg','md');
 insert into home_business_house_img values(null,3,'3_4_r.jpg','md');
 insert into home_business_house_img values(null,3,'3_4_u.jpg','md');
 
+/*4号房 有阳台*/
 insert into home_business_house_img values(null,4,'4_0_b.jpg','md');
 insert into home_business_house_img values(null,4,'4_0_d.jpg','md');
 insert into home_business_house_img values(null,4,'4_0_f.jpg','md');
@@ -132,6 +135,7 @@ insert into home_business_house_img values(null,4,'4_4_l.jpg','md');
 insert into home_business_house_img values(null,4,'4_4_r.jpg','md');
 insert into home_business_house_img values(null,4,'4_4_u.jpg','md');
 
+/*5号房 没有阳台*/
 insert into home_business_house_img values(null,5,'5_0_b.jpg','md');
 insert into home_business_house_img values(null,5,'5_0_d.jpg','md');
 insert into home_business_house_img values(null,5,'5_0_f.jpg','md');

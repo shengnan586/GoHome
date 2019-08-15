@@ -7,7 +7,7 @@ const cors=require("cors");
 const area=require("./routes/areaRouter.js");
 const order=require("./routes/order.js");
 const ar=require("./routes/ar.js");
-
+const user=require("./routes/userRouter.js");
 var app = express();
 var server = app.listen(3003);
 app.use(cors({
@@ -27,5 +27,9 @@ app.use(express.static('public'));
 //app.use("/test",test);
 app.use("/area",area);
 app.use("/order",order);
+<<<<<<< HEAD
 app.use("/ar",ar);
+=======
+app.use("/user",user);
+>>>>>>> 13debc107e93d1b74456d28e19ab7eb2c190c991
 

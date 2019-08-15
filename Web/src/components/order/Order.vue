@@ -193,7 +193,7 @@ import layDate from "../laydate/laydate.vue";
 export default {
   data() {
     return {
-      date: "2018-02-01 - 2019-03-02", //入住日期
+      ischecked:false,
       uname: "", //姓名
       id_card: "", //身份证号
       phone: "", //手机号
@@ -232,13 +232,16 @@ export default {
       if(!this.uname){
         this.warn_name="请填写真实姓名";
         this.blurinput[0]=e.target.id;
+        this.ischecked= false;
       }else{
         if(!reg.test(this.uname)){
           this.warn_name="仅可使用汉字";
           this.blurinput[0]=e.target.id;
+          this.ischecked= false;
         }else{
           this.warn_name="";
           this.blurinput[0]="";
+          return true;
         }
       }
     },
@@ -249,13 +252,16 @@ export default {
       if(this.id_card==""){
         this.warn_id_card="请填写身份证号";
         this.blurinput[1]=e.target.id;
+        this.ischecked= false;
       }else{
         if(!reg.test(this.id_card)){
           this.warn_id_card="身份证号有误";
           this.blurinput[1]=e.target.id;
+          this.ischecked= false;
         }else{
           this.warn_id_card="";
           this.blurinput[1]="";
+          this.ischecked= true;
         }
       }
     },
@@ -266,37 +272,71 @@ export default {
       if(this.phone==""){
         this.warn_phone="请填写手机号";
         this.blurinput[2]=e.target.id;
+        this.ischecked= false;
       }else{
         if(!reg.test(this.phone)){
           this.warn_phone="手机号码有误";
           this.blurinput[2]=e.target.id;
+          this.ischecked= false;
         }else{
           this.warn_phone="";
           this.blurinput[2]="";
+          this.ischecked= true;
         }
       }
     },
+    // 时间戳函数
+    getDateString(){
+      var d=new Date();
+      var year=d.getFullYear().toString();
+      var month=(d.getMonth()+1)<10?"0"+(d.getMonth()+1):(d.getMonth()+1).toString();
+      var date=d.getDate()<10?"0"+d.getDate():d.getDate().toString();
+      var hours=d.getHours()<10?"0"+d.getHours():d.getHours().toString();
+      var minutes=d.getMinutes()<10?"0"+d.getMinutes():d.getMinutes().toString();
+      var seconds=d.getSeconds()<10?"0"+d.getSeconds():d.getSeconds().toString();
+      var milliseconds=d.getMilliseconds().toString();
+      return year+month+date+hours+minutes+seconds+milliseconds;
+    },
+    // 提交数据
     submit(){
-      console.log(this.orderDate);
-      var url="/order/order";
-      // var orderID=new Date().toLocaleString();
-      var obj = {realName:this.uname,cardID:this.id_card,phone:this.phone,peopleNumber:this.val};
-      this.axios.post(url,obj).then(res=>{
-        if(res.data.code==1){
-          alert("提交成功");
-        }else{
-          alert("提交失败");
-        }
-      })
+      // 订单编号  getDate
+      var getDate=this.getDateString();
+      // ID
+      var id=null;
+      // 用户id
+      var uid=1
+      // 房屋编号
+      var hid=1;
+      // 付款状态
+      var payStatus=0;
+      // 付款时间
+      var payTime="";
+      // 订单价格
+      var orderPrice=1200;
+      // 订单状态
+      var orderStatus=1;
+      if(this.ischecked){
+        var url="/order/order";
+        var obj = {realName:this.uname,cardID:this.id_card,phone:this.phone,peopleNumber:this.val,checkinDate:this.orderDate.start,checkoutDate:this.orderDate.end,days:this.orderDate.days,orderId:getDate,id:id,hid:hid,payStatus:payStatus,payTime:payTime,orderPrice:orderPrice,orderStatus:orderStatus,uid:uid};
+        this.axios.post(url,obj).then(res=>{
+          if(res.data.code==1){
+            // 跳转到待支付界面
+            // this.$router.push("")
+          }else{
+            alert("提交失败");
+          }
+        })
+      }else{
+        alert("请完善您的信息");
+        return;
+      }
     },
 
   },
 };
 </script>
-<style >
-@import url("../../assets/css/font_kqc3z77i4jc/iconfont.css");
+<style scoped>
+@import url("../../assets/css/font_zl650w5ajr/iconfont.css");
 @import url("../../assets/css/order.css");
-@import url("../../assets/css/font_5yphq9cnd0n/iconfont.css");
-@import url("../../assets/css/font_d5zt1pasnrv/iconfont.css");
 
 </style>
