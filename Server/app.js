@@ -27,9 +27,8 @@ app.use(express.static('public'));
 //app.use("/test",test);
 app.use("/area",area);
 app.use("/order",order);
-<<<<<<< HEAD
 app.use("/ar",ar);
-=======
+
 app.use("/user",user);
->>>>>>> 13debc107e93d1b74456d28e19ab7eb2c190c991
+
 

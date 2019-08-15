@@ -9,7 +9,7 @@
         <a href="javascript:;">登录</a>
       </div>
 
-      <input v-model="phone" type="text" placeholder="建议使用常用手机号">
+      <input @blur="blurphone" v-model="phone" type="text" placeholder="建议使用常用手机号">
       <div class="reg_phone">{{spanMsg}}</div>
 
       <!-- 手机验证码一隐藏 -->
@@ -19,7 +19,7 @@
         <div class="reg_code">请输入验证码</div>
       </div>
 
-      <input v-model="upwd" class="reg_upwd" type="text" placeholder="请输入6-16位密码">
+      <input @blur="blurupwd" v-model="upwd" class="reg_upwd" type="text" placeholder="请输入6-16位密码">
       <div class="reg_up">{{divMsg}}</div>
 
       <span class="reg_span">
@@ -50,9 +50,37 @@ export default {
     }
   },
   methods: {
+    blurphone(){
+       return new Promise((resolve, reject) => {
+          if (this.phone.trim() == "") {
+          this.spanMsg= "手机号不能为空";   
+          resolve(false);
+        }else{
+      
+      
+      var url="user/reg_go";
+      this.axios(url,{params:{phone:this.phone}}).then(res=>{
+        if(res.data.code==-1){
+         this.spanMsg ="用户名已存在";
+        }else{
+         this.spanMsg = "手机号可用";
+        }
+      })
+        }
+       })
+    },
+     blurupwd(){
+       return new Promise((resolve, reject) => {
+          if (this.upwd.trim() == "") {
+          this.divMsg= "密码必须在3~9位之间";   
+          resolve(false);
+        }
+       })
+    },
     checkphone() {
       var reg = /^1[3-9]\d{9}$/;
       //如果验证通过！
+    
       if (reg.test(this.phone) == true) {
         this.spanMsg = "";
       } else {
@@ -67,6 +95,7 @@ export default {
       } else {
         this.divMsg = "密码不正确";
       }
+      
     },
     reg(){
         var url="user/reg";
