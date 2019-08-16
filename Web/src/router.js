@@ -4,6 +4,7 @@ import HelloContainer from "./components/HelloWorld.vue"
 import index from "./components/index/index.vue"
 import Order from "./components/order/Order.vue"
 import productList from "./components/productlist/productList.vue"
+import map from "./components/productlist/map.vue"
 import search from "./components/productlist/search.vue"
 import Info from "./components/publish/info.vue"
 //登录的引入
@@ -24,5 +25,6 @@ export default new Router({
      {path:'/Login_go',component:Login_go},
      //注册的路径
      {path:'/Reg_go',component:Reg_go},
+     {path:'/map',component:map}
   ]
 })
