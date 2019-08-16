@@ -11,7 +11,7 @@ router.get("/login_go",(req,res)=>{
    //console.log(phone)
     //2.sql:查询sq语句
     //数据库：库名  表名 列名  都是小写
-    var sql = "SELECT id FROM home_business_User WHERE phone=? AND upwd=md5(?)";
+    var sql = "SELECT id,username,phone FROM home_business_User WHERE phone=? AND upwd=md5(?)";
     //3.json:{code:1,msg:"登陆成功"}
     pool.query(sql,[phone, upwd], (err, result) => {
         console.log(result)
@@ -20,7 +20,7 @@ router.get("/login_go",(req,res)=>{
             res.send({ code: -1, msg: "登录失败" })
         } else {
           
-            res.send({ code: 1, msg: "登录成功" })
+            res.send({ code: 1, data:result })
         }
     })
   });
