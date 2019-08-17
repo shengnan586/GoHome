@@ -15,7 +15,7 @@ router.post("/order",(req,res)=>{
     })
 })
 router.get("/productlist",(req,res)=>{
-    console.log(1111);
+    
     var sql="SELECT * FROM home_business_house";
     pool.query(sql,(err,result)=>{
         if(err) throw err;

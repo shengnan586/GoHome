@@ -1,8 +1,70 @@
 <template>
    <div class="container">
    <!-- 条件筛选框-->
-        
-      
+       <div class="searchBar">
+            <div class="searchBar_l">
+                <ul class="searchBar_l_ul" >
+                    <li >
+                        <div>
+                            <input type="text" id="cityIpt" placeholder="北京" readonly="readonly"/>
+                        </div>
+                    </li>
+                    <li>
+                        <select  id="city_show" class="select_css">
+                            <option value="1001">请选择</option>
+                            <option value="1002">朝阳</option>
+                            <option value="1001">海淀</option>
+                            <option value="1002">朝阳</option>
+                        </select>
+                        
+                    </li>
+                    <li>
+                        
+                            <input type="text" id="end" placeholder="入住日期" readonly="readonly" style="cursor: pointer;" class=""/>
+                        
+                    </li>
+                    <li>
+                        <div>
+                            <select class="select_css">
+                                <option value="">入住人数</option>
+                                <option value="0001">1人</option>
+                                <option value="0001">2人</option>
+                                <option value="0001">3人</option>
+                                <option value="0001">4人</option>
+                                <option value="0001">5人</option>
+                            </select>
+                        </div>
+                    </li>
+                    
+                </ul>
+                <button id="searchBtn">开始搜索</button>
+               
+            </div> 
+            <div>
+                <table class="search_tab">
+                    <tr >
+                        <td>
+                            价格
+                        </td>
+                        <td><p >0-300</p></td>
+                        <td><p >300-600</p></td>
+                        <td><p >600-900</p></td>
+                    </tr>
+                    <tr>
+                        <td>搜索关键词</td>
+                        <td colspan=3>
+                            <div>
+                                <input type="text" placeholder="请输入商圈、景点、房间名、房东名等">
+                            </div>
+                        
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="pricelist">
+
+            </div>
+        </div>
     <!--商品列表 --> 
         <div class="productItem" v-for="(p ,i) of arr" :key="i">
             <a class="divImg" href="javascript:;">
@@ -10,8 +72,7 @@
             </a>
             <div class="divMsg" >
                 <a href=":;" id="aTitle">{{p.houseTitle}}</a>
-                <h5>整套公寓·可住{{p.peopleNumber
-}}人</h5>
+                <h5>整套公寓·可住{{p.peopleNumber}}人</h5>
                 <p>
                 <span>￥{{p.cashMoney}}</span> 
                 每晚</p>
@@ -36,10 +97,13 @@
 export default {
     data(){
         return{
-            arr:[]
+            arr:[],
+           
+            
         }
     },
     methods: {
+        
         loadmore(){
             var url="order/productlist"
             console.log(2)
@@ -52,6 +116,7 @@ export default {
             }
             })
         }
+        
     },
     created(){
           console.log(3)
@@ -61,59 +126,100 @@ export default {
 }
 </script>
 <style scoped>
-    /* */
+    /*选择条 */
+    input:focus { outline: none; } 
+    select:focus { outline: none; } 
+    a{  text-decoration:none;}
+    .search_tab{
+        width:992px;
+        height:160px;
+        position:absolute;
+        top:100px;
+        border-collapse: collapse;
+        border-spacing: 0; 
+        margin-left:10px;
+        color:#ccc;
+
+    }
+    .search_tab>tr{
+        height:90px;
+       
+        border-bottom:1px solid #ccc;
+    }
+    .search_tab td{
+        height:50px;
+        line-height:50px;
+        font-size:16px;
+        
+    }
+     .search_tab div{
+         width:270px; height:40px;
+         border:1px solid #ccc;
+         border-radius:5px;
+         position:relative;
+         
+     }
+     .search_tab p{
+         width:82px;height:32px;
+         box-sizing:border-box;
+         border:1px solid rgba(0,0,0,0);
+         line-height:32px;
+         text-align:center;
+     }
+     .search_tab p:hover{
+         border:1px solid #39b54a;
+         border-radius:5px;
+         color:#39b54a;
+     }
+     .search_tab input{
+         width:92%;
+        position:absolute;
+        top:11px;
+        left:10px;
+        border:0;
+     }
+    /*搜索条 */
+    .select_css{
+        width:83%;height:20px;
+        border:0;
+        text-align:center;
+        color:#999;
+        margin-left:10px;
+    }
+    
     .search_list{
         position:absolute;
         top:100px;
         width:100%;
+        
     }
-    .search_tab{
-        width:600px;
-    }
-    .search_tab tr{
-        width:100px;height:90px;    
-    }
-    .search_tab>tr>td{
-        width:190px;height:90px;
-        font-size:14px;
-        color:#666;
-    }
-    .search_tab>tr>td:first-child{
-        width:190px;height:90px;
-        font-size:18px;
-        color:#999;
-    }
-    .search_tab>tr>td>div{
-        width:80px;height:30px;
-        text-align:center;
-        line-height:30px;
-    }
-    .search_tab>tr>td>div:hover{
-        color:#39b54a;
-    }
+    
 
     /*查询列表 */
     
-    .search_bar {
-        width: 100%;
-        height: 50px;
-      padding-top: 30px;
-      position:relative;
+    .searchBar {
+        width: 1000px;
+        height: 260px;
+        padding-top: 30px;
+        position:relative;
+        margin:auto;
      
     }
+    
      .searchBar_l{
         float: left;
         width: 839px;
         height: 48px;
         border: 1px solid #39b54a;
         border-radius: 5px 0 0 5px;
+        position:relative;
          margin-left:10px;
          border-right:0;
         text-align:center;
     }
     .searchBar_l_ul{
         width: 100%;
-        padding: 10px 0;
+        /*/ padding: 10px 0;*/
         height: 38px;
         line-height: 30px;
         list-style:none;
@@ -121,6 +227,7 @@ export default {
         padding:3px;
         margin-top:5px;
         align-items:center;
+        margin-bottom:0;
     }
     .searchBar_l
     .searchBar_l_ul>li {
@@ -143,17 +250,20 @@ export default {
    input{
        border:none;
        height:100%;
-       background:#EFEFF4;
+       background:#fff;
        font-size:14px;
        padding:0px 15px; 
    }
     #searchBtn{
         width:160px;height:50px;
         position:absolute;
-        top:39px;left:848px;
+        top:-1px;left:836px;
         background:#39b54a;
         color:#fff;
-        font-size:16px;
+        font-size:18px;
+        outline:none;
+        border:0;
+        border-radius:0 5px 5px 0;
     }
 
     /*商品列表*/
@@ -161,12 +271,15 @@ export default {
         width:1000px;
         height:244px;
         display:flex;
+        box-sizing:border-box;
+        overflow:hidden;
+        padding:20px;
         justify-content:space-between;
-        background:#fff;
+        background:#f6f6f6;
         align-items:center;
         margin:20px auto;
-        border:1px solid #ccc;
-        border-radius:10px;
+       
+        border-radius:3px;
         
     }
     .productItem p{
@@ -193,7 +306,7 @@ export default {
     .divMsg{
         width:500px;height:200px;
         margin-left:20px;
-        margin-top:20px;
+        
         
     }
     #aTitle{
@@ -201,7 +314,7 @@ export default {
         padding-left:10px;
         width:500px;
         font-size:20px;
-        font-weight:bold;
+        
         overflow:hidden;
         text-overflow:ellipsis;
         white-space:nowrap;
@@ -227,7 +340,7 @@ export default {
     }
     /*房主信息 */
     .divHost{
-        width:180px;height:240px;
+        width:180px;height:200px;
         border-left:2px dashed #39b54a;
     }
     .divHost a{
