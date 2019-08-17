@@ -7,6 +7,7 @@ const cors=require("cors");
 const area=require("./routes/areaRouter.js");
 const order=require("./routes/order.js");
 const user=require("./routes/userRouter.js");
+const houseType=require("./routes/houseType.js");
 
 var app = express();
 var server = app.listen(3003);
@@ -28,4 +29,5 @@ app.use(express.static('public'));
 app.use("/area",area);
 app.use("/order",order);
 app.use("/user",user);
+app.use("/houseType",houseType);
 
