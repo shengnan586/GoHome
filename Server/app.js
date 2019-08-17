@@ -11,6 +11,8 @@ const user=require("./routes/userRouter.js");
 const houseType=require("./routes/houseType.js");
 const facilitySearch = require("./routes/facilitySearch.js");
 const facilitySave = require("./routes/facilitySave.js");
+const bedType=require("./routes/bedType.js");
+
 var app = express();
 var server = app.listen(3003);
 app.use(cors({
@@ -34,5 +36,10 @@ app.use("/ar",ar);
 
 app.use("/user",user);
 app.use("/houseType",houseType);
+
 app.use("/facility",facilitySearch);
 app.use("/facility",facilitySave);
+
+app.use("/bedType",bedType);
+
+

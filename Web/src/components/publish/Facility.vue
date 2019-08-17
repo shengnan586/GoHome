@@ -47,7 +47,7 @@ export default {
   data() {
     return {
         //通过上一个组件传房屋ID 要改！！！
-        hid:3,
+        hid:8,
         //数据用来循环创建页面上的小图标
         //数据名对应数据库内设施类型
         //1--weiyu  2--dianqi 3--sheshi 4--request

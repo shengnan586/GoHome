@@ -41,7 +41,6 @@ router.get("/save",(req,res)=>{
         else{
             //如果设施表中存在该房屋id
             branch = 2;
-            console.log('branch'+branch);
             //更新该房屋id下的所有设施的状态为0
             sql = `update home_business_house_install set state = 0 where hId = ${hid}`;
             return query(sql,[hid]);
@@ -64,7 +63,6 @@ router.get("/save",(req,res)=>{
             //存在该房屋id 则更新数据
             if(result.affectedRows > 0){
                 branch = 4;
-                console.log(branch);
                 sql = `update home_business_house_install set state = 1 where hId = ${hid} and installId in (?)`;
                 return query(sql,[id]);
             }     
