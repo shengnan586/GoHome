@@ -9,6 +9,7 @@ const order=require("./routes/order.js");
 const ar=require("./routes/ar.js");
 const user=require("./routes/userRouter.js");
 const houseType=require("./routes/houseType.js");
+const bedType=require("./routes/bedType.js");
 
 var app = express();
 var server = app.listen(3003);
@@ -33,5 +34,6 @@ app.use("/ar",ar);
 
 app.use("/user",user);
 app.use("/houseType",houseType);
+app.use("/bedType",bedType);
 
 
