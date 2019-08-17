@@ -11,6 +11,7 @@ import Info from "./components/publish/info.vue"
 import Login_go from "./components/Login_go.vue"
 //注册引入
 import Reg_go from "./components/Reg_go.vue"
+import Facility from "./components/publish/Facility.vue"
 
 Vue.use(Router)
 export default new Router({
@@ -22,9 +23,10 @@ export default new Router({
     {path:'/search',component:search},
     {path:'/info',component:Info},
      //登录的路径
-     {path:'/Login_go',component:Login_go},
+    {path:'/Login_go',component:Login_go},
      //注册的路径
-     {path:'/Reg_go',component:Reg_go},
-     {path:'/map',component:map}
+    {path:'/Reg_go',component:Reg_go},
+    {path:'/map',component:map},
+    {path:'/facility',component:Facility}
   ]
 })
