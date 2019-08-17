@@ -3,7 +3,7 @@
         <div class="login_top">
             <div class="login_parent">
                 <div class="login_log">登录</div>
-                <div class="login_no">没有账号? 可以<a href="javascript:;">注册</a></div>
+                <div class="login_no">没有账号? 可以<a @click="login_to" href="javascript:;">注册</a></div>
                 <!-- 手机号验证 -->
                 <input v-model="phone" type="text"  placeholder="请输入手机号">
                 <div class="login_phone">{{spanMsg}}</div>
@@ -16,7 +16,7 @@
                     <a class="login_for" style="color:#006837" href="javascript:;">忘记密码</a> 
                 </div>
                 <button class="login_btn" @click="login()">登录</button> 
-                <div class="login_num">手机验证码登录</div>
+                <div style="display:none" class="login_num">手机验证码登录</div>
             </div>
         </div>
 </template>
@@ -42,9 +42,13 @@ export default {
 
   },
   methods:{
+      login_to(){
+          this.$router.push("/Reg_go")
+      },
         checkphone(){
              var reg=/^1[3-9]\d{9}$/;
             //如果验证通过！
+            if(this.phone){
             if(reg.test(this.phone)==true){
                 this.spanMsg="";
                 return true;
@@ -52,15 +56,24 @@ export default {
                 this.spanMsg="手机号格式不正确";
             return false;
             }
+            }else{
+                this.spanMsg="手机号不能为空";
+                return false;
+            }
         },
         checkupwd(){
             var reg=/^[0-9A-Za-z]{3,12}$/i;
             //如果验证通过！
+            if(this.upwd){
             if(reg.test(this.upwd)==true){
                 this.divMsg="";
                 return true;
             }else{
                 this.divMsg="密码不正确";
+                return false;
+            }
+            }else{
+                this.divMsg="密码不能为空";
                 return false;
             }
         },
@@ -78,7 +91,14 @@ export default {
                     //6.1登录失败 提示
                     //6.2登陆成功 跳转商品首页
             }else{
-               
+                /*以下是存储id username phone*/ 
+                var id=res.data.data[0].id;
+                var username=res.data.data[0].username;
+                var phone=res.data.data[0].phone;
+                sessionStorage.setItem("userid",id);
+                sessionStorage.setItem("username",username);
+                sessionStorage.setItem("phone",phone);
+                /*登录成功自动转*/ 
                 this.$router.push("/Product_go")//将Product这个路由推入路由器，路由自动跳转
             }
             })
@@ -138,7 +158,7 @@ export default {
     }
     .login_no>a{
         font-size:16px;
-        color: #006837;
+        color: #39b54a;
     }
     .login_phone{
         width:406px;
