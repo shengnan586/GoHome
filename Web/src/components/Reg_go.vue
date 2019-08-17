@@ -5,11 +5,12 @@
   <div class="reg_top">
     <div class="reg_parent">
       <div class="reg_log">注册</div>
-      <div class="reg_no">已有账号 ?
-        <a href="javascript:;">登录</a>
+      <div class="reg_no">
+        已有账号 ?
+        <a @click="reg_to" href="javascript:;">登录</a>
       </div>
 
-      <input v-model="phone" type="text" placeholder="建议使用常用手机号">
+      <input @blur="blurphone" v-model="phone" type="text" placeholder="建议使用常用手机号">
       <div class="reg_phone">{{spanMsg}}</div>
 
       <!-- 手机验证码一隐藏 -->
@@ -19,7 +20,7 @@
         <div class="reg_code">请输入验证码</div>
       </div>
 
-      <input v-model="upwd" class="reg_upwd" type="text" placeholder="请输入6-16位密码">
+      <input @blur="blurupwd" v-model="upwd" class="reg_upwd" type="text" placeholder="请输入6-16位密码">
       <div class="reg_up">{{divMsg}}</div>
 
       <span class="reg_span">
@@ -50,35 +51,84 @@ export default {
     }
   },
   methods: {
+    reg_to(){
+      this.$router.push("/Login_go")
+    },
+    blurphone() {
+      return new Promise((resolve, reject) => {
+        if (this.phone.trim() == "") {
+          this.spanMsg = "手机号不能为空";
+          resolve(false);
+        } else {
+          var url = "user/reg_go";
+          this.axios(url, { params: { phone: this.phone } }).then(res => {
+            if (res.data.code == -1) {
+              this.spanMsg = "用户名已存在";
+            } else {
+              this.spanMsg = "手机号可用";
+            }
+          });
+        }
+      });
+    },
+    blurupwd() {
+      return new Promise((resolve, reject) => {
+        if (this.upwd.trim() == "") {
+          this.divMsg = "密码不能为空";
+          resolve(false);
+        }
+      });
+    },
     checkphone() {
       var reg = /^1[3-9]\d{9}$/;
       //如果验证通过！
-      if (reg.test(this.phone) == true) {
-        this.spanMsg = "";
+      if (this.phone) {
+        //console.log(this.phone);
+        if (reg.test(this.phone) == true) {
+          this.spanMsg = "";
+          return true;
+        } else {
+          this.spanMsg = "手机号格式不正确";
+          return false;
+        }
       } else {
-        this.spanMsg = "手机号格式不正确";
+        this.spanMsg = "手机号不能为空";
+        return false;
       }
     },
     checkupwd() {
       var reg = /^[0-9A-Za-z]{3,12}$/i;
+      if(this.upwd){
       //如果验证通过！
       if (reg.test(this.upwd) == true) {
         this.divMsg = "";
+        return true;
       } else {
-        this.divMsg = "密码不正确";
+        this.divMsg = "密码必须在3~9位之间";
+        return false;
+      }
+      }else{
+        this.divMsg="密码不能为空";
+        return false;
       }
     },
-    reg(){
-        var url="user/reg";
-        this.axios.post(url,{phone:this.phone,upwd:this.upwd}).then(res=>{
-            if(res.data.code==1){
-                console.log("注册成功")
-                this.$router.push("/Login_go")
+    reg() {
+      if (this.checkphone() && this.checkupwd()) {
+        var url = "user/reg";
+        this.axios
+          .post(url, { phone: this.phone, upwd: this.upwd })
+          .then(res => {
+            if (res.data.code == 1) {
+              console.log("注册成功");
+              this.$router.push("/Login_go");
             }
-            if(res.data.code==-1){
-                console.log("注册失败")
+            if (res.data.code == -1) {
+              console.log("注册失败");
             }
-        })
+          });
+      } else {
+        return;
+      }
     }
   }
 };
@@ -144,7 +194,7 @@ export default {
 }
 .reg_no > a {
   font-size: 16px;
-  color: #006837;
+  color: #39b54a;
 }
 .reg_phone {
   width: 406px;

@@ -14,5 +14,17 @@ router.post("/order",(req,res)=>{
         }
     })
 })
+router.get("/productlist",(req,res)=>{
+    console.log(1111);
+    var sql="SELECT * FROM home_business_house";
+    pool.query(sql,(err,result)=>{
+        if(err) throw err;
+        if(result.length>0){
+            res.send({code:1,data:result})
+        }else{
+            res.send({code:-1,msg:"没有数据"});
+        }
+    })
+})
 
 module.exports=router;
