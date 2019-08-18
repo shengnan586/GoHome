@@ -1,5 +1,6 @@
 <template>
-  <div class="h_container">
+  <div class="h_container" :style="{display:stepToChild==3?'block':'none'}">
+      <!-- ==3 表示头部点击了第三步 该组件显示 -->
     <div class="h_wrap">
       <h4 class="h_tit">配套设施</h4>
       <div class="sb_box">
@@ -46,8 +47,6 @@
 export default {
   data() {
     return {
-        //通过上一个组件传房屋ID 要改！！！
-        hid:8,
         //数据用来循环创建页面上的小图标
         //数据名对应数据库内设施类型
         //1--weiyu  2--dianqi 3--sheshi 4--request
@@ -225,10 +224,9 @@ export default {
         ],
     }
   },
-  props:{
-      
-  },
+  props:["stepToChild","hid"],//stepToChild父组件传过来，用来是否显示该组件的 hid是父组件传过来的，用来查询数据库是否有数据的
   created() {
+      if(this.hid != 0)
       this.load();
   },
   methods: {
@@ -268,8 +266,9 @@ export default {
                     }
                 }).then(res=>{
                     if(res.data.code > 0){
-                        console.log(1);
+                        console.log("跳组件");
                         //跳转下一个组件
+                        this.$emit("step",3);
                     }
                 })
             }          
@@ -281,6 +280,7 @@ export default {
                 var data = res.data.data;
                 //请求回来的数据是设施名字和设施类型 for循环遍历 并通过switch-case来筛选出数据，将对应数据的active变成true
                 if(data.length > 0){
+                    this.$emit("had",3);
                     for(var item of data){
                         //data是数组 存着installType-->设施类型 和installName-->设施名字
                         switch(parseInt(item.installType)){
@@ -316,7 +316,6 @@ export default {
                                     }
                                 };
                                 break;
-
                         }
                     }
                 }
@@ -354,6 +353,7 @@ export default {
   background: #f5f5f5;
   padding-top: 20px;
   height: 100%;
+  display:none
 }
 .h_wrap {
   width: 960px;
