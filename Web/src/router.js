@@ -14,6 +14,7 @@ import Login_go from "./components/Login_go.vue"
 import Reg_go from "./components/Reg_go.vue"
 import Publish from "./components/publish/Publish.vue"
 import Facility from "./components/publish/Facility.vue"
+import Describe from "./components/publish/Describe.vue"
 
 Vue.use(Router)
 export default new Router({
@@ -26,6 +27,8 @@ export default new Router({
     {path:'/alert',component:Alert},
     {path:'/info',component:Info},
     {path:'/Publish',component:Publish},
+    {path:'/pubHeader',component:pubHeader},
+    {path:'/Describe',component:Describe},
      //登录的路径
     {path:'/Login_go',component:Login_go},
      //注册的路径

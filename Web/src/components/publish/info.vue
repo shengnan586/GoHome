@@ -1,5 +1,5 @@
 <template>
-  <div class="info_info_wrap">
+  <div class="info_info_wrap" :style="{display:stepToChild==1?'block':'none'}" style="display:none">
     <!--  -->
     <!-- 房源地址 -->
     <div class="h_wrap">
@@ -164,7 +164,7 @@
                         </div>
                         <span class="h_input_span">m²</span>
                     </div>
-                    <div  class="error_panel" v-show="err_area" style="display: block;top:8px;left:270px;">
+                    <div  class="error_panel" v-show="err_area" style="top:8px;left:270px;">
                     <i  class="iconfont icon-jinggao"></i>
                     <div  class="el-alert_content">
                         <span  class="el-alert_title" >请填写出租面积</span>
@@ -178,7 +178,7 @@
                     :key="i" :value="item.id" v-text="item.typeName"></option>
                     </select>
                 </li>
-                <li class="clearfix" style="padding-bottom:15px;">
+                <li class="clearfix" style="padding-bottom:15px;position:relative">
                     <label class="type w_103" style="width: 100px;color:#000;">床铺信息：</label>
                     <div class="bed_btns" style="margin-left:100px;" v-if="bed_btn.length>0 ">
                         <div class="bed_btn"  v-for="(item,i) of bed_btn" :key="i">
@@ -192,6 +192,12 @@
                         :key="i" :value="item.id" v-text="item.bedType"></option>
                         </select>
                         <div class="add_btn" style="width:100px;" @click="add_bed">+ 添加</div>
+                    </div>
+                    <div  class="error_panel" v-show="err_bed" style="display: block;top:15px;left:100px;">
+                    <i  class="iconfont icon-jinggao"></i>
+                    <div  class="el-alert_content">
+                        <span  class="el-alert_title" >请填写床铺类型</span>
+                    </div>
                     </div>
                 </li>
                 <li class="clearfix" style="padding-bottom:15px;">
@@ -244,10 +250,15 @@ export default {
       house_num:"",//门牌号
       err_num:false,//门牌号提示信息
       err_area:false,//出租面积为空提示
+      err_bed:false,//床铺类型为空提示
     };
   },
+  props:["stepToChild","hid"],
   created() {
     this.load();
+    // if(!hid){
+
+    // }
   },
   methods: {
     load() {
@@ -310,6 +321,7 @@ export default {
     },
     // 添加床铺信息
     add_bed(){
+        this.err_bed=false;
         for(var i=0;i<this.bedList.length;i++){
             if(this.bedList[i].id==this.bedTypeId){
                 this.bed_btn.push({id:this.bedList[i].id,bedType:this.bedList[i].bedType});
@@ -340,18 +352,22 @@ export default {
         }else if(!this.area){
             this.err_area=true;
             return;
-        }else{
+        }else if(!err_bed){
+            this.err_bed=true;
+            return;
+        }
+        else{
             var address=this.details_address+this.house_num;
             var obj={
                 roomSize:this.area,
-                dald:{
+                daId:{
                     bedroom:this.room,
                     saloon:this.parlor,
                     toilet:this.bathroom,
                     kitchen:this.kitchen,
                     balcony:this.balcony
                 },
-                ald:this.selectedAreaId,
+                aId:this.selectedAreaId,
                 address:this.address,
                 houseTypeId:this.selectedId,
                 rentalTypeId:this.rentId,
@@ -359,10 +375,17 @@ export default {
                 peopleNumber:this.peoples,
                 bld:this.bedTypeId
             }
-            this.axios.post("/addhouse",obj)
-            .then(result=>{
-                console.log(result);
-            })
+            if(!this.hid){
+              this.axios.post("/addhouse",obj)
+              .then(result=>{
+                  console.log(result);
+              })
+            }else{
+              this.axios.post("/updatehouse",obj)
+              .then(result=>{
+                  console.log(result);
+              })
+            }
         }
     }
 
@@ -370,7 +393,6 @@ export default {
 };
 </script>
 <style scoped>
-
 
 body,
 div,
@@ -417,10 +439,13 @@ html,
 body {
   height: 100%;
 }
-.info_info_wrap {
-  height: 100%;
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
-
 /* 房源地址 */
 /*  */
 .h_wrap {
