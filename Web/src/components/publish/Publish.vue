@@ -109,7 +109,7 @@ export default {
       },
       stepToParent(step){
         console.log("fanhui"+step);
-        if(this.step != 5){
+        if(this.step < step){
           this.step = step+1;//控制字体颜色 让下一个组件的颜色变亮 +1
         }
         this.stepToChild = step+1;//控制跳下一个组件

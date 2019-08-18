@@ -1,5 +1,6 @@
 <template>
   <div class="h_container" :style="{display:stepToChild==3?'block':'none'}">
+      <!-- :style="{display:stepToChild==3?'block':'none'}" -->
       <!-- ==3 表示头部点击了第三步 该组件显示 -->
     <div class="h_wrap">
       <h4 class="h_tit">配套设施</h4>
@@ -41,12 +42,19 @@
       </div>
     </div>
     <a href="javascript:;" class="keep_btn" @click="save">保存并继续</a>
+    <Alert :display="display" :prompt="prompt"></Alert>
   </div>
 </template>
 <script>
+import Alert from "../Alert"
 export default {
+  components:{Alert},
   data() {
     return {
+        //弹出框alert的使用的变量
+        display:'none',
+        prompt:'你还没有选择任何配套设施',
+        d1:0,
         //数据用来循环创建页面上的小图标
         //数据名对应数据库内设施类型
         //1--weiyu  2--dianqi 3--sheshi 4--request
@@ -256,7 +264,7 @@ export default {
             }
             if(JSON.stringify(pro) == '{}'){
                 //弹出框 要改！！！
-                console.log("未选择");            
+                this.display='block'+(this.d1++);         
             }else{
                 //发送ajax请求，传入房屋id和设施名字
                 this.axios.get("facility/save",{
@@ -353,7 +361,7 @@ export default {
   background: #f5f5f5;
   padding-top: 20px;
   height: 100%;
-  display:none
+  display:none 
 }
 .h_wrap {
   width: 960px;
