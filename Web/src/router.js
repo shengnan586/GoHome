@@ -11,7 +11,7 @@ import Info from "./components/publish/info.vue"
 import Login_go from "./components/Login_go.vue"
 //注册引入
 import Reg_go from "./components/Reg_go.vue"
-
+import Header from "./components/publish/header.vue"
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -20,7 +20,9 @@ export default new Router({
     {path:'/order',component:Order},
     {path:'/productlist',component:productList},
     {path:'/search',component:search},
+
     {path:'/info',component:Info},
+    {path:'/header',component:Header},
      //登录的路径
      {path:'/Login_go',component:Login_go},
      //注册的路径
