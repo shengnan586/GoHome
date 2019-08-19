@@ -15,7 +15,7 @@
                     <label><input type="checkbox">一周内免登录</label>
                     <a class="login_for" style="color:#006837" href="javascript:;">忘记密码</a> 
                 </div>
-                <button class="login_btn" @click="login()">登录</button> 
+                <button class="login_btn" @click="login">登录</button> 
                 <div style="display:none" class="login_num">手机验证码登录</div>
             </div>
         </div>
@@ -86,8 +86,8 @@ export default {
             this.axios.get(url,{params:{phone:this.phone,upwd:this.upwd}}).then(res=>{
                 //console.log(res);
                  //6.获取服务器返回的结果
+                 
             if(res.data.code==-1){
-               
                     //6.1登录失败 提示
                     //6.2登陆成功 跳转商品首页
             }else{
@@ -99,7 +99,7 @@ export default {
                 sessionStorage.setItem("username",username);
                 sessionStorage.setItem("phone",phone);
                 /*登录成功自动转*/ 
-                this.$router.push("/Product_go")//将Product这个路由推入路由器，路由自动跳转
+                this.$router.push("/index")//将Product这个路由推入路由器，路由自动跳转
             }
             })
            
