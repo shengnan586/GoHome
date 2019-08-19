@@ -430,7 +430,7 @@ export default {
           balcony: this.balcony,
           bId: this.bedTypeId
         };
-        // if (this.hid=0) {
+        // if (this.hid==0) {
           this.axios.post("/addhouse/addhouse", obj).then(result => {
             this.hid1=result.data.data;
             this.$emit("sendHid",this.hid1);
