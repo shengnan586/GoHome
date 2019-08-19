@@ -11,7 +11,6 @@ import Info from "./components/publish/info.vue"
 import Login_go from "./components/Login_go.vue"
 //注册引入
 import Reg_go from "./components/Reg_go.vue"
-import pubHeader from "./components/publish/pubHeader.vue"
 import Facility from "./components/publish/Facility.vue"
 import Describe from "./components/publish/Describe.vue"
 
@@ -25,7 +24,6 @@ export default new Router({
     {path:'/search',component:search},
 
     {path:'/info',component:Info},
-    {path:'/pubHeader',component:pubHeader},
     {path:'/Describe',component:Describe},
      //登录的路径
     {path:'/Login_go',component:Login_go},
