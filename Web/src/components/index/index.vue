@@ -3,8 +3,10 @@
     <div class="headerContent" :style="{width:innerWidth+'px',height:innerHeight+'px'}">
       <homeheader class="header"></homeheader>
       <carousel class="carousel"></carousel> 
-      <search class="search"></search>
+      <search class="search" :style="{top:innerHeight*0.8+'px'}"></search>
     </div>
+    <plist></plist>
+    <rspots></rspots>
     <homefooter></homefooter>
   </div>
 </template>
@@ -13,18 +15,28 @@ import Header from './header';
 import Footer from './footer';
 import Carousel from "./Carousel.vue";
 import Search from "./Search.vue";
+import ProductList from './ProductList.vue';
+import RecommendSpots from './RecommendSpots.vue'
 export default {
   data() {
     return {
       innerWidth:window.innerWidth,
-      innerHeight:window.innerHeight,
+      innerHeight:window.innerHeight,   
     }
+  },
+  created(){
+     window.addEventListener("resize",()=>{
+      this.innerWidth=window.innerWidth;
+      this.innerHeight=window.innerHeight;
+    })
   },
   components:{
     "homeheader":Header,
     "homefooter":Footer,
     "carousel":Carousel,
-    "search":Search
+    "search":Search,
+    "plist":ProductList,
+    "rspots":RecommendSpots
   }
 }
 </script>
@@ -47,7 +59,6 @@ export default {
   .headerContent .search{
     position:absolute;
     left:50%;
-    bottom: 30px;
     transform: translateX(-50%);
     z-index: 100;
   }
