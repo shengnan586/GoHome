@@ -1,6 +1,7 @@
 <template>
    <div class="container">
    <!-- 条件筛选框-->
+        <Header></Header>
        <div class="searchBar">
             <div class="searchBar_l">
                 <ul class="searchBar_l_ul" >
@@ -10,11 +11,11 @@
                         </div>
                     </li>
                     <li>
-                        <select  id="city_show" class="select_css">
-                            <option value="1001">请选择</option>
-                            <option value="1002">朝阳</option>
-                            <option value="1001">海淀</option>
-                            <option value="1002">朝阳</option>
+                        <select  id="city_show" class="select_css" v-model="city">
+                            <option value=1000>请选择</option>
+                            <option value=1001>朝阳</option>
+                            <option value=1002>海淀</option>
+                            <option value=1003>朝阳</option>
                         </select>
                         
                     </li>
@@ -25,19 +26,19 @@
                     </li>
                     <li>
                         <div>
-                            <select class="select_css">
-                                <option value="">入住人数</option>
-                                <option value="0001">1人</option>
-                                <option value="0002">2人</option>
-                                <option value="0003">3人</option>
-                                <option value="0004">4人</option>
-                                <option value="0005">5人</option>
+                            <select class="select_css" v-model="pnum">
+                                <option value=0>入住人数</option>
+                                <option value=1>1人</option>
+                                <option value=2>2人</option>
+                                <option value=3>3人</option>
+                                <option value=4>4人</option>
+                                <option value=5>5人</option>
                             </select>
                         </div>
                     </li>
                     
                 </ul>
-                <button id="searchBtn">开始搜索</button>
+                <button id="searchBtn" @click="searchBtn">开始搜索</button>
                
             </div> 
             <div>
@@ -61,9 +62,9 @@
                         <td>
                             价格
                         </td>
-                        <td><p :class="{active:n==7}" id="7" @click="tdclick3">0-300</p></td>
-                        <td><p :class="{active:n==8}" id="8" @click="tdclick3">300-600</p></td>
-                        <td><p :class="{active:n==9}" id="9" @click="tdclick3">600-900</p></td>
+                        <td><p :class="{active:n==7}" id="7" data-pri="300" @click="tdclick3">0-300</p></td>
+                        <td><p :class="{active:n==8}" id="8"data-pri="600" @click="tdclick3">300-600</p></td>
+                        <td><p :class="{active:n==9}" id="9" data-pri="900" @click="tdclick3">600-900</p></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -109,27 +110,39 @@
                 
             </div> 
         </div>
-                   
+       <Footer></Footer>    
+           
    </div> 
+  
 </template>
 <script>
+import footer from "../index/footer.vue";
+import header from "../index/header.vue";
 export default {
     data(){
         return{
             arr:[],
             n:7,
             m:4,
-            l:1
+            l:1,
+            city:1000,
+            pnum:0
            
             
         }
     },
     methods: {
-        
+        searchBtn(){
+            var url="order/proSearch"
+            var aid=this.city==1000?null:this.city;
+            var pnum=this.pnum;
+            
+            this.axios.get(url,{params:{aid,pnum}}).then()
+        },
         loadmore(){
             var url="order/productlist"
-            var start=0;
-            var count=4; 
+            var start=this.arr.length;
+            var count=5; 
             
             this.axios.get(url,{params:{start,count}}).then(res=>{
             if(res.data.code==-1){
@@ -165,270 +178,16 @@ export default {
         }
     },
     created(){
-          console.log(3)
           this.loadmore();
-          
+    },
+
+    components:{
+              Footer:footer,
+              Header:header
     }
+
 }
 </script>
 <style scoped>
-    /*选择条 */
-    input:focus { outline: none; } 
-    select:focus { outline: none; } 
-    a{  text-decoration:none;}
-    .search_tab{
-        width:900px;
-        height:80px;
-        position:absolute;
-        top:100px;
-        border-collapse: collapse;
-        border-spacing: 0; 
-        margin-left:10px;
-        color:#ccc;
-
-    }
-    .search_tab>tr{
-        height:60px;
-       
-        border-bottom:1px solid #ccc;
-    }
-    .search_tab td{
-        width:169px;
-        height:50px;
-        line-height:50px;
-        font-size:16px;
-        
-    }
-     .search_tab div{
-         width:270px; height:40px;
-         border:1px solid #ccc;
-         border-radius:5px;
-         position:relative;
-         
-     }
-     .search_tab p{
-         width:82px;height:32px;
-         box-sizing:border-box;
-         border:1px solid rgba(0,0,0,0);
-         line-height:32px;
-         text-align:center;
-     }
-     .search_tab p:hover{
-         border:1px solid #39b54a;
-         border-radius:5px;
-         color:#39b54a;
-     }
-     .active{
-         border:1px solid #39b54a !important;
-         border-radius:5px;
-         color:#fff;
-         background:#39b54a;
-     }
-     .search_tab input{
-         width:92%;
-        position:absolute;
-        top:11px;
-        left:10px;
-        border:0;
-     }
-    /*搜索条 */
-    .select_css{
-        width:83%;height:20px;
-        border:0;
-        text-align:center;
-        color:#999;
-        margin-left:10px;
-    }
-    
-    .search_list{
-        position:absolute;
-        top:100px;
-        width:100%;
-        
-    }
-    
-
-    /*查询列表 */
-    
-    .searchBar {
-        width: 1000px;
-        height: 370px;
-        padding-top: 30px;
-        position:relative;
-        margin:auto;
-     
-    }
-    
-     .searchBar_l{
-        float: left;
-        width: 839px;
-        height: 48px;
-        border: 1px solid #39b54a;
-        border-radius: 5px 0 0 5px;
-        position:relative;
-         margin-left:10px;
-         border-right:0;
-        text-align:center;
-    }
-    .searchBar_l_ul{
-        width: 100%;
-        /*/ padding: 10px 0;*/
-        height: 38px;
-        line-height: 30px;
-        list-style:none;
-        display:flex;
-        padding:3px;
-        margin-top:5px;
-        align-items:center;
-        margin-bottom:0;
-    }
-    .searchBar_l
-    .searchBar_l_ul>li {
-        
-        float: left;
-        width: 208px;
-        height: 30px;
-        line-height: 30px;
-        border-right: 1px solid #39b54a;
-        position: relative;
-       
-         
-    }
-    .searchBar_l
-    .searchBar_l_ul>li:last-child{
-       border:0;
-    }
-   .searchBar_l
-   .searchBar_l_ul 
-   input{
-       border:none;
-       height:100%;
-       background:#fff;
-       font-size:14px;
-       padding:0px 15px; 
-   }
-    #searchBtn{
-        width:160px;height:50px;
-        position:absolute;
-        top:-1px;left:836px;
-        background:#39b54a;
-        color:#fff;
-        font-size:18px;
-        outline:none;
-        border:0;
-        border-radius:0 5px 5px 0;
-    }
-
-    /*商品列表*/
-    .productBar{
-        width:800px;
-        margin:auto;
-       
-    }
-    .productItem{
-        width:800px;
-        height:200px;
-        display:flex;
-        box-sizing:border-box;
-        overflow:hidden;
-        padding:20px;
-        justify-content:space-between;
-        background:#f6f6f6;
-        align-items:center;
-        margin:10px;
-         margin-left:-90px;
-
-       
-    
-        border-radius:3px;
-        
-    }
-    .productItem p{
-        font-size:16px;
-        margin:10px;
-      
-    }
-    .productItem p>span:first-child{
-        color:#000;
-        font-weight:bold;
-        font-size:30px !important;
-       
-    }
-    /*商品图片 */
-    .divImg{
-        width:30%;height:160px;
-        overflow:hidden;
-        
-    }
-
-    .divImg img{
-        width:100%;height:100%;
-    }
-    /*商品描述*/
-    .divMsg{
-        width:50%;height:100%;
-        margin-left:20px;
-        
-        
-    }
-    .divMsg h5{
-        margin:5px 0;
-    }
-    #aTitle{
-        display:block;
-        padding-left:10px;
-        width:100%;
-        font-size:20px;
-        
-        overflow:hidden;
-        text-overflow:ellipsis;
-        white-space:nowrap;
-        margin-bottom:20px;
-        color:#666 !important;
-    }
-    
-    .divMsg div:last-child{
-        margin-top:15px;
-        width:300px;height:40px;
-        display:flex;
-        justify-content:space-between;
-
-    }
-    .divMsg div:last-child>span{
-        padding:0 10px;
-        line-height:40px;
-        border:2px solid #ccc;
-        box-sizing:border-box;
-        color:#ccc;
-        border-radius:10%;
-        
-    }
-    /*房主信息 */
-    .divHost{
-        width:20%;height:80%;
-        border-left:2px dashed #39b54a;
-    }
-    .divHost a{
-        display:block;
-        width:60px;height:60px;
-        
-        border-radius:50%;
-        overflow:hidden;
-        margin:auto;
-        margin-top:-11px;
-    }
-    .divHost img{
-        width:60px;height:60px;
-    }
-    .divHost p{
-        text-align:center;
-        margin-top:10px;
-        font-size:16px;
-        color:#666 !important;
-        font-weight:bold;
-    }
-    .divHost p:last-child{
-        font-size:20px;
-        text-align:center;
-    }
+ @import url("../../assets/css/productlist/productlist.css")
 </style>
