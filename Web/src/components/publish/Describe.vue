@@ -1,5 +1,5 @@
 <template>
-<div class="describe" :style="{display:stepToChild==2?'block':'none'}" style="display:none">
+<div class="describe" :style="{display:stepToChild==2?'block':'none'}" >
     <div class="h_wrap pb20 mt20">
         <h4 class="h_tit">房源描述</h4>
         <div class="h_room_box">
@@ -97,7 +97,7 @@ export default {
             err_detail:false,
         }
     },
-    props:["hid"],
+    props:["stepToChild","hid"],
     created() {
         if(!this.hid){
             this.load();
@@ -105,11 +105,14 @@ export default {
     },
     methods: {
         load(){
-            this.axios.get("/seldescribe",{params:{hid:this.hid}})
+            console.log("......"+this.hid);
+            this.axios.get("/describe/seldescribe",{params:{hid:this.hid}})
             .then(res=>{
+                if(res.length>0){this.$emit("had",2)
                 this.room_input_tit=res.data[0].houseTitle;
                 this.room_input_detail=res.data[0].houseDESC;
                 this.room_input_traffic=res.data[0].traffic;
+                }
             })
         },
         title(){
@@ -147,25 +150,15 @@ export default {
                     traffic:this.room_input_traffic,
                     hid:this.hid
                 }
-                // if(!this.hid){
-                //     this.axios.post("/describe",obj)
-                //     .then(res=>{
-                //         if(res.data.code==1){
-                //             console.log(res)
-                //         }else{
-                //             alert("操作失败")
-                //         }
-                //     })
-                // }else{
-                    this.axios.post("/updescribe",obj)
+                    this.axios.post("/describe",obj)
                     .then(res=>{
                         if(res.data.code==1){
                             console.log(res)
+                            this.$emit("step",2)
                         }else{
                             alert("操作失败")
                         }
                     })
-                // }
             }
         }
     },
@@ -195,6 +188,7 @@ export default {
 .describe {
   background-color: #f5f5f5 !important;
   height: 100%;
+  display: none;
 }
 html,
 body {

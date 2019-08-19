@@ -1,5 +1,5 @@
 <template>
-  <div class="info_info_wrap" :style="{display:stepToChild==1?'block':'none'}" style="display:none" >
+  <div class="info_info_wrap" :style="{display:stepToChild==1?'block':'none'}" >
     <!--  -->
     <!-- 房源地址 -->
     <div class="h_wrap">
@@ -294,12 +294,12 @@ export default {
       err_bed: false, //床铺类型为空提示
     };
   },
-  props: ["stepToChild", "hid"],
+  props: ["stepToChild","hid"],
   created() {
     this.load();
-    // if(this.hid!=0){
-
-    // }
+     if(this.hid!=0){
+       this.search();
+     }
   },
   methods: {
     load() {
@@ -324,6 +324,12 @@ export default {
       this.axios.get("bedType").then(result => {
         this.bedList = result.data;
         this.bedTypeId = result.data[0].id;
+      });
+    },
+    search(){
+      this.axios.get("/search",{params:{id:this.hid}})
+      .then(result=>{
+        console.log(result);
       });
     },
     pop() {
@@ -428,18 +434,23 @@ export default {
           toilet: this.bathroom,
           kitchen: this.kitchen,
           balcony: this.balcony,
-          bId: this.bedTypeId
+          bId: this.bedTypeId,
         };
-        // if (this.hid=0) {
+        if (this.hid==0) {
           this.axios.post("/addhouse/addhouse", obj).then(result => {
             this.hid1=result.data.data;
+            console.log(this.hid1);
             this.$emit("sendHid",this.hid1);
+            this.$emit("step",1)
           });
-        // // } else {
-        //   this.axios.post("/updatehouse", obj).then(result => {
-        //     console.log(result);
-        //   });
-        // }
+        } else {
+          obj.id = this.hid;
+          //  obj.id = 1;
+          this.axios.post("/updatehouse", obj).then(result => {
+            console.log(result);
+            this.$emit("step",1)
+          });
+       }
       }
     }
   }
@@ -486,6 +497,7 @@ a:hover {
 .info_info_wrap {
   background-color: #f5f5f5 !important;
   height: 100%;
+  display:none;
 }
 html,
 body {

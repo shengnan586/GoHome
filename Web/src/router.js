@@ -7,7 +7,7 @@ import productList from "./components/productlist/productList.vue"
 import map from "./components/productlist/map.vue"
 
 import Info from "./components/publish/info.vue"
-import Alert from "./components/Alert.vue"
+
 //登录的引入
 import Login_go from "./components/Login_go.vue"
 //注册引入
@@ -22,9 +22,13 @@ export default new Router({
     {path:'/index',component:index},
     {path:'/',component:HelloContainer},
     {path:'/order',component:Order},
-    {path:'/productlist',component:productList},
+
     
     {path:'/alert',component:Alert},
+
+    {path:'/search',component:search},
+
+
     {path:'/info',component:Info},
     {path:'/Publish',component:Publish},
     {path:'/Describe',component:Describe},

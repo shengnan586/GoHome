@@ -51,7 +51,7 @@ export default {
   components:{Alert},
   data() {
     return {
-        //弹出框alert的使用的变量
+        //弹出框alert的使用
         display:'none',
         prompt:'你还没有选择任何配套设施',
         d1:0,
