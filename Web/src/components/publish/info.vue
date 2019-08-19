@@ -2,6 +2,7 @@
   <div class="info_info_wrap" :style="{display:stepToChild==1?'block':'none'}" >
     <!--  -->
     <!-- 房源地址 -->
+    <table></table>
     <div class="h_wrap">
       <h4 class="h_tit">房源地址</h4>
       <div class="address_box">

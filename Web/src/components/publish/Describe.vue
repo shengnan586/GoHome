@@ -1,5 +1,6 @@
 <template>
 <div class="describe" :style="{display:stepToChild==2?'block':'none'}" >
+    <table></table>
     <div class="h_wrap pb20 mt20">
         <h4 class="h_tit">房源描述</h4>
         <div class="h_room_box">
