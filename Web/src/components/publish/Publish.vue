@@ -6,22 +6,22 @@
         <span class="img" data-num="0"></span>
         <p data-num="0" :class="{word:word[0].isActive}">房源信息</p>
       </div>
-      <span class="line" :class="{active:word[1].isActive}"></span>
+      <span class="line" :class="{span_active:word[1].isActive}"></span>
       <div class="content after" :class="{cursor:word[1].isActive}" @click="tab">
         <span data-num="1" class="img" :class="{color:word[1].isActive}" :style="{'background-position':word[1].position}"></span>
         <p data-num="1" :class="{word:word[1].isActive}">房源描述</p>
       </div>
-       <span class="line2" :class="{active:word[2].isActive}"></span>
+       <span class="line2" :class="{span_active:word[2].isActive}"></span>
       <div class="content after" :class="{cursor:word[2].isActive}" @click="tab">
         <span data-num="2" class="img" :class="{color:word[2].isActive}" :style="{'background-position':word[2].position}"></span>
         <p data-num="2" :class="{word:word[2].isActive}">配套设施</p>
       </div>
-       <span class="line3" :class="{active:word[3].isActive}"></span>
+       <span class="line3" :class="{span_active:word[3].isActive}"></span>
       <div class="content after" :class="{cursor:word[3].isActive}" @click="tab">
         <span data-num="3" class="img" :class="{color:word[3].isActive}" :style="{'background-position':word[3].position}"></span>
         <p data-num="3" :class="{word:word[3].isActive}">真实照片</p>
       </div>
-      <span class="line4" :class="{active:word[4].isActive}"></span>
+      <span class="line4" :class="{span_active:word[4].isActive}"></span>
       <div class="content after" :class="{cursor:word[4].isActive}" @click="tab">
         <span data-num="4" class="img" :class="{color:word[4].isActive}" :style="{'background-position':word[4].position}"></span>
         <p data-num="4" :class="{word:word[4].isActive}">价格规则</p>
@@ -88,7 +88,7 @@ export default {
     },
     components:{Facility,Info,Describe},
     created() {
-      if(!this.$route.params.hid) this.hid = 0;//如果没传hid hid则为0
+      if(!this.$route.params.hid) this.hid = 2;//如果没传hid hid则为0
       else this.hid = this.$route.params.hid;//页面刚加载就读取传过来的hid
       //如果是新页面 则step=1 只有第一个字绿色，如果是继续填写，step的值由子组件查到的数据决定
       for(var i = 1;i<this.step;i++){ 
@@ -112,7 +112,7 @@ export default {
       },
       stepToParent(step){
         console.log("fanhui"+step);
-        if(this.step < step){
+        if(this.step <= step){
           this.step = step+1;//控制字体颜色 让下一个组件的颜色变亮 +1
         }
         this.stepToChild = step+1;//控制跳下一个组件
@@ -184,7 +184,7 @@ p.word{
   top:40px;
   left:338px;
 }
-span.active{
+span.span_active{
   background-color:#30c3a6;
 }
 span.line2{

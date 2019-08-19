@@ -24,9 +24,8 @@ export default new Router({
     {path:'/order',component:Order},
 
     
-    {path:'/alert',component:Alert},
-
-    {path:'/search',component:search},
+    
+    // {path:'/search',component:search},
 
 
     {path:'/info',component:Info},

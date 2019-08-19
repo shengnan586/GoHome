@@ -9,7 +9,7 @@
         <ul class="sb_list" @click="tab">
           <li v-for="(item,i) of weiyu" :key="i">
             <span :class="{s_active:item.isActive}" data-fname="weiyu" :data-index="i" class="checkbox"></span>
-            <p data-fname="weiyu" :data-index="i" class="facility_icon" :class="{active:item.isActive}" :style="{'background-position':item.position}">{{item.word}}</p>
+            <p data-fname="weiyu" :data-index="i" class="facility_icon" :class="{p_active:item.isActive}" :style="{'background-position':item.position}">{{item.word}}</p>
           </li>
         </ul>
       </div>
@@ -18,7 +18,7 @@
         <ul class="sb_list" @click="tab">
           <li v-for="(item,i) of dianqi" :key="i">
             <span :class="{s_active:item.isActive}" data-fname="dianqi" :data-index="i" class="checkbox"></span>
-            <p data-fname="dianqi" :data-index="i" class="facility_icon" :class="{active:item.isActive}" :style="{'background-position':item.position}">{{item.word}}</p>
+            <p data-fname="dianqi" :data-index="i" class="facility_icon" :class="{p_active:item.isActive}" :style="{'background-position':item.position}">{{item.word}}</p>
           </li>
         </ul>
       </div>
@@ -27,7 +27,7 @@
         <ul class="sb_list" @click="tab">
           <li v-for="(item,i) of sheshi" :key="i">
             <span :class="{s_active:item.isActive}" data-fname="sheshi" :data-index="i" class="checkbox"></span>
-            <p data-fname="sheshi" :data-index="i" class="facility_icon" :class="{active:item.isActive}" :style="{'background-position':item.position}">{{item.word}}</p>
+            <p data-fname="sheshi" :data-index="i" class="facility_icon" :class="{p_active:item.isActive}" :style="{'background-position':item.position}">{{item.word}}</p>
           </li>
         </ul>
       </div>
@@ -36,7 +36,7 @@
         <ul class="sb_list" @click="tab">
           <li v-for="(item,i) of request" :key="i">
             <span :class="{s_active:item.isActive}" data-fname="request" :data-index="i" class="checkbox"></span>
-            <p data-fname="request" :data-index="i" class="facility_icon" :class="{active:item.isActive}" :style="{'background-position':item.position}">{{item.word}}</p>
+            <p data-fname="request" :data-index="i" class="facility_icon" :class="{p_active:item.isActive}" :style="{'background-position':item.position}">{{item.word}}</p>
           </li>
         </ul>
       </div>
@@ -415,7 +415,7 @@ export default {
     margin-left: 5px;
     cursor: pointer;
 }
-p.active{
+p.p_active{
     color:#f05b72;
 }
 .sb_list > li > .checkbox {
