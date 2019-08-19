@@ -268,6 +268,8 @@ create table home_dic_type
 
 alter table home_dic_type comment '�������͡��������͡�����������';
 
+alter table home_business_house_install add state int;
+
 
 
 

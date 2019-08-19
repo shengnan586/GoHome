@@ -1,42 +1,8 @@
 <template>
    <div class="container">
    <!-- 条件筛选框-->
-        <div class="searchBar"> 
-            <div class="search_list">
-               <table class="search_tab">
-                    <tr>
-                       <td>
-                            <div>出租方式</div>
-                       </td>
-                       <td> 
-                            <div>不限</div>
-                       </td>
-                       <td>
-                            <div>整套出租</div>
-                        </td>
-                       <td>     
-                            <div>独立房间</div>
-                        </td>
-                    </tr>
-                    <tr>
-                       <td>
-                            <div>预订类型</div>
-                       </td>
-                       <td> 
-                            <div>不限</div>
-                       </td>
-                       <td>
-                            <div>立即预订</div>
-                        </td>
-                       <td>     
-                            <div>申请预定</div>
-                        </td>
-                    </tr>
-                    
-               </table>
-            </div>
-            
-        </div>
+        
+      
     <!--商品列表 --> 
         <div class="productItem" v-for="(p ,i) of arr" :key="i">
             <a class="divImg" href="javascript:;">
@@ -199,6 +165,7 @@ export default {
         background:#fff;
         align-items:center;
         margin:20px auto;
+        border:1px solid #ccc;
         border-radius:10px;
         
     }
