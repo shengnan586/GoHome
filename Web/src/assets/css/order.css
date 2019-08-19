@@ -140,10 +140,13 @@ span.wTitle {
 }
 
 .date_box {
+  width:250px;
+  border:1px solid #ddd;
     position: relative;
 }
 
 .date_box .date_txt {
+  width:100%;
     font-size: 14px;
     border-radius: 2px;
     cursor: pointer;
@@ -152,7 +155,7 @@ span.wTitle {
 .date_box i {
     position: absolute;
     top: 22%;
-    left: 80%;
+    left: 85%;
 }
 
 .order_wrap .info_wrap {

@@ -27,7 +27,7 @@ export default {
     width: 100%;
     padding:50px 0;
     color:#999;
-    background-color: #efefef;
+    background-color: #f5f5f5;
     text-align: center;
   }
   .footer .link a{
