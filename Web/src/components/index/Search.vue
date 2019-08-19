@@ -7,6 +7,7 @@
       <laydate class="date_txt"></laydate>
       <i class="iconfont icon-rili"></i>
     </div>
+    <button>开始搜索</button>
   </div>
 </template>
 <script>
@@ -25,6 +26,7 @@ export default {
     load(){
       this.axios.get("area",{params:{aParentId:1,aType:0}}).then(result=>{
         this.areaList=result.data;
+        this.selectedAreaId=result.data[0].id;
       });
     },
     reg(){
@@ -43,8 +45,7 @@ export default {
 </script>
 <style scoped>
   .search{
-    width:790px;height:80px;
+    width:790px;height:60px;
     display: flex;
-
   }
 </style>
