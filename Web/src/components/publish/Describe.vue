@@ -1,5 +1,5 @@
 <template>
-<div class="describe" :style="{display:stepToChild==1?'block':'none'}" style="display:none">
+<div class="describe" :style="{display:stepToChild==2?'block':'none'}" style="display:none">
     <div class="h_wrap pb20 mt20">
         <h4 class="h_tit">房源描述</h4>
         <div class="h_room_box">
@@ -145,19 +145,18 @@ export default {
                     houseTitle:this.room_input_tit,
                     houseDESC:this.room_input_detail,
                     traffic:this.room_input_traffic,
-                    
+                    hid:this.hid
                 }
-                if(!this.hid){
-                    this.axios.post("/describe",obj)
-                    .then(res=>{
-                        if(res.data.code==1){
-                            console.log(res)
-                        }else{
-                            alert("操作失败")
-                        }
-                    })
-                }else{
-                    obj.hid=this.hid;
+                // if(!this.hid){
+                //     this.axios.post("/describe",obj)
+                //     .then(res=>{
+                //         if(res.data.code==1){
+                //             console.log(res)
+                //         }else{
+                //             alert("操作失败")
+                //         }
+                //     })
+                // }else{
                     this.axios.post("/updescribe",obj)
                     .then(res=>{
                         if(res.data.code==1){
@@ -166,7 +165,7 @@ export default {
                             alert("操作失败")
                         }
                     })
-                }
+                // }
             }
         }
     },
