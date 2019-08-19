@@ -5,10 +5,12 @@
       <carousel class="carousel"></carousel> 
       <search class="search"></search>
     </div>
+    <homefooter></homefooter>
   </div>
 </template>
 <script>
 import Header from './header';
+import Footer from './footer';
 import Carousel from "./Carousel.vue";
 import Search from "./Search.vue";
 export default {
@@ -20,6 +22,7 @@ export default {
   },
   components:{
     "homeheader":Header,
+    "homefooter":Footer,
     "carousel":Carousel,
     "search":Search
   }

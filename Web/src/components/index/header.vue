@@ -1,23 +1,23 @@
 <template>
   <div class="headerC">
     <div class="logo">
-      <a href="javascript:;" @click="GoIndex">
-        <img src="../../assets/images/WechatIMG63.png" />
-        <span>BUG民宿，家的感觉</span>  
+      <a href="javascript:;" @click="GoRouter" data-router="index">
+        <img src="../../assets/images/WechatIMG63.png" data-router="index"/>
+        <span data-router="index">BUG民宿，家的感觉</span>  
       </a>
     </div>
     <div class="nav">
       <div>
-        <a href="javascript:;">GoHome</a>
+        <a href="javascript:;" @click="GoRouter" data-router="index">GoHome</a>
       </div>
       <div class="login">
-        <div v-if="false">
-          <a href="javascript:;">登录</a>
+        <div v-if="!UserName">
+          <a href="javascript:;" @click="login">登录</a>
           |
-          <a href="javascript:;">注册</a>
+          <a href="javascript:;" @click="reg">注册</a>
         </div> 
-        <div @mouseenter="Up" @mouseleave="Down" v-if="true">
-          <a href="javascript:;">shengnan586<!--{{sessionStorage.getItem("username")}}-->
+        <div @mouseenter="Up" @mouseleave="Down" v-if="UserName">
+          <a href="javascript:;"><!--shengnan586-->{{UserName}}
             <span class="icon iconfont" :class="iconUpDown"></span>
           </a>
           <div @click="GoRouter" class="navlist" v-show="show">
@@ -25,12 +25,12 @@
               <li>
                   房东中心
               </li>
-              <li><a href="javascript:;" data-router=“”>订单管理</a></li>
-              <li><a href="javascript:;" data-router=“”>结算统计</a></li>
-              <li><a href="javascript:;" data-router=“”>房源信息</a></li>
-              <li><a href="javascript:;" data-router=“”>价格房态</a></li>
-              <li><a href="javascript:;" data-router=“”>个人资料</a></li>
-              <li><a href="javascript:;" data-router=“”>我的收藏</a></li>
+              <li><a href="javascript:;" data-router=“admin”>订单管理</a></li>
+              <li><a href="javascript:;" data-router=“2”>结算统计</a></li>
+              <li><a href="javascript:;" data-router=“3”>房源信息</a></li>
+              <li><a href="javascript:;" data-router=“4”>价格房态</a></li>
+              <li><a href="javascript:;" data-router=“5”>个人资料</a></li>
+              <li><a href="javascript:;" data-router=“6”>我的收藏</a></li>
             </ul>
             <ul>
               <li>
@@ -42,13 +42,13 @@
               <li><a href="javascript:;" data-router="">通知</a></li>
             </ul>
             <div>
-              <a href="javascript:;">退出</a>
+              <a href="javascript:;" data-router="close">退出</a>
             </div>
           </div>
         </div>
       </div>
       <div class="release">
-        <a href="javascript:;">发布房源</a>
+        <a href="javascript:;" @click="GoRouter" data-router="publish">发布房源</a>
       </div>
     </div>
   </div>
@@ -61,10 +61,17 @@ export default {
         "icon-arrow-down":true,
         "icon-ico_back":false
       },
-      show:false
+      show:false,
+      UserName:sessionStorage.getItem("username")
     };
   },
   methods: {
+    login(){
+      this.$router.push("/Login_go");
+    },
+    reg(){
+      this.$router.push("/Reg_go");
+    },
     Up(){
       this.iconUpDown={
         "icon-arrow-down":false,
@@ -79,12 +86,17 @@ export default {
       }
       this.show=false;
     },
-    GoRouter(){
-      console.log(123);
+    GoRouter(e){
+      var router=e.target.dataset.router;
+      if(router=="close"){
+        sessionStorage.clear();
+        this.UserName="";
+        this.$router.push("/index");
+      }else{
+        this.$router.push("/"+router);
+      }
     },
-    GoIndex() {
-      this.$router.push("/index");
-    }
+    
   }
 };
 </script>
