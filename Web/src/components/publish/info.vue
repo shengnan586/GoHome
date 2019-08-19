@@ -439,6 +439,7 @@ export default {
         if (this.hid==0) {
           this.axios.post("/addhouse/addhouse", obj).then(result => {
             this.hid1=result.data.data;
+            console.log(this.hid1);
             this.$emit("sendHid",this.hid1);
             this.$emit("step",1)
           });
