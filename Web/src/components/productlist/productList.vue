@@ -28,10 +28,10 @@
                             <select class="select_css">
                                 <option value="">入住人数</option>
                                 <option value="0001">1人</option>
-                                <option value="0001">2人</option>
-                                <option value="0001">3人</option>
-                                <option value="0001">4人</option>
-                                <option value="0001">5人</option>
+                                <option value="0002">2人</option>
+                                <option value="0003">3人</option>
+                                <option value="0004">4人</option>
+                                <option value="0005">5人</option>
                             </select>
                         </div>
                     </li>
@@ -42,17 +42,33 @@
             </div> 
             <div>
                 <table class="search_tab">
+
+                    <tr>
+                        <td>出租方式</td>
+                        <td><p :class="{active:l==1}" id="1" @click="tdclick1">不限</p></td>
+                        <td><p :class="{active:l==2}" id="2" @click="tdclick1">整套出租</p></td>
+                        <td><p :class="{active:l==3}" id="3" @click="tdclick1">独立房间</p></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>预定类型</td>
+                        <td><p :class="{active:m==4}" id="4" @click="tdclick2">不限</p></td>
+                        <td><p :class="{active:m==5}" id="5" @click="tdclick2">立即预定</p></td>
+                        <td><p :class="{active:m==6}" id="6" @click="tdclick2">申请预定</p></td>
+                        <td></td>
+                    </tr>
                     <tr >
                         <td>
                             价格
                         </td>
-                        <td><p >0-300</p></td>
-                        <td><p >300-600</p></td>
-                        <td><p >600-900</p></td>
+                        <td><p :class="{active:n==7}" id="7" @click="tdclick3">0-300</p></td>
+                        <td><p :class="{active:n==8}" id="8" @click="tdclick3">300-600</p></td>
+                        <td><p :class="{active:n==9}" id="9" @click="tdclick3">600-900</p></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>搜索关键词</td>
-                        <td colspan=3>
+                        <td colspan=4>
                             <div>
                                 <input type="text" placeholder="请输入商圈、景点、房间名、房东名等">
                             </div>
@@ -66,31 +82,34 @@
             </div>
         </div>
     <!--商品列表 --> 
-        <div class="productItem" v-for="(p ,i) of arr" :key="i">
-            <a class="divImg" href="javascript:;">
-                <img src="../../../public/ChAFfVqqEhuATQSyAAzlNSICA1s060.JPG_Z_1200_800.jpg" alt="">
-            </a>
-            <div class="divMsg" >
-                <a href=":;" id="aTitle">{{p.houseTitle}}</a>
-                <h5>整套公寓·可住{{p.peopleNumber}}人</h5>
-                <p>
-                <span>￥{{p.cashMoney}}</span> 
-                每晚</p>
-                <div>
-                    <span>1人fd居</span>
-                     <span>1人d居</span>
-                      <span>1人居</span>
-                </div>
-            </div>
-            <div class="divHost">
-                <a href="javascript:;">
-                    <img src="../../../public/Draven.png" alt="">
+        <div class="productBar">
+            <div class="productItem" v-for="(p ,i) of arr" :key="i">
+                <a class="divImg" href="javascript:;">
+                    <img src="../../../public/ChAFfVqqEhuATQSyAAzlNSICA1s060.JPG_Z_1200_800.jpg" alt="">
                 </a>
-                <p>房东</p>
-                <p>德莱文</p>
-            </div>
-            
-        </div>            
+                <div class="divMsg" >
+                    <a href=":;" id="aTitle">{{p.houseTitle}}</a>
+                    <h5>整套公寓·可住{{p.peopleNumber}}人</h5>
+                    <p>
+                    <span>￥{{p.cashMoney}}</span> 
+                    每晚</p>
+                    <div>
+                        <span>1人fd居</span>
+                        <span>1人d居</span>
+                        <span>1人居</span>
+                    </div>
+                </div>
+                <div class="divHost">
+                    <a href="javascript:;">
+                        <img src="../../../public/Draven.png" alt="">
+                    </a>
+                    <p>房东</p>
+                    <p>德莱文</p>
+                </div>
+                
+            </div> 
+        </div>
+                   
    </div> 
 </template>
 <script>
@@ -98,6 +117,9 @@ export default {
     data(){
         return{
             arr:[],
+            n:7,
+            m:4,
+            l:1
            
             
         }
@@ -106,8 +128,10 @@ export default {
         
         loadmore(){
             var url="order/productlist"
-            console.log(2)
-            this.axios.get(url).then(res=>{
+            var start=0;
+            var count=4; 
+            
+            this.axios.get(url,{params:{start,count}}).then(res=>{
             if(res.data.code==-1){
                 console.log(-1);
             }else{
@@ -115,8 +139,30 @@ export default {
                 this.arr=res.data.data;
             }
             })
+        },
+        tdclick1(e){
+            if(this.l!=e.target.id){
+                 this.l=e.target.id;
+            }else {
+                 this.l="";
+            }
+        },
+      
+        tdclick2(e){
+            if(this.m!=e.target.id){
+                 this.m=e.target.id;
+            }else {
+                 this.m="";
+            }
+        },
+      
+        tdclick3(e){
+            if(this.n!=e.target.id){
+                 this.n=e.target.id;
+            }else {
+                 this.n="";
+            }
         }
-        
     },
     created(){
           console.log(3)
@@ -131,8 +177,8 @@ export default {
     select:focus { outline: none; } 
     a{  text-decoration:none;}
     .search_tab{
-        width:992px;
-        height:160px;
+        width:900px;
+        height:80px;
         position:absolute;
         top:100px;
         border-collapse: collapse;
@@ -142,11 +188,12 @@ export default {
 
     }
     .search_tab>tr{
-        height:90px;
+        height:60px;
        
         border-bottom:1px solid #ccc;
     }
     .search_tab td{
+        width:169px;
         height:50px;
         line-height:50px;
         font-size:16px;
@@ -170,6 +217,12 @@ export default {
          border:1px solid #39b54a;
          border-radius:5px;
          color:#39b54a;
+     }
+     .active{
+         border:1px solid #39b54a !important;
+         border-radius:5px;
+         color:#fff;
+         background:#39b54a;
      }
      .search_tab input{
          width:92%;
@@ -199,7 +252,7 @@ export default {
     
     .searchBar {
         width: 1000px;
-        height: 260px;
+        height: 370px;
         padding-top: 30px;
         position:relative;
         margin:auto;
@@ -267,9 +320,14 @@ export default {
     }
 
     /*商品列表*/
+    .productBar{
+        width:800px;
+        margin:auto;
+       
+    }
     .productItem{
-        width:1000px;
-        height:244px;
+        width:800px;
+        height:200px;
         display:flex;
         box-sizing:border-box;
         overflow:hidden;
@@ -277,14 +335,17 @@ export default {
         justify-content:space-between;
         background:#f6f6f6;
         align-items:center;
-        margin:20px auto;
+        margin:10px;
+         margin-left:-90px;
+
        
+    
         border-radius:3px;
         
     }
     .productItem p{
-        font-size:20px;
-        margin-top:20px;
+        font-size:16px;
+        margin:10px;
       
     }
     .productItem p>span:first-child{
@@ -295,8 +356,9 @@ export default {
     }
     /*商品图片 */
     .divImg{
-        width:320px;height:200px;
-        margin-left:30px;
+        width:30%;height:160px;
+        overflow:hidden;
+        
     }
 
     .divImg img{
@@ -304,15 +366,18 @@ export default {
     }
     /*商品描述*/
     .divMsg{
-        width:500px;height:200px;
+        width:50%;height:100%;
         margin-left:20px;
         
         
     }
+    .divMsg h5{
+        margin:5px 0;
+    }
     #aTitle{
         display:block;
         padding-left:10px;
-        width:500px;
+        width:100%;
         font-size:20px;
         
         overflow:hidden;
@@ -323,7 +388,7 @@ export default {
     }
     
     .divMsg div:last-child{
-        margin-top:40px;
+        margin-top:15px;
         width:300px;height:40px;
         display:flex;
         justify-content:space-between;
@@ -340,24 +405,24 @@ export default {
     }
     /*房主信息 */
     .divHost{
-        width:180px;height:200px;
+        width:20%;height:80%;
         border-left:2px dashed #39b54a;
     }
     .divHost a{
         display:block;
-        width:80px;height:80px;
+        width:60px;height:60px;
         
         border-radius:50%;
         overflow:hidden;
         margin:auto;
-        margin-top:40px;
+        margin-top:-11px;
     }
     .divHost img{
-        width:80px;height:80px;
+        width:60px;height:60px;
     }
     .divHost p{
         text-align:center;
-        margin-top:20px;
+        margin-top:10px;
         font-size:16px;
         color:#666 !important;
         font-weight:bold;
