@@ -27,19 +27,22 @@
         <p data-num="4" :class="{word:word[4].isActive}">价格规则</p>
       </div>
     </div>
-    <!-- <Info></Info> -->
+    <Info :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @sendHid="sendHid"></Info>
+    <Describe :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @had="sort"></Describe>
     <Facility :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @had="sort"></Facility>
   </div>
 </template>
 <script>
 import Info from "./info.vue"
+import Describe from "./Describe.vue"
 import Facility from "./Facility.vue"
 export default {
-    //缺：当该房源是新创建的时候，第一个页面点击保存后，子组件需将hid传回
-    //jr写的页面组件的东西加一样的 stepToParent保存时传来的数据跳转到下一个页面 sort页面刚加载时传来的 保证页面是当时保存的状态
+    //缺：当该房源是新创建的时候，第一个页面点击保存后，子组件需将hid传回  jr已写 晚上对
+    //jr写的页面组件的东西加一样的 
+    //stepToParent保存时传来的数据跳转到下一个页面 sort页面刚加载时传来的 保证页面是当时保存的状态 并让页面处于当时保存的最后一个页面
     data(){
       return{
-        hid:9,//保存其他页面跳转过来的hid
+        hid:0,//保存其他页面跳转过来的hid
         stepToChild:1,//当字体变成绿色时，可以点击更换组件 传给子组件 子组件通过这个值来进行判断是否展示 1--第一步 2--第二步。。。
         step:1,//保存子组件传来的值 用来遍历数组 改变字体的颜色 只用来控制字体颜色
         
@@ -83,10 +86,10 @@ export default {
         }
       }
     },
-    components:{Facility,Info},
+    components:{Facility,Info,Describe},
     created() {
-    //  if(!this.$route.params.hid) this.hid = 0;//如果没传hid hid则为0
-    //  else this.hid = this.$route.params.hid;//页面刚加载就读取传过来的hid
+      if(!this.$route.params.hid) this.hid = 0;//如果没传hid hid则为0
+      else this.hid = this.$route.params.hid;//页面刚加载就读取传过来的hid
       //如果是新页面 则step=1 只有第一个字绿色，如果是继续填写，step的值由子组件查到的数据决定
       for(var i = 1;i<this.step;i++){ 
         this.word[i].isActive = true;
@@ -113,6 +116,9 @@ export default {
           this.step = step+1;//控制字体颜色 让下一个组件的颜色变亮 +1
         }
         this.stepToChild = step+1;//控制跳下一个组件
+      },
+      sendHid(hid){
+        this.hid = hid;
       },
       sort(step){//该函数控制如果当前页面是从房源发布列表id中进入 显示当时保存的页面
         if(this.step < step){

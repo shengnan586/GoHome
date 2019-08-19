@@ -15,16 +15,22 @@ router.post("/order",(req,res)=>{
     })
 })
 router.get("/productlist",(req,res)=>{
-    console.log(1111);
-    var sql="SELECT * FROM home_business_house";
-    pool.query(sql,(err,result)=>{
+    var start=req.query.start;
+    var  count=req.query.count;
+    console.log(start,count);
+    var sql=`SELECT * FROM home_business_house LIMIT ${start},${count} `;
+    pool.query(sql,[start,count],(err,result)=>{
         if(err) throw err;
         if(result.length>0){
             res.send({code:1,data:result})
+            console.log(result)
         }else{
             res.send({code:-1,msg:"没有数据"});
         }
     })
 })
-
+router.get("/proSearch",(req,res)=>{
+    
+    var sql="SELECT * FROM home_business_house WHERE aid=? ,peopleNumber=?,cashMoney=?";
+})
 module.exports=router;
