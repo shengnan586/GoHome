@@ -9,6 +9,12 @@ const order=require("./routes/order.js");
 const ar=require("./routes/ar.js");
 const user=require("./routes/userRouter.js");
 const houseType=require("./routes/houseType.js");
+const facilitySearch = require("./routes/facilitySearch.js");
+const facilitySave = require("./routes/facilitySave.js");
+const bedType=require("./routes/bedType.js");
+const addhouse=require("./routes/addhouse.js");
+const updatehouse=require("./routes/updatehouse.js");
+const describe=require("./routes/Describe.js");
 
 var app = express();
 var server = app.listen(3003);
@@ -33,5 +39,13 @@ app.use("/ar",ar);
 
 app.use("/user",user);
 app.use("/houseType",houseType);
+
+app.use("/facility",facilitySearch);
+app.use("/facility",facilitySave);
+
+app.use("/bedType",bedType);
+app.use("/addhouse",addhouse);
+app.use("/updatehouse",updatehouse);
+app.use("/describe",describe);
 
 

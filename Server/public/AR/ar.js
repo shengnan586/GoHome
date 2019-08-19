@@ -10,6 +10,7 @@ var count,hid;
 var room = ["客厅","厨房","洗手间","主卧","阳台"];
 var parent = document.getElementById("parent");
 var btn = document.getElementById("vr_btn");
+//点击按钮实现房间类型div的消失与出现
 btn.onclick = function(){
     var width = getComputedStyle(parent).width;
     parseInt(width) <= 0 ? parent.style.width="100%":parent.style.width=0;
@@ -17,6 +18,7 @@ btn.onclick = function(){
 // FUNCTIONS
 function init()
 {   
+    //根据房间类型数量动态创建房间类型的div
     var str = "";
     for(var i = 0;i<count;i++){
         str += `<div class="items">
@@ -25,6 +27,7 @@ function init()
         </div>`;
     }
     parent.innerHTML = str;
+    //点击房间类型的图片切换ar效果
     parent.onclick = function(e){
         if(e.target.nodeName = "IMG"){
             var index = parseInt(e.target.alt);
@@ -50,16 +53,18 @@ function init()
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+    //将创建好的模型画到画布上
     container = document.getElementById('output');
     container.appendChild(renderer.domElement);
-
+    //控制鼠标移动
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    // LIGHT
+    // 光源设置
     var light = new THREE.PointLight(0xffffff);
     light.position.set(0, 250, 0);
     scene.add(light);
 
+    //将图片以背景模式贴到盒子上
     scene.background = new THREE.CubeTextureLoader()
         .setPath('Image/')
         .load(img[0]);
@@ -77,6 +82,7 @@ function update() {
     controls.update();
 }
 
+//渲染
 function render() {
     renderer.render(scene, camera);
 }
@@ -86,7 +92,9 @@ function imgs() {
     var urlPar = new URLSearchParams(location.search);
     //获取上一个页面传递过来的uid
     hid = urlPar.get("hid");
+    //获取上一个页面传递过来的房间类型数量
     count = urlPar.get("count");
+    //发送ajax请求
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
