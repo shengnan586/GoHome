@@ -267,6 +267,8 @@ create table home_dic_type
 );
 
 alter table home_dic_type comment '�������͡��������͡�����������';
+/*宁宁加的--*/
+alter table home_business_house_install add state int;
 
 /*靳荣加的--*/
 alter table home_dic_apartment add hId int;
