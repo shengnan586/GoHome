@@ -2,6 +2,7 @@
   <div class="info_info_wrap" :style="{display:stepToChild==1?'block':'none'}" >
     <!--  -->
     <!-- 房源地址 -->
+    <table></table>
     <div class="h_wrap">
       <h4 class="h_tit">房源地址</h4>
       <div class="address_box">
@@ -439,6 +440,7 @@ export default {
         if (this.hid==0) {
           this.axios.post("/addhouse/addhouse", obj).then(result => {
             this.hid1=result.data.data;
+            console.log(this.hid1);
             this.$emit("sendHid",this.hid1);
             this.$emit("step",1)
           });

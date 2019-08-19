@@ -1,5 +1,6 @@
 <template>
 <div class="describe" :style="{display:stepToChild==2?'block':'none'}" >
+    <table></table>
     <div class="h_wrap pb20 mt20">
         <h4 class="h_tit">房源描述</h4>
         <div class="h_room_box">
@@ -105,12 +106,14 @@ export default {
     },
     methods: {
         load(){
-            this.axios.get("/seldescribe",{params:{hid:this.hid}})
+            console.log("......"+this.hid);
+            this.axios.get("/describe/seldescribe",{params:{hid:this.hid}})
             .then(res=>{
-                if(res.length>0){this.$emit("had",2)}
+                if(res.length>0){this.$emit("had",2)
                 this.room_input_tit=res.data[0].houseTitle;
                 this.room_input_detail=res.data[0].houseDESC;
                 this.room_input_traffic=res.data[0].traffic;
+                }
             })
         },
         title(){
@@ -148,8 +151,7 @@ export default {
                     traffic:this.room_input_traffic,
                     hid:this.hid
                 }
-                    
-                    this.axios.post("/updescribe",obj)
+                    this.axios.post("/describe",obj)
                     .then(res=>{
                         if(res.data.code==1){
                             console.log(res)
@@ -158,7 +160,6 @@ export default {
                             alert("操作失败")
                         }
                     })
-                // }
             }
         }
     },
