@@ -16,28 +16,28 @@
           <div id="1" class="mask" @mouseenter="enter" @mouseleave="leave"></div>
         </li>
       <li>
-          <img src="../../assets/images/gugong.jpg" :class="{imgscale:id=='2'&&isShow}">
+          <img src="../../assets/images/changcheng.jpg" :class="{imgscale:id=='2'&&isShow}">
           <div :class="{'font-color':id=='2'&&isShow}">
-            <h1>故宫</h1>
-            <p>The Imperial Palace</p>
+            <h1>长城</h1>
+            <p>The Great Wall</p>
           </div>
           <div :class="{height:id=='2'&&isShow}"></div>
           <div id="2" class="mask" @mouseenter="enter" @mouseleave="leave"></div>
         </li>
            <li>
-          <img src="../../assets/images/gugong.jpg" :class="{imgscale:id=='3'&&isShow}">
+          <img src="../../assets/images/tiantan.jpg" :class="{imgscale:id=='3'&&isShow}">
           <div :class="{'font-color':id=='3'&&isShow}">
-            <h1>故宫</h1>
-            <p>The Imperial Palace</p>
+            <h1>天坛</h1>
+            <p>Temple of Heaven</p>
           </div>
           <div :class="{height:id=='3'&&isShow}"></div>
           <div id="3" class="mask" @mouseenter="enter" @mouseleave="leave"></div>
         </li>
            <li>
-          <img src="../../assets/images/gugong.jpg" :class="{imgscale:id=='4'&&isShow}">
+          <img src="../../assets/images/yiheyuan.jpg" :class="{imgscale:id=='4'&&isShow}">
           <div :class="{'font-color':id=='4'&&isShow}">
-            <h1>故宫</h1>
-            <p>The Imperial Palace</p>
+            <h1>颐和园</h1>
+            <p>Temple of Heaven</p>
           </div>
           <div :class="{height:id=='4'&&isShow}"></div>
           <div id="4" class="mask" @mouseenter="enter" @mouseleave="leave"></div>
