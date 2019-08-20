@@ -134,7 +134,7 @@ export default {
 }
 .logo span{
   font-size: 16px;
-  font-family: 华文琥珀;
+  font-family: 华文行楷;
   color: #fff;
   font-weight: bold;
 }
