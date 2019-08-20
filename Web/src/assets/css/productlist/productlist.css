@@ -44,7 +44,7 @@
         border-radius:5px;
         color:#39b54a;
     }
-    .active{
+    .pactive{
         border:1px solid #39b54a !important;
         border-radius:5px;
         color:#fff;
@@ -256,4 +256,13 @@
    .divHost p:last-child{
        font-size:20px;
        text-align:center;
+   }
+   .getbtn{
+       width:800px;height: 30px;
+       margin-left: -90px;
+       border:0;
+       background-color:#fff;
+   }
+   .getbtn:hover{
+       background-color: #eee;
    }
