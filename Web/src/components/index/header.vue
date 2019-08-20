@@ -4,7 +4,7 @@
     <div class="logo">
       <a href="javascript:;" @click="GoRouter" data-router="index">
         <img src="../../assets/images/WechatIMG63.png" data-router="index"/>
-        <span data-router="index" :class="{'font-color':isIndex==0,font:isIndex==0,color:isIndex==0}">BUG民宿，家的感觉</span>  
+        <span data-router="index" :class="{font:isIndex==0}">BUG民宿，家的感觉</span>  
       </a>
     </div>
     <!-- 头部右侧导航 -->
@@ -217,6 +217,9 @@ export default {
 }
 .nav .navlist div:last-child{
   text-align: center;
+}
+.font{
+  color:#888 !important;
 }
 .font-color.font.color{
   color:#333;
