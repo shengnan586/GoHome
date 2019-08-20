@@ -1,45 +1,48 @@
 <template>
-  <div class="headerC">
+  <div class="headerC" :class="{border:isIndex==0}">
+    <!-- logo图标 -->
     <div class="logo">
       <a href="javascript:;" @click="GoRouter" data-router="index">
         <img src="../../assets/images/WechatIMG63.png" data-router="index"/>
-        <span data-router="index">BUG民宿，家的感觉</span>  
+        <span data-router="index" :class="{font:isIndex==0}"><span :class="{font:isIndex==0}" style="font-size:20px;">BUG民宿</span>  家的感觉</span>  
       </a>
     </div>
+    <!-- 头部右侧导航 -->
     <div class="nav">
       <div>
-        <a href="javascript:;" @click="GoRouter" data-router="index">GoHome</a>
+        <a href="javascript:;" @click="GoRouter" data-router="index" :class="{'font-color':isIndex==0,font:isIndex==0,color:isIndex==0}">GoHome</a>
       </div>
       <div class="login">
         <div v-if="!UserName">
-          <a href="javascript:;" @click="login">登录</a>
+          <a href="javascript:;" @click="login" :class="{'font-color':isIndex==0,font:isIndex==0,color:isIndex==0}">登录</a>
           |
-          <a href="javascript:;" @click="reg">注册</a>
+          <a href="javascript:;" @click="reg" :class="{'font-color':isIndex==0,font:isIndex==0,color:isIndex==0}">注册</a>
         </div> 
+        <!-- 用户登录后下拉菜单 -->
         <div @mouseenter="Up" @mouseleave="Down" v-if="UserName">
-          <a href="javascript:;"><!--shengnan586-->{{UserName}}
+          <a href="javascript:;" :class="{'font-color':isIndex==0,font:isIndex==0,color:isIndex==0}"><!--shengnan586-->{{UserName}}
             <span class="icon iconfont" :class="iconUpDown"></span>
           </a>
           <div @click="GoRouter" class="navlist" v-show="show">
-            <ul>
+            <ul v-show="isHoster=='1'">
               <li>
                   房东中心
               </li>
-              <li><a href="javascript:;" data-router=“admin”>订单管理</a></li>
-              <li><a href="javascript:;" data-router=“2”>结算统计</a></li>
-              <li><a href="javascript:;" data-router=“3”>房源信息</a></li>
-              <li><a href="javascript:;" data-router=“4”>价格房态</a></li>
-              <li><a href="javascript:;" data-router=“5”>个人资料</a></li>
-              <li><a href="javascript:;" data-router=“6”>我的收藏</a></li>
+              <li><a href="javascript:;" data-router=“adminorderlist”>订单管理</a></li>
+              <li><a href="javascript:;" data-router=“adminsettlement”>结算统计</a></li>
+              <li><a href="javascript:;" data-router=“adminbaseinfo”>房源信息</a></li>
+              <li><a href="javascript:;" data-router=“”>价格房态</a></li>
+              <li><a href="javascript:;" data-router=“Admin_to”>个人资料</a></li>
+              <li><a href="javascript:;" data-router=“adminfavorites”>我的收藏</a></li>
             </ul>
             <ul>
               <li>
                 房客中心
               </li>
-              <li><a href="javascript:;" data-router="">我的订单</a></li>
-              <li><a href="javascript:;" data-router="">个人资料</a></li>
-              <li><a href="javascript:;" data-router="">我的收藏</a></li>
-              <li><a href="javascript:;" data-router="">通知</a></li>
+              <li><a href="javascript:;" data-router="adminorderlist">我的订单</a></li>
+              <li><a href="javascript:;" data-router="Admin_to">个人资料</a></li>
+              <li><a href="javascript:;" data-router=“adminfavorites”>我的收藏</a></li>
+              <li><a href="javascript:;" data-router="adminmsg'">通知</a></li>
             </ul>
             <div>
               <a href="javascript:;" data-router="close">退出</a>
@@ -47,6 +50,7 @@
           </div>
         </div>
       </div>
+      <!-- 发布房源 -->
       <div class="release">
         <a href="javascript:;" @click="GoRouter" data-router="publish">发布房源</a>
       </div>
@@ -57,21 +61,28 @@
 export default {
   data() {
     return {
-      iconUpDown:{
+      iconUpDown:{//用户下拉箭头切换
         "icon-arrow-down":true,
         "icon-ico_back":false
       },
-      show:false,
-      UserName:sessionStorage.getItem("username")
+      show:false,//是否显示下拉菜单
+      UserName:sessionStorage.getItem("username"),//用户名
+      isHoster:sessionStorage.getItem("isHoster")//是否为房东
     };
   },
+  props:{
+    isIndex:{default:0}
+  },
   methods: {
+    // 登录
     login(){
       this.$router.push("/Login_go");
     },
+    // 注册
     reg(){
       this.$router.push("/Reg_go");
     },
+    // 鼠标移入用户名区域，箭头变为上箭头
     Up(){
       this.iconUpDown={
         "icon-arrow-down":false,
@@ -79,6 +90,7 @@ export default {
       }
       this.show=true;
     },
+    //鼠标移除用户名区域，箭头变为下箭头
     Down(){
       this.iconUpDown={
         "icon-arrow-down":true,
@@ -86,6 +98,7 @@ export default {
       }
       this.show=false;
     },
+    //菜单中路由跳转
     GoRouter(e){
       var router=e.target.dataset.router;
       if(router=="close"){
@@ -109,6 +122,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border:0;
 }
 .logo{
   height: 70px;
@@ -119,8 +133,8 @@ export default {
   vertical-align: top;
 }
 .logo span{
-  font-size: 20px;
-  font-family: SimHei;
+  font-size: 16px;
+  font-family: 华文行楷;
   color: #fff;
   font-weight: bold;
 }
@@ -190,7 +204,6 @@ export default {
   padding:10px;
 }
 .nav .navlist a{
-
   line-height: 25px;
   font-size: 14px;
   color:#fff;
@@ -199,9 +212,18 @@ export default {
 .nav div:first-child a:hover,
 .nav div:nth-child(2) a:hover,
 .nav .login div:nth-child(2):hover>a{
-  color: #39b54a;
+  color: #39b54a !important;
 }
 .nav .navlist div:last-child{
   text-align: center;
+}
+.font{
+  color:#888 !important;
+}
+.font-color.font.color{
+  color:#333;
+}
+.border{
+  border-bottom: 1px solid #eaeaea;
 }
 </style>

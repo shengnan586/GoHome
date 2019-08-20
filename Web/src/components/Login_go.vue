@@ -95,9 +95,11 @@ export default {
                 var id=res.data.data[0].id;
                 var username=res.data.data[0].username;
                 var phone=res.data.data[0].phone;
+                var isHoster=res.data.data[0].isHoster;//是否为房东
                 sessionStorage.setItem("userid",id);
                 sessionStorage.setItem("username",username);
                 sessionStorage.setItem("phone",phone);
+                sessionStorage.setItem("isHoster",isHoster)
                 /*登录成功自动转*/ 
                 this.$router.push("/index")//将Product这个路由推入路由器，路由自动跳转
             }

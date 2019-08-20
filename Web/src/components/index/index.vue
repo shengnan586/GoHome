@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="headerContent" :style="{width:innerWidth+'px',height:innerHeight+'px'}">
-      <homeheader class="header"></homeheader>
+      <homeheader class="header" :isIndex=1></homeheader>
       <carousel class="carousel"></carousel> 
       <search class="search" :style="{top:innerHeight*0.8+'px'}"></search>
     </div>
