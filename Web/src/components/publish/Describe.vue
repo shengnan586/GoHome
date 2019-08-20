@@ -100,7 +100,7 @@ export default {
     },
     props:["stepToChild","hid"],
     created() {
-        if(!this.hid){
+        if(this.hid != 0){
             this.load();
         }
     },
@@ -109,7 +109,9 @@ export default {
             console.log("......"+this.hid);
             this.axios.get("/describe/seldescribe",{params:{hid:this.hid}})
             .then(res=>{
-                if(res.length>0){this.$emit("had",2)
+                console.log(res);
+                console.log(res.data[0].houseTitle);
+                if(res.data.length>0){this.$emit("had",2);
                 this.room_input_tit=res.data[0].houseTitle;
                 this.room_input_detail=res.data[0].houseDESC;
                 this.room_input_traffic=res.data[0].traffic;
