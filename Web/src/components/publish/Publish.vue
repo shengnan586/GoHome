@@ -88,7 +88,7 @@ export default {
     },
     components:{Facility,Info,Describe},
     created() {
-      if(!this.$route.params.hid) this.hid = 2;//如果没传hid hid则为0
+      if(!this.$route.params.hid) this.hid = 0;//如果没传hid hid则为0
       else this.hid = this.$route.params.hid;//页面刚加载就读取传过来的hid
       //如果是新页面 则step=1 只有第一个字绿色，如果是继续填写，step的值由子组件查到的数据决定
       for(var i = 1;i<this.step;i++){ 
@@ -115,6 +115,7 @@ export default {
         if(this.step <= step){
           this.step = step+1;//控制字体颜色 让下一个组件的颜色变亮 +1
         }
+        //this.stepToParent = 0;
         this.stepToChild = step+1;//控制跳下一个组件
       },
       sendHid(hid){

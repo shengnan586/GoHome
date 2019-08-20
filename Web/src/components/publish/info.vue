@@ -369,6 +369,7 @@ export default {
           "北京市" + detail + this.details_address + this.house_num;
         this.isShow = false;
         this.details_address = this.house_num = "";
+        console.log("调试地址："+this.address);
       }
     },
     // 删除所选床铺信息
@@ -387,6 +388,7 @@ export default {
           break;
         }
       }
+      console.log("添加床铺："+this.bed_btn[0].id,this.bed_btn[0].bedType);
     },
     // 床铺信息删除所选
     close(e) {
@@ -415,7 +417,7 @@ export default {
         this.err_bed = true;
         return;
       } else {
-        var address = this.details_address + this.house_num;
+        
         // var obj={
         //     roomSize:this.area,
         //     daId:{
@@ -446,12 +448,12 @@ export default {
           toilet: this.bathroom,
           kitchen: this.kitchen,
           balcony: this.balcony,
-          bId: this.bedTypeId,
+          bId: this.bed_btn,
         };
         if (this.hid==0) {
           this.axios.post("/addhouse/addhouse", obj).then(result => {
             this.hid1=result.data.data;
-            console.log(this.hid1);
+            console.log("插入后返回的hid为："+this.hid1);
             this.$emit("sendHid",this.hid1);
             this.$emit("step",1)
           });
