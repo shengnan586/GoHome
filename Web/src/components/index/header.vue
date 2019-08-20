@@ -4,7 +4,7 @@
     <div class="logo">
       <a href="javascript:;" @click="GoRouter" data-router="index">
         <img src="../../assets/images/WechatIMG63.png" data-router="index"/>
-        <span data-router="index" :class="{font:isIndex==0}">BUG民宿，家的感觉</span>  
+        <span data-router="index" :class="{font:isIndex==0}"><span style="font-size:20px;">BUG民宿</span>  家的感觉</span>  
       </a>
     </div>
     <!-- 头部右侧导航 -->
@@ -133,8 +133,8 @@ export default {
   vertical-align: top;
 }
 .logo span{
-  font-size: 20px;
-  font-family: SimHei;
+  font-size: 16px;
+  font-family: 华文琥珀 !important;
   color: #fff;
   font-weight: bold;
 }
@@ -204,7 +204,6 @@ export default {
   padding:10px;
 }
 .nav .navlist a{
-
   line-height: 25px;
   font-size: 14px;
   color:#fff;
