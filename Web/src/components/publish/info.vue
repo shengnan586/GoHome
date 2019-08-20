@@ -299,7 +299,7 @@ export default {
   created() {
     this.load();
      if(this.hid!=0){
-       this.search();
+      this.search();
      }
   },
   methods: {
@@ -330,7 +330,18 @@ export default {
     search(){
       this.axios.get("/search",{params:{id:this.hid}})
       .then(result=>{
-        console.log(result);
+        this.address=result.data[0].address;
+        this.selectedId=result.data[0].houseTypeId;
+        this.rentId=result.data[0].rentalTypeId;
+        this.bathId=result.data[0].toiletId;
+        this.room=result.data[0].bedroom;
+        this.parlor=result.data[0].saloon;
+        this.bathroom=result.data[0].toilet;
+        this.kitchen=result.data[0].kitchen;
+        this.balcony=result.data[0].balcony;
+        this.area=result.data[0].roomSize;
+        this.bedTypeId=result.data[0].bld;
+        this.peoples=result.data[0].peopleNumber;
       });
     },
     pop() {
@@ -429,7 +440,7 @@ export default {
           toiletId: this.bathId,
           peopleNumber: this.peoples,
           aId: this.selectedAreaId,
-          address: this.details_address,
+          address: this.address,
           bedroom: this.room,
           saloon: this.parlor,
           toilet: this.bathroom,
@@ -446,7 +457,6 @@ export default {
           });
         } else {
           obj.id = this.hid;
-          //  obj.id = 1;
           this.axios.post("/updatehouse", obj).then(result => {
             console.log(result);
             this.$emit("step",1)
