@@ -71,7 +71,7 @@
                         <td >搜索关键词</td>
                         <td colspan=4>
                             <div>
-                                <input type="text" placeholder="请输入商圈、景点、房间名、房东名等" v-model="searchKey">
+                                <input type="text" placeholder="请输入地址信息" v-model="searchKey">
                             </div>
                         
                         </td>
@@ -109,6 +109,7 @@
                 </div>
                 
             </div> 
+            <button class="getbtn" @click="getmore">加载更多</button>
         </div>
        <Footer></Footer>    
            
@@ -151,9 +152,13 @@ export default {
             if(res.data.code==-1){
                 console.log(-1);
             }else{
-                console.log(res.data.data)
-                this.arr=res.data.data;
+                var arr1=res.data.data;
+                console.log(arr1);
+                
+                this.arr=this.arr.concat(arr1);
             }
+            }).catch(err=>{
+                
             })
         },
         // 下面选择条
@@ -198,7 +203,9 @@ export default {
             
             // console.log(arr1);
         },
-        // 关键词查询
+        getmore(){
+            this.loadmore();
+        }
        
 
 

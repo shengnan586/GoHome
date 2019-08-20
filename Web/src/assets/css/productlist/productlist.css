@@ -257,3 +257,12 @@
        font-size:20px;
        text-align:center;
    }
+   .getbtn{
+       width:800px;height: 30px;
+       margin-left: -90px;
+       border:0;
+       background-color:#fff;
+   }
+   .getbtn:hover{
+       background-color: #eee;
+   }
