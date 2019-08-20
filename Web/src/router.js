@@ -22,6 +22,7 @@ export default new Router({
     {path:'/index',component:index},
     {path:'/',component:HelloContainer},
     {path:'/order',component:Order},
+    {path:'/productList',component:productList},
 
     
     

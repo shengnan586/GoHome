@@ -44,7 +44,7 @@
         border-radius:5px;
         color:#39b54a;
     }
-    .active{
+    .pactive{
         border:1px solid #39b54a !important;
         border-radius:5px;
         color:#fff;
