@@ -4,7 +4,7 @@
     <div class="logo">
       <a href="javascript:;" @click="GoRouter" data-router="index">
         <img src="../../assets/images/WechatIMG63.png" data-router="index"/>
-        <span data-router="index" :class="{font:isIndex==0}"><span style="font-size:20px;">BUG民宿</span>  家的感觉</span>  
+        <span data-router="index" :class="{font:isIndex==0}"><span :class="{font:isIndex==0}" style="font-size:20px;">BUG民宿</span>  家的感觉</span>  
       </a>
     </div>
     <!-- 头部右侧导航 -->
@@ -134,7 +134,7 @@ export default {
 }
 .logo span{
   font-size: 16px;
-  font-family: 华文琥珀 !important;
+  font-family: 华文琥珀;
   color: #fff;
   font-weight: bold;
 }
