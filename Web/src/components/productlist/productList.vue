@@ -211,9 +211,9 @@ export default {
             var start=0;
             var count=4;
             this.axios.get(url,{params:{key}}).then(res=>{
-                this.arr=res.data;
+                this.arr=res.data.data
             }).catch(err=>{
-                console.log(-11111)
+                alert("没有找到相关信息");
             })
         }
     },
