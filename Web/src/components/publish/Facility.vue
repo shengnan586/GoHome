@@ -437,7 +437,7 @@ a.keep_btn{
     width:180px;
     height: 44px;
     line-height: 44px;
-    background-color: #ff4081;
+    background-color: #39b54a;
     text-align: center;
     color: #fff;
     font-size: 18px;
@@ -447,7 +447,5 @@ a.keep_btn{
     transition: background-color 0.2s ease;
     margin-left: 240px;
 }
-a.keep_btn:hover{
-    background-color:#ca0624;
-}
+
 </style>

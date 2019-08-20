@@ -20,8 +20,17 @@ router.post("/addhouse", (req, res) => {
                 //添加床铺表
                 if (houseresult.affectedRows > 0) {
                     houseid = houseresult.insertId;
-                    var sqlhousebed = " INSERT into  home_business_house_bed (hid,bid)   VALUES(?,?) ";
-                    pool.query(sqlhousebed, [obj.bId, houseid], (err, bedresult) => {
+                    var str = "";
+                    var arr = [];
+                    for(var item of obj.bId){
+                        str += "(?,?),";
+                        arr.push(parseInt(houseid));
+                        arr.push(parseInt(item.id));      
+                    }
+                    str = str.substr(0,str.length-1);
+                    houseid = houseresult.insertId;
+                    var sqlhousebed = `INSERT into home_business_house_bed (hId,bId) VALUES ${str}`;
+                    pool.query(sqlhousebed, arr, (err, bedresult) => {
                         if (err) throw err;
                         if (bedresult.affectedRows > 0) {
                             res.send({ code: 1, data:houseid })
@@ -44,9 +53,17 @@ router.post("/addhouse", (req, res) => {
                     if (err) throw err;
                     if (houseresult.affectedRows > 0) {
                         houseid = houseresult.insertId;
+                        var str = "";
+                        var arr = [];
+                        for(var item of obj.bId){
+                            str += "(?,?),";
+                            arr.push(parseInt(houseid));
+                            arr.push(parseInt(item.id));                     
+                        }
+                        str = str.substr(0,str.length-1);
                         //添加床铺表
-                        var sqlhousebed = " INSERT into  home_business_house_bed (hid,bid)  VALUES(?,?) ";
-                        pool.query(sqlhousebed, [obj.bId, houseid], (err, bedresult) => {
+                        var sqlhousebed = `INSERT into  home_business_house_bed (hId,bId)  VALUES ${str} `;
+                        pool.query(sqlhousebed, arr, (err, bedresult) => {
                             if (err) throw err;
                             if (bedresult.affectedRows > 0) {
                                 res.send({ code: 1,data:houseid });
