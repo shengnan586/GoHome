@@ -14,7 +14,7 @@ import Axios from 'axios';
 Axios.defaults.baseURL="http://127.0.0.1:3003/"
 Axios.defaults.withCredentials=true;
 Vue.prototype.axios=Axios;
-Vue.prototype.$echarts = echarts
+Vue.prototype.$echarts = echarts;
 
 new Vue({
   router,
