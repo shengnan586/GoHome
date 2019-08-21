@@ -20,11 +20,6 @@ const imgSave = require("./routes/imgSave.js");
 const imgSearch = require("./routes/imgSearch.js");
 const infoSave = require("./routes/infoSave.js");
 const infoSearch = require("./routes/infoSearch.js");
-const adminorder=require("./routes/adminorder.js");
-const adminpwdedit=require("./routes/adminpwdedit.js");
-const adminsettlement=require("./routes/adminsettlement.js");
-const adminfavorites=require("./routes/adminfavorites.js");
-const adminbaseinfor=require("./routes/adminbaseinfor.js");
 
 var app = express();
 var server = app.listen(3003);
@@ -62,9 +57,4 @@ app.use("/imgSave",imgSave);
 app.use("/imgSearch",imgSearch);
 app.use("/infoSave",infoSave);
 app.use("/infoSearch",infoSearch);
-app.use("/admin",adminorder);
-app.use("/admin",adminpwdedit);
-app.use("/admin",adminsettlement);
-app.use("/admin",adminfavorites);
-app.use("/admin",adminbaseinfor);
 
