@@ -48,7 +48,7 @@ export default new Router({
      //注册的路径
     {path:'/Reg_go',component:Reg_go},
     {path:'/map',component:map},
-    {path:'/facility',component:Facility}
+    {path:'/facility',component:Facility},
 	{path:'/adminpwdedit',component:adminpwdedit},
     {path:'/adminmsg',component:adminmsg},
     {path:'/adminsettlement',component:adminsettlement},
