@@ -276,6 +276,6 @@ alter table home_dic_apartment add hId int;
 alter table home_business_house add houseDESC varchar(500);
 
 
-
+alter table home_business_house add isReleaseStatus int;
 
 

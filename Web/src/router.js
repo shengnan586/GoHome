@@ -15,6 +15,8 @@ import Reg_go from "./components/Reg_go.vue"
 import Publish from "./components/publish/Publish.vue"
 import Facility from "./components/publish/Facility.vue"
 import Describe from "./components/publish/Describe.vue"
+import Photos from "./components/publish/photos.vue"
+import Price from "./components/publish/price.vue"
 
 Vue.use(Router)
 export default new Router({
@@ -22,6 +24,8 @@ export default new Router({
     {path:'/index',component:index},
     {path:'/',component:HelloContainer},
     {path:'/order',component:Order},
+    {path:'/price',component:Price},
+    {path:'/photos',component:Photos},
     {path:'/productList',component:productList},
 
     
