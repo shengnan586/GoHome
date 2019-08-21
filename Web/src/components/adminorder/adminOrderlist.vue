@@ -164,5 +164,133 @@ export default {
 };
 </script>
 <style scoped>
-@import url("../../assets/css/adminorderList.css");
+*, body {
+    font-weight: 300;
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
+ul{
+    margin: 0 !important;padding: 0;
+}
+ul, ol {
+    list-style: none outside none;
+}
+.el-main {
+    margin-left: 20px;
+    padding: 0;
+    overflow: hidden;
+}
+.tab_list ul {
+    border-bottom: 1px solid #bdbdbd;
+    display: flex;
+    justify-content:space-between;
+    margin: 0 auto;
+}
+.tab_list ul li.active {
+    background-color: rgb(57,181,71,.8) !important;
+    border-radius: 5px;
+    /* #ff4081; */
+    color: #fff;
+}
+.tab_list ul li {
+    display: inline-block;
+    width: 11%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background-color: #fafafa;
+    font-size: 14px;
+}
+.order_list {
+    margin: 0 auto;
+}
+.order_item {
+    /* margin-top: 20px; */
+    overflow: visible;
+}
+.el-card {
+    border-radius: 0;
+}
+.el-card {
+    border: 1px solid #ebeef5;
+    background-color: #fff;
+    color: #303133;
+    -webkit-transition: .3s;
+    transition: .3s;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+.order_item .pic_wrapper .pic {
+    display: block;
+    background: #EEE;
+}
+img {
+    border: 0 none;
+}
+img, input, select, textarea, button, i {
+    vertical-align: middle;
+}
+.order_item .side_info {
+    margin-left: 20px;
+}
+.order_item .side_info .title {
+    font-size: 18px;
+    font-weight: 700;
+}
+.desc,.total{margin-top: 14px;}
+.order_item .total .price {
+    color: #ff4081;
+    float: none;
+    font-style: normal;
+}
+.price {
+    color: #F26522;
+    font-weight: bold;
+    float: right;
+}
+.order_item .content {
+    display: -webkit-flex;
+    display: flex;
+    margin-top: 20px;
+    font-size: 14px;
+}
+.order_item .handle {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.fa_btn {
+    display: inline-block;
+    height: 35px;
+    /* line-height: 35px; */
+    min-width: 90px;
+    border: solid 1px #E0E0E0;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background: #eee;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+
+.desc{
+    width: 100%;
+}
+.desc table{
+    width: 100%;
+}
+.fa_btn:hover{
+    background-color:rgb(57,181,71,.8);
+     /* #ff4081; */
+    color: #fff;
+    border-radius: 5px;
+}
+.pagenav{
+    display: flex; 
+    justify-content: center;
+    margin-top:10px
+}
 </style>

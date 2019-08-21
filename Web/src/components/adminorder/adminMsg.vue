@@ -119,5 +119,130 @@ export default {
 };
 </script>
 <style scoped>
-@import url("../../assets/css/adminsettlement.css");
+*, body {
+    font-weight: 300;
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
+ul{
+    margin: 0 !important;padding: 0;
+}
+ul, ol {
+    list-style: none outside none;
+}
+.el-main {
+    margin-left: 20px;
+    padding: 0;
+    overflow: hidden;
+}
+.order_list {
+    margin: 0 auto;
+}
+.order_item {
+    margin-top: 20px;
+    overflow: visible;
+}
+.el-card {
+    border-radius: 0;
+}
+.el-card {
+    border: 1px solid #ebeef5;
+    background-color: #fff;
+    color: #303133;
+    -webkit-transition: .3s;
+    transition: .3s;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+.order_item .pic_wrapper .pic {
+    display: block;
+    background: #EEE;
+}
+img {
+    border: 0 none;
+}
+img, input, select, textarea, button, i {
+    vertical-align: middle;
+}
+
+.order_item .side_info {
+    margin-left: 10px;
+    width: 100%;
+}
+.order_item .side_info .title {
+    font-size: 18px;
+    font-weight: 700;
+}
+.desc,.total{margin-top: 14px;}
+.order_item .total .price {
+    color: #ff4081;
+    float: none;
+    font-style: normal;
+}
+.order_item .content {
+    display: -webkit-flex;
+    display: flex;
+    margin-top: 20px;
+    font-size: 14px;
+    width: 100%;
+}
+.desc{
+    width: 100%;
+}
+.desc table{
+    width: 100%;
+}
+.fa_btn:hover{
+    background-color: #ff4081;
+    color: #fff;
+}
+.pagenav{
+    display: flex; 
+    justify-content: center;
+    margin-top:10px
+}
+.divtable{
+    float: left;
+    width: 300px;
+    height: 500px;
+}
+#myChartId{
+    float: left;
+}
+.divtable>table{
+    width: 100%;
+    margin-top: 70px;
+    border: 1px solid #ddd;
+    background:#fff;
+}
+.divtable>table>thead{
+    font-size: 20px;
+    height: 35px;
+    color:#fff;
+    line-height: 35px;
+    background: #ff4081;
+}
+.divtable>table>thead>th:first-child{
+    border-top-left-radius: 7px;
+}
+.divtable>table>thead>th:nth-child(2){
+    border-top-right-radius: 7px;
+}
+.divtable>table td{
+    font-size: 14px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+}
+.selyear{
+    width: 200px;
+    border: 1px solid #303133 !important;
+}
+select{
+    border: 1px solid #303133 !important;
+}
+
+
 </style>

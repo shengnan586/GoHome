@@ -191,5 +191,63 @@ export default {
 </script>>
 <style scoped>
 @import url("../../assets/css/font/iconfont.css");
-@import url("../../assets/css/adminpwdedit.css");
+.right_con {
+    width: 800px;
+    float: right;
+    padding-bottom: 50px;
+  }
+  .g_ctmain {
+    padding-top: 10px;
+    padding-left: 15px;
+    width: 80%;
+  }
+  .g_ft18 {
+    font-size: 18px;
+    color: "#2c3e50";
+  }
+  .g_lists {
+    margin-top: 10px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #a5adb4;
+    vertical-align: top;
+  }
+  .g_ft14 {
+    font-size: 14px;
+  }
+  .g_inputs {
+    border: 1px solid #d1d1d1;
+    height: 38px;
+    line-height: 38px;
+    width: 220px;
+    padding-left: 10px;
+    vertical-align: top;
+  }
+  .g_pinkinput {
+    display: block;
+    background: rgb(57,181,71,.8);
+    border-radius: 5px;
+    /* #f05b72; */
+    width: 200px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    color: #fff !important;
+    font-size: 18px;
+    margin-left: 32px;
+    margin-top: 20px;
+  }
+  .vcontainer {
+    width: 180px;
+    height: 40px;
+    margin-left: 5px;
+  }
+  a {
+    display: inline;
+    /* margin-left: 10px; */
+  }
+  .iconcolor {
+    color: rgba(229, 229, 33, 1) !important;
+  }
 </style>

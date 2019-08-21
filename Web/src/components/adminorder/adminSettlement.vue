@@ -144,7 +144,7 @@ export default {
 };
 </script>
 <style scoped>
-@import url("../../assets/css/adminsettlement.css");
+/* @import url("../../assets/css/adminsettlement.css"); */
 @import url("../../assets/css/font/iconfont.css");
 .divtable>div{
   display: flex;

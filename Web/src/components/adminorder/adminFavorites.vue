@@ -270,8 +270,34 @@ img, input, select, textarea, button, i {
 .desc table{
     width: 100%;
 }
+.fa_btn {
+    display: inline-block;
+    height: 35px;
+    /* line-height: 35px; */
+    min-width: 90px;
+    border: solid 1px #E0E0E0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background: #eee;
+    margin-right: 15px;
+    border-radius: 5px;
+  }
+  .order_item .handle {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}
 .fa_btn:hover{
-    background-color: #ff4081;
+    background-color:rgb(57,181,71,.8);
+     /* #ff4081; */
+    border-radius: 5px;
     color: #fff;
 }
 .pagenav{
