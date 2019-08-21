@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import echarts from 'echarts'
 
 Vue.config.productionTip = false
 //5: 设置请求的根路径 
@@ -13,6 +14,7 @@ import Axios from 'axios';
 Axios.defaults.baseURL="http://127.0.0.1:3003/"
 Axios.defaults.withCredentials=true;
 Vue.prototype.axios=Axios;
+Vue.prototype.$echarts = echarts
 
 new Vue({
   router,
