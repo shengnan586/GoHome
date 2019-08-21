@@ -10,17 +10,23 @@
                     请不要上传修改痕迹明显、拉伸变形、有水印、有联系方式或品牌宣传等内容的照片。<br>
                     <span style="color:#f00">请认真查看照片范例和要求说明，避免因为审核不通过而耽误上线时间。</span>
                 </div>
-                <div class="h_pic_list clearfix">
+                <div class="h_pic_list clearfix" style="position:relative;">
                     <span style="font-weight:bold">房源图片:</span>
                     <p style="color:#757575;">根据你填写的户型和床铺信息，必须上传</p>
+                    <div class="error_panel" :style="img_err ? 'display:block;' : 'display:none;'" style="position:absolute;top:38px;left:320px;">
+                        <i class="iconfont icon-jinggao"></i>
+                        <div class="el-alert_content">
+                            <span class="el-alert_title">至少添加三张图片</span>
+                        </div>
+                    </div>
                     <ul>
-                        <li class="pho_bg">
+                        <li class="pho_bg" v-for="(item,i) of imgs" :key="i" style="overflow:hidden;">
                             <div style="cursor:pointer">
-                                <img src="" alt="" style="width:180px; weight:180px;heigth:180px;cursor:pointer">
+                                <img :src="'http://127.0.0.1:3003/'+item" alt="" style="width:180px; weight:180px;heigth:180px;cursor:pointer">
                             </div>
                         </li>
                         <li class="fileNow">
-                            <input type="file" class="file_input" @change="file($event)">
+                            <input type="file" class="file_input" accept=".jpg,.jepg,.png" @change="uploadAvatar">
                             <div class="h_add_pic"></div>
                         </li>
                     </ul>
@@ -36,12 +42,29 @@
 export default {
     data() {
         return {
-            imgs:[]
+            imgs:[],
+            img_err:false
         }
     },
     methods: {
+        uploadAvatar(e){
+            var data = new FormData();
+            data.append('loadfile', e.target.files[0]);  
+            this.axios.post('/upload-avatar',data, {headers: { 'content-type': 'multipart/form-data' }
+            }).then(res=>this.imgs.push(res.data)).catch(err=>console.log(err));
+        },
         subBtn(){//提交
-
+            if(this.imgs.length<3){
+                this.img_err=true;
+                return;
+            }else{
+                // 
+            }
+        }
+    },
+    watch: {
+        imgs(){
+            if(this.imgs.length>=3)this.img_err=false;
         }
     },
 }

@@ -20,6 +20,7 @@ const imgSave = require("./routes/imgSave.js");
 const imgSearch = require("./routes/imgSearch.js");
 const infoSave = require("./routes/infoSave.js");
 const infoSearch = require("./routes/infoSearch.js");
+const uploadfile = require("./routes/uploadfile.js");
 
 var app = express();
 var server = app.listen(3003);
@@ -57,4 +58,5 @@ app.use("/imgSave",imgSave);
 app.use("/imgSearch",imgSearch);
 app.use("/infoSave",infoSave);
 app.use("/infoSearch",infoSearch);
+app.use("/upload-avatar",uploadfile);
 
