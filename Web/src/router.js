@@ -5,7 +5,7 @@ import index from "./components/index/index.vue"
 import Order from "./components/order/Order.vue"
 import productList from "./components/productlist/productList.vue"
 import map from "./components/productlist/map.vue"
-
+import prodetail from "./components/productlist/prodetail.vue"
 import Info from "./components/publish/info.vue"
 
 //登录的引入
@@ -23,6 +23,7 @@ export default new Router({
     {path:'/',component:HelloContainer},
     {path:'/order',component:Order},
     {path:'/productList',component:productList},
+    {path:'/prodetail',component:prodetail},
 
     
     
