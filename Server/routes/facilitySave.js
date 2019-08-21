@@ -83,8 +83,12 @@ router.get("/save",(req,res)=>{
         }
     })
     .then(result=>{
-        if(branch == 5)
-        res.send({code:1});
+        if(branch == 5){
+            if(result.length > 0){
+                res.send({code:1});
+            }
+        }
+        
     })
     
 })

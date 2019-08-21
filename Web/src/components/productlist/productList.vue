@@ -46,32 +46,32 @@
 
                     <tr>
                         <td>出租方式</td>
-                        <td><p :class="{active:l==1}" id="1" @click="tdclick1">不限</p></td>
-                        <td><p :class="{active:l==2}" id="2" @click="tdclick1">整套出租</p></td>
-                        <td><p :class="{active:l==3}" id="3" @click="tdclick1">独立房间</p></td>
+                        <td><p :class="{pactive:l==1}" id="1" @click="tdclick1">不限</p></td>
+                        <td><p :class="{pactive:l==2}" id="2" @click="tdclick1">整套出租</p></td>
+                        <td><p :class="{pactive:l==3}" id="3" @click="tdclick1">独立房间</p></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>预定类型</td>
-                        <td><p :class="{active:m==4}" id="4" @click="tdclick2">不限</p></td>
-                        <td><p :class="{active:m==5}" id="5" @click="tdclick2">立即预定</p></td>
-                        <td><p :class="{active:m==6}" id="6" @click="tdclick2">申请预定</p></td>
+                        <td><p :class="{pactive:m==4}" id="4" @click="tdclick2">不限</p></td>
+                        <td><p :class="{pactive:m==5}" id="5" @click="tdclick2">立即预定</p></td>
+                        <td><p :class="{pactive:m==6}" id="6" @click="tdclick2">申请预定</p></td>
                         <td></td>
                     </tr>
                     <tr >
                         <td>
                             价格
                         </td>
-                        <td><p :class="{active:n==7}" id="7" data-pri="300" @click="tdclick3">0-300</p></td>
-                        <td><p :class="{active:n==8}" id="8"data-pri="600" @click="tdclick3">300-600</p></td>
-                        <td><p :class="{active:n==9}" id="9" data-pri="900" @click="tdclick3">600-900</p></td>
+                        <td><p :class="{pactive:n==7}" id="7" @click="tdclick3">0-300</p></td>
+                        <td><p :class="{pactive:n==8}" id="8" @click="tdclick3">300-600</p></td>
+                        <td><p :class="{pactive:n==9}" id="9" @click="tdclick3">600-900</p></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td>搜索关键词</td>
+                        <td >搜索关键词</td>
                         <td colspan=4>
                             <div>
-                                <input type="text" placeholder="请输入商圈、景点、房间名、房东名等">
+                                <input type="text" placeholder="请输入地址信息" v-model="searchKey">
                             </div>
                         
                         </td>
@@ -109,6 +109,7 @@
                 </div>
                 
             </div> 
+            <button class="getbtn" @click="getmore">加载更多</button>
         </div>
        <Footer></Footer>    
            
@@ -126,12 +127,14 @@ export default {
             m:4,
             l:1,
             city:1000,
-            pnum:0
+            pnum:0,
+            searchKey:""
            
             
         }
     },
     methods: {
+        // 搜索条
         searchBtn(){
             var url="order/proSearch"
             var aid=this.city==1000?null:this.city;
@@ -139,6 +142,7 @@ export default {
             
             this.axios.get(url,{params:{aid,pnum}}).then()
         },
+        // 查询全部商品
         loadmore(){
             var url="order/productlist"
             var start=this.arr.length;
@@ -148,11 +152,16 @@ export default {
             if(res.data.code==-1){
                 console.log(-1);
             }else{
-                console.log(res.data.data)
-                this.arr=res.data.data;
+                var arr1=res.data.data;
+                console.log(arr1);
+                
+                this.arr=this.arr.concat(arr1);
             }
+            }).catch(err=>{
+                
             })
         },
+        // 下面选择条
         tdclick1(e){
             if(this.l!=e.target.id){
                  this.l=e.target.id;
@@ -167,14 +176,52 @@ export default {
             }else {
                  this.m="";
             }
-        },
-      
+        },   
         tdclick3(e){
             if(this.n!=e.target.id){
                  this.n=e.target.id;
             }else {
                  this.n="";
             }
+            // if(e.target.id==7){
+            //     var arr1=this.arr.filter(
+            //     function(elem){
+            //         return elem>0&&elem<300}
+            // )
+            // }else if(e.target.id==8){
+            //     var arr1=this.arr.filter(
+            //     function(elem){
+            //         return elem>300&&elem<600}
+            // )
+            // }else{
+            //     var arr1=this.arr.filter(
+            //     function(elem){
+            //         return elem>600&&elem<900}
+            // )
+            // }
+           
+            
+            // console.log(arr1);
+        },
+        getmore(){
+            this.loadmore();
+        }
+       
+
+
+    },
+    watch: {
+        searchKey(){
+            var url="order/searchKey";
+            console.log(this.searchKey);
+            var key=this.searchKey;
+            var start=0;
+            var count=4;
+            this.axios.get(url,{params:{key}}).then(res=>{
+                this.arr=res.data.data
+            }).catch(err=>{
+                alert("没有找到相关信息");
+            })
         }
     },
     created(){

@@ -26,6 +26,8 @@ export default new Router({
     {path:'/order',component:Order},
     {path:'/price',component:Price},
     {path:'/photos',component:Photos},
+    {path:'/productList',component:productList},
+
     
     
     // {path:'/search',component:search},
