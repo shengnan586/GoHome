@@ -16,6 +16,10 @@ const addhouse=require("./routes/addhouse.js");
 const updatehouse=require("./routes/updatehouse.js");
 const describe=require("./routes/describe.js");
 const search = require("./routes/search.js");
+const imgSave = require("./routes/imgSave.js");
+const imgSearch = require("./routes/imgSearch.js");
+const infoSave = require("./routes/infoSave.js");
+const infoSearch = require("./routes/infoSearch.js");
 
 var app = express();
 var server = app.listen(3003);
@@ -49,5 +53,8 @@ app.use("/addhouse",addhouse);
 app.use("/updatehouse",updatehouse);
 app.use("/describe",describe);
 app.use("/search",search);
-
+app.use("/imgSave",imgSave);
+app.use("/imgSearch",imgSearch);
+app.use("/infoSave",infoSave);
+app.use("/infoSearch",infoSearch);
 
