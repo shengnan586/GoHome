@@ -299,6 +299,7 @@ export default {
   created() {
     this.load();
      if(this.hid!=0){
+       console.log("走if分支");
       this.search();
      }
   },
@@ -328,21 +329,24 @@ export default {
       });
     },
     search(){
+      console.log("searrrrch");
       this.axios.get("/search",{params:{id:this.hid}})
       .then(result=>{
-        console.log("接受的"+result.data[0].address);
-        this.address=result.data[0].address;
-        this.selectedId=result.data[0].houseTypeId;
-        this.rentId=result.data[0].rentalTypeId;
-        this.bathId=result.data[0].toiletId;
-        this.room=result.data[0].bedroom;
-        this.parlor=result.data[0].saloon;
-        this.bathroom=result.data[0].toilet;
-        this.kitchen=result.data[0].kitchen;
-        this.balcony=result.data[0].balcony;
-        this.area=result.data[0].roomSize;
-        this.bedTypeId=result.data[0].bld;
-        this.peoples=result.data[0].peopleNumber;
+        console.log("请求数据拿回");
+        console.log(result.data.data[0])
+        // console.log("接受的"+result.data[0].address);
+        this.address=result.data.data[0].address;
+        this.selectedId=result.data.data[0].houseTypeId;
+        this.rentId=result.data.data[0].rentalTypeId;
+        this.bathId=result.data.data[0].toiletId;
+        this.room=result.data.data[0].bedroom;
+        this.parlor=result.data.data[0].saloon;
+        this.bathroom=result.data.data[0].toilet;
+        this.kitchen=result.data.data[0].kitchen;
+        this.balcony=result.data.data[0].balcony;
+        this.area=result.data.data[0].roomSize;
+        this.bedTypeId=result.data.data[0].bld;
+        this.peoples=result.data.data[0].peopleNumber;
       });
     },
     pop() {

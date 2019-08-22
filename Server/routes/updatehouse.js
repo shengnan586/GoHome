@@ -5,7 +5,6 @@ const query=require("../query");
 router.post("/",(req,res)=>{
     var obj=req.body;
     var branch = 0;
-    console.log("obj.id  "+typeof(obj.id));
     var sql = 'select id from home_dic_apartment where bedroom=? and saloon=?  and toilet=? and kitchen=? and balcony=?';
     query(sql,[obj.bedroom,obj.saloon,obj.toilet,obj.kitchen,obj.balcony])
     .then(result=>{
