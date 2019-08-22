@@ -31,7 +31,7 @@
     <Describe :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @had="sort"></Describe>
     <Facility :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @had="sort"></Facility>
     <Photos :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @had="sort"></Photos>
-    <Price :stepToChild="stepToChild" :hid="hid"></Price>
+    <Price :stepToChild="stepToChild" :hid="hid" @had="sort"></Price>
   </div>
 </template>
 <script>
@@ -92,7 +92,7 @@ export default {
     },
     components:{Facility,Info,Describe,Photos,Price},
     created() {
-      if(!this.$route.params.hid) this.hid = 0;//如果没传hid hid则为0
+      if(!this.$route.params.hid) this.hid = 23;//如果没传hid hid则为0
       else this.hid = this.$route.params.hid;//页面刚加载就读取传过来的hid
       //如果是新页面 则step=1 只有第一个字绿色，如果是继续填写，step的值由子组件查到的数据决定
       for(var i = 1;i<this.step;i++){ 

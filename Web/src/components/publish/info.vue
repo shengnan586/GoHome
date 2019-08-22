@@ -330,6 +330,7 @@ export default {
     search(){
       this.axios.get("/search",{params:{id:this.hid}})
       .then(result=>{
+        console.log("接受的"+result.data[0].address);
         this.address=result.data[0].address;
         this.selectedId=result.data[0].houseTypeId;
         this.rentId=result.data[0].rentalTypeId;

@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="w_960 pb20 clearfix" style="margin-bottom:20px;">
-            <a href="javascript:;" class="keep_btn yh fl" @click="subBtn">确认发布</a>
+            <a href="javascript:;" class="keep_btn yh fl" @click="subBtn">保存并继续</a>
         </div>
     </div>
 </template>
@@ -46,7 +46,7 @@
 export default {
     data() {
         return {
-            hid:1,
+           // hid:1,
             imgs:[],
             img_err:false
         }
@@ -68,7 +68,9 @@ export default {
         load(){
             this.axios.get("/imgSearch",{params:{hid:this.hid}})
             .then(res=>{
-                this.imgs=res.data.data[0].url;
+                console.log(res.data.data)
+                if(res.data.data.length > 0)this.$emit("had",4);
+                this.imgs=res.data.data;
             })
         },
 

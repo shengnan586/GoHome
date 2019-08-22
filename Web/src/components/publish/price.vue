@@ -142,7 +142,9 @@ export default {
     },
     props:["stepToChild","hid"],
     created() {
-        if(!hid){
+        console.log("价钱的hid"+this.hid);
+        if(this.hid != 0){
+            console.log("!hid");
             this.load();
         }
     },
@@ -150,6 +152,8 @@ export default {
         load(){
             this.axios.get("/infoSearch",{params:{hid:this.hid}})
             .then(res=>{
+                console.log("发请求");
+                if(res.data.data.length > 0)this.$emit("had",5);
                 this.price=res.data.data[0].normalPrice;
                 this.cash=res.data.data[0].isCash;
                 if(res.data.data[0].cashMoney==0){//判断押金金额是否为空
