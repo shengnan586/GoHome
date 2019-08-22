@@ -334,15 +334,25 @@ export default {
         this.address=result.data[0].address;
         this.selectedId=result.data[0].houseTypeId;
         this.rentId=result.data[0].rentalTypeId;
-        this.bathId=result.data[0].toiletId;
+        this.bathId=result.data[0].toiletId;x
         this.room=result.data[0].bedroom;
         this.parlor=result.data[0].saloon;
         this.bathroom=result.data[0].toilet;
         this.kitchen=result.data[0].kitchen;
         this.balcony=result.data[0].balcony;
         this.area=result.data[0].roomSize;
-        this.bedTypeId=result.data[0].bld;
         this.peoples=result.data[0].peopleNumber;
+        var bid=result.data[0].bld;
+		    for(var i=0;i<bid.length;i++){
+			    this.bed_btn.push({
+				  id:bid[i]
+			  })
+			    for( var j=0;j<this.bedList.length;j++){
+				    if(this.bed_btn[i].id==this.bedList[j].bid){
+					      this.bed_btn[i].bedType = this.bedList[j].bedType
+				    }
+			    }
+		    }
       });
     },
     pop() {
