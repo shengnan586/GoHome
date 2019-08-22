@@ -6,23 +6,11 @@
                 <div class="detail_left">配套设施</div>
                 <div class="detail_right">
                     <ul class="support_list clearfix">
-                        <li> <i class="icon_supports tv"></i>电视</li> <!--电视-->		
-                        <li> <i class="icon_supports air"></i>空调</li><!--空调-->
-                        <li> <i class="icon_supports fridge"></i>冰箱</li><!--冰箱-->
-                        <li> <i class="icon_supports washing"></i>洗衣机</li><!--洗衣机-->
-                        <li> <i class="icon_supports hair_dryer"></i>电吹风</li><!--电吹风-->
-                        <li> <i class="icon_supports shower"></i>热水淋浴</li><!--热水淋浴-->
-                        <li> <i class="icon_supports toothbrush"></i>牙具</li><!--牙具-->
-                        <li> <i class="icon_supports soap"></i>香皂</li><!--香皂-->
-                        <li> <i class="icon_supports shoes"></i>拖鞋</li><!--拖鞋-->
-                        <li> <i class="icon_supports papper"></i>手纸</li><!--卫生纸-->
-                        <li> <i class="icon_supports tower"></i>毛巾</li><!--毛巾-->
-                        <li> <i class="icon_supports acne"></i>沐浴用品</li><!--沐浴露-->
-                        <li> <i class="icon_supports wify"></i>无线网络</li><!--无线网络-->
-                        <li> <i class="icon_supports network"></i>有线网络</li><!--有线网络-->
-                        <li> <i class="icon_supports heater"></i>暖气</li><!--暖气-->
-                        <li> <i class="icon_supports lift"></i>电梯</li><!--电梯-->
-                    </ul>
+                        <li v-for="(item,i) of arr" :key="i"> 
+                            <img class="icon_supports" :src="'http://127.0.0.1:3006/public/icon/'+item[1]">
+                            {{item[0]}}
+                        </li> <!--电视-->		
+                    </ul>    
                 </div>
                 
             </div>
@@ -96,7 +84,12 @@
 export default {
     data(){
         return{
-            arr:[[],[],[],[],[],[],[],[]]
+            arr:[["电视","tv.png"],["空调","air.png"],["冰箱","fridge.png"],
+            ["洗衣机","washing.png"],["电吹风","hair_dryer.png"],["热水淋浴","shower.png"],
+            ["牙具","toothbrush.png"],["香皂","soap.png"],["拖鞋","shoes.png"],
+            ["手纸","papper.png"],["毛巾","tower.png"],["沐浴用品","acne.png"],
+            ["无线网络","wify.png"],["有线网络","network.png"],
+            ["暖气","heater.png"],["电梯","lift.png"]]
         }
     }
 }
@@ -141,65 +134,16 @@ export default {
         height: 40px;
         line-height: 40px;
     }
-    .part2 .support_list li .icon_supports.washing {
-        background-position: 0 -216px;
-    }
+   
     .part2 .support_list li .icon_supports {
         width: 30px;
         height: 24px;
         display: inline-block;
-        background-image: url(../image/config.png);
+      
         background-repeat: no-repeat;
         vertical-align: middle;
     }
-    .part2 .support_list li .icon_supports.tv {
-    background-position: -59px 0;
-    }
-    .part2 .support_list li .icon_supports.air {
-    background-position: -28px -24px;
-    }
-    .part2 .support_list li .icon_supports.fridge {
-    background-position: -84px -72px;
-}
-    .part2 .support_list li .icon_supports.washing {
-    background-position: 0 -216px;
-}
-    .part2 .support_list li .icon_supports.hair_dryer {
-    background-position: -59px -115px;
-}
-    .part2 .support_list li .icon_supports.shower {
-    background-position: 2px -192px;
-}   
-    .part2 .support_list li .icon_supports.toothbrush {
-    background-position: -28px -72px;
-}
-    .part2 .support_list li .icon_supports.soap {
-    background-position: -59px -71px;
-}
-    .part2 .support_list li .icon_supports.shoes {
-    background-position: -28px -118px;
-}
-    .part2 .support_list li .icon_supports.papper {
-    background-position: -59px -216px;
-}
-    .part2 .support_list li .icon_supports.tower {
-    background-position: -84px -48px;
-}
-    .part2 .support_list li .icon_supports.acne {
-    background-position: -84px -24px;
-}
-    .part2 .support_list li .icon_supports.wify {
-    background-position: -28px -94px;
-}
-    .part2 .support_list li .icon_supports.network {
-    background-position: -28px -165px;
-}
-    .part2 .support_list li .icon_supports.heater {
-    background-position: -59px -168px;
-}
-    .part2 .support_list li .icon_supports.lift {
-    background-position: -28px -192px;
-}
+    
     .clearfix:after {
     display: block;
     visibility: hidden;

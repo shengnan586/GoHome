@@ -6,7 +6,7 @@
     
 </template>
 <script>
-import MapLoader from '@/assets/js/AMap.js'
+import MapLoader from '../../../static/utils/AMap.js'
 export default {
     name:'test',
     data(){
