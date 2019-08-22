@@ -298,10 +298,9 @@ export default {
   props: ["stepToChild","hid"],
   created() {
     this.load();
-     if(this.hid!=0){
-       console.log("走if分支");
+    if(this.hid!=0){
       this.search();
-     }
+    }
   },
   methods: {
     load() {
@@ -329,12 +328,8 @@ export default {
       });
     },
     search(){
-      console.log("searrrrch");
       this.axios.get("/search",{params:{id:this.hid}})
       .then(result=>{
-        console.log("请求数据拿回");
-        console.log(result.data.data[0])
-        // console.log("接受的"+result.data[0].address);
         this.address=result.data.data[0].address;
         this.selectedId=result.data.data[0].houseTypeId;
         this.rentId=result.data.data[0].rentalTypeId;
@@ -345,8 +340,18 @@ export default {
         this.kitchen=result.data.data[0].kitchen;
         this.balcony=result.data.data[0].balcony;
         this.area=result.data.data[0].roomSize;
-        this.bedTypeId=result.data.data[0].bld;
         this.peoples=result.data.data[0].peopleNumber;
+        var bid=result.data.data[0].bId;
+		    for(var i=0;i<bid.length;i++){
+			    this.bed_btn.push({
+				    id:bid[i]
+			    })
+			    for( var j=0;j<this.bedList.length;j++){
+				    if(this.bed_btn[i].id==this.bedList[j].id){
+					      this.bed_btn[i].bedType = this.bedList[j].bedType
+				    }
+			    }
+		    }
       });
     },
     pop() {
@@ -374,7 +379,6 @@ export default {
           "北京市" + detail + this.details_address + this.house_num;
         this.isShow = false;
         this.details_address = this.house_num = "";
-        console.log("调试地址："+this.address);
       }
     },
     // 删除所选床铺信息
@@ -393,7 +397,6 @@ export default {
           break;
         }
       }
-      console.log("添加床铺："+this.bed_btn[0].id,this.bed_btn[0].bedType);
     },
     // 床铺信息删除所选
     close(e) {
@@ -458,14 +461,12 @@ export default {
         if (this.hid==0) {
           this.axios.post("/addhouse/addhouse", obj).then(result => {
             this.hid1=result.data.data;
-            console.log("插入后返回的hid为："+this.hid1);
             this.$emit("sendHid",this.hid1);
             this.$emit("step",1)
           });
         } else {
           obj.id = this.hid;
           this.axios.post("/updatehouse", obj).then(result => {
-            console.log(result);
             this.$emit("step",1)
           });
        }

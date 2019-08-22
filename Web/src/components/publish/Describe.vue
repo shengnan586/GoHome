@@ -106,11 +106,8 @@ export default {
     },
     methods: {
         load(){
-            console.log("......"+this.hid);
             this.axios.get("/describe/seldescribe",{params:{hid:this.hid}})
             .then(res=>{
-                console.log(res);
-                console.log(res.data[0].houseTitle);
                 if(res.data.length>0){this.$emit("had",2);
                 this.room_input_tit=res.data[0].houseTitle;
                 this.room_input_detail=res.data[0].houseDESC;
@@ -156,7 +153,6 @@ export default {
                     this.axios.post("/describe",obj)
                     .then(res=>{
                         if(res.data.code==1){
-                            console.log(res)
                             this.$emit("step",2)
                         }else{
                             alert("操作失败")
