@@ -30,12 +30,16 @@
     <Info :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @sendHid="sendHid"></Info>
     <Describe :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @had="sort"></Describe>
     <Facility :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @had="sort"></Facility>
+    <Photos :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @had="sort"></Photos>
+    <Price :stepToChild="stepToChild" :hid="hid"></Price>
   </div>
 </template>
 <script>
 import Info from "./info.vue"
 import Describe from "./Describe.vue"
 import Facility from "./Facility.vue"
+import Photos from "./photos.vue"
+import Price from "./price.vue"
 export default {
     //缺：当该房源是新创建的时候，第一个页面点击保存后，子组件需将hid传回  jr已写 晚上对
     //jr写的页面组件的东西加一样的 
@@ -86,7 +90,7 @@ export default {
         }
       }
     },
-    components:{Facility,Info,Describe},
+    components:{Facility,Info,Describe,Photos,Price},
     created() {
       if(!this.$route.params.hid) this.hid = 0;//如果没传hid hid则为0
       else this.hid = this.$route.params.hid;//页面刚加载就读取传过来的hid

@@ -149,23 +149,23 @@ export default {
     methods: {
         load(){
             this.axios.get("/infoSearch",{params:{hid:this.hid}})
-            .then(result=>{
-                this.price=res.data.data.normalPrice;
-                this.cash=res.data.data.isCash;
-                if(res.data.data.cashMoney==0){//判断押金金额是否为空
+            .then(res=>{
+                this.price=res.data.data[0].normalPrice;
+                this.cash=res.data.data[0].isCash;
+                if(res.data.data[0].cashMoney==0){//判断押金金额是否为空
                     this.cashMoney="";
                 }else{
-                    this.cashMoney=res.data.data.cashMoney;
+                    this.cashMoney=res.data.data[0].cashMoney;
                 }
-                if(res.data.data.festivalPrice==0){//判断节假日价格是否为空
+                if(res.data.data[0].festivalPrice==0){//判断节假日价格是否为空
                     this.price_2="";
                 }else{
-                    this.price_2=res.data.data.festivalPrice;
+                    this.price_2=res.data.data[0].festivalPrice;
                 }
-                if(res.data.data.specialPrice==0){//判断特价房价格是否为空
+                if(res.data.data[0].specialPrice==0){//判断特价房价格是否为空
                     this.price_3="";
                 }else{
-                    this.price_3=res.data.data.specialPrice;
+                    this.price_3=res.data.data[0].specialPrice;
                 }
             })
         },
@@ -209,7 +209,6 @@ export default {
                 return;
             }else if(!this.ischecked){
                 this.checked_err=true;
-                console.log(this.ischecked)
                 return;
             }else{
                 if(!this.price_2){//节假日价格为空
