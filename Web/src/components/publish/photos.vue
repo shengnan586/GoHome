@@ -1,5 +1,5 @@
 <template>
-    <div class="photos">
+    <div class="photos" :style="{display:stepToChild==4?'block':'none'}">
         <table></table>
         <div class="h_wrap">
             <h4 class="h_tit">
@@ -22,7 +22,11 @@
                     <ul>
                         <li class="pho_bg" v-for="(item,i) of imgs" :key="i" style="overflow:hidden;">
                             <div style="cursor:pointer">
-                                <img :src="'http://127.0.0.1:3003/'+item" alt="" style="width:180px; weight:180px;heigth:180px;cursor:pointer">
+                                <div class="contailClassPictureDel" :data-index="i" @click="del_img">
+                                    <i class="edit_pencil" :data-index="i"></i>
+                                    <p class="pictureDel" readonly="readonly" style="z-index:10" :data-index="i">删除</p>
+                                </div>
+                                <img :src="'http://127.0.0.1:3003/'+item" style="width:180px;height:185px;cursor:pointer">
                             </div>
                         </li>
                         <li class="fileNow">
@@ -42,8 +46,15 @@
 export default {
     data() {
         return {
+            hid:1,
             imgs:[],
             img_err:false
+        }
+    },
+    props: ["stepToChild","hid"],
+    created() {
+        if(this.hid!=0){
+            this.load();
         }
     },
     methods: {
@@ -53,12 +64,31 @@ export default {
             this.axios.post('/upload-avatar',data, {headers: { 'content-type': 'multipart/form-data' }
             }).then(res=>this.imgs.push(res.data)).catch(err=>console.log(err));
         },
+        //查询用户图片信息
+        load(){
+            this.axios.get("/imgSearch",{params:{hid:this.hid}})
+            .then(res=>{
+                this.imgs=res.data.data[0].url;
+            })
+        },
+
+        //删除选中图片
+        del_img(e){
+            var i=e.target.dataset.index;
+            this.imgs.splice(i,1);
+        },
         subBtn(){//提交
             if(this.imgs.length<3){
                 this.img_err=true;
                 return;
             }else{
-                // 
+                var obj={
+                    url:this.imgs,
+                    hid:this.hid
+                }
+                this.axios.post("/imgSave",obj).then(res=>{
+                    this.$emit("step",4)
+                })
             }
         }
     },
@@ -73,7 +103,7 @@ export default {
 .photos {
   background-color: #f5f5f5 !important;
   height: 100%;
-  /* display: none; */
+  display: none;
 }
 html,
 body {
@@ -165,5 +195,38 @@ body {
 .w_960 {
     margin: 0 auto;
     width: 960px;
+}
+.contailClassPictureDel {
+    position: absolute;
+    bottom: 0px;
+    width: 180px;
+    height: 30px;
+    z-index: 10;
+    background-color:rgba(0, 0, 0, 0.3);
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0;
+}
+.edit_pencil{
+    background: url("../../../public/images/delete.png") no-repeat;
+    background-size: 100% 100%;
+    display: inline-block;
+    width: 20px;
+    height:12px;
+    margin-bottom: 8px;
+}
+.pictureDel {
+    height: 30px;
+    color: #fff;
+    overflow: hidden;
+    line-height: 30px;
+    padding: 0 5px;
+    margin-top: 0;
+    display: inline-block;
+    border: none;
+    resize: none;
+    outline: none;
 }
 </style>
