@@ -11,8 +11,6 @@
   </div>
 </template>
 <script>
-import Header from './header';
-import Footer from './footer';
 import Carousel from "./Carousel.vue";
 import Search from "./Search.vue";
 import ProductList from './ProductList.vue';
@@ -31,8 +29,6 @@ export default {
     })
   },
   components:{
-    "homeheader":Header,
-    "homefooter":Footer,
     "carousel":Carousel,
     "search":Search,
     "plist":ProductList,
