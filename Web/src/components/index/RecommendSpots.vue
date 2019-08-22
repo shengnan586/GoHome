@@ -16,19 +16,19 @@
           <div id="1" class="mask" @mouseenter="enter" @mouseleave="leave"></div>
         </li>
       <li>
-          <img src="../../assets/images/changcheng.jpg" :class="{imgscale:id=='2'&&isShow}">
+          <img src="../../assets/images/tiantan.jpeg" :class="{imgscale:id=='2'&&isShow}">
           <div :class="{'font-color':id=='2'&&isShow}">
-            <h1>长城</h1>
-            <p>The Great Wall</p>
+            <h1>天坛</h1>
+            <p>Temple of Heaven</p>
           </div>
           <div :class="{height:id=='2'&&isShow}"></div>
           <div id="2" class="mask" @mouseenter="enter" @mouseleave="leave"></div>
         </li>
            <li>
-          <img src="../../assets/images/tiantan.jpg" :class="{imgscale:id=='3'&&isShow}">
+          <img src="../../assets/images/changcheng.jpg" :class="{imgscale:id=='3'&&isShow}">
           <div :class="{'font-color':id=='3'&&isShow}">
-            <h1>天坛</h1>
-            <p>Temple of Heaven</p>
+            <h1>长城</h1>
+            <p>The Great Wall</p>
           </div>
           <div :class="{height:id=='3'&&isShow}"></div>
           <div id="3" class="mask" @mouseenter="enter" @mouseleave="leave"></div>
@@ -107,6 +107,7 @@ h1{
     width: 100%;
     display: flex;
     justify-content: space-around;
+    padding-bottom:70px;
   }
   .spots-list ul li{
     width:25%;
