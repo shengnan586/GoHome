@@ -25,6 +25,9 @@ const adminpwdedit=require("./routes/adminpwdedit.js");
 const adminsettlement=require("./routes/adminsettlement.js");
 const adminfavorites=require("./routes/adminfavorites.js");
 const adminbaseinfor=require("./routes/adminbaseinfor.js");
+const productlist=require("./routes/productlist.js");
+
+
 
 var app = express();
 var server = app.listen(3003);
@@ -67,4 +70,5 @@ app.use("/admin",adminpwdedit);
 app.use("/admin",adminsettlement);
 app.use("/admin",adminfavorites);
 app.use("/admin",adminbaseinfor);
+app.use("/productlist",productlist);
 
