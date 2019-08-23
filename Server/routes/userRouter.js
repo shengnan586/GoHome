@@ -43,12 +43,22 @@ router.get("/reg_go", (req, res) => {
 //功能3 完成注册的操作
 router.post("/reg", (req, res) => {
     var obj = req.body;
+    console.log(obj);
     var sql = "INSERT INTO home_business_User SET ?";
     pool.query(sql, [obj], (err, result) => {
-        //console.log(result)
+        console.log(result)
         if (err) throw err;
         if (result.affectedRows > 0) {
-            res.send({ code: 1, msg: "注册成功" })
+            if(obj.porned){
+                var sqlupdate=" update home_business_user set point =ifnull(point,0) +500 where porn=?";
+                pool.query(sqlupdate,[obj.porned],(err,resultporned)=>{
+                    if(resultporned.affectedRows>0){
+                        res.send({ code: 1, msg: "注册成功" })
+                    }
+                })
+            }else{
+                res.send({ code: 1, msg: "注册成功" })
+            }
         } else {
             res.send({ code: -1, msg: "注册失败" })
         }
@@ -156,9 +166,24 @@ router.get("/GetPornByid",(req,res)=>{
 
 //功能6 判断注册的是时候用户名是否重复
 router.get("/GetUsername",(req,res)=>{
-    var uname=req.query.username;
+    var uname=req.query.uname;
     var sql="select * from home_business_user where UserName=?";
     pool.query(sql,[uname],(err,result)=>{
+        if(err)throw err;
+        if(result.length>0){
+            res.send({code:-1,data:"用户名已存在"})
+        }else{
+            res.send({code:1,data:"用户名可用"})
+        }
+        
+    })
+})
+
+//功能6 注册的时候判断填写的邀请码是否存在
+router.get("/Getporned",(req,res)=>{
+    var porned=req.query.porned;
+    var sql="select * from home_business_user where porned=?";
+    pool.query(sql,[porned],(err,result)=>{
         if(err)throw err;
         if(result.length>0){
             res.send({code:1,data:result})
@@ -168,4 +193,6 @@ router.get("/GetUsername",(req,res)=>{
         
     })
 })
+
+
 module.exports=router;

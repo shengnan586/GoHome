@@ -83,8 +83,8 @@ router.get("/GetProduct", (req, res) => {
         arr3.push(checkinDate);
         arr3.push(checkoutDate);
     }
-    console.log(sql);
-    console.log(rentalTypeId,peopleNumber,aId,bedroom,houseDESC,smallprice,bigprice,smallprice,bigprice,smallprice,bigprice,checkinDate,checkoutDate);
+    // console.log(sql);
+    // console.log(rentalTypeId,peopleNumber,aId,bedroom,houseDESC,smallprice,bigprice,smallprice,bigprice,smallprice,bigprice,checkinDate,checkoutDate);
     // [rentalTypeId,peopleNumber,aId,smallprice,bigprice,smallprice,bigprice,smallprice,bigprice,checkinDate,checkoutDate]
     console.log("liry"+arr3);
     pool.query(sql, arr3, (err, result) => {
