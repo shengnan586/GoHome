@@ -70,7 +70,7 @@ import pagination from "../page/page";
 export default {
   data() {
     return {
-      userid: "", //当前登陆的用户
+      userid: sessionStorage.getItem("userid"), //当前登陆的用户
       isnav: "flex",
       total: 0, // 记录总条数
       pageSize: 0, // 每页显示条数

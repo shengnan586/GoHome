@@ -37,6 +37,7 @@
 export default {
   data() {
     return {
+      userid: sessionStorage.getItem("userid"), //当前登陆的用户
       list: [],
       listTitle: [],
       selvalue:"2019",//获得下拉框选中的年份
