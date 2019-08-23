@@ -4,7 +4,7 @@ const pool = require("../pool");
 
 //获取通知列表
 router.get("/GetOrderMsglist", (req, res) => {
-    var id = req.query.id;
+    var id = req.query.userid;
     var output = {
         count: 0, //一共有多少条
         pageSize: 10,  //每个页面显示几条
@@ -29,45 +29,53 @@ router.get("/GetOrderMsglist", (req, res) => {
     }
     sql += " GROUP BY A.msgid   order by A.msgtime  desc  ";
     pool.query(sql, [id], (err, result) => {
-         if (err) throw err;
-            output.count = result.length;
-            output.pageCount = Math.ceil(output.count / output.pageSize);
-            sql += ` limit ?,?`;
-            //console.log(sql);
-            pool.query(sql, [id||output.pageSize * output.pno,id? output.pageSize * output.pno:output.pageSize,output.pageSize], (err, result) => {
-                output.data = result;
-                res.send(output);
-            })
+        if (err) throw err;
+        output.count = result.length;
+        output.pageCount = Math.ceil(output.count / output.pageSize);
+        sql += ` limit ?,?`;
+        //console.log(sql);
+        // pool.query(sql, [id || output.pageSize * output.pno, id ? output.pageSize * output.pno : output.pageSize, output.pageSize], (err, result) => {
+        //     output.data = result;
+        //     res.send(output);
+        // })
+        var arr = [output.pageSize * output.pno, output.pageSize];
+        if (id) {
+            arr.unshift(id);
+        }
+        pool.query(sql, arr, (err, result) => {
+            output.data = result;
+            res.send(output);
+        })
     })
 })
 
-router.get("/GetEarcharts",(req,res)=>{
-    var year=req.query.year;
-    var uid=req.query.uid;
-    var sql=` select sum(orderPrice) value, case when name='01' then '一月' when  name='02' then '二月' 
-    when  name='03' then '三月' when  name='04' then '四月'  when  name='05' then '五月' 
-    when  name='06' then '七月' when  name='08' then '八月'  when  name='09' then '九月' 
-    when  name='10' then '十月' when  name='11' then '十一月'  
-    else '十二月' end name  from (
-        select orderPrice,substring(checkinDate,5,2) as name,substring(checkinDate,0,4),orderlist.uid from home_business_orderList orderlist 
-        inner join home_business_house house on orderlist.uId=house.uid  
-        inner join home_business_User user on orderlist.uId=user.id 
-        where 1=1  and user.isHoster=1  and  orderlist.orderStatus=4  `
-        if(year){
-            sql +=" and left(checkinDate,4)=? ";
+router.get("/GetEarcharts", (req, res) => {
+    var year = req.query.year;
+    var uid = req.query.userid;
+        var sql = ` select sum(orderPrice) value, case when name='01' then '一月' when  name='02' then '二月' 
+        when  name='03' then '三月' when  name='04' then '四月'  when  name='05' then '五月' 
+        when  name='06' then '七月' when  name='08' then '八月'  when  name='09' then '九月' 
+        when  name='10' then '十月' when  name='11' then '十一月'  
+        else '十二月' end name from (
+	select orderPrice,substring(checkinDate,5,2) as name,substring(checkinDate,1,4) nian,orderlist.uid 
+from home_business_orderList orderlist 
+inner join home_business_house house on orderlist.uId=house.id 
+inner join home_business_User user on house.uid=user.id 
+and user.isHoster=1  and  orderlist.orderStatus=4
+)A where a.nian=? GROUP BY name   `
+    var arr=[year];
+    if (uid) {
+        sql += "  and orderlist.uid=? ";
+        arr.push(uid);
+    }
+    pool.query(sql,arr, (err, result) => {
+        if (err) throw err;
+        if (result.length > 0) {
+            res.send({ code: 1, data: result });
+        } else {
+            res.send({ code: -1, data: "暂无数据" });
         }
-        if(uid){
-            sql +="  and orderlist.uid=? ";
-        }
-        sql +=" )A GROUP BY name  ";
-        pool.query(sql,[year,uid],(err, result)=>{
-            if(err) throw err;
-            if(result.length>0){
-                res.send({code:1,data:result});
-            }else{
-                res.send({code:-1,data:"暂无数据"});
-            }
-        })
+    })
 })
 
 module.exports = router;

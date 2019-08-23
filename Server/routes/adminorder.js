@@ -20,11 +20,8 @@ router.post("/DelOrder", (req, res) => {
 //获取订单列表
 router.get("/GetOrderlist", (req, res) => {
     var orderStatus = req.query.orderStatus;
-    console.log("页码："+req.query.currentPage);
+    var id = req.query.userid;
     console.log(orderStatus);
-    // var id=req.query.id;
-    // var isHoster=req.query.isHoster;
-    //distinct houseimg.imgsize,
     var output = {
         count: 0, //一共有多少条
         pageSize: req.query.pageSize || 10,  //每个页面显示几条
@@ -32,7 +29,7 @@ router.get("/GetOrderlist", (req, res) => {
         pno: req.query.currentPage || 0, //返回的当前是第几页
         data: []
     };
-    var sql = `  select  orderlist.id,orderlist.orderId,orderlist.checkinDate,orderlist.checkoutDate,
+    var sql = `  select user.id, orderlist.id,orderlist.orderId,orderlist.checkinDate,orderlist.checkoutDate,
     user.realName,user.cardID,user.phone,orderlist.peopleNumber,orderlist.days,orderlist.orderPrice,
     houser.address,apartment.bedroom,
     apartment.saloon,
@@ -47,39 +44,35 @@ router.get("/GetOrderlist", (req, res) => {
     where 1=1 and houseimg.ImgSize='md' `;
     //houseimg.imgsize
     //sql +=" and user.id=?  and user.isHoster=? ";
+    var arr3=[];
     if (orderStatus) {
         sql += " and orderStatus=? ";
+        arr3.push(orderStatus);
+    }
+    if (id) {
+        sql += " and user.id=? ";
+        arr3.push(id);
     }
     sql += " GROUP BY  orderlist.id  ";
-    pool.query(sql, [orderStatus], (err, result) => {
-         if (err) throw err;
-        // output.count = result.length;
-        // output.pageCount = Math.ceil(output.count / output.pageSize);
-        // sql += ` limit ?,?`;
-        // pool.query(sql, [output.pageSize * output.pno, output.pageSize], (err, result) => {
-        //     output.data = result;
-        //     res.send(output);
-        // })
-        //console.log(result);
-        //if (result.length > 0) {
-            output.count = result.length;
-            output.pageCount = Math.ceil(output.count / output.pageSize);
-            sql += ` limit ?,?`;
-            var arr=[output.pageSize * output.pno,output.pageSize];
-            if(orderStatus){
-                arr.unshift(orderStatus);
-            }
-            pool.query(sql, arr, (err, result) => {
-                output.data = result;
-                //console.log(result+"1111");
-                //console.log(result);
-                res.send(output);
-            })
-            //res.send({ code: 1, data: result });
-        //} 
-        // else {
-        //     res.send({ code: -1, data: [] })
-        // }
+    pool.query(sql, arr3, (err, result) => {
+        if (err) throw err;
+        output.count = result.length;
+        output.pageCount = Math.ceil(output.count / output.pageSize);
+        sql += ` limit ?,?`;
+        var arr = [output.pageSize * output.pno, output.pageSize];
+        var arr2 = [];
+        if (orderStatus) {
+            arr2.push(orderStatus);
+        }
+        if (id) {
+            arr2.push(id);
+        }
+        arr = arr2.concat(arr);
+        console.log(arr);
+        pool.query(sql, arr, (err, result) => {
+            output.data = result;
+            res.send(output);
+        })
     })
 })
 

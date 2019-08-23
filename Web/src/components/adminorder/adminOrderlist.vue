@@ -77,22 +77,22 @@
         </div>
       </div>
     </div>
-   <div :style="{display:isnav}" class="pagenav">
+    <div :style="{display:isnav}" class="pagenav">
       <v-pagination :total="total" :currentPage="current" @pagechange="pagechange"></v-pagination>
-   </div>
+    </div>
   </div>
 </template>
 <script>
-import pagination from "../page/page"
+import pagination from "../page/page";
 export default {
   data() {
     return {
-       userid: sessionStorage.getItem("userid"), //当前登陆的用户
-      isnav:"flex",
+      userid: sessionStorage.getItem("userid"), //当前登陆的用户
+      isnav: "flex",
       total: 0, // 记录总条数
       pageSize: 0, // 每页显示条数
       current: 1, // 当前的页数
-      pageCount:"",  //总共页
+      pageCount: "", //总共页
       list: [], //axios返回的数据
       orderStatus: "", //订单状态（1：待支付；2：待入住；3：入住中；4：已完成；5：已取消
       liststatus: [true, false, false, false, false, false]
@@ -117,26 +117,32 @@ export default {
         }
       }
       this.getList(1);
-      this.current=1;
+      this.current = 1;
     },
     getList(currentPage) {
-      if(currentPage>0){
-        currentPage=currentPage-1;
-      }else{currentPage=0}
-      console.log("页码："+currentPage);
-      var obj = { orderStatus: this.orderStatus,currentPage:currentPage};
+      if (currentPage > 0) {
+        currentPage = currentPage - 1;
+      } else {
+        currentPage = 0;
+      }
+      console.log("页码：" + currentPage);
+      var obj = {
+        orderStatus: this.orderStatus,
+        currentPage: currentPage,
+        userid: this.userid
+      };
       console.log(this.orderStatus);
       //   http://127.0.0.1:3003/adminorder/GetOrderlist?orderStatus=
       this.axios.get("admin/GetOrderlist", { params: obj }).then(res => {
         this.list = res.data.data;
-         this.total=res.data.count; // 记录总条数
-        this.pageSize=res.data.pageSize; // 每页显示条数
-        this.pageCount=res.data.pageCount;  //总共页
-        this.current=Number.parseInt(res.data.pno)+1;
-        if(this.list.length>0){
-          this.isnav="flex";
-        }else{
-          this.isnav="none";
+        this.total = res.data.count; // 记录总条数
+        this.pageSize = res.data.pageSize; // 每页显示条数
+        this.pageCount = res.data.pageCount; //总共页
+        this.current = Number.parseInt(res.data.pno) + 1;
+        if (this.list.length > 0) {
+          this.isnav = "flex";
+        } else {
+          this.isnav = "none";
         }
       });
     },
@@ -165,133 +171,144 @@ export default {
 };
 </script>
 <style scoped>
-*, body {
-    font-weight: 300;
-    outline: none;
-    margin: 0;
-    padding: 0;
+*,
+body {
+  font-weight: 300;
+  outline: none;
+  margin: 0;
+  padding: 0;
 }
-ul{
-    margin: 0 !important;padding: 0;
+ul {
+  margin: 0 !important;
+  padding: 0;
 }
-ul, ol {
-    list-style: none outside none;
+ul,
+ol {
+  list-style: none outside none;
 }
 .el-main {
-    margin-left: 20px;
-    padding: 0;
-    overflow: hidden;
+  margin-left: 20px;
+  padding: 0;
+  overflow: hidden;
 }
 .tab_list ul {
-    border-bottom: 1px solid #bdbdbd;
-    display: flex;
-    justify-content:space-between;
-    margin: 0 auto;
+  border-bottom: 1px solid #bdbdbd;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
 }
 .tab_list ul li.active {
-    background-color: rgb(57,181,71,.8) !important;
-    border-radius: 5px;
-    /* #ff4081; */
-    color: #fff;
+  background-color: rgb(57, 181, 71, 0.8) !important;
+  border-radius: 5px;
+  /* #ff4081; */
+  color: #fff;
 }
 .tab_list ul li {
-    display: inline-block;
-    width: 11%;
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-    background-color: #fafafa;
-    font-size: 14px;
+  display: inline-block;
+  width: 11%;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  background-color: #fafafa;
+  font-size: 14px;
 }
 .order_list {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 .order_item {
-    /* margin-top: 20px; */
-    overflow: visible;
+  /* margin-top: 20px; */
+  overflow: visible;
 }
 .el-card {
-    border-radius: 0;
+  border-radius: 0;
 }
 .el-card {
-    border: 1px solid #ebeef5;
-    background-color: #fff;
-    color: #303133;
-    -webkit-transition: .3s;
-    transition: .3s;
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 20px;
+  border: 1px solid #ebeef5;
+  background-color: #fff;
+  color: #303133;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
 }
 .order_item .pic_wrapper .pic {
-    display: block;
-    background: #EEE;
+  display: block;
+  background: #eee;
 }
 img {
-    border: 0 none;
+  border: 0 none;
 }
-img, input, select, textarea, button, i {
-    vertical-align: middle;
+img,
+input,
+select,
+textarea,
+button,
+i {
+  vertical-align: middle;
 }
 .order_item .side_info {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 .order_item .side_info .title {
-    font-size: 18px;
-    font-weight: 700;
+  font-size: 18px;
+  font-weight: 700;
 }
-.desc,.total{margin-top: 14px;}
+.desc,
+.total {
+  margin-top: 14px;
+}
 .order_item .total .price {
-    color: #ff4081;
-    float: none;
-    font-style: normal;
+  color: #ff4081;
+  float: none;
+  font-style: normal;
 }
 .price {
-    color: #F26522;
-    font-weight: bold;
-    float: right;
+  color: #f26522;
+  font-weight: bold;
+  float: right;
 }
 .order_item .content {
-    display: -webkit-flex;
-    display: flex;
-    margin-top: 20px;
-    font-size: 14px;
+  display: -webkit-flex;
+  display: flex;
+  margin-top: 20px;
+  font-size: 14px;
 }
 .order_item .handle {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: flex-end;
-    justify-content: flex-end;
-    align-items: flex-end;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 .fa_btn {
-    display: inline-block;
-    height: 35px;
-    /* line-height: 35px; */
-    min-width: 90px;
-    border: solid 1px #E0E0E0;
-    box-sizing: border-box;
-    border-radius: 2px;
-    background: #eee;
-    margin-right: 15px;
-    border-radius: 5px;
+  display: inline-block;
+  height: 35px;
+  /* line-height: 35px; */
+  min-width: 90px;
+  border: solid 1px #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background: #eee;
+  margin-right: 15px;
+  border-radius: 5px;
 }
 
-.desc{
-    width: 100%;
+.desc {
+  width: 100%;
 }
-.desc table{
-    width: 100%;
+.desc table {
+  width: 100%;
 }
-.fa_btn:hover{
-    background-color:rgb(57,181,71,.8);
-     /* #ff4081; */
-    color: #fff;
-    border-radius: 5px;
+.fa_btn:hover {
+  background-color: rgb(57, 181, 71, 0.8);
+  /* #ff4081; */
+  color: #fff;
+  border-radius: 5px;
 }
-.pagenav{
-    display: flex; 
-    justify-content: center;
-    margin-top:10px
+.pagenav {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 </style>
