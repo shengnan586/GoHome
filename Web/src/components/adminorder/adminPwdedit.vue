@@ -7,7 +7,7 @@
           <table>
             <tr>
               <td class="g_lists">已验证手机：</td>
-              <td colspan="2" class="g_ft14">+86 185****4761</td>
+              <td colspan="2" class="g_ft14">{{this.userphone}}</td>
             </tr>
             <tr>
               <td class="g_lists">图片验证码：</td>
@@ -85,6 +85,7 @@ export default {
   data() {
     return {
       userid: sessionStorage.getItem("userid"), //当前登陆的用户
+      userphone:sessionStorage.getItem("phone"),//当前登陆用户电话
       upwd: "", //旧密码框
       newupwd: "", //新密码框
       verify: "", //验证码绑定
@@ -118,7 +119,7 @@ export default {
     bluruupwd() {
       return new Promise((resolve, reject) => {
         if (this.upwd.trim()) {
-          var obj = { upwd: this.upwd };
+          var obj = { upwd: this.upwd,userid:this.userid };
           this.axios.get("/admin/GetUpwd", { params: obj }).then(res => {
             if (res.data.code == -1) {
               this.oldUpwdMsg = "旧密码输入错误";

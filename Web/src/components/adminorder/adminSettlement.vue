@@ -120,7 +120,7 @@ export default {
       myChart.setOption(option);
     },
     load() {
-      var uid = "1";
+      var uid = this.userid;
       var year = this.selvalue;
       console.log(year);
       var obj = { uid, year };
