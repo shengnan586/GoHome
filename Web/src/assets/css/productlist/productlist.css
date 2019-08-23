@@ -1,268 +1,312 @@
    /*选择条 */
-   input:focus { outline: none; } 
-   select:focus { outline: none; } 
-   a{  text-decoration:none;}
-   .search_tab{
-       width:900px;
-       height:80px;
-       position:absolute;
-       top:100px;
-       border-collapse: collapse;
-       border-spacing: 0; 
-       margin-left:10px;
-       color:#ccc;
+   input:focus {
+     outline: none;
+   }
+
+   select:focus {
+     outline: none;
+   }
+
+   a {
+     text-decoration: none;
+   }
+
+   .search-tab {
+     width: 900px;
+     height: 80px;
+     position: absolute;
+     top: 100px;
+     border-collapse: collapse;
+     border-spacing: 0;
+     margin-left: 10px;
+     color: #ccc;
 
    }
-   .search_tab>tr{
-       height:60px;
-      
-       border-bottom:1px solid #ccc;
+
+   .search_tab>tr {
+     height: 60px;
+
+     border-bottom: 1px solid #ccc;
    }
-   .search_tab td{
-       width:169px;
-       height:50px;
-       line-height:50px;
-       font-size:16px;
-       
+
+   .search_tab td {
+     width: 169px;
+     height: 50px;
+     line-height: 50px;
+     font-size: 16px;
+
    }
-    .search_tab div{
-        width:270px; height:40px;
-        border:1px solid #ccc;
-        border-radius:5px;
-        position:relative;
-        
-    }
-    .search_tab p{
-        width:82px;height:32px;
-        box-sizing:border-box;
-        border:1px solid rgba(0,0,0,0);
-        line-height:32px;
-        text-align:center;
-    }
-    .search_tab p:hover{
-        border:1px solid #39b54a;
-        border-radius:5px;
-        color:#39b54a;
-    }
-    .pactive{
-        border:1px solid #39b54a !important;
-        border-radius:5px;
-        color:#fff;
-        background:#39b54a;
-    }
-    .search_tab input{
-        width:92%;
-       position:absolute;
-       top:11px;
-       left:10px;
-       border:0;
-    }
+
+   .search_tab div {
+     width: 270px;
+     height: 40px;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     position: relative;
+
+   }
+
+   .search_tab p {
+     width: 82px;
+     height: 32px;
+     box-sizing: border-box;
+     border: 1px solid rgba(0, 0, 0, 0);
+     line-height: 32px;
+     text-align: center;
+   }
+
+   .search_tab p:hover {
+     border: 1px solid #39b54a;
+     border-radius: 5px;
+     color: #39b54a;
+   }
+
+   .pactive {
+     border: 1px solid #39b54a !important;
+     border-radius: 5px;
+     color: #fff;
+     background: #39b54a;
+   }
+
+   .search-tab .keywords {
+     width: 92%; 
+     border: 0;
+   }
+
    /*搜索条 */
-   .select_css{
-       width:83%;height:20px;
-       border:0;
-       text-align:center;
-       color:#999;
-       margin-left:10px;
+   .select_css {
+     width: 83%;
+     height: 20px;
+     border: 0;
+     text-align: center;
+     color: #999;
+     margin-left: 10px;
    }
-   
-   .search_list{
-       position:absolute;
-       top:100px;
-       width:100%;
-       
+
+   .search_list {
+     position: absolute;
+     top: 100px;
+     width: 100%;
+
    }
-   
+
 
    /*查询列表 */
-   
+
    .searchBar {
-       width: 1000px;
-       height: 370px;
-       padding-top: 30px;
-       position:relative;
-       margin:auto;
-    
+     width: 1000px;
+     height: 370px;
+     padding-top: 30px;
+     position: relative;
+     margin: auto;
+
    }
-   
-    .searchBar_l{
-       float: left;
-       width: 839px;
-       height: 48px;
-       border: 1px solid #39b54a;
-       border-radius: 5px 0 0 5px;
-       position:relative;
-        margin-left:10px;
-        border-right:0;
-       text-align:center;
+
+   .searchBar_l {
+     width: 839px;
+     height: 48px;
+     border: 1px solid #39b54a;
+     border-radius: 5px 0 0 5px;
+     position: relative;
+     margin-left: 10px;
+     border-right: 0;
+     text-align: center;
    }
-   .searchBar_l_ul{
-       width: 100%;
-       /*/ padding: 10px 0;*/
-       height: 38px;
-       line-height: 30px;
-       list-style:none;
-       display:flex;
-       padding:3px;
-       margin-top:5px;
-       align-items:center;
-       margin-bottom:0;
+
+   .searchBar_l_ul {
+     width: 100%;
+     /*/ padding: 10px 0;*/
+     height: 38px;
+     line-height: 38px;
+     list-style: none;
+     display: flex;
+     margin-top: 5px;
+     align-items: center;
+     margin-bottom: 0;
    }
-   .searchBar_l
-   .searchBar_l_ul>li {
-       
-       float: left;
-       width: 208px;
-       height: 30px;
-       line-height: 30px;
-       border-right: 1px solid #39b54a;
-       position: relative;
-      
-        
+
+   .searchBar_l .searchBar_l_ul>li {
+
+     float: left;
+     width: 208px;
+     height: 100%;
+     line-height: 38px;
+     border-right: 1px solid #39b54a;
+     position: relative;
    }
-   .searchBar_l
-   .searchBar_l_ul>li:last-child{
-      border:0;
+   .searchBar_l .searchBar_l_ul>li:first-child{
+     width:150px;
    }
-  .searchBar_l
-  .searchBar_l_ul 
-  input{
-      border:none;
-      height:100%;
-      background:#fff;
-      font-size:14px;
-      padding:0px 15px; 
+   .searchBar_l .searchBar_l_ul>li:nth-child(3){
+    width:266px;
   }
-   #searchBtn{
-       width:160px;height:50px;
-       position:absolute;
-       top:-1px;left:836px;
-       background:#39b54a;
-       color:#fff;
-       font-size:18px;
-       outline:none;
-       border:0;
-       border-radius:0 5px 5px 0;
+
+   .searchBar_l .searchBar_l_ul>li:last-child {
+     border: 0;
+   }
+
+   .searchBar_l .searchBar_l_ul input {
+     border: none;
+     height: 100%;
+     background: #fff;
+     font-size: 14px;
+     padding: 0px 15px;
+   }
+
+   #searchBtn {
+     width: 160px;
+     height: 50px;
+     position: absolute;
+     top: -1px;
+     left: 836px;
+     background: #39b54a;
+     color: #fff;
+     font-size: 18px;
+     outline: none;
+     border: 0;
+     border-radius: 0 5px 5px 0;
    }
 
    /*商品列表*/
-   .productBar{
-       width:800px;
-       margin:auto;
-      
+   .productBar {
+     width: 1240px;
+     margin: auto;
    }
-   .productItem{
-       width:800px;
-       height:200px;
-       display:flex;
-       box-sizing:border-box;
-       overflow:hidden;
-       padding:20px;
-       justify-content:space-between;
-       background:#f6f6f6;
-       align-items:center;
-       margin:10px;
-        margin-left:-90px;
 
-      
-   
-       border-radius:3px;
-       
+   .productItem {
+     width: 800px;
+     height: 200px;
+     display: flex;
+     box-sizing: border-box;
+     overflow: hidden;
+     padding: 20px;
+     justify-content: space-between;
+     background: #f6f6f6;
+     align-items: center;
+     margin: 10px;
+     margin-left: -90px;
+
+
+
+     border-radius: 3px;
+
    }
-   .productItem p{
-       font-size:16px;
-       margin:10px;
-     
+
+   .productItem p {
+     font-size: 16px;
+     margin: 10px;
+
    }
-   .productItem p>span:first-child{
-       color:#000;
-       font-weight:bold;
-       font-size:30px !important;
-      
+
+   .productItem p>span:first-child {
+     color: #000;
+     font-weight: bold;
+     font-size: 30px !important;
+
    }
+
    /*商品图片 */
-   .divImg{
-       width:30%;height:160px;
-       overflow:hidden;
-       
+   .divImg {
+     width: 30%;
+     height: 160px;
+     overflow: hidden;
+
    }
 
-   .divImg img{
-       width:100%;height:100%;
+   .divImg img {
+     width: 100%;
+     height: 100%;
    }
+
    /*商品描述*/
-   .divMsg{
-       width:50%;height:100%;
-       margin-left:20px;
-       
-       
-   }
-   .divMsg h5{
-       margin:5px 0;
-   }
-   #aTitle{
-       display:block;
-       padding-left:10px;
-       width:100%;
-       font-size:20px;
-       
-       overflow:hidden;
-       text-overflow:ellipsis;
-       white-space:nowrap;
-       margin-bottom:20px;
-       color:#666 !important;
-   }
-   
-   .divMsg div:last-child{
-       margin-top:15px;
-       width:300px;height:40px;
-       display:flex;
-       justify-content:space-between;
+   .divMsg {
+     width: 50%;
+     height: 100%;
+     margin-left: 20px;
+
 
    }
-   .divMsg div:last-child>span{
-       padding:0 10px;
-       line-height:40px;
-       border:2px solid #ccc;
-       box-sizing:border-box;
-       color:#ccc;
-       border-radius:10%;
-       
+
+   .divMsg h5 {
+     margin: 5px 0;
    }
+
+   #aTitle {
+     display: block;
+     padding-left: 10px;
+     width: 100%;
+     font-size: 20px;
+
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+     margin-bottom: 20px;
+     color: #666 !important;
+   }
+
+   .divMsg div:last-child {
+     margin-top: 15px;
+     width: 300px;
+     height: 40px;
+     display: flex;
+     justify-content: space-between;
+
+   }
+
+   .divMsg div:last-child>span {
+     padding: 0 10px;
+     line-height: 40px;
+     border: 2px solid #ccc;
+     box-sizing: border-box;
+     color: #ccc;
+     border-radius: 10%;
+
+   }
+
    /*房主信息 */
-   .divHost{
-       width:20%;height:80%;
-       border-left:2px dashed #39b54a;
+   .divHost {
+     width: 20%;
+     height: 80%;
+     border-left: 2px dashed #39b54a;
    }
-   .divHost a{
-       display:block;
-       width:60px;height:60px;
-       
-       border-radius:50%;
-       overflow:hidden;
-       margin:auto;
-       margin-top:-11px;
+
+   .divHost a {
+     display: block;
+     width: 60px;
+     height: 60px;
+
+     border-radius: 50%;
+     overflow: hidden;
+     margin: auto;
+     margin-top: -11px;
    }
-   .divHost img{
-       width:60px;height:60px;
+
+   .divHost img {
+     width: 60px;
+     height: 60px;
    }
-   .divHost p{
-       text-align:center;
-       margin-top:10px;
-       font-size:16px;
-       color:#666 !important;
-       font-weight:bold;
+
+   .divHost p {
+     text-align: center;
+     margin-top: 10px;
+     font-size: 16px;
+     color: #666 !important;
+     font-weight: bold;
    }
-   .divHost p:last-child{
-       font-size:20px;
-       text-align:center;
+
+   .divHost p:last-child {
+     font-size: 20px;
+     text-align: center;
    }
-   .getbtn{
-       width:800px;height: 30px;
-       margin-left: -90px;
-       border:0;
-       background-color:#fff;
+
+   .getbtn {
+     width: 800px;
+     height: 30px;
+     margin-left: -90px;
+     border: 0;
+     background-color: #fff;
    }
-   .getbtn:hover{
-       background-color: #eee;
+
+   .getbtn:hover {
+     background-color: #eee;
    }

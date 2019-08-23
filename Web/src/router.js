@@ -29,8 +29,8 @@ import adminorder from "./components/adminorder/adminorder.vue"
 Vue.use(Router)
 export default new Router({
   routes: [
+    {path:'/',component:index},
     {path:'/index',component:index},
-    {path:'/',component:HelloContainer},
     {path:'/order',component:Order},
     {path:'/price',component:Price},
     {path:'/photos',component:Photos},
