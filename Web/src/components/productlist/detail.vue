@@ -227,6 +227,7 @@ export default {
   color: #777;
 }
 .detailContent .detailicon {
+  height:90px;
   width: 100%;
   display: flex;
   justify-content: space-around;

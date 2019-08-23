@@ -18,6 +18,7 @@ Vue.prototype.$echarts = echarts;
 
 import homeheader from "./components/index/header.vue";
 import homefooter from "./components/index/footer.vue";
+
 Vue.component("homeheader",homeheader);
 Vue.component("homefooter",homefooter);
 
