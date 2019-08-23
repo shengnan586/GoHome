@@ -6,68 +6,68 @@
     </div>
     <div class="pList">
       <div class="long">
-        <img src="../../assets/images/gugonglong.jpeg">
+        <router-link to="/productlist?selectedText=东城区&selectedAreaId=2"><img src="../../assets/images/gugonglong.jpeg"></router-link>
         <div class="detail">
           <p>明清的宫殿 · 故宫</p>
         </div>
       </div>
       <div>
-        <img src="../../assets/images/index1.jpg">
+        <router-link to="/prodetail?hid=1"><img src="../../assets/images/index1.jpg"></router-link>
         <div class="detail">
           <p>屋里灰灰的家 - 苏州</p>
           <div>￥240</div>
         </div>
       </div>
       <div>
-        <img src="../../assets/images/index1.jpg">
+        <router-link to="/prodetail?hid=1"><img src="../../assets/images/index1.jpg"></router-link>
         <div class="detail">
           <p>屋里灰灰的家 - 苏州</p>
           <div>￥240</div>
         </div>
       </div>
       <div>
-        <img src="../../assets/images/index1.jpg">
+        <router-link to="/prodetail?hid=1"><img src="../../assets/images/index1.jpg"></router-link>
         <div class="detail">
           <p>屋里灰灰的家 - 苏州</p>
           <div>￥240</div>
         </div>
       </div>
       <div>
-        <img src="../../assets/images/index1.jpg">
+        <router-link to="/prodetail?hid=1"><img src="../../assets/images/index1.jpg"></router-link>
         <div class="detail">
           <p>屋里灰灰的家 - 苏州</p>
           <div>￥240</div>
         </div>
       </div>
       <div>
-        <img src="../../assets/images/index1.jpg">
+        <router-link to="/prodetail?hid=1"><img src="../../assets/images/index1.jpg"></router-link>
         <div class="detail">
           <p>屋里灰灰的家 - 苏州</p>
           <div>￥240</div>
         </div>
       </div>
       <div class="long">
-        <img src="../../assets/images/niaochao.jpg">
+        <router-link to="/productlist?selectedText=朝阳区&selectedAreaId=5"><img src="../../assets/images/niaochao.jpg"></router-link>
         <div class="detail">
           <p>伟大建筑作品 · 鸟巢</p>
         </div>
       </div>
       <div>
-        <img src="../../assets/images/index1.jpg">
+        <router-link to="/prodetail?hid=1"><img src="../../assets/images/index1.jpg"></router-link>
         <div class="detail">
           <p>屋里灰灰的家 - 苏州</p>
           <div>￥240</div>
         </div>
       </div>
       <div>
-        <img src="../../assets/images/index1.jpg">
+        <router-link to="/prodetail?hid=1"><img src="../../assets/images/index1.jpg"></router-link>
         <div class="detail">
           <p>屋里灰灰的家 - 苏州</p>
           <div>￥240</div>
         </div>
       </div>
       <div>
-        <img src="../../assets/images/index1.jpg">
+        <router-link to="/prodetail?hid=1"><img src="../../assets/images/index1.jpg"></router-link>
         <div class="detail">
           <p>屋里灰灰的家 - 苏州</p>
           <div>￥240</div>
@@ -115,7 +115,7 @@ export default {
     box-shadow: 0 0 8px 0 #999;
     padding:3px;
   }
-  .pList>div>img{
+  .pList>div img{
     width:100%;
     height:100%;
   }

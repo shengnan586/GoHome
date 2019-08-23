@@ -115,7 +115,7 @@ export default {
 };
 </script>
 <style scoped>
-@import url("../../assets/css/indexfont/font_cveuyt7cddb/iconfont.css");
+@import url("../../assets/css/indexfont/font_reuh16mad8/iconfont.css");
 .headerC{
   width: 1240px;
   margin: 0 auto;
