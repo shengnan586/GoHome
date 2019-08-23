@@ -9,7 +9,7 @@
             :key="i"
             :style="{opacity:index==i?1:0,'z-index':index==i?1:0}"
           >
-            <img :src="img" />
+            <img :src="'http://127.0.0.1:3003/'+img" />
           </li>
         </ul>
         <div class="btn-left" @click="move(-1)">
