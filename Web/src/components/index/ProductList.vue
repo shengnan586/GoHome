@@ -6,10 +6,9 @@
     </div>
     <div class="pList">
       <div class="long">
-        <img src="../../assets/images/index1.jpg">
+        <img src="../../assets/images/gugonglong.jpeg">
         <div class="detail">
-          <p>屋里灰灰的家 - 苏州</p>
-          <div>￥240</div>
+          <p>明清的宫殿 · 故宫</p>
         </div>
       </div>
       <div>
@@ -48,10 +47,9 @@
         </div>
       </div>
       <div class="long">
-        <img src="../../assets/images/index1.jpg">
+        <img src="../../assets/images/niaochao.jpg">
         <div class="detail">
-          <p>屋里灰灰的家 - 苏州</p>
-          <div>￥240</div>
+          <p>伟大建筑作品 · 鸟巢</p>
         </div>
       </div>
       <div>

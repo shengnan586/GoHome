@@ -30,12 +30,16 @@
     <Info :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @sendHid="sendHid"></Info>
     <Describe :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @had="sort"></Describe>
     <Facility :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @had="sort"></Facility>
+    <Photos :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @had="sort"></Photos>
+    <Price :stepToChild="stepToChild" :hid="hid" @had="sort"></Price>
   </div>
 </template>
 <script>
 import Info from "./info.vue"
 import Describe from "./Describe.vue"
 import Facility from "./Facility.vue"
+import Photos from "./photos.vue"
+import Price from "./price.vue"
 export default {
     //缺：当该房源是新创建的时候，第一个页面点击保存后，子组件需将hid传回  jr已写 晚上对
     //jr写的页面组件的东西加一样的 
@@ -86,9 +90,9 @@ export default {
         }
       }
     },
-    components:{Facility,Info,Describe},
+    components:{Facility,Info,Describe,Photos,Price},
     created() {
-      if(!this.$route.params.hid) this.hid = 0;//如果没传hid hid则为0
+      if(!this.$route.params.hid) this.hid = 23;//如果没传hid hid则为0
       else this.hid = this.$route.params.hid;//页面刚加载就读取传过来的hid
       //如果是新页面 则step=1 只有第一个字绿色，如果是继续填写，step的值由子组件查到的数据决定
       for(var i = 1;i<this.step;i++){ 
@@ -111,7 +115,6 @@ export default {
         }
       },
       stepToParent(step){
-        console.log("fanhui"+step);
         if(this.step <= step){
           this.step = step+1;//控制字体颜色 让下一个组件的颜色变亮 +1
         }

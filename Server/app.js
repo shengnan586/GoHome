@@ -16,6 +16,16 @@ const addhouse=require("./routes/addhouse.js");
 const updatehouse=require("./routes/updatehouse.js");
 const describe=require("./routes/describe.js");
 const search = require("./routes/search.js");
+const imgSave = require("./routes/imgSave.js");
+const imgSearch = require("./routes/imgSearch.js");
+const infoSave = require("./routes/infoSave.js");
+const infoSearch = require("./routes/infoSearch.js");
+const uploadfile = require("./routes/uploadfile.js");
+const adminorder=require("./routes/adminorder.js");
+const adminpwdedit=require("./routes/adminpwdedit.js");
+const adminsettlement=require("./routes/adminsettlement.js");
+const adminfavorites=require("./routes/adminfavorites.js");
+const adminbaseinfor=require("./routes/adminbaseinfor.js");
 
 var app = express();
 var server = app.listen(3003);
@@ -49,5 +59,14 @@ app.use("/addhouse",addhouse);
 app.use("/updatehouse",updatehouse);
 app.use("/describe",describe);
 app.use("/search",search);
-
+app.use("/imgSave",imgSave);
+app.use("/imgSearch",imgSearch);
+app.use("/infoSave",infoSave);
+app.use("/infoSearch",infoSearch);
+app.use("/upload-avatar",uploadfile);
+app.use("/admin",adminorder);
+app.use("/admin",adminpwdedit);
+app.use("/admin",adminsettlement);
+app.use("/admin",adminfavorites);
+app.use("/admin",adminbaseinfor);
 
