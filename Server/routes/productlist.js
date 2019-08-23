@@ -119,7 +119,20 @@ router.get("/GetProduct", (req, res) => {
         })
     })
 })
+// http://127.0.0.1:3003/productlist/GetProduct?
+// rentalTypeId=14&
+// peopleNumber=5&
+// aId=2&
+// bedroom=1&
+// houseDESC=%27%E6%88%BF%E6%BA%90%27&
+// smallprice=80&
+// bigprice=100&
+// checkinDate=%2720190814%27&
+// checkoutDate=%2720190815%27
 
+// http://127.0.0.1:3003/productlist/GetProduct?
+// currentPage=0&
+// rentalTypeId=0&aId=&bedroom=&houseDESC=&smallprice=0&bigprice=300
 // -- 
 // -- 暂定查询标题、价格、房东基本信息、出租类型、床数、宜居人数
 // -- 
