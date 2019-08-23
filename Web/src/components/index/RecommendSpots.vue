@@ -77,6 +77,7 @@ h1{
     text-align: center;
     padding:80px;
     font-size: 22px;
+    margin: auto;
   }
   .spots-txt h1{
     display: flex;
