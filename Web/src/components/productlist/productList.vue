@@ -211,7 +211,7 @@ export default {
       apartment: [],
       chuzuid: "0",
       priceid: "0",
-      productList: [{"id":1,"houseTitle":"房源title","specialPrice":80,"normalPrice":100,"festivalPrice":99,"UserName":"liry","phone":"18210521091","email":"liruiyun@163.com","realName":"李瑞云","cardID":"18210521092","sex":"男","typeName":"整套出租","peopleNumber":5,"bedroom":1,"bedcount":2,"houseimg":"AR/Image/1_0_b.jpg"},{"id":17,"houseTitle":"房源title","specialPrice":80,"normalPrice":100,"festivalPrice":99,"UserName":"liry","phone":"18210521091","email":"liruiyun@163.com","realName":"李瑞云","cardID":"18210521092","sex":"男","typeName":"整套出租","peopleNumber":5,"bedroom":1,"bedcount":1,"houseimg":"AR/Image/1_0_d.jpg"}],
+      productList: [],
       currentPage:0,//当前页码
       searchKey:""
            
@@ -305,6 +305,9 @@ export default {
     this.selectedText=this.$route.query.selectedText;
     this.selectedAreaId=this.$route.query.selectedAreaId;
     this.orderDate=this.$route.query.orderDate;
+    if(!this.orderDate){
+      this.orderDate={};
+    }
     this.load();
     this.loadmore();
   },
