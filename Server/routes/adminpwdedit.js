@@ -22,9 +22,13 @@ router.post("/EditUpwd", (req, res) => {
 //http://127.0.0.1:3003/adminpwdedit/GetUpwd?upwd=1
 router.get("/GetUpwd", (req, res) => {
     var upwd = req.query.upwd;
+    var uid=req.query.userid;
     var sql = " select * from home_business_user where upwd=? ";
+    if(uid){
+        sql +=" and id=? ";
+    }
     // id=? and
-    pool.query(sql, [upwd], (err, result) => {
+    pool.query(sql, [upwd,uid], (err, result) => {
         if (err) throw err;
         if (result.length > 0) {
             console.log(result);

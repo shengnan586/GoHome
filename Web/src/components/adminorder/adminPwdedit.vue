@@ -7,7 +7,7 @@
           <table>
             <tr>
               <td class="g_lists">已验证手机：</td>
-              <td colspan="2" class="g_ft14">{{this.userphone}}</td>
+              <td colspan="2" class="g_ft14">{{userphone}}</td>
             </tr>
             <tr>
               <td class="g_lists">图片验证码：</td>
