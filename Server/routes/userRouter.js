@@ -11,11 +11,7 @@ router.get("/login_go", (req, res) => {
     //console.log(phone)
     //2.sql:查询sq语句
     //数据库：库名  表名 列名  都是小写
-<<<<<<< HEAD
     var sql = "SELECT id,username,phone FROM home_business_User WHERE phone=? AND upwd=?";
-=======
-    var sql = "SELECT id,username,phone FROM home_business_User WHERE phone=? AND upwd=md5(?)";
->>>>>>> 0fdba2fbacca1bfec37f6468b04904c05f0d9708
     //3.json:{code:1,msg:"登陆成功"}
     pool.query(sql, [phone, upwd], (err, result) => {
         // console.log(result)
@@ -59,7 +55,6 @@ router.post("/reg", (req, res) => {
     })
 });
 
-<<<<<<< HEAD
 /*邀请码*/
 router.get("/admin_go", (req, res) => {
     var id = req.query.id;
@@ -129,8 +124,6 @@ router.post("/admin_up", (req, res) => {
         res.send({ code: -1, msg: "失败" })
     }
 })
-module.exports = router;
-=======
 //功能4 注册前验证用注册码是否存在
 router.get("/reg_porn",(req,res)=>{
     var porn=req.query.porn;
@@ -176,4 +169,3 @@ router.get("/GetUsername",(req,res)=>{
     })
 })
 module.exports=router;
->>>>>>> 0fdba2fbacca1bfec37f6468b04904c05f0d9708
