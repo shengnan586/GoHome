@@ -70,7 +70,7 @@ import pagination from "../page/page";
 export default {
   data() {
     return {
-      userid: "", //当前登陆的用户
+      userid: sessionStorage.getItem("userid"), //当前登陆的用户
       isnav: "flex",
       total: 0, // 记录总条数
       pageSize: 0, // 每页显示条数
@@ -243,6 +243,8 @@ img, input, select, textarea, button, i {
 select{
     border: 1px solid #303133 !important;
 }
-
+table>tr>td{
+  line-height: 1.7;
+}
 
 </style>

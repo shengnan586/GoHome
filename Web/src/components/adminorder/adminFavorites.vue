@@ -112,7 +112,7 @@ import pagination from "../page/page";
 export default {
   data() {
     return {
-      userid: "", //当前登陆的用户
+      userid: sessionStorage.getItem("userid"), //当前登陆的用户
       isnav: "flex",
       total: 0, // 记录总条数
       pageSize: 0, // 每页显示条数
@@ -296,7 +296,6 @@ img, input, select, textarea, button, i {
 }
 .fa_btn:hover{
     background-color:rgb(57,181,71,.8);
-     /* #ff4081; */
     border-radius: 5px;
     color: #fff;
 }
@@ -304,5 +303,8 @@ img, input, select, textarea, button, i {
     display: flex; 
     justify-content: center;
     margin-top:10px
+}
+table > tr > td {
+  line-height: 1.7;
 }
 </style>

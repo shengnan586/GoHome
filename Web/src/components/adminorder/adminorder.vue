@@ -121,10 +121,12 @@
         </div>
       </section>
     </div>
+     <Footer></Footer>    
   </div>
 </template>
 <script>
 import header from "../index/header.vue";
+import footer from "../index/footer.vue";
 export default {
   data() {
     return {
@@ -137,7 +139,7 @@ export default {
     }
   },
   components: {
-    //Footer: footer,
+    Footer: footer,
     Header: header
   }
 };
@@ -151,7 +153,7 @@ a{
 .mg_center{
     margin-left: auto;
     margin-right: auto;
-    width: 1000px;
+    width: 80%;
 }
 .el-breadcrumb{
     font-size: 14px;

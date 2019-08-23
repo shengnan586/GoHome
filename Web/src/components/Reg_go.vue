@@ -9,22 +9,27 @@
         已有账号 ?
         <a @click="reg_to" href="javascript:;">登录</a>
       </div>
+      <input  type="text" @blur="bluruname" placeholder="请填写用户名" />
+      <div class="reg_code">{{spanusermsg}}</div>
 
-      <input @blur="blurphone" v-model="phone" type="text" placeholder="建议使用常用手机号">
+      <input @blur="blurphone" v-model="phone" type="text" placeholder="建议使用常用手机号" />
       <div class="reg_phone">{{spanMsg}}</div>
 
       <!-- 手机验证码一隐藏 -->
       <div style="display:none" class="reg_input">
-        <input type="text" placeholder="请输入验证码">
+        <input type="text" placeholder="请输入验证码" />
         <button>获取验证码</button>
         <div class="reg_code">请输入验证码</div>
       </div>
 
-      <input @blur="blurupwd" v-model="upwd" class="reg_upwd" type="text" placeholder="请输入6-16位密码">
+      <input @blur="blurupwd" v-model="upwd" class="reg_upwd" type="text" placeholder="请输入6-16位密码" />
       <div class="reg_up">{{divMsg}}</div>
+<!-- @blur="blurporned" -->
+      <input  type="text" placeholder="请填写邀请码" />
+      <div class="reg_code">{{spanMsg}}</div>
 
       <span class="reg_span">
-        <input type="checkbox">
+        <input type="checkbox" />
         <a class="span_a" href="javascript:;">我已阅读并同意《xx用户协议》</a>
       </span>
       <button class="reg_btn" @click="reg()">注册</button>
@@ -38,7 +43,9 @@ export default {
       phone: "",
       upwd: "",
       spanMsg: "",
-      divMsg: ""
+      divMsg: "",
+      porn: "", //验证码
+      spanusermsg:"",//
     };
   },
   watch: {
@@ -51,8 +58,12 @@ export default {
     }
   },
   methods: {
-    reg_to(){
-      this.$router.push("/Login_go")
+    //检测用户名是否重复
+    bluruname(){
+
+    },
+    reg_to() {
+      this.$router.push("/Login_go");
     },
     blurphone() {
       return new Promise((resolve, reject) => {
@@ -98,39 +109,76 @@ export default {
     },
     checkupwd() {
       var reg = /^[0-9A-Za-z]{3,12}$/i;
-      if(this.upwd){
-      //如果验证通过！
-      if (reg.test(this.upwd) == true) {
-        this.divMsg = "";
-        return true;
+      if (this.upwd) {
+        //如果验证通过！
+        if (reg.test(this.upwd) == true) {
+          this.divMsg = "";
+          return true;
+        } else {
+          this.divMsg = "密码必须在3~9位之间";
+          return false;
+        }
       } else {
-        this.divMsg = "密码必须在3~9位之间";
-        return false;
-      }
-      }else{
-        this.divMsg="密码不能为空";
+        this.divMsg = "密码不能为空";
         return false;
       }
     },
+    //生成6位邀请码
+    GetInviteCode() {
+      return new Promise((resolve, reject) => {
+        var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        var codeLength = 6;
+        var s = [];
+        for (var i = 0; i < 6; i++) {
+          s[i] = chars.substr(Math.floor(Math.random() * 36), 1);
+        }
+        this.porn = s.join(""); //生成注册码
+        //再去注册码里查询这个注册码是否存在，如果存在，则重新生成，如果不存在，则新增。
+        console.log(this.porn);
+        var obj = { porn: this.porn };
+        this.axios.get("user/reg_porn", { params: obj }).then(res => {
+          if (res.data.code == -1) {
+            GetInviteCode();
+            resolve(false);
+          } else {
+            resolve(true);
+          }
+        });
+      });
+    },
     reg() {
       if (this.checkphone() && this.checkupwd()) {
-        var url = "user/reg";
-        this.axios
-          .post(url, { phone: this.phone, upwd: this.upwd })
-          .then(res => {
-            if (res.data.code == 1) {
-              console.log("注册成功");
-              this.$router.push("/Login_go");
-            }
-            if (res.data.code == -1) {
-              console.log("注册失败");
-            }
-          });
+        this.GetInviteCode().then(res1 => {
+          console.log(res1);
+          if (!res1) {
+            return;
+          } else {
+            var url = "user/reg";
+            this.axios
+              .post(url, {
+                phone: this.phone,
+                upwd: this.upwd,
+                porn: this.porn
+              })
+              .then(res => {
+                if (res.data.code == 1) {
+                  console.log("注册成功");
+                  this.$router.push("/Login_go");
+                }
+                if (res.data.code == -1) {
+                  console.log("注册失败");
+                }
+              });
+          }
+        });
       } else {
         return;
       }
     }
   }
+  // mounted() {
+  //   this.GetInviteCode();
+  // }
 };
 </script>
 <style scoped>
