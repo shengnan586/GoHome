@@ -84,7 +84,7 @@ export default {
             //5.发送ajax请求 axios？
             var url="user/login_go";   
             this.axios.get(url,{params:{phone:this.phone,upwd:this.upwd}}).then(res=>{
-                //console.log(res);
+                console.log(res);
                  //6.获取服务器返回的结果
                  
             if(res.data.code==-1){
@@ -95,11 +95,9 @@ export default {
                 var id=res.data.data[0].id;
                 var username=res.data.data[0].username;
                 var phone=res.data.data[0].phone;
-                var isHoster=res.data.data[0].isHoster;//是否为房东
                 sessionStorage.setItem("userid",id);
                 sessionStorage.setItem("username",username);
                 sessionStorage.setItem("phone",phone);
-                sessionStorage.setItem("isHoster",isHoster)
                 /*登录成功自动转*/ 
                 this.$router.push("/index")//将Product这个路由推入路由器，路由自动跳转
             }
