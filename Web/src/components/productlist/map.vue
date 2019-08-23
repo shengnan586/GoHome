@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-import MapLoader from "@/assets/js/AMap.js";
+import MapLoader from "../../../static/utils/AMap.js";
 export default {
   name: "test",
   data() {
@@ -46,17 +46,20 @@ export default {
   watch:{
       val(){
         var val=this.val;
+        var address;
         AMap.plugin("AMap.Geocoder", function() {
         var geocoder = new AMap.Geocoder({
           // city 指定进行编码查询的城市，支持传入城市名、adcode 和 citycode
           city: "010"
         });
 
-        geocoder.getLocation(val, function(status, result) {
+        address=geocoder.getLocation(val, function(status, result) {
           if (status === "complete" && result.info === "OK") {
-                var a=result.geocodes[0].location
-                console.log(a) ;
+            console.log(address);
+               return result.geocodes[0].location
+                
           }
+          
         });
       });
     }

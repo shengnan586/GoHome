@@ -79,14 +79,14 @@
 						</div>
 					</div>
 		</div>
-			<footer></footer>					
+         <Detail></Detail>
     </div>
 
 </template>    
 <script>
 import footer from "../index/footer.vue";
 import header from "../index/header.vue";
-
+import Detail from "./detail.vue"
 export default {
     data(){
         return{
