@@ -180,6 +180,7 @@ export default {
   top:50px;
   left:0;
   padding:0 15px 0;
+  z-index: 1111;
 }
 .nav .navlist ul{
   width:135px;

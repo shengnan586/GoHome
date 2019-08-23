@@ -8,10 +8,11 @@ router.get("/login_go", (req, res) => {
     //参数方式一：?phone=tom&upwd="123"查询字符串
     var phone = req.query.phone;
     var upwd = req.query.upwd;
+    console.log(req.query);
     //console.log(phone)
     //2.sql:查询sq语句
     //数据库：库名  表名 列名  都是小写
-    var sql = "SELECT id,username,phone FROM home_business_User WHERE phone=? AND upwd=?";
+    var sql = "SELECT id,username,phone,isHoster FROM home_business_User WHERE phone=? AND upwd=?";
     //3.json:{code:1,msg:"登陆成功"}
     pool.query(sql, [phone, upwd], (err, result) => {
         // console.log(result)
