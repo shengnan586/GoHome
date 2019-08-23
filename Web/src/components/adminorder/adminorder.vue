@@ -86,17 +86,32 @@
                   <span class="title" data-id="6">房源信息</span>
                 </router-link>
               </li>
+              <!---邀请码-->
               <li
                 data-id="7"
                 role="menuitem"
                 class="el-menu-item"
                 :class="{'is-active':isActive=='7'}"
               >
-                <router-link to="/adminorder/baseinfor" data-id="6">
-                  <i class="iconfont icon-gerenziliao1" data-id="6"></i>
+                <router-link to="/adminorder/Admin_to" data-id="7">
+                  <i class="iconfont icon-gerenziliao1" data-id="7"></i>
                   <span class="title" data-id="7">个人资料</span>
                 </router-link>
               </li>
+              <!--sdf-->
+              <!-- 个人资料 -->
+              <li
+                data-id="8"
+                role="menuitem"
+                class="el-menu-item"
+                :class="{'is-active':isActive=='8'}"
+              >
+                <router-link to="/adminorder/Admin_go" data-id="8">
+                  <i class="iconfont icon-gerenziliao1" data-id="8"></i>
+                  <span class="title" data-id="7">邀请码</span>
+                </router-link>
+              </li>
+              <!--  -->
             </ul>
           </div>
         </aside>
