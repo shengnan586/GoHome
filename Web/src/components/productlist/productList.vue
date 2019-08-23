@@ -198,7 +198,7 @@
 import layDate from "../laydate/laydate.vue";
 import product from './product';
 export default {
-<<<<<<< HEAD
+
   data() {
     return {
       areaList: [],
@@ -213,109 +213,11 @@ export default {
       priceid: "0",
       productList: [],
       currentPage:0,//当前页码
-=======
-    data(){
-        return{
-            arr:[],
-            n:7,
-            m:4,
-            l:1,
-            city:1000,
-            pnum:0,
-            searchKey:""
+      searchKey:""
            
             
         }
     },
-    methods: {
-        // 搜索条
-        searchBtn(){
-            var url="order/proSearch"
-            var aid=this.city==1000?null:this.city;
-            var pnum=this.pnum;
-            
-            this.axios.get(url,{params:{aid,pnum}}).then()
-        },
-        // 查询全部商品
-        loadmore(){
-            var url="order/productlist"
-            var start=this.arr.length;
-            var count=5; 
-            
-            this.axios.get(url,{params:{start,count}}).then(res=>{
-            if(res.data.code==-1){
-                console.log(-1);
-                    alert("已经到底了");
-
-            }else{
-                var arr1=res.data.data;
-                
-                
-                
-                this.arr=this.arr.concat(arr1);
-            }
-            }).catch(err=>{
-                alert(1);
-            })
-        },
-        // 下面选择条
-        tdclick1(e){
-            if(this.l!=e.target.id){
-                 this.l=e.target.id;
-            }else {
-                 this.l="";
-            }
-        },
-      
-        tdclick2(e){
-            if(this.m!=e.target.id){
-                 this.m=e.target.id;
-            }else {
-                 this.m="";
-            }
-        },   
-        tdclick3(e){
-            if(this.n!=e.target.id){
-                 this.n=e.target.id;
-            }else {
-                 this.n="";
-            }
-            // if(e.target.id==7){
-            //     var arr1=this.arr.filter(
-            //     function(elem){
-            //         return elem>0&&elem<300}
-            // )
-            // }else if(e.target.id==8){
-            //     var arr1=this.arr.filter(
-            //     function(elem){
-            //         return elem>300&&elem<600}
-            // )
-            // }else{
-            //     var arr1=this.arr.filter(
-            //     function(elem){
-            //         return elem>600&&elem<900}
-            // )
-            // }
-           
-            
-            // console.log(arr1);
-        },
-        getmore(){
-            this.loadmore();
-        }
-       
-
->>>>>>> 0fdba2fbacca1bfec37f6468b04904c05f0d9708
-
-      arr: [],
-      n: 7,
-      m: 4,
-      l: 1,
-      city: 1000,
-      pnum: 0,
-      searchKey: ""
-    };
-  },
   methods: {
     //获取时间控件返回的时间对象{入住时间、离开时间、天数}
     getDateValue(orderDate) {

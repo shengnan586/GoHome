@@ -264,53 +264,6 @@
    }
 
    /*房主信息 */
-<<<<<<< HEAD
-   .divHost {
-     width: 20%;
-     height: 80%;
-     border-left: 2px dashed #39b54a;
-   }
-
-   .divHost a {
-     display: block;
-     width: 60px;
-     height: 60px;
-
-     border-radius: 50%;
-     overflow: hidden;
-     margin: auto;
-     margin-top: -11px;
-   }
-
-   .divHost img {
-     width: 60px;
-     height: 60px;
-   }
-
-   .divHost p {
-     text-align: center;
-     margin-top: 10px;
-     font-size: 16px;
-     color: #666 !important;
-     font-weight: bold;
-   }
-
-   .divHost p:last-child {
-     font-size: 20px;
-     text-align: center;
-   }
-
-   .getbtn {
-     width: 800px;
-     height: 30px;
-     margin-left: -90px;
-     border: 0;
-     background-color: #fff;
-   }
-
-   .getbtn:hover {
-     background-color: #eee;
-=======
    .divHost{
        width:17%;height:80%;
        margin-left:8px; 
@@ -358,5 +311,4 @@
    }
    .getbtn:focus{
     outline:none; 
->>>>>>> 0fdba2fbacca1bfec37f6468b04904c05f0d9708
    }

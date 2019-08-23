@@ -147,25 +147,7 @@ export default {
         }
       }
     },
-    stepToParent(step) {
-      console.log("fanhui" + step);
-      if (this.step <= step) {
-        this.step = step + 1; //控制字体颜色 让下一个组件的颜色变亮 +1
-      }
-      //this.stepToParent = 0;
-      this.stepToChild = step + 1; //控制跳下一个组件
-    },
-    sendHid(hid) {
-      this.hid = hid;
-    },
-    sort(step) {
-      //该函数控制如果当前页面是从房源发布列表id中进入 显示当时保存的页面
-      if (this.step < step) {
-        this.step = step;
-        this.stepToChild = step;
-      }
-    }
-  },
+ 
 };
 </script>
 <style scoped>
