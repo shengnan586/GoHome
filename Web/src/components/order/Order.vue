@@ -1,4 +1,7 @@
 <template>
+<div>
+  <homeheader></homeheader>
+  <div style="height:20px;"></div>
   <div class="order_wrap mg_center">
     <div class="order_left">
       <div class="order_step_panel">
@@ -187,6 +190,8 @@
     </div>
     <div class="order_right"></div>
   </div>
+  <homefooter></homefooter>
+</div>
 </template>
 <script>
 import layDate from "../laydate/laydate.vue";
@@ -198,8 +203,8 @@ export default {
       id_card: "", //身份证号
       phone: "", //手机号
       val: 2, //入住人数
-      nickName: "shengnan586", //昵称
-      userPhone: "15140617114",
+      nickName: sessionStorage.getItem("username"), //昵称
+      userPhone: sessionStorage.getItem("phone"),//手机号
       warn_name:"",
       warn_id_card:"",
       warn_phone:"",
