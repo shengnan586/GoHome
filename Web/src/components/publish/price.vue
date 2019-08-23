@@ -150,23 +150,25 @@ export default {
         load(){
             this.axios.get("/infoSearch",{params:{hid:this.hid}})
             .then(res=>{
-                if(res.data.data.length > 0)this.$emit("had",5);
-                this.price=res.data.data[0].normalPrice;
-                this.cash=res.data.data[0].isCash;
-                if(res.data.data[0].cashMoney==0){//判断押金金额是否为空
-                    this.cashMoney="";
-                }else{
-                    this.cashMoney=res.data.data[0].cashMoney;
-                }
-                if(res.data.data[0].festivalPrice==0){//判断节假日价格是否为空
-                    this.price_2="";
-                }else{
-                    this.price_2=res.data.data[0].festivalPrice;
-                }
-                if(res.data.data[0].specialPrice==0){//判断特价房价格是否为空
-                    this.price_3="";
-                }else{
-                    this.price_3=res.data.data[0].specialPrice;
+                if(res.data.data.length > 0 && res.data.data[0].normalPrice){
+                    this.$emit("had",5);
+                    this.price=res.data.data[0].normalPrice;
+                    this.cash=res.data.data[0].isCash;
+                    if(res.data.data[0].cashMoney==0){//判断押金金额是否为空
+                        this.cashMoney="";
+                    }else{
+                        this.cashMoney=res.data.data[0].cashMoney;
+                    }
+                    if(res.data.data[0].festivalPrice==0){//判断节假日价格是否为空
+                        this.price_2="";
+                    }else{
+                        this.price_2=res.data.data[0].festivalPrice;
+                    }
+                    if(res.data.data[0].specialPrice==0){//判断特价房价格是否为空
+                        this.price_3="";
+                    }else{
+                        this.price_3=res.data.data[0].specialPrice;
+                    }
                 }
             })
         },
