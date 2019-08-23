@@ -1,4 +1,7 @@
 <template>
+<div>
+  <homeheader></homeheader>
+  <div style="height:20px;"></div>
   <div class="order_wrap mg_center">
     <div class="order_left">
       <div class="order_step_panel">
@@ -187,6 +190,8 @@
     </div>
     <div class="order_right"></div>
   </div>
+  <homefooter></homefooter>
+</div>
 </template>
 <script>
 import layDate from "../laydate/laydate.vue";
