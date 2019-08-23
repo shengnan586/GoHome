@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <div class="container">
+        <Header></Header>
+        <footer></footer>
+
             <!-- 配套设施 -->
         <div class="part part2" id="part2">
             <div class="detail clearfix">
@@ -7,7 +10,7 @@
                 <div class="detail_right">
                     <ul class="support_list clearfix">
                         <li v-for="(item,i) of arr" :key="i"> 
-                            <img class="icon_supports" :src="'http://127.0.0.1:3006/public/icon/'+item[1]">
+                            <img class="icon_supports" :src="'../../assets/icon/'+item[1]">
                             {{item[0]}}
                         </li> <!--电视-->		
                     </ul>    
@@ -76,11 +79,14 @@
 						</div>
 					</div>
 		</div>
-								
+			<footer></footer>					
     </div>
 
 </template>    
 <script>
+import footer from "../index/footer.vue";
+import header from "../index/header.vue";
+
 export default {
     data(){
         return{
