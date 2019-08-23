@@ -22,5 +22,14 @@ export default {
 }
 </script>
 <style scoped>
-  
+  .productlist{
+    width:1240px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .productlist .product{
+    width:33%;
+  }
+
 </style>

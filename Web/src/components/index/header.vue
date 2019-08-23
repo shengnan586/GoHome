@@ -28,21 +28,13 @@
               <li>
                   房东中心
               </li>
-<<<<<<< HEAD
-              <li><a href=" " data-router=“adminorder/list”>订单管理</a ></li>
-<li><a href="javascript:;" data-router=“adminorder/settlement”>结算统计</a ></li>
-<li><a href="javascript:;" data-router=adminorder/baseinfor>房源信息</a ></li>
-<li><a href="javascript:;" data-router=“”>价格房态</a ></li>
-<li><a href="javascript:;" data-router=“Admin_to”>个人资料</a ></li>
-<li><a href="javascript:;" data-router=“adminorder/favorites”>我的收藏</a ></li>
-=======
+
               <li><a href="javascript:;" data-router=“adminorder/list”>订单管理</a></li>
               <li><a href="javascript:;" data-router=“adminorder/settlement”>结算统计</a></li>
               <li><a href="javascript:;" data-router=adminorder/baseinfor>房源信息</a></li>
               <li><a href="javascript:;" data-router=“”>价格房态</a></li>
               <li><a href="javascript:;" data-router=“Admin_to”>个人资料</a></li>
               <li><a href="javascript:;" data-router=“adminorder/favorites”>我的收藏</a></li>
->>>>>>> 0fdba2fbacca1bfec37f6468b04904c05f0d9708
             </ul>
             <ul>
               <li>
@@ -188,6 +180,7 @@ export default {
   top:50px;
   left:0;
   padding:0 15px 0;
+  z-index: 1111;
 }
 .nav .navlist ul{
   width:135px;

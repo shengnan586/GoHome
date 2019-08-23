@@ -103,13 +103,23 @@ export default {
           active: "-91px -2400px"
         }
 
-      ]
-    };
-  }, 
+      ]  
+    }   
+  },
+  watch: {
+    step() {
+      //只要step有改变 字体颜色和图片位置就会变
+      for (var i = 1; i < this.step; i++) {
+        this.word[i].isActive = true;
+        this.word[i].position = this.word[i].active;
+      }
+    }
+  },
+
     components:{Facility,Info,Describe,Photos,Price},
     created() {
-      if(!this.$route.params.hid) this.hid = 23;//如果没传hid hid则为0
-      else this.hid = this.$route.params.hid;//页面刚加载就读取传过来的hid
+      if(!this.$route.query.key) this.hid = 0;//如果没传hid hid则为0
+      else this.hid = this.$route.query.key;//页面刚加载就读取传过来的hid
       //如果是新页面 则step=1 只有第一个字绿色，如果是继续填写，step的值由子组件查到的数据决定
       for(var i = 1;i<this.step;i++){ 
         this.word[i].isActive = true;
@@ -130,6 +140,7 @@ export default {
           }
         }
       },
+
       stepToParent(step){
         if(this.step <= step){
           this.step = step+1;//控制字体颜色 让下一个组件的颜色变亮 +1
@@ -147,7 +158,7 @@ export default {
         }
       }
     },
- 
+
 };
 </script>
 <style scoped>
@@ -170,9 +181,12 @@ export default {
   font-weight: bold;
 }
 
-.after {
+
+.after{
   /* margin-left:125px; */
-  margin-left: 11%;
+  margin-left:11%;
+
+
 }
 p {
   margin: 0;
@@ -204,14 +218,19 @@ p.word {
   background: #eeeeee;
   position: absolute;
 
+
   top: 40px;
   /* left:338px; */
   left: 23.5%;
+
 }
 span.span_active {
   background-color: #30c3a6;
 }
-span.line2 {
+
+
+span.line2{
+
   /* left:519px; */
   left: 36%;
 }
@@ -221,7 +240,7 @@ span.line3 {
 }
 span.line4 {
   /* left:880px; */
-  left: 61.3%;
+  left:61.3%
 }
 .cursor {
   cursor: pointer;

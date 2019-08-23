@@ -36,7 +36,7 @@ export default new Router({
     {path:'/order',component:Order},
     {path:'/price',component:Price},
     {path:'/photos',component:Photos},
-    {path:'/productList',component:productList},
+    {path:'/productList',name: 'ProductList',component:productList},
     {path:'/prodetail',component:prodetail},
 
     
