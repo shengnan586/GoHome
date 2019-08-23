@@ -115,7 +115,6 @@ export default {
         }
       },
       stepToParent(step){
-        console.log("fanhui"+step);
         if(this.step <= step){
           this.step = step+1;//控制字体颜色 让下一个组件的颜色变亮 +1
         }

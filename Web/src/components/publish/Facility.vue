@@ -274,7 +274,6 @@ export default {
                     }
                 }).then(res=>{
                     if(res.data.code > 0){
-                        console.log("跳组件");
                         //跳转下一个组件
                         this.$emit("step",3);
                     }

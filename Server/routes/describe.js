@@ -32,7 +32,6 @@ router.post("/",(req,res)=>{
 })
 
 router.get("/seldescribe",(req,res)=>{
-    console.log(req.query.hid)
     pool.query("SELECT * FROM home_business_house where id=?",[req.query.hid],(err,result)=>{
         if(err) throw err;
         res.send(result);

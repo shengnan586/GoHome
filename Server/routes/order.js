@@ -31,7 +31,6 @@ router.get("/productlist",(req,res)=>{
 })
 router.get("/proSearch",(req,res)=>{
    
-    console.log(key);
     var start=req.query.start;
     var  count=req.query.count;
     var sql="SELECT * FROM home_business_house WHERE aid=? ,peopleNumber=?,cashMoney=?";

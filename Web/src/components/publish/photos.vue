@@ -68,7 +68,6 @@ export default {
         load(){
             this.axios.get("/imgSearch",{params:{hid:this.hid}})
             .then(res=>{
-                console.log(res.data.data)
                 if(res.data.data.length > 0)this.$emit("had",4);
                 this.imgs=res.data.data;
             })

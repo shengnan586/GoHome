@@ -298,9 +298,9 @@ export default {
   props: ["stepToChild","hid"],
   created() {
     this.load();
-     if(this.hid!=0){
+    if(this.hid!=0){
       this.search();
-     }
+    }
   },
   methods: {
     load() {
@@ -330,25 +330,24 @@ export default {
     search(){
       this.axios.get("/search",{params:{id:this.hid}})
       .then(result=>{
-        console.log("接受的"+result.data[0].address);
-        this.address=result.data[0].address;
-        this.selectedId=result.data[0].houseTypeId;
-        this.rentId=result.data[0].rentalTypeId;
-        this.bathId=result.data[0].toiletId;x
-        this.room=result.data[0].bedroom;
-        this.parlor=result.data[0].saloon;
-        this.bathroom=result.data[0].toilet;
-        this.kitchen=result.data[0].kitchen;
-        this.balcony=result.data[0].balcony;
-        this.area=result.data[0].roomSize;
-        this.peoples=result.data[0].peopleNumber;
-        var bid=result.data[0].bld;
+        this.address=result.data.data[0].address;
+        this.selectedId=result.data.data[0].houseTypeId;
+        this.rentId=result.data.data[0].rentalTypeId;
+        this.bathId=result.data.data[0].toiletId;
+        this.room=result.data.data[0].bedroom;
+        this.parlor=result.data.data[0].saloon;
+        this.bathroom=result.data.data[0].toilet;
+        this.kitchen=result.data.data[0].kitchen;
+        this.balcony=result.data.data[0].balcony;
+        this.area=result.data.data[0].roomSize;
+        this.peoples=result.data.data[0].peopleNumber;
+        var bid=result.data.data[0].bId;
 		    for(var i=0;i<bid.length;i++){
 			    this.bed_btn.push({
-				  id:bid[i]
-			  })
+				    id:bid[i]
+			    })
 			    for( var j=0;j<this.bedList.length;j++){
-				    if(this.bed_btn[i].id==this.bedList[j].bid){
+				    if(this.bed_btn[i].id==this.bedList[j].id){
 					      this.bed_btn[i].bedType = this.bedList[j].bedType
 				    }
 			    }
@@ -380,7 +379,6 @@ export default {
           "北京市" + detail + this.details_address + this.house_num;
         this.isShow = false;
         this.details_address = this.house_num = "";
-        console.log("调试地址："+this.address);
       }
     },
     // 删除所选床铺信息
@@ -399,7 +397,6 @@ export default {
           break;
         }
       }
-      console.log("添加床铺："+this.bed_btn[0].id,this.bed_btn[0].bedType);
     },
     // 床铺信息删除所选
     close(e) {
@@ -464,14 +461,12 @@ export default {
         if (this.hid==0) {
           this.axios.post("/addhouse/addhouse", obj).then(result => {
             this.hid1=result.data.data;
-            console.log("插入后返回的hid为："+this.hid1);
             this.$emit("sendHid",this.hid1);
             this.$emit("step",1)
           });
         } else {
           obj.id = this.hid;
           this.axios.post("/updatehouse", obj).then(result => {
-            console.log(result);
             this.$emit("step",1)
           });
        }
