@@ -5,7 +5,7 @@ import index from "./components/index/index.vue"
 import Order from "./components/order/Order.vue"
 import productList from "./components/productlist/productList.vue"
 import map from "./components/productlist/map.vue"
-
+import prodetail from "./components/productlist/prodetail.vue"
 import Info from "./components/publish/info.vue"
 
 //登录的引入
@@ -15,6 +15,7 @@ import Reg_go from "./components/Reg_go.vue"
 import Publish from "./components/publish/Publish.vue"
 import Facility from "./components/publish/Facility.vue"
 import Describe from "./components/publish/Describe.vue"
+
 import Photos from "./components/publish/photos.vue"
 import Price from "./components/publish/price.vue"
 import adminorderlist from "./components/adminorder/adminOrderlist.vue"
@@ -34,6 +35,7 @@ export default new Router({
     {path:'/price',component:Price},
     {path:'/photos',component:Photos},
     {path:'/productList',component:productList},
+    {path:'/prodetail',component:prodetail},
 
     
     

@@ -151,14 +151,17 @@ export default {
             this.axios.get(url,{params:{start,count}}).then(res=>{
             if(res.data.code==-1){
                 console.log(-1);
+                    alert("已经到底了");
+
             }else{
                 var arr1=res.data.data;
-                console.log(arr1);
+                
+                
                 
                 this.arr=this.arr.concat(arr1);
             }
             }).catch(err=>{
-                
+                alert(1);
             })
         },
         // 下面选择条

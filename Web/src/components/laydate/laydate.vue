@@ -37,7 +37,7 @@ export default {
       elem: "#test1",
       range: true, //默认值 false
       min: 0,
-      max:30,
+      max: 90,
       show: false,
       calendar: true,
       showBottom: true, //底部栏显示 默认为true

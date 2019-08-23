@@ -51,15 +51,18 @@
     <Info :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @sendHid="sendHid"></Info>
     <Describe :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @had="sort"></Describe>
     <Facility :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @had="sort"></Facility>
+    <Photos :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @had="sort"></Photos>
+    <Price :stepToChild="stepToChild" :hid="hid" @had="sort"></Price>
     <Footer></Footer>
   </div>
 </template>
 <script>
-import Info from "./info.vue";
-import Describe from "./Describe.vue";
-import Facility from "./Facility.vue";
-import header from "../index/header.vue";
-import footer from "../index/footer.vue";
+import Info from "./info.vue"
+import Describe from "./Describe.vue"
+import Facility from "./Facility.vue"
+import Photos from "./photos.vue"
+import Price from "./price.vue"
+
 export default {
   //缺：当该房源是新创建的时候，第一个页面点击保存后，子组件需将hid传回  jr已写 晚上对
   //jr写的页面组件的东西加一样的
@@ -99,6 +102,7 @@ export default {
           default: "-145px -2359px",
           active: "-91px -2400px"
         }
+<<<<<<< HEAD
       ]
     };
   },
@@ -133,6 +137,48 @@ export default {
           this.stepToChild = num + 1;
         } else {
           return;
+=======
+      }
+    },
+    components:{Facility,Info,Describe,Photos,Price},
+    created() {
+      if(!this.$route.params.hid) this.hid = 23;//如果没传hid hid则为0
+      else this.hid = this.$route.params.hid;//页面刚加载就读取传过来的hid
+      //如果是新页面 则step=1 只有第一个字绿色，如果是继续填写，step的值由子组件查到的数据决定
+      for(var i = 1;i<this.step;i++){ 
+        this.word[i].isActive = true;
+        this.word[i].position = this.word[i].active;
+      }
+    },
+    methods: {
+      //只有当字体为绿色时才能点击切换组件
+      tab(e){
+        if(e.target.nodeName == "P" || e.target.nodeName == "SPAN"){
+          var num = parseInt(e.target.dataset.num);
+          if(this.word[num].isActive){
+            //跳转到点击的页面，数组下标是012 所以页面数要加1
+            this.stepToChild = num+1;
+          }
+          else{
+            return;
+          }
+        }
+      },
+      stepToParent(step){
+        if(this.step <= step){
+          this.step = step+1;//控制字体颜色 让下一个组件的颜色变亮 +1
+        }
+        //this.stepToParent = 0;
+        this.stepToChild = step+1;//控制跳下一个组件
+      },
+      sendHid(hid){
+        this.hid = hid;
+      },
+      sort(step){//该函数控制如果当前页面是从房源发布列表id中进入 显示当时保存的页面
+        if(this.step < step){
+          this.step = step;
+          this.stepToChild = step;
+>>>>>>> 6d2a63fc22b1d95350dccdc7b0cf85f9966ff751
         }
       }
     },
@@ -176,8 +222,14 @@ export default {
   font: "Microsoft YaHei";
   font-weight: bold;
 }
+<<<<<<< HEAD
 .after {
   margin-left: 125px;
+=======
+.after{
+  /* margin-left:125px; */
+  margin-left:11%;
+>>>>>>> 6d2a63fc22b1d95350dccdc7b0cf85f9966ff751
 }
 p {
   margin: 0;
@@ -208,12 +260,19 @@ p.word {
   height: 2px;
   background: #eeeeee;
   position: absolute;
+<<<<<<< HEAD
   top: 40px;
   left: 338px;
+=======
+  top:40px;
+  /* left:338px; */
+  left:23.5%;
+>>>>>>> 6d2a63fc22b1d95350dccdc7b0cf85f9966ff751
 }
 span.span_active {
   background-color: #30c3a6;
 }
+<<<<<<< HEAD
 span.line2 {
   left: 519px;
 }
@@ -222,6 +281,19 @@ span.line3 {
 }
 span.line4 {
   left: 880px;
+=======
+span.line2{
+  /* left:519px; */
+  left:36%;
+}
+span.line3{
+  /* left:700px; */
+  left:48.6%;
+}
+span.line4{
+  /* left:880px; */
+  left:61.3%
+>>>>>>> 6d2a63fc22b1d95350dccdc7b0cf85f9966ff751
 }
 .cursor {
   cursor: pointer;

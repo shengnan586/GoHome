@@ -16,6 +16,12 @@ Axios.defaults.withCredentials=true;
 Vue.prototype.axios=Axios;
 Vue.prototype.$echarts = echarts;
 
+import homeheader from "./components/index/header.vue";
+import homefooter from "./components/index/footer.vue";
+
+Vue.component("homeheader",homeheader);
+Vue.component("homefooter",homefooter);
+
 new Vue({
   router,
   render: h => h(App)
