@@ -84,6 +84,7 @@ import "./gVerify.js";
 export default {
   data() {
     return {
+      userid: sessionStorage.getItem("userid"), //当前登陆的用户
       upwd: "", //旧密码框
       newupwd: "", //新密码框
       verify: "", //验证码绑定
