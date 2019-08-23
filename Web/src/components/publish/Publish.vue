@@ -154,7 +154,8 @@ export default {
   font-weight: bold;
 }
 .after{
-  margin-left:125px;
+  /* margin-left:125px; */
+  margin-left:11%;
 }
 p{
   margin:0;
@@ -186,19 +187,23 @@ p.word{
   background: #eeeeee;
   position: absolute;
   top:40px;
-  left:338px;
+  /* left:338px; */
+  left:23.5%;
 }
 span.span_active{
   background-color:#30c3a6;
 }
 span.line2{
-  left:519px;
+  /* left:519px; */
+  left:36%;
 }
 span.line3{
-  left:700px;
+  /* left:700px; */
+  left:48.6%;
 }
 span.line4{
-  left:880px;
+  /* left:880px; */
+  left:61.3%
 }
 .cursor{
   cursor: pointer;
