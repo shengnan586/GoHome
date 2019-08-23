@@ -238,7 +238,7 @@ export default {
                 this.axios.post("/infoSave",obj)
                 .then(result=>{
                     if(result.data.code==1){
-                        this.$router.push("/adminbaseinfo")
+                        this.$router.push("/adminorder/list")
                     }else{
                         alert("系统错误，万分抱歉")
                     }
