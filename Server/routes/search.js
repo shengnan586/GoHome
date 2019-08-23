@@ -3,27 +3,23 @@ const router=express.Router();
 const query=require("../query");
 
 router.get("/",(req,res)=>{
-    console.log("hiiiiiid"+parseInt(req.query.id));
+    console.log("hid"+parseInt(req.query.id));
     var hid = parseInt(req.query.id);
     var obj = [];
     var sql = 'select * from home_business_house where id =?';
     query(sql,[hid])
     .then(result=>{
-        console.log("resuuuuuult"+result);
+        console.log("result"+result[0].address);
         if(result.length>0){
             obj = result;
-            console.log("search  obj")+obj;
+            console.log("search  obj"+obj[0].address);
             sql = 'select bId from home_business_house_bed where hId = ?';
             return query(sql,[hid]);
         }
     })
     .then(result=>{
-        console.log("ceshi1");
-        console.log(result.length);
         if(result.length > 0){
-            console.log(result[0].bId);
             obj[0].bId = [];
-            console.log("ceshi2");
             for(var item of result){
                 obj[0].bId.push(item.bId);
             }
@@ -38,7 +34,7 @@ router.get("/",(req,res)=>{
             obj[0].toilet = result[0].toilet;
             obj[0].kitchen = result[0].kitchen;
             obj[0].balcony = result[0].balcony;
-            console.log("adress"+result[0].adress);
+            console.log("adress"+obj[0].address);
             res.send({code:1,data:obj})
         }
     })
