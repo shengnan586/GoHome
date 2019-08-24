@@ -274,6 +274,8 @@ alter table home_business_house_install add state int;
 /*瑞云加的*/
 alter table home_business_house add houseDESC varchar(500);
 alter table home_business_house add uid int;
+<<<<<<< HEAD
+=======
 alter table home_business_house add isReleaseStatus int;
 
 
@@ -286,6 +288,11 @@ create table home_business_house_img1
    ImgSize              varchar(10) comment 'ͼƬ��С��sm/md/lg',
    primary key (id)
 );
+
+
+
+>>>>>>> 013e87392a2414857ea46ea57dca90fab7c367f0
+
 
 
 
