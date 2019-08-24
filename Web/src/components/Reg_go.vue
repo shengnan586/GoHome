@@ -9,22 +9,27 @@
         已有账号 ?
         <a @click="reg_to" href="javascript:;">登录</a>
       </div>
+      <input type="text" @blur="bluruname" v-model="username" placeholder="请填写用户名" />
+      <div class="reg_code">{{spanusermsg}}</div>
 
-      <input @blur="blurphone" v-model="phone" type="text" placeholder="建议使用常用手机号">
+      <input @blur="blurphone" v-model="phone" type="text" placeholder="建议使用常用手机号" />
       <div class="reg_phone">{{spanMsg}}</div>
 
       <!-- 手机验证码一隐藏 -->
       <div style="display:none" class="reg_input">
-        <input type="text" placeholder="请输入验证码">
+        <input type="text" placeholder="请输入验证码" />
         <button>获取验证码</button>
         <div class="reg_code">请输入验证码</div>
       </div>
 
-      <input @blur="blurupwd" v-model="upwd" class="reg_upwd" type="text" placeholder="请输入6-16位密码">
+      <input @blur="blurupwd" v-model="upwd" class="reg_upwd" type="text" placeholder="请输入6-16位密码" />
       <div class="reg_up">{{divMsg}}</div>
+      <!-- @blur="blurporned" -->
+      <input type="text" @blur="blurporned" v-model="porned" placeholder="请填写邀请码" />
+      <div class="reg_code">{{spanpornedMsg}}</div>
 
       <span class="reg_span">
-        <input type="checkbox">
+        <input type="checkbox" />
         <a class="span_a" href="javascript:;">我已阅读并同意《xx用户协议》</a>
       </span>
       <button class="reg_btn" @click="reg()">注册</button>
@@ -38,11 +43,19 @@ export default {
       phone: "",
       upwd: "",
       spanMsg: "",
-      divMsg: ""
+      divMsg: "",
+      porn: "", //邀请码
+      spanusermsg: "", //用户名提示
+      username: "", //用户名信息
+      porned: "", //被邀请码
+      spanpornedMsg: "" //验证码提示
     };
   },
   watch: {
     //监控哪个变量，函数名就要和变量名一致！
+    username() {
+      this.checkusername();
+    },
     phone() {
       this.checkphone();
     },
@@ -51,8 +64,47 @@ export default {
     }
   },
   methods: {
-    reg_to(){
-      this.$router.push("/Login_go")
+    //验证邀请码
+    blurporned() {
+      return new Promise((resolve, reject) => {
+        if (this.porned.trim()) {
+          var url = "user/Getporned";
+          this.axios(url, { params: { porned: this.porned } }).then(res => {
+            if (res.data.code == -1) {
+              this.spanpornedMsg = "邀请码可用";
+              resolve(true);
+            } else {
+              this.spanpornedMsg = "邀请码错误";
+              resolve(false);
+            }
+          });
+        } else {
+          resolve(true);
+        }
+      });
+    },
+    //检测用户名是否重复
+    bluruname() {
+      return new Promise((resolve, reject) => {
+        if (this.username.trim() == "") {
+          this.spanusermsg = "用户名不能为空";
+          resolve(false);
+        } else {
+          var url = "user/GetUsername";
+          this.axios(url, { params: { uname: this.username } }).then(res => {
+            if (res.data.code == -1) {
+              this.spanusermsg = "用户名已存在";
+              resolve(true);
+            } else {
+              this.spanusermsg = "用户名可用";
+              resolve(false);
+            }
+          });
+        }
+      });
+    },
+    reg_to() {
+      this.$router.push("/Login_go");
     },
     blurphone() {
       return new Promise((resolve, reject) => {
@@ -79,11 +131,16 @@ export default {
         }
       });
     },
+    checkusername() {
+      if (!this.username.trim()) {
+        this.spanusermsg = "用户名不能为空";
+        return false;
+      }
+    },
     checkphone() {
       var reg = /^1[3-9]\d{9}$/;
       //如果验证通过！
       if (this.phone) {
-        //console.log(this.phone);
         if (reg.test(this.phone) == true) {
           this.spanMsg = "";
           return true;
@@ -98,39 +155,79 @@ export default {
     },
     checkupwd() {
       var reg = /^[0-9A-Za-z]{3,12}$/i;
-      if(this.upwd){
-      //如果验证通过！
-      if (reg.test(this.upwd) == true) {
-        this.divMsg = "";
-        return true;
+      if (this.upwd) {
+        //如果验证通过！
+        if (reg.test(this.upwd) == true) {
+          this.divMsg = "";
+          return true;
+        } else {
+          this.divMsg = "密码必须在3~9位之间";
+          return false;
+        }
       } else {
-        this.divMsg = "密码必须在3~9位之间";
-        return false;
-      }
-      }else{
-        this.divMsg="密码不能为空";
+        this.divMsg = "密码不能为空";
         return false;
       }
     },
+    //生成6位邀请码
+    GetInviteCode() {
+      return new Promise((resolve, reject) => {
+        var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        var codeLength = 6;
+        var s = [];
+        for (var i = 0; i < 6; i++) {
+          s[i] = chars.substr(Math.floor(Math.random() * 36), 1);
+        }
+        this.porn = s.join(""); //生成注册码
+        //再去注册码里查询这个注册码是否存在，如果存在，则重新生成，如果不存在，则新增。
+        console.log(this.porn);
+        var obj = { porn: this.porn };
+        this.axios.get("user/reg_porn", { params: obj }).then(res => {
+          if (res.data.code == -1) {
+            GetInviteCode();
+            resolve(false);
+          } else {
+            resolve(true);
+          }
+        });
+      });
+    },
+    //注册
     reg() {
       if (this.checkphone() && this.checkupwd()) {
-        var url = "user/reg";
-        this.axios
-          .post(url, { phone: this.phone, upwd: this.upwd })
-          .then(res => {
-            if (res.data.code == 1) {
-              console.log("注册成功");
-              this.$router.push("/Login_go");
+        Promise.all([this.GetInviteCode(), this.blurporned()])
+          .then(result => {
+            if (result) {
+              var url = "user/reg";
+              this.axios
+                .post(url, {
+                  username: this.username,
+                  phone: this.phone,
+                  upwd: this.upwd,
+                  porn: this.porn,
+                  porned:this.porned,
+                  point:500
+                })
+                .then(res => {
+                  if (res.data.code == 1) {
+                    console.log("注册成功");
+                    this.$router.push("/Login_go");
+                  }
+                  if (res.data.code == -1) {
+                    console.log("注册失败");
+                  }
+                });
             }
-            if (res.data.code == -1) {
-              console.log("注册失败");
-            }
-          });
+          })
+          .catch({});
       } else {
         return;
       }
     }
   }
+  // mounted() {
+  //   this.GetInviteCode();
+  // }
 };
 </script>
 <style scoped>
@@ -139,7 +236,7 @@ export default {
 }
 .reg_parent {
   width: 406px;
-  height: 450px;
+  height: 500px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

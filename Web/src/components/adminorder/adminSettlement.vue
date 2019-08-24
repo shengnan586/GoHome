@@ -2,7 +2,7 @@
   <div class="divparent">
     <div id="myChartId" style="height:500px;width:400px;margin-top:20px;margin-left:30px"></div>
     <div class="divtable">
-      <div>
+      <div class="disdiv">
         <div class="yearlist" @mouseenter="enter" @mouseleave="leave">
           <span>{{selvalue}}年</span>
           <span class="iconfont" :class="icon"></span>
@@ -13,12 +13,7 @@
             <li data-value="2016">2016年</li>
           </ul>
         </div>
-        <!-- <select v-model="selvalue" class="selyear" id="sel" @change="changeType">
-          <option value="2019" selected>2019年</option>
-          <option value="2018">2018年</option>
-          <option value="2017">2017年</option>
-        </select> -->
-        <button @click="btnSelect">查询</button>
+        <button @click="btnSelect" class="btn">查询</button>
       </div>
       <table>
         <thead>
@@ -37,6 +32,7 @@
 export default {
   data() {
     return {
+      userid: sessionStorage.getItem("userid"), //当前登陆的用户
       list: [],
       listTitle: [],
       selvalue:"2019",//获得下拉框选中的年份
@@ -89,7 +85,6 @@ export default {
           orient: "vertical",
           left: "left",
           data: this.listTitle
-          //["一月", "二月", "三月", "四月", "五月"]
         },
         series: [
           {
@@ -98,13 +93,6 @@ export default {
             radius: "55%",
             center: ["50%", "60%"],
             data: this.list,
-            // [
-            //   { value: 335, name: "直接访问" },
-            //   { value: 310, name: "邮件营销" },
-            //   { value: 234, name: "联盟广告" },
-            //   { value: 135, name: "视频广告" },
-            //   { value: 1548, name: "搜索引擎" }
-            // ]
             itemStyle: {
               emphasis: {
                 shadowBlur: 10,
@@ -119,7 +107,7 @@ export default {
       myChart.setOption(option);
     },
     load() {
-      var uid = "1";
+      var uid = this.userid;
       var year = this.selvalue;
       console.log(year);
       var obj = { uid, year };
@@ -146,15 +134,19 @@ export default {
 <style scoped>
 /* @import url("../../assets/css/adminsettlement.css"); */
 @import url("../../assets/css/font/iconfont.css");
-.divtable>div{
+*, body {
+    font-weight: 300;
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
+.disdiv{
   display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
 }
 .yearlist{
   width:200px;
-  height:43px;
-  padding:10px 15px;
+  height:30px;
+  padding:8px 15px;
   border:1px solid #ddd;
   position: relative;
 }
@@ -180,6 +172,147 @@ export default {
 .yearlist ul li:hover{
   background-color: #333;
 }
-table tr:nth-child(odd){background:#F4F4F4;} 
-table td:nth-child(even){color:#C00;}
+.btn{
+  width: 60px;
+  height: 48px;
+    display: inline-block;
+    border: solid 1px #E0E0E0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background: #eee;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+.btn:hover{
+  display: block;
+  background: rgb(57, 181, 71, 0.8);
+  border-radius: 5px;
+  line-height: 45px;
+  text-align: center;
+  color: #fff !important;
+  font-size: 13px;
+  outline: none;
+}
+ul{
+    margin: 0 !important;padding: 0;
+}
+ul, ol {
+    list-style: none outside none;
+}
+.el-main {
+    margin-left: 20px;
+    padding: 0;
+    overflow: hidden;
+}
+.order_list {
+    margin: 0 auto;
+}
+.order_item {
+    margin-top: 20px;
+    overflow: visible;
+}
+.el-card {
+    border-radius: 0;
+}
+.el-card {
+    border: 1px solid #ebeef5;
+    background-color: #fff;
+    color: #303133;
+    -webkit-transition: .3s;
+    transition: .3s;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+.order_item .pic_wrapper .pic {
+    display: block;
+    background: #EEE;
+}
+img {
+    border: 0 none;
+}
+img, input, select, textarea, button, i {
+    vertical-align: middle;
+}
+
+.order_item .side_info {
+    margin-left: 0px;
+    width: 100%;
+}
+.order_item .side_info .title {
+    font-size: 18px;
+    font-weight: 700;
+}
+.desc,.total{margin-top: 14px;}
+.order_item .total .price {
+    color: #ff4081;
+    float: none;
+    font-style: normal;
+}
+.order_item .content {
+    display: -webkit-flex;
+    display: flex;
+    margin-top: 20px;
+    font-size: 14px;
+    width: 100%;
+}
+.desc{
+    width: 100%;
+}
+.desc table{
+    width: 100%;
+}
+.fa_btn:hover{
+    background-color: #ff4081;
+    color: #fff;
+}
+.pagenav{
+    display: flex; 
+    justify-content: center;
+    margin-top:10px
+}
+.divtable{
+    float: left;
+    width: 300px;
+    height: 500px;
+}
+#myChartId{
+    float: left;
+}
+.divtable>table{
+    width: 100%;
+    margin-top: 70px;
+    border: 1px solid #ddd;
+    background:#fff;
+}
+.divtable>table>thead{
+    font-size: 20px;
+    height: 35px;
+    color:#fff;
+    line-height: 35px;
+    background: rgb(57,181,71,.7);
+    /* #ff4081; */
+}
+.divtable>table>thead>th:first-child{
+    border-top-left-radius: 7px;
+}
+.divtable>table>thead>th:nth-child(2){
+    border-top-right-radius: 7px;
+}
+.divtable>table td{
+    font-size: 14px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+}
+.selyear{
+    width: 200px;
+    border: 1px solid #303133 !important;
+}
+select{
+    border: 1px solid #303133 !important;
+}
+
+
 </style>

@@ -7,7 +7,7 @@
           <table>
             <tr>
               <td class="g_lists">已验证手机：</td>
-              <td colspan="2" class="g_ft14">+86 185****4761</td>
+              <td colspan="2" class="g_ft14">{{userphone}}</td>
             </tr>
             <tr>
               <td class="g_lists">图片验证码：</td>
@@ -84,6 +84,8 @@ import "./gVerify.js";
 export default {
   data() {
     return {
+      userid: sessionStorage.getItem("userid"), //当前登陆的用户
+      userphone:sessionStorage.getItem("phone"),//当前登陆用户电话
       upwd: "", //旧密码框
       newupwd: "", //新密码框
       verify: "", //验证码绑定
@@ -117,7 +119,7 @@ export default {
     bluruupwd() {
       return new Promise((resolve, reject) => {
         if (this.upwd.trim()) {
-          var obj = { upwd: this.upwd };
+          var obj = { upwd: this.upwd,userid:this.userid };
           this.axios.get("/admin/GetUpwd", { params: obj }).then(res => {
             if (res.data.code == -1) {
               this.oldUpwdMsg = "旧密码输入错误";
@@ -155,17 +157,14 @@ export default {
       this.chkverify();
       this.blurnewupwd();
       this.bluruupwd().then(res1 => {
-        if(!res1){
+        if (!res1) {
           return;
-        }
-        else if (this.yanzhengmaMsg || this.newUpwdMsg || this.oldUpwdMsg) {
-          console.log("111111");
+        } else if (this.yanzhengmaMsg || this.newUpwdMsg || this.oldUpwdMsg) {
           return;
-        } 
-        else {
-          var id = "1"; //110 记得以后改成动态的
-          var upwd = this.upwd;
-          if (id != "" && id != "underfind") {
+        } else {
+          var id = this.userid; //110 记得以后改成动态的
+          var upwd = this.newupwd;
+          if (id) {
             var obj = { upwd, id };
             this.axios.post("admin/EditUpwd", obj).then(res => {
               if (res.data.code == 1) {
@@ -192,62 +191,65 @@ export default {
 <style scoped>
 @import url("../../assets/css/font/iconfont.css");
 .right_con {
-    width: 800px;
-    float: right;
-    padding-bottom: 50px;
-  }
-  .g_ctmain {
-    padding-top: 10px;
-    padding-left: 15px;
-    width: 80%;
-  }
-  .g_ft18 {
-    font-size: 18px;
-    color: "#2c3e50";
-  }
-  .g_lists {
-    margin-top: 10px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 14px;
-    color: #a5adb4;
-    vertical-align: top;
-  }
-  .g_ft14 {
-    font-size: 14px;
-  }
-  .g_inputs {
-    border: 1px solid #d1d1d1;
-    height: 38px;
-    line-height: 38px;
-    width: 220px;
-    padding-left: 10px;
-    vertical-align: top;
-  }
-  .g_pinkinput {
-    display: block;
-    background: rgb(57,181,71,.8);
-    border-radius: 5px;
-    /* #f05b72; */
-    width: 200px;
-    height: 45px;
-    line-height: 45px;
-    text-align: center;
-    color: #fff !important;
-    font-size: 18px;
-    margin-left: 32px;
-    margin-top: 20px;
-  }
-  .vcontainer {
-    width: 180px;
-    height: 40px;
-    margin-left: 5px;
-  }
-  a {
-    display: inline;
-    /* margin-left: 10px; */
-  }
-  .iconcolor {
-    color: rgba(229, 229, 33, 1) !important;
-  }
+  width: 800px;
+  float: right;
+  padding-bottom: 50px;
+}
+.g_ctmain {
+  padding-top: 10px;
+  padding-left: 15px;
+  width: 80%;
+}
+.g_ft18 {
+  font-size: 18px;
+  color: "#2c3e50";
+}
+.g_lists {
+  margin-top: 10px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #a5adb4;
+  vertical-align: top;
+}
+.g_ft14 {
+  font-size: 14px;
+}
+.g_inputs {
+  border: 1px solid #d1d1d1;
+  height: 38px;
+  line-height: 38px;
+  width: 220px;
+  padding-left: 10px;
+  vertical-align: top;
+}
+.g_pinkinput {
+  display: block;
+  background: rgb(57, 181, 71, 0.8);
+  border-radius: 5px;
+  /* #f05b72; */
+  width: 200px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  color: #fff !important;
+  font-size: 18px;
+  margin-left: 32px;
+  margin-top: 20px;
+}
+.vcontainer {
+  width: 180px;
+  height: 40px;
+  margin-left: 5px;
+}
+a {
+  display: inline;
+  /* margin-left: 10px; */
+}
+.iconcolor {
+  color: rgba(229, 229, 33, 1) !important;
+}
+table > tr > td {
+  line-height: 50px;
+}
 </style>

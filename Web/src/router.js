@@ -25,16 +25,20 @@ import adminsettlement from "./components/adminorder/adminSettlement.vue"
 import adminfavorites from "./components/adminorder/adminFavorites.vue"
 import adminbaseinfor from "./components/adminorder/adminBaseinfor.vue"
 import adminorder from "./components/adminorder/adminorder.vue"
+import Admin_go from "./components/adminorder/Admin_go.vue"
+import Admin_to from "./components/adminorder/Admin_to.vue"
+import detail from "./components/productlist/detail"
 
 Vue.use(Router)
 export default new Router({
   routes: [
+    {path:'/',component:index},
     {path:'/index',component:index},
-    {path:'/',component:HelloContainer},
+    {path:'/detail',component:detail},
     {path:'/order',component:Order},
     {path:'/price',component:Price},
     {path:'/photos',component:Photos},
-    {path:'/productList',component:productList},
+    {path:'/productList',name: 'ProductList',component:productList},
     {path:'/prodetail',component:prodetail},
 
     
@@ -51,11 +55,14 @@ export default new Router({
     {path:'/Reg_go',component:Reg_go},
     {path:'/map',component:map},
     {path:'/facility',component:Facility},
+    {path:'/Admin_go',component:Admin_go},
+    {path:'/Admin_to',component:Admin_to},
 	{path:'/adminpwdedit',component:adminpwdedit},
     {path:'/adminmsg',component:adminmsg},
     {path:'/adminsettlement',component:adminsettlement},
     {path:'/adminfavorites',component:adminfavorites},
     {path:'/adminbaseinfor',component:adminbaseinfor},
+    
     // {path:'/adminorder',component:adminorder},
 
     {
@@ -92,7 +99,18 @@ export default new Router({
           path: 'baseinfor',
           name: 'baseinfor',
           component: adminbaseinfor
+        },
+        {/*邀请码*/
+          path: 'Admin_go',
+          name: 'Admin_go',
+          component: Admin_go
+        },
+        {/*个人资料*/ 
+          path: 'Admin_to',
+          name: 'Admin_to',
+          component: Admin_to
         }
+        
       ]
     }
   ]

@@ -9,7 +9,7 @@
             :key="i"
             :style="{opacity:index==i?1:0,'z-index':index==i?1:0}"
           >
-            <img :src="img" />
+            <a :href="href"><img :src="'http://127.0.0.1:3003/'+img" /></a>
           </li>
         </ul>
         <div class="btn-left" @click="move(-1)">
@@ -83,7 +83,8 @@ export default {
     return {
       imgwidth: 724,
       index: 0,
-      orderDate: null
+      orderDate: null,
+      href:"javascript:;"
     };
   },
   props: {
@@ -141,32 +142,25 @@ export default {
     }
   },
   created() {
-    // this.imgs=["/images/Carousel1.jpg","/images/Carousel2.jpg","/images/Carousel3.jpg","/images/Carousel4.jpg","/Draven.png"];
-    //  setTimeout(() => {
-    //  var lis=document.querySelectorAll(".carousel-item");
-    // for(var i=0;i<lis.length;i++){
-    //   var img=lis[i].getElementsByTagName("img")[0];
-    //   var style=window.getComputedStyle(img,null);
-    //   console.log(style.width);
-    // }  //console.log(document.getElementById("test").offsetWidth);
-    // }, 0);
-  },
-  mounted() {
-    // setTimeout(() => {
-    // //console.log(document.getElementById("test").offsetWidth);
-    // }, 0);
-    //   var lis=document.querySelectorAll(".carousel-item");
-    // for(var i=0;i<lis.length;i++){
-    //   var img=lis[i].getElementsByTagName("img")[0];
-    //   var style=window.getComputedStyle(img,null);
-    //   console.log(style.width);
-    // }
+    switch(this.hid){
+      case 1:
+      case 5:
+        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.hid+"&count=4";
+        break;
+      case 2:
+      case 3:
+      case 4:
+        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.hid+"&count=5";
+        break;
+      default:
+        break;
+    }
   },
   components: { laydate: layDate } //时间控件
 };
 </script>
 <style scoped>
-@import url("../../assets/css/indexfont/font_hpg3850dyiq/iconfont.css");
+@import url("../../assets/css/indexfont/font_reuh16mad8/iconfont.css");
 .detail {
   width: 1240px;
   margin: 0 auto;
@@ -227,6 +221,7 @@ export default {
   color: #777;
 }
 .detailContent .detailicon {
+  height:90px;
   width: 100%;
   display: flex;
   justify-content: space-around;

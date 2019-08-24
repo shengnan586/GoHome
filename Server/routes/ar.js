@@ -29,7 +29,7 @@ router.get("/",(req,res)=>{
                 break;
         }
     }
-    var sql = 'select ImgUrl from home_business_house_img where hId = ?';
+    var sql = 'select ImgUrl from home_business_house_img1 where hId = ?';
     pool.query(sql,[hid],(err,result)=>{
         if(err) throw err;
         if(result.length > 0){

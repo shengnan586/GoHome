@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <Header></Header>
-        <footer></footer>
+        <Detail></Detail>
 
             <!-- 配套设施 -->
         <div class="part part2" id="part2">
@@ -79,14 +79,14 @@
 						</div>
 					</div>
 		</div>
-			<footer></footer>					
+         <Footer></Footer>
     </div>
 
 </template>    
 <script>
 import footer from "../index/footer.vue";
 import header from "../index/header.vue";
-
+import Detail from "./detail.vue"
 export default {
     data(){
         return{
@@ -97,7 +97,13 @@ export default {
             ["无线网络","wify.png"],["有线网络","network.png"],
             ["暖气","heater.png"],["电梯","lift.png"]]
         }
-    }
+    },
+
+  components:{
+              Footer:footer,
+              Header:header,
+              Detail:Detail
+}
 }
 </script>
 <style scoped>
@@ -112,6 +118,9 @@ export default {
     border-radius: 5px;
     margin-bottom: 10px;
     overflow: hidden;
+    }
+    .container .part{
+        margin-left:200px;
     }
     .detail {
         width: 690px;

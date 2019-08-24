@@ -28,21 +28,22 @@
               <li>
                   房东中心
               </li>
-              <li><a href="javascript:;" data-router=“adminorderlist”>订单管理</a></li>
-              <li><a href="javascript:;" data-router=“adminsettlement”>结算统计</a></li>
-              <li><a href="javascript:;" data-router=“adminbaseinfo”>房源信息</a></li>
+
+              <li><a href="javascript:;" data-router=“adminorder/list”>订单管理</a></li>
+              <li><a href="javascript:;" data-router=“adminorder/settlement”>结算统计</a></li>
+              <li><a href="javascript:;" data-router=adminorder/baseinfor>房源信息</a></li>
               <li><a href="javascript:;" data-router=“”>价格房态</a></li>
               <li><a href="javascript:;" data-router=“Admin_to”>个人资料</a></li>
-              <li><a href="javascript:;" data-router=“adminfavorites”>我的收藏</a></li>
+              <li><a href="javascript:;" data-router=“adminorder/favorites”>我的收藏</a></li>
             </ul>
             <ul>
               <li>
                 房客中心
               </li>
-              <li><a href="javascript:;" data-router="adminorderlist">我的订单</a></li>
+              <li><a href="javascript:;" data-router="adminorder/list">我的订单</a></li>
               <li><a href="javascript:;" data-router="Admin_to">个人资料</a></li>
-              <li><a href="javascript:;" data-router=“adminfavorites”>我的收藏</a></li>
-              <li><a href="javascript:;" data-router="adminmsg'">通知</a></li>
+              <li><a href="javascript:;" data-router=“adminorder/favorites”>我的收藏</a></li>
+              <li><a href="javascript:;" data-router="adminorder/msg">通知</a></li>
             </ul>
             <div>
               <a href="javascript:;" data-router="close">退出</a>
@@ -114,7 +115,7 @@ export default {
 };
 </script>
 <style scoped>
-@import url("../../assets/css/indexfont/font_cveuyt7cddb/iconfont.css");
+@import url("../../assets/css/indexfont/font_reuh16mad8/iconfont.css");
 .headerC{
   width: 1240px;
   margin: 0 auto;
@@ -179,6 +180,7 @@ export default {
   top:50px;
   left:0;
   padding:0 15px 0;
+  z-index: 1111;
 }
 .nav .navlist ul{
   width:135px;

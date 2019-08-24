@@ -26,7 +26,7 @@ export default {
       selectedAreaId: "",
       show:false,
       selectedText:"请选择区县",
-      orderDate:null
+      orderDate:{}
     };
   },
   created() {
@@ -40,8 +40,9 @@ export default {
     //搜索
     Search(){
       this.$router.push({
-        name:"",
-        params:{
+        name:"ProductList",
+        query:{
+          selectedText:this.selectedText,
           selectedAreaId:this.selectedAreaId,
           orderDate:this.orderDate
         }

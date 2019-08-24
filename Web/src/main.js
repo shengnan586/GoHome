@@ -18,9 +18,13 @@ Vue.prototype.$echarts = echarts;
 
 import homeheader from "./components/index/header.vue";
 import homefooter from "./components/index/footer.vue";
+
 Vue.component("homeheader",homeheader);
 Vue.component("homefooter",homefooter);
-
+// 路由变化跳转页面回到顶部
+router.afterEach((to,from,next) => {
+  window.scrollTo(0,0);
+})
 new Vue({
   router,
   render: h => h(App)
