@@ -24,10 +24,10 @@
             <a href="javascrip:;" @click="show_can()">{{canMsg}}</a>
           </div>
         </div>
-        <div class="admin-img5">
+        <!-- <div class="admin-img5"> 
           <img src="../../assets/111.jpg" />
           <a href="javascript:;">编辑图片</a>
-        </div>
+        </div>-->
       </div>
     </div>
     <!-- 二层 -->
@@ -197,7 +197,7 @@ label {
   height: 237px;
   border: 1px solid #dedede;
   padding: 0 18px;
-  margin-top: 20px;
+   margin-left:110.7px;
 }
 .first,
 .two,
@@ -255,10 +255,11 @@ input {
 
 .f2 {
   width: 758px;
-  height: 237px;
+  height: 187px;
   border: 1px solid #dedede;
   padding: 0 18px;
   margin-top: 20px;
+   margin-left:110.7px;
 }
 a {
   text-decoration: none;
