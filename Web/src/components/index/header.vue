@@ -28,13 +28,37 @@
               <li>
                   房东中心
               </li>
+<<<<<<< HEAD
+<<<<<<< HEAD
+              <li><a href=" " data-router=“adminorder/list”>订单管理</a ></li>
+<li><a href="javascript:;" data-router=“adminorder/settlement”>结算统计</a ></li>
+<li><a href="javascript:;" data-router=adminorder/baseinfor>房源信息</a ></li>
+<li><a href="javascript:;" data-router=“”>价格房态</a ></li>
+<li><a href="javascript:;" data-router=“Admin_to”>个人资料</a ></li>
+<li><a href="javascript:;" data-router=“adminorder/favorites”>我的收藏</a ></li>
+=======
+=======
 
+<<<<<<< HEAD
               <li><a href="javascript:;" data-router="adminorder/list">订单管理</a></li>
               <li><a href="javascript:;" data-router="adminorder/settlement">结算统计</a></li>
               <li><a href="javascript:;" data-router="adminorder/baseinfor">房源信息</a></li>
               <li><a href="javascript:;" data-router="">价格房态</a></li>
               <li><a href="javascript:;" data-router="adminorder/Admin_to">个人资料</a></li>
               <li><a href="javascript:;" data-router="adminorder/favorites">我的收藏</a></li>
+=======
+>>>>>>> 013e87392a2414857ea46ea57dca90fab7c367f0
+              <li><a href="javascript:;" data-router=“adminorder/list”>订单管理</a></li>
+              <li><a href="javascript:;" data-router=“adminorder/settlement”>结算统计</a></li>
+              <li><a href="javascript:;" data-router=adminorder/baseinfor>房源信息</a></li>
+              <li><a href="javascript:;" data-router=“”>价格房态</a></li>
+              <li><a href="javascript:;" data-router=“Admin_to”>个人资料</a></li>
+              <li><a href="javascript:;" data-router=“adminorder/favorites”>我的收藏</a></li>
+<<<<<<< HEAD
+>>>>>>> 0fdba2fbacca1bfec37f6468b04904c05f0d9708
+=======
+>>>>>>> 013e87392a2414857ea46ea57dca90fab7c367f0
+>>>>>>> c6821523327a905b5a150bd61e95f0d397bb2a0a
             </ul>
             <ul>
               <li>

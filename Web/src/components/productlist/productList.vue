@@ -163,7 +163,7 @@
     <!--商品列表 -->
     <div class="productBar">
       <product :productList="productList"></product>
-      <!-- <div class="productItem" v-for="(p ,i) of arr" :key="i">
+      <<div class="productItem" v-for="(p ,i) of arr" :key="i">
         <a class="divImg" href="javascript:;">
           <img src="../../../public/ChAFfVqqEhuATQSyAAzlNSICA1s060.JPG_Z_1200_800.jpg" alt />
         </a>
@@ -187,7 +187,7 @@
           <p>房东</p>
           <p>德莱文</p>
         </div>
-      </div> -->
+      </div> 
       <div class="more"><a href="javascript:;" @click="getmore">加载更多...</a></div>
       <!-- <button class="getbtn" @click="getmore">加载更多</button> -->
     </div>

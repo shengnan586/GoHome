@@ -133,7 +133,8 @@ export default {
 </script>
 <style scoped>
 #container {
-  width: 400px;
-  height: 300px;
+  width: 690px;
+  height: 400px;
+  margin-left:90px;
 }
 </style>

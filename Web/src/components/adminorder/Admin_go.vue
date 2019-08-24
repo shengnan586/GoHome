@@ -3,7 +3,7 @@
 <div>
     <div class=adminall>
         <div class=admin_top>
-             <h2>为出行计划攒住宿基金</h2>
+             <h2>为出行计划攒住宿积分</h2>
            <p>每成功邀请1位朋友注册，你们均可得500积分</p>
            <img src="../../assets/jifen.jpg" alt="">
         </div>
@@ -56,13 +56,14 @@ created() {
 <style scoped>
     .adminall{
          width:800px;
-        height:511px;
+        height:446px;
         border:1px solid #dedede;
          display:flex;
         flex-direction: column;
         text-align: center;
          background:url(../../assets/bei.png) 0 0 no-repeat;
          background-size:100%;
+         margin-left:110.7px;
     }
     .admin_top>h2{
         margin-top:20px;
