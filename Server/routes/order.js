@@ -47,4 +47,19 @@ router.get("/searchKey",(req,res)=>{
         }
     })
 })
+router.get("/prodetail",(req,res)=>{
+    var hid=req.query.hid;
+    
+    var sql="SELECT * FROM home_business_house WHERE id=? "
+    pool.query(sql,[hid],(err,result)=>{
+        if(err)throw err;
+       
+        if(result.length>0){
+           
+            res.send({code:200,data:result});
+        }else{
+            res.send("-1dsadsadas");
+        }
+    })
+})
 module.exports=router;

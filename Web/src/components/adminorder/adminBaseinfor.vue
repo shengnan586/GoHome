@@ -38,8 +38,8 @@
               </div>
             </div>
             <div class="handle">
-                <button class="fa_btn" >修改地址</button>
-              <button class="fa_btn" >继续发布</button>
+                <!-- <button class="fa_btn" >修改地址</button> -->
+              <button class="fa_btn"  @click="goon(item.id)">继续发布</button>
             </div>
           </div>
         </div>
@@ -55,7 +55,7 @@ import pagination from "../page/page";
 export default {
   data() {
     return {
-      userid: "", //当前登陆的用户
+      userid: sessionStorage.getItem("userid"), //当前登陆的用户
       isnav: "flex",
       total: 0, // 记录总条数
       pageSize: 0, // 每页显示条数
@@ -65,6 +65,9 @@ export default {
     };
   },
   methods: {
+    goon(hid){
+      this.$router.push({path: "/Publish", query: {key: hid}})
+    },
     pagechange(currentPage) {
       this.getList(currentPage);
       // ajax请求, 向后台发送 currentPage, 来获取对应的数据
@@ -117,25 +120,6 @@ ul, ol {
     padding: 0;
     overflow: hidden;
 }
-/* .tab_list ul {
-    border-bottom: 1px solid #bdbdbd;
-    display: flex;
-    justify-content:space-between;
-    margin: 0 auto;
-}
-.tab_list ul li.active {
-    background-color: #ff4081;
-    color: #fff;
-}
-.tab_list ul li {
-    display: inline-block;
-    width: 11%;
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-    background-color: #fafafa;
-    font-size: 14px;
-} */
 .order_list {
     margin: 0 auto;
 }
@@ -240,5 +224,8 @@ img, input, select, textarea, button, i {
     display: flex; 
     justify-content: center;
     margin-top:10px
+}
+table>tr>td{
+  line-height: 2;
 }
 </style>

@@ -274,8 +274,12 @@ alter table home_business_house_install add state int;
 alter table home_dic_apartment add hId int;
 /*瑞云加的*/
 alter table home_business_house add houseDESC varchar(500);
-
+alter table home_business_house add uid int;
 
 alter table home_business_house add isReleaseStatus int;
+
+
+
+
 
 

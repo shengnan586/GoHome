@@ -10,7 +10,7 @@
                 <div class="detail_right">
                     <ul class="support_list clearfix">
                         <li v-for="(item,i) of arr" :key="i"> 
-                            <img class="icon_supports" :src="'../../assets/icon/'+item[1]">
+                            <img class="icon_supports" :src="'/images/icon/'+item[1]">
                             {{item[0]}}
                         </li> <!--电视-->		
                     </ul>    
@@ -95,8 +95,19 @@ export default {
             ["牙具","toothbrush.png"],["香皂","soap.png"],["拖鞋","shoes.png"],
             ["手纸","papper.png"],["毛巾","tower.png"],["沐浴用品","acne.png"],
             ["无线网络","wify.png"],["有线网络","network.png"],
-            ["暖气","heater.png"],["电梯","lift.png"]]
+            ["暖气","heater.png"],["电梯","lift.png"]],
+            P_detail:[]
         }
+    },
+    created() {
+        var url="order/prodetail";
+        var hid= 1;//this.$route.params.id;
+        this.axios.get(url,{params:{hid}}).then(res=>{
+            this.P_detail=res.data.data[0];
+            console.log(this.P_detail)
+        }).catch(err=>{
+            console.log(err+2222);
+        })
     },
 
   components:{

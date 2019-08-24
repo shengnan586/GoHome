@@ -86,17 +86,32 @@
                   <span class="title" data-id="6">房源信息</span>
                 </router-link>
               </li>
+              <!---邀请码-->
               <li
                 data-id="7"
                 role="menuitem"
                 class="el-menu-item"
                 :class="{'is-active':isActive=='7'}"
               >
-                <router-link to="/adminorder/baseinfor" data-id="6">
-                  <i class="iconfont icon-gerenziliao1" data-id="6"></i>
+                <router-link to="/adminorder/Admin_to" data-id="7">
+                  <i class="iconfont icon-gerenziliao1" data-id="7"></i>
                   <span class="title" data-id="7">个人资料</span>
                 </router-link>
               </li>
+              <!--sdf-->
+              <!-- 个人资料 -->
+              <li
+                data-id="8"
+                role="menuitem"
+                class="el-menu-item"
+                :class="{'is-active':isActive=='8'}"
+              >
+                <router-link to="/adminorder/Admin_go" data-id="8">
+                  <i class="iconfont icon-gerenziliao1" data-id="8"></i>
+                  <span class="title" data-id="7">邀请码</span>
+                </router-link>
+              </li>
+              <!--  -->
             </ul>
           </div>
         </aside>
@@ -106,10 +121,12 @@
         </div>
       </section>
     </div>
+     <Footer></Footer>    
   </div>
 </template>
 <script>
 import header from "../index/header.vue";
+import footer from "../index/footer.vue";
 export default {
   data() {
     return {
@@ -122,7 +139,7 @@ export default {
     }
   },
   components: {
-    //Footer: footer,
+    Footer: footer,
     Header: header
   }
 };
@@ -136,7 +153,7 @@ a{
 .mg_center{
     margin-left: auto;
     margin-right: auto;
-    width: 1000px;
+    width: 80%;
 }
 .el-breadcrumb{
     font-size: 14px;
