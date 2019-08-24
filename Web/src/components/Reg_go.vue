@@ -32,7 +32,7 @@
         <input type="checkbox" />
         <a class="span_a" href="javascript:;">我已阅读并同意《xx用户协议》</a>
       </span>
-      <button class="reg_btn" @click="reg()">注册</button>
+      <button class="reg_btn" @keyup.13="reg" @click="reg">注册</button>
     </div>
   </div>
 </template>
@@ -61,6 +61,10 @@ export default {
     },
     upwd() {
       this.checkupwd();
+    },
+    /*回车键注册*/
+    reg(){
+      this.reg()
     }
   },
   methods: {
@@ -224,6 +228,17 @@ export default {
         return;
       }
     }
+  },
+  /*回车键注册*/
+  created() {
+    let that = this;
+    document.onkeypress = function(e) {
+      var keycode = document.all ? event.keyCode : e.which;
+      if (keycode == 13) {
+        that.reg();// 登录方法名
+         return false;
+      }
+    }
   }
   // mounted() {
   //   this.GetInviteCode();
@@ -232,7 +247,10 @@ export default {
 </script>
 <style scoped>
 .reg_top {
-  margin-top: 50px;
+  width:100%;
+        height:724px;
+        background:url(../assets/denglu.jpg) 0 0 no-repeat;
+         background-size:100%;
 }
 .reg_parent {
   width: 406px;
@@ -240,7 +258,7 @@ export default {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  background: #f7f7f7;
+  background: rgba(255,255, 255, 0.5);
   padding: 40px;
   padding-bottom: 60px;
 }
