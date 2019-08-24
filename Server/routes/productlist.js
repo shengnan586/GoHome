@@ -48,17 +48,22 @@ router.get("/GetProduct", (req, res) => {
     //     bigprice: (this.priceid + 1) * 300,//默认值300
     //     checkinDat: this.orderDate.start,//默认值undefined
     //     checkoutDate: this.orderDate.end//同上
-    if (rentalTypeId=="0") {
+    var arr3=[];
+    if (rentalTypeId!="0") {
         sql += " and house.rentalTypeId=?  "; //出租类型
+        arr3.push(rentalTypeId);
     }
     if(peopleNumber){
         sql +=" and house.peopleNumber=?  "; //人数
+        arr3.push(peopleNumber);
     }
     if(aId){
         sql +=" and house.aId=? "; //地区
+        arr3.push(aId);
     }
     if(bedroom){
         sql +=" and apartment.bedroom in("+bedroom+") "; //几居室
+        arr3.push(bedroom);
     }
     if(houseDESC){
         sql +=" and house.houseDESC like CONCAT('%',houseDESC,'%')"; //房源介绍--关键字
@@ -66,13 +71,23 @@ router.get("/GetProduct", (req, res) => {
     }
     if(smallprice&&bigprice){
         sql +=" and ((house.specialPrice between ? and ?) or (house.normalPrice between ? and ?) or (house.festivalPrice between ? and ?)) "; //价格
+        arr3.push(smallprice);
+        arr3.push(bigprice);
+        arr3.push(smallprice);
+        arr3.push(bigprice);
+        arr3.push(smallprice);
+        arr3.push(bigprice);
     }
     if(checkinDate&&checkoutDate){
         sql +=" and house.id not in (select hid from home_business_orderList where checkinDate>=? and checkoutDate<=?)  "; //时间
+        arr3.push(checkinDate);
+        arr3.push(checkoutDate);
     }
-    console.log(sql);
-    console.log(rentalTypeId,peopleNumber,aId,bedroom,houseDESC,smallprice,bigprice,smallprice,bigprice,smallprice,bigprice,checkinDate,checkoutDate);
-    pool.query(sql, [rentalTypeId,peopleNumber,aId,smallprice,bigprice,smallprice,bigprice,smallprice,bigprice,checkinDate,checkoutDate], (err, result) => {
+    // console.log(sql);
+    // console.log(rentalTypeId,peopleNumber,aId,bedroom,houseDESC,smallprice,bigprice,smallprice,bigprice,smallprice,bigprice,checkinDate,checkoutDate);
+    // [rentalTypeId,peopleNumber,aId,smallprice,bigprice,smallprice,bigprice,smallprice,bigprice,checkinDate,checkoutDate]
+    console.log("liry"+arr3);
+    pool.query(sql, arr3, (err, result) => {
         if (err) throw err;
         output.count = result.length;
         console.log(result.length);
@@ -80,7 +95,7 @@ router.get("/GetProduct", (req, res) => {
         sql += ` limit ?,?`;
         var arr=[output.pageSize * output.pno,output.pageSize];
         var arr2=[];
-        if(rentalTypeId=="0"){
+        if(rentalTypeId!="0"){
             arr2.push(rentalTypeId);
         }
         if(peopleNumber){

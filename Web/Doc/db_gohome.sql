@@ -270,13 +270,29 @@ alter table home_dic_type comment '�������͡��������
 /*宁宁加的--*/
 alter table home_business_house_install add state int;
 
-/*靳荣加的--*/
-alter table home_dic_apartment add hId int;
+
 /*瑞云加的*/
 alter table home_business_house add houseDESC varchar(500);
 alter table home_business_house add uid int;
-
+<<<<<<< HEAD
+=======
 alter table home_business_house add isReleaseStatus int;
+
+
+/*宁宁加的ar表*/
+create table home_business_house_img1
+(
+   id                   int not null auto_increment comment 'id',
+   hId                  int comment '����id',
+   ImgUrl               varchar(50) comment 'ͼƬURL',
+   ImgSize              varchar(10) comment 'ͼƬ��С��sm/md/lg',
+   primary key (id)
+);
+
+
+
+>>>>>>> 013e87392a2414857ea46ea57dca90fab7c367f0
+
 
 
 

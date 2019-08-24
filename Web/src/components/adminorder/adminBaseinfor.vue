@@ -24,7 +24,7 @@
                   <table>
                     <tr>
                       <td colspan="2">
-                        <span>房源标题：{{item.houseTitle}}平方米</span>
+                        <span>房源标题：{{item.houseTitle}}&nbsp;{{item.roomSize}}平方米</span>
                       </td>
                     </tr>
                     <tr>
@@ -39,7 +39,7 @@
             </div>
             <div class="handle">
                 <!-- <button class="fa_btn" >修改地址</button> -->
-              <button class="fa_btn"  @click="goon(item.id)">继续发布</button>
+              <button class="fa_btn"  v-show="item.isReleaseStatus==0"   @click="goon(item.id)">继续发布</button>
             </div>
           </div>
         </div>

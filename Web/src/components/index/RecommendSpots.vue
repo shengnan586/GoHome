@@ -7,7 +7,7 @@
     <div class="spots-list">
       <ul>
         <li>
-          <img src="../../assets/images/gugong.jpg" :class="{imgscale:id=='1'&&isShow}">
+          <img src="../../assets/images/gugong.jpg" :class="{imgscale:id=='1'&&isShow}" />
           <div :class="{'font-color':id=='1'&&isShow}">
             <h1>故宫</h1>
             <p>The Imperial Palace</p>
@@ -15,8 +15,8 @@
           <div :class="{height:id=='1'&&isShow}"></div>
           <div id="1" class="mask" @mouseenter="enter" @mouseleave="leave"></div>
         </li>
-      <li>
-          <img src="../../assets/images/tiantan.jpeg" :class="{imgscale:id=='2'&&isShow}">
+        <li>
+          <img src="../../assets/images/tiantan.jpeg" :class="{imgscale:id=='2'&&isShow}" />
           <div :class="{'font-color':id=='2'&&isShow}">
             <h1>天坛</h1>
             <p>Temple of Heaven</p>
@@ -24,8 +24,8 @@
           <div :class="{height:id=='2'&&isShow}"></div>
           <div id="2" class="mask" @mouseenter="enter" @mouseleave="leave"></div>
         </li>
-           <li>
-          <img src="../../assets/images/changcheng.jpg" :class="{imgscale:id=='3'&&isShow}">
+        <li>
+          <img src="../../assets/images/changcheng.jpg" :class="{imgscale:id=='3'&&isShow}" />
           <div :class="{'font-color':id=='3'&&isShow}">
             <h1>长城</h1>
             <p>The Great Wall</p>
@@ -33,8 +33,8 @@
           <div :class="{height:id=='3'&&isShow}"></div>
           <div id="3" class="mask" @mouseenter="enter" @mouseleave="leave"></div>
         </li>
-           <li>
-          <img src="../../assets/images/yiheyuan.jpg" :class="{imgscale:id=='4'&&isShow}">
+        <li>
+          <img src="../../assets/images/yiheyuan.jpg" :class="{imgscale:id=='4'&&isShow}" />
           <div :class="{'font-color':id=='4'&&isShow}">
             <h1>颐和园</h1>
             <p>Temple of Heaven</p>
@@ -50,33 +50,34 @@
 export default {
   data() {
     return {
-      isShow:false,
-      id:""
-    }
+      isShow: false,
+      id: ""
+    };
   },
   methods: {
-    enter(e){
+    enter(e) {
       console.log(1);
-      this.isShow=true;
-      this.id=e.target.id;
+      this.isShow = true;
+      this.id = e.target.id;
     },
-    leave(e){
+    leave(e) {
       console.log(2);
-      this.isShow=false;
-      this.id="";
+      this.isShow = false;
+      this.id = "";
     }
-  },
-}
+  }
+};
 </script>
 <style scoped>
-h1{
-  margin:0;
+h1 {
+  margin: 0;
 }
   .spots-txt{
     width:1240px;
     text-align: center;
     padding:80px;
     font-size: 22px;
+    margin: auto;
   }
   .spots-txt h1{
     display: flex;

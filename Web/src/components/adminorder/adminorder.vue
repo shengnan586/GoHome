@@ -13,7 +13,7 @@
           <span class="el-breadcrumb__inner">
             <a href="javascript:;">订单列表</a>
           </span>
-        </span> -->
+        </span>-->
       </div>
       <section class="el-container">
         <!-- 左边 -->
@@ -108,7 +108,7 @@
               >
                 <router-link to="/adminorder/Admin_go" data-id="8">
                   <i class="iconfont icon-gerenziliao1" data-id="8"></i>
-                  <span class="title" data-id="7">邀请码</span>
+                  <span class="title" data-id="8">邀请码</span>
                 </router-link>
               </li>
               <!--  -->
@@ -121,7 +121,7 @@
         </div>
       </section>
     </div>
-     <Footer></Footer>    
+    <Footer></Footer>
   </div>
 </template>
 <script>
@@ -146,112 +146,118 @@ export default {
 </script>
 <style scoped>
 @import url("../../assets/css/font/iconfont.css");
-body{margin: 0;padding:0;}
-a{
-    text-decoration: none;
+body {
+  margin: 0;
+  padding: 0;
 }
-.mg_center{
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
+a {
+  text-decoration: none;
 }
-.el-breadcrumb{
-    font-size: 14px;
-    line-height: 1;
+.mg_center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 }
-.el-breadcrumb::after, .el-breadcrumb::before{
-    display: table;
-    content: "";
+.el-breadcrumb {
+  font-size: 14px;
+  line-height: 1;
 }
-.el-breadcrumb__item{
-    float: left;
+.el-breadcrumb::after,
+.el-breadcrumb::before {
+  display: table;
+  content: "";
 }
-.el-breadcrumb__inner{
-    color:#606266;
+.el-breadcrumb__item {
+  float: left;
 }
-.el-breadcrumb__inner.sy a{
-    color: #bdc3c7;
+.el-breadcrumb__inner {
+  color: #606266;
 }
-.iconfont.icon-xiangyoujiantou{
-    margin-left: 15px;
-    font-size: 12px !important;
-    color: #bdc3c7;
+.el-breadcrumb__inner.sy a {
+  color: #bdc3c7;
 }
-.el-breadcrumb__item{
-    float: left;
+.iconfont.icon-xiangyoujiantou {
+  margin-left: 15px;
+  font-size: 12px !important;
+  color: #bdc3c7;
+}
+.el-breadcrumb__item {
+  float: left;
 }
 
-.el-breadcrumb__inner>a{
-    margin-left: 15px;
-    font-weight: 400;
-    color: #606266;
-    cursor: text;
+.el-breadcrumb__inner > a {
+  margin-left: 15px;
+  font-weight: 400;
+  color: #606266;
+  cursor: text;
 }
-.el-breadcrumb::after{
-    clear: both;
+.el-breadcrumb::after {
+  clear: both;
 }
 .el-container {
-    margin-top: 20px;
+  margin-top: 20px;
 }
-.el-aside{
-    width: 20%;
-    /* 170px; */
-    overflow: hidden;
-    font-weight: 300;
-    outline: none;
-    background-color: #ededed;
+.el-aside {
+  width: 20%;
+  /* 170px; */
+  overflow: hidden;
+  font-weight: 300;
+  outline: none;
+  background-color: #ededed;
 }
-.menu_web .el-menu{
-    border: 0;
+.menu_web .el-menu {
+  border: 0;
 }
-.el-menu{
-    border-right: solid 1px #e6e6e6;
-    list-style: none;
-    position: relative;
-    margin: 0;
-    padding-left: 0;
+.el-menu {
+  border-right: solid 1px #e6e6e6;
+  list-style: none;
+  position: relative;
+  margin: 0;
+  padding-left: 0;
 }
-.menu_web .el-menu-item.is-active{
-    background-color: rgb(57,181,71,.8);
-    border-radius: 5px;
+.menu_web .el-menu-item.is-active {
+  background-color: rgb(57, 181, 71, 0.8);
+  border-radius: 5px;
 }
 
-.menu_web .el-menu-item.is-active>a,.menu_web .el-menu-item.is-active .iconfont{
-    color:#fff;
+.menu_web .el-menu-item.is-active > a,
+.menu_web .el-menu-item.is-active .iconfont {
+  color: #fff;
 }
 .el-menu-item {
-    font-size: 14px;
-    color: #303133;
-    padding: 0 20px;
-    cursor: pointer;
-    -webkit-transition: border-color .3s,background-color .3s,color .3s;
-    transition: border-color .3s,background-color .3s,color .3s;
-    box-sizing: border-box;
+  font-size: 14px;
+  color: #303133;
+  padding: 0 20px;
+  cursor: pointer;
+  -webkit-transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+  box-sizing: border-box;
 }
 /* .title{
     vertical-align: middle;
 } */
-.el-menu-item, .el-submenu__title {
-    height: 56px;
-    line-height: 56px;
-    position: relative;
-    -webkit-box-sizing: border-box;
-    white-space: nowrap;
-    list-style: none;
+.el-menu-item,
+.el-submenu__title {
+  height: 56px;
+  line-height: 56px;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  white-space: nowrap;
+  list-style: none;
 }
 .el-menu-item > a {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    vertical-align:middle;
-    color:#333;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  color: #333;
 }
-ul.el-menu>li{
-    padding-left: 25%;
-    color: rgb(44, 62, 80) !important;
+ul.el-menu > li {
+  padding-left: 25%;
+  color: rgb(44, 62, 80) !important;
 }
-.iconfont{
-    font-size: 20px !important;
-    color: #000;
+.iconfont {
+  font-size: 20px !important;
+  color: #000;
 }
 </style>

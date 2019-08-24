@@ -27,16 +27,18 @@ import adminbaseinfor from "./components/adminorder/adminBaseinfor.vue"
 import adminorder from "./components/adminorder/adminorder.vue"
 import Admin_go from "./components/adminorder/Admin_go.vue"
 import Admin_to from "./components/adminorder/Admin_to.vue"
+import detail from "./components/productlist/detail"
 
 Vue.use(Router)
 export default new Router({
   routes: [
     {path:'/',component:index},
     {path:'/index',component:index},
+    {path:'/detail',component:detail},
     {path:'/order',component:Order},
     {path:'/price',component:Price},
     {path:'/photos',component:Photos},
-    {path:'/productList',component:productList},
+    {path:'/productList',name: 'ProductList',component:productList},
     {path:'/prodetail',component:prodetail},
 
     

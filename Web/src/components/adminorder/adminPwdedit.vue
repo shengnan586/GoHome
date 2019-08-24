@@ -7,7 +7,7 @@
           <table>
             <tr>
               <td class="g_lists">已验证手机：</td>
-              <td colspan="2" class="g_ft14">{{this.userphone}}</td>
+              <td colspan="2" class="g_ft14">{{userphone}}</td>
             </tr>
             <tr>
               <td class="g_lists">图片验证码：</td>
@@ -160,12 +160,11 @@ export default {
         if (!res1) {
           return;
         } else if (this.yanzhengmaMsg || this.newUpwdMsg || this.oldUpwdMsg) {
-          console.log("111111");
           return;
         } else {
-          var id = "1"; //110 记得以后改成动态的
-          var upwd = this.upwd;
-          if (id != "" && id != "underfind") {
+          var id = this.userid; //110 记得以后改成动态的
+          var upwd = this.newupwd;
+          if (id) {
             var obj = { upwd, id };
             this.axios.post("admin/EditUpwd", obj).then(res => {
               if (res.data.code == 1) {

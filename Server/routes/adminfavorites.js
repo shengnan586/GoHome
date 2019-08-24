@@ -4,7 +4,7 @@ const pool = require("../pool");
 
 //获取通知列表
 router.get("/GetCollectlist", (req, res) => {
-    var id = req.query.id;
+    var id = req.query.userid;
     var output = {
         count: 0, //一共有多少条
         pageSize: 10,  //每个页面显示几条
@@ -34,15 +34,18 @@ router.get("/GetCollectlist", (req, res) => {
     }
     sql += "  GROUP BY collect.collectime ORDER BY collect.collectime desc  ";
     pool.query(sql, [id], (err, result) => {
-         if (err) throw err;
-            output.count = result.length;
-            output.pageCount = Math.ceil(output.count / output.pageSize);
-            sql += ` limit ?,?`;
-            //console.log(sql);
-            pool.query(sql, [id||output.pageSize * output.pno,id? output.pageSize * output.pno:output.pageSize,output.pageSize], (err, result) => {
-                output.data = result;
-                res.send(output);
-            })
+        if (err) throw err;
+        output.count = result.length;
+        output.pageCount = Math.ceil(output.count / output.pageSize);
+        sql += ` limit ?,?`;
+        var arr = [output.pageSize * output.pno, output.pageSize];
+        if (id) {
+            arr.unshift(id);
+        }
+        pool.query(sql, arr, (err, result) => {
+            output.data = result;
+            res.send(output);
+        })
     })
 })
 
@@ -51,11 +54,11 @@ router.get("/GetInstallationByhid", (req, res) => {
     var hid = req.query.hid;
     var sql = `  select home_dic_installation.installType,home_dic_installation.installName from home_business_house_install INNER join 
     home_dic_installation on home_business_house_install.installId=home_dic_installation.id`;
-    sql +=" where home_business_house_install.hId=?  ";
+    sql += " where home_business_house_install.hId=?  ";
     pool.query(sql, [hid], (err, result) => {
         if (err) throw err;
         if (result.length > 0) {
-            res.send({ code: 1, data:result});
+            res.send({ code: 1, data: result });
         } else {
             res.send({ code: -1, msg: "暂无设施" });
         }
@@ -67,12 +70,12 @@ router.get("/GetBedByhid", (req, res) => {
     var hid = req.query.hid;
     var sql = `  select home_dic_bed.* from home_business_house_bed inner join home_dic_bed on home_business_house_bed.bid=
     home_dic_bed.id `;
-    sql +=" where home_business_house_bed.hid=?  ";
+    sql += " where home_business_house_bed.hid=?  ";
     pool.query(sql, [hid], (err, result) => {
         if (err) throw err;
         if (result.length > 0) {
             console.log(result);
-            res.send({ code: 1, data:result});
+            res.send({ code: 1, data: result });
         } else {
             res.send({ code: -1, msg: "暂无设施" });
         }

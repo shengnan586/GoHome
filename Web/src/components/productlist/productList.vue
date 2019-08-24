@@ -32,42 +32,12 @@
               <i class="iconfont icon-rili"></i>
             </div>
           </li>
-        </div>
-    <!--商品列表 --> 
-
-        <div class="productBar">
-        <ul>
-            <div class="productItem" v-for="(p ,i) of arr" :key="i"  >
-                <div class="divImg" >
-                    <img src="../../../public/ChAFfVqqEhuATQSyAAzlNSICA1s060.JPG_Z_1200_800.jpg" alt="">
-                </div>
-                <div class="divMsg" >
-                    <div href=":;" id="aTitle">{{p.houseTitle}}</div>
-                    <h5>整套公寓·可住{{p.peopleNumber}}人</h5>
-                    <p>
-                    <span>￥{{p.cashMoney}}</span> 
-                    每晚</p>
-                    <div>
-                        <span>1人fd居</span>
-                        <span>1人d居</span>
-                        <span>1人居</span>
-                    </div>
-                </div>
-                <div class="divHost">
-                    <div >
-                        <img src="../../../public/Draven.png" alt="">
-                    </div>
-                    <p>房东</p>
-                    <p>德莱文</p>
-
-          </li>
           <li>
             <div>
               <div class="city" @mouseenter="Numenter" @mouseleave="Numleave">
                 <div>
                   {{NumselectedValue}}人
                   <span class="icon iconfont icon-xiajiantou"></span>
-
                 </div>
                 <ul class="city-area" v-show="Numshow" @click="selectedNum">
                   <li v-for="(n,i) of 10" :key="i" :data-value="n">
@@ -77,7 +47,7 @@
               </div>
             </div>
           </li>
-         </ul>
+        </ul>
         <button id="searchBtn" @click="searchBtn">开始搜索</button>
       </div>
       <div class="search-tab">
@@ -229,42 +199,6 @@ import layDate from "../laydate/laydate.vue";
 import product from './product';
 export default {
 
-    // data(){
-    //     return{
-    //         arr:[],
-    //         n:7,
-    //         m:4,
-    //         l:1,
-    //         city:1000,
-    //         pnum:0,
-    //         searchKey:""
-           
-            
-    //     }
-    // },
-    // methods: {
-        
-    //     // 搜索条
-        
-    //     searchBtn(){
-    //         var url="order/proSearch"
-    //         var aid=this.city==1000?null:this.city;
-    //         var pnum=this.pnum;
-            
-    //         this.axios.get(url,{params:{aid,pnum}}).then()
-    //     },
-    //     // 查询全部商品
-    //     loadmore(){
-    //         var url="order/productlist"
-    //         var start=this.arr.length;
-    //         var count=5; 
-            
-    //         this.axios.get(url,{params:{start,count}}).then(res=>{
-    //         if(res.data.code==-1){
-    //             console.log(-1);
-    //                 alert("已经到底了");
-
-
   data() {
     return {
       areaList: [],
@@ -346,7 +280,6 @@ export default {
           new_apartment.push(i);
         }
       }
-      console.log(this.currentPage);
       var params = {
         currentPage:this.currentPage,//当前页码
         rentalTypeId: this.chuzuid, //不选择默认0
@@ -369,6 +302,12 @@ export default {
     }
   },
   created() {
+    this.selectedText=this.$route.query.selectedText;
+    this.selectedAreaId=this.$route.query.selectedAreaId;
+    this.orderDate=this.$route.query.orderDate;
+    if(!this.orderDate){
+      this.orderDate={};
+    }
     this.load();
     this.loadmore();
   },

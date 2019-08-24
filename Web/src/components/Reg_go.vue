@@ -9,7 +9,7 @@
         已有账号 ?
         <a @click="reg_to" href="javascript:;">登录</a>
       </div>
-      <input  type="text" @blur="bluruname" placeholder="请填写用户名" />
+      <input type="text" @blur="bluruname" v-model="username" placeholder="请填写用户名" />
       <div class="reg_code">{{spanusermsg}}</div>
 
       <input @blur="blurphone" v-model="phone" type="text" placeholder="建议使用常用手机号" />
@@ -24,9 +24,9 @@
 
       <input @blur="blurupwd" v-model="upwd" class="reg_upwd" type="text" placeholder="请输入6-16位密码" />
       <div class="reg_up">{{divMsg}}</div>
-<!-- @blur="blurporned" -->
-      <input  type="text" placeholder="请填写邀请码" />
-      <div class="reg_code">{{spanMsg}}</div>
+      <!-- @blur="blurporned" -->
+      <input type="text" @blur="blurporned" v-model="porned" placeholder="请填写邀请码" />
+      <div class="reg_code">{{spanpornedMsg}}</div>
 
       <span class="reg_span">
         <input type="checkbox" />
@@ -44,12 +44,18 @@ export default {
       upwd: "",
       spanMsg: "",
       divMsg: "",
-      porn: "", //验证码
-      spanusermsg:"",//
+      porn: "", //邀请码
+      spanusermsg: "", //用户名提示
+      username: "", //用户名信息
+      porned: "", //被邀请码
+      spanpornedMsg: "" //验证码提示
     };
   },
   watch: {
     //监控哪个变量，函数名就要和变量名一致！
+    username() {
+      this.checkusername();
+    },
     phone() {
       this.checkphone();
     },
@@ -58,9 +64,44 @@ export default {
     }
   },
   methods: {
+    //验证邀请码
+    blurporned() {
+      return new Promise((resolve, reject) => {
+        if (this.porned.trim()) {
+          var url = "user/Getporned";
+          this.axios(url, { params: { porned: this.porned } }).then(res => {
+            if (res.data.code == -1) {
+              this.spanpornedMsg = "邀请码可用";
+              resolve(true);
+            } else {
+              this.spanpornedMsg = "邀请码错误";
+              resolve(false);
+            }
+          });
+        } else {
+          resolve(true);
+        }
+      });
+    },
     //检测用户名是否重复
-    bluruname(){
-
+    bluruname() {
+      return new Promise((resolve, reject) => {
+        if (this.username.trim() == "") {
+          this.spanusermsg = "用户名不能为空";
+          resolve(false);
+        } else {
+          var url = "user/GetUsername";
+          this.axios(url, { params: { uname: this.username } }).then(res => {
+            if (res.data.code == -1) {
+              this.spanusermsg = "用户名已存在";
+              resolve(true);
+            } else {
+              this.spanusermsg = "用户名可用";
+              resolve(false);
+            }
+          });
+        }
+      });
     },
     reg_to() {
       this.$router.push("/Login_go");
@@ -90,11 +131,16 @@ export default {
         }
       });
     },
+    checkusername() {
+      if (!this.username.trim()) {
+        this.spanusermsg = "用户名不能为空";
+        return false;
+      }
+    },
     checkphone() {
       var reg = /^1[3-9]\d{9}$/;
       //如果验证通过！
       if (this.phone) {
-        //console.log(this.phone);
         if (reg.test(this.phone) == true) {
           this.spanMsg = "";
           return true;
@@ -146,31 +192,34 @@ export default {
         });
       });
     },
+    //注册
     reg() {
       if (this.checkphone() && this.checkupwd()) {
-        this.GetInviteCode().then(res1 => {
-          console.log(res1);
-          if (!res1) {
-            return;
-          } else {
-            var url = "user/reg";
-            this.axios
-              .post(url, {
-                phone: this.phone,
-                upwd: this.upwd,
-                porn: this.porn
-              })
-              .then(res => {
-                if (res.data.code == 1) {
-                  console.log("注册成功");
-                  this.$router.push("/Login_go");
-                }
-                if (res.data.code == -1) {
-                  console.log("注册失败");
-                }
-              });
-          }
-        });
+        Promise.all([this.GetInviteCode(), this.blurporned()])
+          .then(result => {
+            if (result) {
+              var url = "user/reg";
+              this.axios
+                .post(url, {
+                  username: this.username,
+                  phone: this.phone,
+                  upwd: this.upwd,
+                  porn: this.porn,
+                  porned:this.porned,
+                  point:500
+                })
+                .then(res => {
+                  if (res.data.code == 1) {
+                    console.log("注册成功");
+                    this.$router.push("/Login_go");
+                  }
+                  if (res.data.code == -1) {
+                    console.log("注册失败");
+                  }
+                });
+            }
+          })
+          .catch({});
       } else {
         return;
       }
@@ -187,7 +236,7 @@ export default {
 }
 .reg_parent {
   width: 406px;
-  height: 450px;
+  height: 500px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

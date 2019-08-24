@@ -265,6 +265,7 @@
 export default {
   data() {
     return {
+      uid:sessionStorage.getItem("userid"),//用户名
       hid1:0,
       address: "", //房源总地址
       err_address: false, //房源总地址提示信息
@@ -457,6 +458,7 @@ export default {
           kitchen: this.kitchen,
           balcony: this.balcony,
           bId: this.bed_btn,
+          uid:this.uid
         };
         if (this.hid==0) {
           this.axios.post("/addhouse/addhouse", obj).then(result => {
