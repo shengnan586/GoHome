@@ -1,5 +1,6 @@
 const express=require("express");
 const router=express.Router();
+const query=require("../query");
 const pool=require("../pool");
 
 router.post("/order",(req,res)=>{
@@ -47,19 +48,43 @@ router.get("/searchKey",(req,res)=>{
         }
     })
 })
+
 router.get("/prodetail",(req,res)=>{
     var hid=req.query.hid;
-    
+    var data = [];
     var sql="SELECT * FROM home_business_house WHERE id=? "
-    pool.query(sql,[hid],(err,result)=>{
-        if(err)throw err;
-       
+    query(sql,[hid])
+    .then(result=>{
         if(result.length>0){
-           
-            res.send({code:200,data:result});
-        }else{
-            res.send("-1dsadsadas");
+           data = result;
+           sql = "select installName from home_dic_installation where id in (select installId from home_business_house_install where hId = ? and state = 1)";
+           query(sql,[hid])
+           .then(result=>{
+               if(result.length > 0){
+                   var installName = [];
+                   for(var item of result){
+                       installName.push(item.installName)
+                   }
+                   data[0].installName = installName;
+                   sql = "select bedType from home_dic_bed where id in (select bId from home_business_house_bed  where hId = ?)";
+                   query(sql,[hid])
+                   .then(result=>{
+                       if(result.length > 0){
+                            var bed = [];
+                            for(var item of result){
+                                bed.push(item.bedType)
+                            }
+                            data[0].bed = bed;
+                            res.send({code:1,data:data})
+                       }else{
+                           res.send({code:-1})
+                       }
+                    
+                   })
+               }
+           })
         }
     })
+        
 })
 module.exports=router;
