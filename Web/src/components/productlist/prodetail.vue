@@ -108,7 +108,8 @@ export default {
     },
     created() {
         var url="order/prodetail";
-        var hid= 1;//this.$route.params.id;
+        var hid= 1;
+        //this.$route.params.id;
         this.axios.get(url,{params:{hid}}).then(res=>{
             var dd=res.data.data[0];
             this.title=dd.houseTitle;
