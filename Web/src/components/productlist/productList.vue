@@ -163,7 +163,7 @@
     <!--商品列表 -->
     <div class="productBar">
       <product :productList="productList"></product>
-      <!-- <div class="productItem" v-for="(p ,i) of arr" :key="i">
+      <!--<div class="productItem" v-for="(p ,i) of arr" :key="i">
         <a class="divImg" href="javascript:;">
           <img src="../../../public/ChAFfVqqEhuATQSyAAzlNSICA1s060.JPG_Z_1200_800.jpg" alt />
         </a>
@@ -288,10 +288,11 @@ export default {
         bedroom: new_apartment.toString(), //
         houseDESC: this.searchKey,//默认值空
         smallprice: this.priceid * 300,//默认值0
-        bigprice: (this.priceid + 1) * 300,//默认值300
+        bigprice: (Number(this.priceid) + 1) * 300,//默认值300
         checkinDat: this.orderDate.start,//
         checkoutDate: this.orderDate.end
       };
+      console.log(params);
       this.axios.get(url, { params }).then(res=>{
         this.productList=this.productList.concat(res.data.data);
       }).catch(err=>console.log(err));

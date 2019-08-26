@@ -23,11 +23,12 @@
             <input v-model="gemail" v-else type="text" />
             <a href="javascrip:;" @click="show_can()">{{canMsg}}</a>
           </div>
+          <div class="jifen">
+            <label>住宿积分:</label>
+            <span>{{gpoint}}&nbsp;积分</span>
+          </div>
         </div>
-        <div class="admin-img5">
-          <img src="../../assets/111.jpg" />
-          <a href="javascript:;">编辑图片</a>
-        </div>
+         
       </div>
     </div>
     <!-- 二层 -->
@@ -48,12 +49,18 @@
         <input v-model="gcard" v-else placeholder="请输入身份证号" type="text" />
       </div>
     </div>
+  <Alert :display="display" :prompt="prompt"></Alert>
   </div>
 </template>
 <script>
+import Alert from "../Alert"
 export default {
+  components:{Alert},
   data() {
     return {
+      display:'none',
+      prompt:'',
+      d1:0,
       show: true,
       word: true,
       three: true,
@@ -66,23 +73,25 @@ export default {
       gphone: "",
       gemail: "",
       guserName: "",
-      gcard: ""
+      gcard: "",
+      gpoint:""
     };
   },
   methods: {
-    /*从数据库请求到用户名 真实姓名 手机号 身份证号*/
+    /*从数据库请求到用户名 真实姓名 手机号 身份证号 积分*/
 
     load() {
       var url = "/user/admin_to";
       this.axios
         .get(url, { params: { id: sessionStorage.getItem("userid") } })
         .then(res => {
-          //console.log(res)
+          console.log(res)
           this.gname = res.data.result[0].UserName;
           this.gphone = res.data.result[0].phone;
           this.guserName = res.data.result[0].realName;
           this.gcard = res.data.result[0].cardID;
           this.gemail = res.data.result[0].email;
+          this.gpoint=res.data.result[0].point;
         });
     },
     // 修改数据请求服务器
@@ -102,15 +111,23 @@ export default {
     showCount() {
       if (this.show == true) {
         this.show = false;
-        this.msg = "保存";
+        this.msg = "保存";      
       } else {
-        this.show = true;
+        if(this.msg == "保存"){
+        var reg = /\d{3,12}/;
+        if(reg.test(this.gname)==false){
+         // console.log("hhh");
+          this.prompt="用户名格式不正确";
+          this.display='block'+(this.d1++); 
+        }
+         this.show = true;
         this.msg = "编辑";
       }
-      var obj = {
+        var obj = {
         UserName: this.gname
       };
       this.sendRequest(obj);
+      }
     },
     /* two的显示隐藏  手机号*/
     showBtn() {
@@ -118,13 +135,21 @@ export default {
         this.word = false;
         this.showMsg = "保存";
       } else {
-        this.word = true;
+        if(this.showMsg == "保存"){
+        var reg = /^1[3-9]\d{9}$/;
+        if(reg.test(this.gphone)==false){
+           console.log("hhh");
+          this.prompt="手机号格式不正确";
+          this.display='block'+(this.d1++);  
+        }
+         this.word = true;
         this.showMsg = "编辑";
       }
-      var obj = {
+        var obj = {
         phone: this.gphone
       };
       this.sendRequest(obj);
+      }  
     },
     /*three显示隐藏  //邮箱 */
     show_can() {
@@ -132,13 +157,21 @@ export default {
         this.three = false;
         this.canMsg = "保存";
       } else {
-        this.three = true;
+        if(this.canMsg == "保存"){
+        var reg =/^[0-9a-z_]+@(([0-9a-z]+)[.]){1,2}[a-z]{2,3}$/;
+        if(reg.test(this.gemail)==false){
+           console.log("hhh");
+          this.prompt="邮箱格式不正确";
+          this.display='block'+(this.d1++);  
+        }
+         this.three = true;
         this.canMsg = "修改";
       }
-      var obj = {
+        var obj = {
         email: this.gemail
       };
       this.sendRequest(obj);
+      }
     },
     //真实姓名 和身份证号
     show_title() {
@@ -146,15 +179,16 @@ export default {
       if (this.two_name == true) {
         this.two_name = false;
         this.realmsg="保存"
-      } else {
+      } else{
         this.realmsg="修改"
         this.two_name = true;
-      }
+     
       var obj = {
         realName: this.guserName,
         cardID:this.gcard
       };
       this.sendRequest(obj)
+    }
     }
   },
   created() {
@@ -166,6 +200,10 @@ export default {
 <!-- 以下是样式-->
 <style scoped>
 /*以下是f1的样式*/
+.jifen>span{
+  margin-left:20px;
+  color:#f05b72;
+}
 h4 {
   height: 50px;
   line-height: 50px;
@@ -197,7 +235,7 @@ label {
   height: 237px;
   border: 1px solid #dedede;
   padding: 0 18px;
-  margin-top: 20px;
+   margin-left:110.7px;
 }
 .first,
 .two,
@@ -255,10 +293,11 @@ input {
 
 .f2 {
   width: 758px;
-  height: 237px;
+  height: 187px;
   border: 1px solid #dedede;
   padding: 0 18px;
   margin-top: 20px;
+   margin-left:110.7px;
 }
 a {
   text-decoration: none;

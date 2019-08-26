@@ -125,6 +125,9 @@ export default {
         this.word[i].isActive = true;
         this.word[i].position = this.word[i].active;
       }
+      if(!sessionStorage.getItem("userid")){
+        this.$router.push("/Login_go");
+      }
     },
     methods: {
       //只有当字体为绿色时才能点击切换组件

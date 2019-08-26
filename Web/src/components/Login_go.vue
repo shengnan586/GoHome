@@ -1,5 +1,6 @@
 <!--这是登录页面-->
 <template>
+    <div class="login_login">
         <div class="login_top">
             <div class="login_parent">
                 <div class="login_log">登录</div>
@@ -8,17 +9,18 @@
                 <input v-model="phone" type="text"  placeholder="请输入手机号">
                 <div class="login_phone">{{spanMsg}}</div>
                 
-                <input v-model="upwd"  type="text" placeholder="请输入密码">
+                <input v-model="upwd"  type="password" placeholder="请输入密码">
                 <div class="login_upwd">{{divMsg}}</div>
 
                 <div class="login_forget">
                     <label><input type="checkbox">一周内免登录</label>
                     <a class="login_for" style="color:#006837" href="javascript:;">忘记密码</a> 
                 </div>
-                <button class="login_btn" @click="login">登录</button> 
+                <button class="login_btn"  @keyup.13="login" @click="login">登录</button> 
                 <div style="display:none" class="login_num">手机验证码登录</div>
             </div>
         </div>
+    </div>
 </template>
 <script>
 export default {
@@ -38,8 +40,11 @@ export default {
     },
      upwd(){
     this.checkupwd();
+    },
+    /*以下是回车*/
+    login(){
+      this.login();
     }
-
   },
   methods:{
       login_to(){
@@ -108,15 +113,29 @@ export default {
                 
         }
       }
+    },
+    /*以下是回车登录*/
+     created() {
+    let that = this;
+    document.onkeypress = function(e) {
+      var keycode = document.all ? event.keyCode : e.which;
+      if (keycode == 13) {
+        that.login();// 登录方法名
+         return false;
+      }
     }
+  }
   
 }
 
 </script>
 <style scoped>
     *{margin:0;padding:0;}
-    .login_top{
-        margin-top:50px;
+    .login_login{
+         width:1430px;
+        height:807px;
+        background:url(../assets/denglu.jpg) 0 0 no-repeat;
+         background-size:100%;
     }
     .login_parent{
          padding:40px;
@@ -127,7 +146,7 @@ export default {
         margin:0 auto;
         display:flex;
        flex-direction: column;
-       background:#F7F7F7;
+       background:rgba(255,255, 255, 0.5);
     }
 
     .login_parent>input{

@@ -28,13 +28,12 @@
               <li>
                   房东中心
               </li>
-
-              <li><a href="javascript:;" data-router=“adminorder/list”>订单管理</a></li>
-              <li><a href="javascript:;" data-router=“adminorder/settlement”>结算统计</a></li>
-              <li><a href="javascript:;" data-router=adminorder/baseinfor>房源信息</a></li>
-              <li><a href="javascript:;" data-router=“”>价格房态</a></li>
-              <li><a href="javascript:;" data-router=“Admin_to”>个人资料</a></li>
-              <li><a href="javascript:;" data-router=“adminorder/favorites”>我的收藏</a></li>
+              <li><a href="javascript:;" data-router="adminorder/list">订单管理</a></li>
+              <li><a href="javascript:;" data-router="adminorder/settlement">结算统计</a></li>
+              <li><a href="javascript:;" data-router="adminorder/baseinfor">房源信息</a></li>
+              <li><a href="javascript:;" data-router="">价格房态</a></li>
+              <li><a href="javascript:;" data-router="adminorder/Admin_to">个人资料</a></li>
+              <li><a href="javascript:;" data-router="adminorder/favorites">我的收藏</a></li>
             </ul>
             <ul>
               <li>
@@ -42,7 +41,7 @@
               </li>
               <li><a href="javascript:;" data-router="adminorder/list">我的订单</a></li>
               <li><a href="javascript:;" data-router="Admin_to">个人资料</a></li>
-              <li><a href="javascript:;" data-router=“adminorder/favorites”>我的收藏</a></li>
+              <li><a href="javascript:;" data-router="adminorder/favorites">我的收藏</a></li>
               <li><a href="javascript:;" data-router="adminorder/msg">通知</a></li>
             </ul>
             <div>

@@ -43,10 +43,10 @@ router.get("/reg_go", (req, res) => {
 //功能3 完成注册的操作
 router.post("/reg", (req, res) => {
     var obj = req.body;
-    console.log(obj);
+    //console.log(obj);
     var sql = "INSERT INTO home_business_User SET ?";
     pool.query(sql, [obj], (err, result) => {
-        console.log(result)
+        //console.log(result)
         if (err) throw err;
         if (result.affectedRows > 0) {
             if(obj.porned){
@@ -82,7 +82,7 @@ router.get("/admin_go", (req, res) => {
 /*个人资料的查询*/
 router.get("/admin_to", (req, res) => {
     var id = req.query.id;
-        var sql = "SELECT id,UserName,phone,email,realName,cardID FROM home_business_User WHERE id=?";
+        var sql = "SELECT id,UserName,phone,email,realName,point,cardID FROM home_business_User WHERE id=?";
     // console.log(id)
     pool.query(sql, [id], (err, result) => {
         if (err) throw err;

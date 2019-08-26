@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <Header></Header>
-        <Detail></Detail>
+        <Detail :p_detail="p_detail"></Detail>
 
             <!-- 配套设施 -->
         <div class="part part2" id="part2">
@@ -9,8 +9,8 @@
                 <div class="detail_left">配套设施</div>
                 <div class="detail_right">
                     <ul class="support_list clearfix">
-                        <li v-for="(item,i) of arr" :key="i"> 
-                            <img class="icon_supports" :src="'../../assets/icon/'+item[1]">
+                        <li v-for="(item,i) of arr1" :key="i"> 
+                            <img class="icon_supports" :src="'/images/icon/'+item[1]">
                             {{item[0]}}
                         </li> <!--电视-->		
                     </ul>    
@@ -18,7 +18,7 @@
                 
             </div>
         </div>
-        <div id="part3" class="part part3">
+      <!-- <div id="part3" class="part part3">
 			<div class="detail clearfix">
 				<div class="detail_left">房源描述</div>
 					<div class="detail_right">
@@ -30,8 +30,8 @@
 				<div class="show_more_btn" style="display: none;">
 					<a href="javascript:;" id="introBtn" class="overflowBtn">查看全部</a>
 				</div>
-		</div>
-        <div id="part4" class="part part4">
+		</div>-->
+       <!-- <div id="part4" class="part part4">
 			<div class="detail clearfix">
 				<div class="detail_left">预订须知</div>
 				<div class="detail_right">
@@ -68,16 +68,17 @@
 					</ul>
 				</div>
             </div> 
-        </div> 
+        </div> -->
         <div id="part5" class="part part5">
 					<div class="detail clearfix">
 						<div class="detail_left">周边情况</div>
 						<div class="detail_right">
-							<div class="detail_arround detail_txt overflow">
-								房子位于东四环内，步行一刻钟到地铁7号线百子湾站（建议骑行单车哦，非常方便），200米处有公交31、专71和439路公交车。十分钟处有永辉超市，楼下各药店、超市、饭店、小吃店非常多，生活方便。亲们一定会喜欢的。
+							<div class="detail_arround detail_txt overflow" v-text="p_detail.traffic">
+								
 							</div>
 						</div>
 					</div>
+                    <pmap :p_detail="p_detail"></pmap>
 		</div>
          <Footer></Footer>
     </div>
@@ -86,7 +87,8 @@
 <script>
 import footer from "../index/footer.vue";
 import header from "../index/header.vue";
-import Detail from "./detail.vue"
+import Detail from "./detail.vue";
+import pmap from "./detailmap.vue";
 export default {
     data(){
         return{
@@ -95,14 +97,44 @@ export default {
             ["牙具","toothbrush.png"],["香皂","soap.png"],["拖鞋","shoes.png"],
             ["手纸","papper.png"],["毛巾","tower.png"],["沐浴用品","acne.png"],
             ["无线网络","wify.png"],["有线网络","network.png"],
-            ["暖气","heater.png"],["电梯","lift.png"]]
+            ["暖气","heater.png"],["电梯","lift.png"],["门禁系统","door.png"],["停车位","park.png"],["允许做饭","cook.png"],["允许带宠物","animal.png"],["允许聚会","party"]],
+            p_detail:[],
+            arr1:[]
+            
         }
+    },
+    created() {
+        var url="order/prodetail";
+        var hid=1 ;
+
+        //this.$route.params.id;
+        this.axios.get(url,{params:{hid}}).then(res=>{
+            this.p_detail=res.data.data[0];
+            // console.log(this.p_detail.installName)
+            for(var i=0;i<this.p_detail.installName.length;i++){
+                
+                for(var j=0;j<this.arr.length;j++){
+                    if(this.arr[j][0]==this.p_detail.installName[i]){
+                        this.arr1.push(this.arr[j]);
+                        
+                    }
+                   
+                }
+            }
+            console.log(this.arr1);
+            
+        
+            
+        }).catch(err=>{
+            console.log(err);
+        })
     },
 
   components:{
               Footer:footer,
               Header:header,
-              Detail:Detail
+              Detail:Detail,
+              pmap:pmap
 }
 }
 </script>
@@ -120,7 +152,7 @@ export default {
     overflow: hidden;
     }
     .container .part{
-        margin-left:200px;
+        margin-left:400px;
     }
     .detail {
         width: 690px;

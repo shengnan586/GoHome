@@ -143,6 +143,15 @@ export default {
 .disdiv{
   display: flex;
 }
+
+table tr:nth-child(odd){background:#F4F4F4;} 
+table td:nth-child(even){color:#C00;} */
+*, body {
+    font-weight: 300;
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
 .yearlist{
   width:200px;
   height:30px;

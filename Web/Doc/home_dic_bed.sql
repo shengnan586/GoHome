@@ -1,9 +1,9 @@
 USE db_GoHome;
 
---¥≤∆Ã¿‡–Õ
-INSERT INTO home_dic_bed VALUES(NULL,'À´»À¥≤',180,200,1,'');
-INSERT INTO home_dic_bed VALUES(NULL,'µ•»À¥≤',120,180,1,'');
-INSERT INTO home_dic_bed VALUES(NULL,'À´≤„¥≤',120,180,1,'');
-INSERT INTO home_dic_bed VALUES(NULL,'…≥∑¢',150,300,1,'');
-INSERT INTO home_dic_bed VALUES(NULL,'ÈΩÈΩ√◊',180,200,1,'');
-INSERT INTO home_dic_bed VALUES(NULL,'∆‰À˚',180,200,1,'');
+--ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
+INSERT INTO home_dic_bed VALUES(NULL,'Âçï‰∫∫Â∫ä',180,200,1,'');
+INSERT INTO home_dic_bed VALUES(NULL,'Âèå‰∫∫Â∫ä',120,180,1,'');
+INSERT INTO home_dic_bed VALUES(NULL,'ÂèåÂ±ÇÂ∫ä',120,180,1,'');
+INSERT INTO home_dic_bed VALUES(NULL,'Ê≤ôÂèë',150,300,1,'');
+INSERT INTO home_dic_bed VALUES(NULL,'Ê¶ªÊ¶ªÁ±≥',180,200,1,'');
+INSERT INTO home_dic_bed VALUES(NULL,'ÂÖ∂‰ªñ',180,200,1,'');
