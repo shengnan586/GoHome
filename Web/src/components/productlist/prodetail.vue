@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <Header></Header>
-        <Detail :title="title"></Detail>
+        <Detail :p_detail="p_detail"></Detail>
 
             <!-- 配套设施 -->
         <div class="part part2" id="part2">
@@ -9,7 +9,7 @@
                 <div class="detail_left">配套设施</div>
                 <div class="detail_right">
                     <ul class="support_list clearfix">
-                        <li v-for="(item,i) of arr" :key="i"> 
+                        <li v-for="(item,i) of arr1" :key="i"> 
                             <img class="icon_supports" :src="'/images/icon/'+item[1]">
                             {{item[0]}}
                         </li> <!--电视-->		
@@ -73,12 +73,12 @@
 					<div class="detail clearfix">
 						<div class="detail_left">周边情况</div>
 						<div class="detail_right">
-							<div class="detail_arround detail_txt overflow" v-text="P_detail.traffic">
+							<div class="detail_arround detail_txt overflow" v-text="p_detail.traffic">
 								
 							</div>
 						</div>
 					</div>
-                    <pmap></pmap>
+                    <pmap :p_detail="p_detail"></pmap>
 		</div>
          <Footer></Footer>
     </div>
@@ -88,7 +88,7 @@
 import footer from "../index/footer.vue";
 import header from "../index/header.vue";
 import Detail from "./detail.vue";
-import pmap from "./map.vue";
+import pmap from "./detailmap.vue";
 export default {
     data(){
         return{
@@ -97,22 +97,33 @@ export default {
             ["牙具","toothbrush.png"],["香皂","soap.png"],["拖鞋","shoes.png"],
             ["手纸","papper.png"],["毛巾","tower.png"],["沐浴用品","acne.png"],
             ["无线网络","wify.png"],["有线网络","network.png"],
-            ["暖气","heater.png"],["电梯","lift.png"]],
-            P_detail:[],
-            title:"",
-            cashMoney:"",
-            roomcount:"",
-            peopleNumber:"",
-            address:""
+            ["暖气","heater.png"],["电梯","lift.png"],["门禁系统","door.png"],["停车位","park.png"],["允许做饭","cook.png"],["允许带宠物","animal.png"],["允许聚会","party"]],
+            p_detail:[],
+            arr1:[]
+            
         }
     },
     created() {
         var url="order/prodetail";
-        var hid= 1;
+        var hid=1 ;
+
         //this.$route.params.id;
         this.axios.get(url,{params:{hid}}).then(res=>{
-            var dd=res.data.data[0];
-            this.title=dd.houseTitle;
+            this.p_detail=res.data.data[0];
+            // console.log(this.p_detail.installName)
+            for(var i=0;i<this.p_detail.installName.length;i++){
+                
+                for(var j=0;j<this.arr.length;j++){
+                    if(this.arr[j][0]==this.p_detail.installName[i]){
+                        this.arr1.push(this.arr[j]);
+                        
+                    }
+                   
+                }
+            }
+            console.log(this.arr1);
+            
+        
             
         }).catch(err=>{
             console.log(err);
@@ -141,7 +152,7 @@ export default {
     overflow: hidden;
     }
     .container .part{
-        margin-left:200px;
+        margin-left:400px;
     }
     .detail {
         width: 690px;
