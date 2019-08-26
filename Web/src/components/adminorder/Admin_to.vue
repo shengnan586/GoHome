@@ -23,11 +23,12 @@
             <input v-model="gemail" v-else type="text" />
             <a href="javascrip:;" @click="show_can()">{{canMsg}}</a>
           </div>
+          <div class="jifen">
+            <label>住宿积分:</label>
+            <span>{{gpoint}}&nbsp;积分</span>
+          </div>
         </div>
-        <!-- <div class="admin-img5"> 
-          <img src="../../assets/111.jpg" />
-          <a href="javascript:;">编辑图片</a>
-        </div>-->
+         
       </div>
     </div>
     <!-- 二层 -->
@@ -72,23 +73,25 @@ export default {
       gphone: "",
       gemail: "",
       guserName: "",
-      gcard: ""
+      gcard: "",
+      gpoint:""
     };
   },
   methods: {
-    /*从数据库请求到用户名 真实姓名 手机号 身份证号*/
+    /*从数据库请求到用户名 真实姓名 手机号 身份证号 积分*/
 
     load() {
       var url = "/user/admin_to";
       this.axios
         .get(url, { params: { id: sessionStorage.getItem("userid") } })
         .then(res => {
-          //console.log(res)
+          console.log(res)
           this.gname = res.data.result[0].UserName;
           this.gphone = res.data.result[0].phone;
           this.guserName = res.data.result[0].realName;
           this.gcard = res.data.result[0].cardID;
           this.gemail = res.data.result[0].email;
+          this.gpoint=res.data.result[0].point;
         });
     },
     // 修改数据请求服务器
@@ -197,6 +200,10 @@ export default {
 <!-- 以下是样式-->
 <style scoped>
 /*以下是f1的样式*/
+.jifen>span{
+  margin-left:20px;
+  color:#f05b72;
+}
 h4 {
   height: 50px;
   line-height: 50px;

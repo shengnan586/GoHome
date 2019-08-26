@@ -9,7 +9,7 @@
                 <input v-model="phone" type="text"  placeholder="请输入手机号">
                 <div class="login_phone">{{spanMsg}}</div>
                 
-                <input v-model="upwd"  type="text" placeholder="请输入密码">
+                <input v-model="upwd"  type="password" placeholder="请输入密码">
                 <div class="login_upwd">{{divMsg}}</div>
 
                 <div class="login_forget">
@@ -132,8 +132,8 @@ export default {
 <style scoped>
     *{margin:0;padding:0;}
     .login_login{
-         width:100%;
-        height:724px;
+         width:1430px;
+        height:807px;
         background:url(../assets/denglu.jpg) 0 0 no-repeat;
          background-size:100%;
     }
