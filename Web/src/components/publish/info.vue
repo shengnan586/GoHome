@@ -109,7 +109,9 @@
               </div>
               <!-- 地图 -->
               <!--  -->
-              <div style="width:700px;height:360px;background:#e8e8e8"></div>
+              <div style="width:700px;height:360px;background:#e8e8e8">
+                <pmap style="width:100%;height:100%;" :val="val"></pmap>
+              </div>
               <!-- 按钮 -->
               <div style="text-align: center;">
                 <a
@@ -262,6 +264,7 @@
   </div>
 </template>
 <script>
+import map from "../productlist/map.vue"
 export default {
   data() {
     return {
@@ -293,7 +296,8 @@ export default {
       house_num: "", //门牌号
       err_num: false, //门牌号提示信息
       err_area: false, //出租面积为空提示
-      err_bed: false, //床铺类型为空提示
+      err_bed: false, //床铺类型为空提示,
+      val:""
     };
   },
   props: ["stepToChild","hid"],
@@ -410,6 +414,15 @@ export default {
     // 门牌号获取焦点警告隐藏
     err_number() {
       this.err_num = false;
+      var detail;
+        for (var i = 0; i < this.areaList.length; i++) {
+          if (this.areaList[i].id == this.selectedAreaId) {
+            detail = this.areaList[i].aTypeName;
+            break;
+          }
+        }
+        this.val=
+          "北京市" + detail + this.details_address;
     },
     // 出租面积获取焦点警告隐藏
     err_areaShow() {
@@ -474,6 +487,9 @@ export default {
        }
       }
     }
+  },
+  components:{
+    pmap:map
   }
 };
 </script>
@@ -623,14 +639,13 @@ body {
 .o_warp {
   position: absolute;
   width: 800px;
-  top: 200px;
+  top: 50%;
   left: 50%;
   background: #fff;
   z-index: 2000;
   font-family: "微软雅黑";
   border: none;
-  left: 551.5px;
-  top: 122px;
+  transform: translate(-50%,-50%);
 }
 .o_tit {
   position: relative;

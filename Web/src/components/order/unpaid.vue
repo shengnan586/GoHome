@@ -1,0 +1,117 @@
+<template>
+  <div>
+    <homeheader></homeheader>
+    <div class="order_step_panel" style="width:1240px;margin:auto;">
+        <div class="item_step">
+          <div class="main">
+            <span class="dot_wrapper">
+              <i class="dot dot_cur"></i>
+            </span>
+            <span class="step_txt step_txt_cur">申请预定</span>
+          </div>
+          <div class="line line_off"></div>
+        </div>
+        <div class="item_step">
+          <div class="main">
+            <span class="dot_wrapper">
+              <i class="dot dot_off" style="background: #26a69a;"></i>
+            </span>
+            <span class="step_txt step_txt_cur">待支付</span>
+          </div>
+          <div class="line line_off"></div>
+        </div>
+        <div class="item_step">
+          <div class="main">
+            <span class="dot_wrapper">
+              <i class="dot dot_off"></i>
+            </span>
+            <span class="step_txt step_txt_cur">待入住</span>
+          </div>
+        </div>
+      </div>
+    
+    <div class="content">
+       <div class="prompt" style="position:relative;">
+           <div style="position:absolute;top:50%;left:50%;transform: translate(-50%,-50%);">   
+            <p class="title">{{tit}}</p>
+            <p v-show="isShow" class="titcontent">即将跳转，还有{{time}}秒</p>
+           </div>
+       </div>
+     </div>
+     <homefooter style="position:fixed;bottom:0"></homefooter>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      time: 5,
+      tit: "正在支付，请您稍等...",
+      isShow: false
+    };
+  },
+  created() {
+    this.timer();
+  },
+  methods: {
+    timer() {
+      var p = new Promise((resolve,reject)=> {
+        var t = setInterval(() => {
+          this.time--;
+          if (this.time == 0) {
+            this.tit = "支付成功";
+            clearInterval(t);
+            t = null;
+            this.isShow = false;
+            this.time = 5;
+            resolve(this.time);
+          }
+        }, 1000);
+      }).then(
+          (time)=>{
+              this.isShow = true;
+              var t = setInterval(() => {
+              this.time--;
+          if (this.time == 0) {
+            clearInterval(t);
+            t = null;
+            console.log("跳转")
+          }
+        }, 1000);
+          }
+      )
+    }
+  }
+};
+</script>
+<style scoped>
+.content {
+  width: 1240px;
+  margin: auto;
+  box-sizing: border-box;
+}
+.prompt {
+  width: 62%;
+  border: 1px solid #f5f5f5a6;
+  margin: auto;
+  margin-top: 20px;
+  height:500px;
+  box-shadow: inset 1px 0px 4px 1px #d1d1d1;
+}
+.title {
+  color: #f00;
+  font-size: 40px;
+  font-weight: bold;
+  margin: auto;
+  width: 300px;
+  text-align: center;
+}
+.titcontent{
+    margin:10px auto 0;
+    width: 300px;
+    box-sizing: border-box;
+    text-align: center;
+    color:green;
+    font-size:16px;
+}
+</style>

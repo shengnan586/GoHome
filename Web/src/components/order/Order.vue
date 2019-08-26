@@ -213,6 +213,11 @@ export default {
       orderDate:null//保存时间控件返回的对象
     };
   },
+  created() {
+    if(!sessionStorage.getItem("userid")){
+        this.$router.push("/Login_go");
+      }
+  },
   components: { laydate: layDate },
   methods: {
     //获取时间控件返回的时间对象{入住时间、离开时间、天数}
