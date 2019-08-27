@@ -247,10 +247,11 @@ export default {
 </script>
 <style scoped>
 .reg_top {
-  width: 1430px;
-  height: 807px;
+  width: 100%;
+  height: 100%;
   background: url(../assets/denglu.jpg) 0 0 no-repeat;
-  background-size: 100%;
+  background-size: 100% 100%;
+  position: relative;
 }
 .reg_parent {
   width: 406px;
@@ -261,6 +262,10 @@ export default {
   background: rgba(255, 255, 255, 0.5);
   padding: 40px;
   padding-bottom: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .reg_parent > input {
