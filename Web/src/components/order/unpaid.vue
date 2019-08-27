@@ -33,7 +33,7 @@
     <div class="content">
        <div class="prompt" style="position:relative;">
            <div style="position:absolute;top:50%;left:50%;transform: translate(-50%,-50%);">   
-            <p class="title">{{tit}}</p>
+            <p class="title" :style="colorShow ? {color:'#f00'} : {color:'#39b54a'}">{{tit}}</p>
             <p v-show="isShow" class="titcontent">即将跳转，还有{{time}}秒</p>
            </div>
        </div>
@@ -47,7 +47,8 @@ export default {
     return {
       time: 5,
       tit: "正在支付，请您稍等...",
-      isShow: false
+      isShow: false,
+      colorShow:true
     };
   },
   created() {
@@ -55,22 +56,23 @@ export default {
   },
   methods: {
     timer() {
-      var p = new Promise((resolve,reject)=> {
+      var p = new Promise((resolve,reject)=> {  //正在支付等待5秒
         var t = setInterval(() => {
           this.time--;
           if (this.time == 0) {
             this.tit = "支付成功";
+            this.colorShow = false;
             clearInterval(t);
             t = null;
             this.isShow = false;
-            this.time = 5;
-            resolve(this.time);
+            this.time = 3;
+            resolve();
           }
         }, 1000);
       }).then(
-          (time)=>{
+          ()=>{
               this.isShow = true;
-              var t = setInterval(() => {
+              var t = setInterval(() => { //支付成功等待3秒跳转
               this.time--;
           if (this.time == 0) {
             clearInterval(t);
@@ -111,7 +113,7 @@ export default {
     width: 300px;
     box-sizing: border-box;
     text-align: center;
-    color:green;
+    color:#666;
     font-size:16px;
 }
 </style>

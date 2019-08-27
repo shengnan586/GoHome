@@ -331,7 +331,7 @@ export default {
         this.axios.post(url,obj).then(res=>{
           if(res.data.code==1){
             // 跳转到待支付界面
-            // this.$router.push("")
+            this.$router.push("unpaid")
           }else{
             alert("提交失败");
           }
