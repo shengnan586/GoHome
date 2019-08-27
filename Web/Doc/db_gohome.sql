@@ -274,10 +274,10 @@ alter table home_business_house_install add state int;
 /*瑞云加的*/
 alter table home_business_house add houseDESC varchar(500);
 alter table home_business_house add uid int;
-<<<<<<< HEAD
-=======
+
 alter table home_business_house add isReleaseStatus int;
 
+alter table home_business_house_collect_img add collectime varchar(20);
 
 /*宁宁加的ar表*/
 create table home_business_house_img1
@@ -289,9 +289,9 @@ create table home_business_house_img1
    primary key (id)
 );
 
+/*插入user 房东信息*/
+INSERT INTO `db_gohome`.`home_business_user`(`id`, `UserName`, `upwd`, `phone`, `email`, `realName`, `cardID`, `sex`, `birthday`, `isHoster`, `point`, `porn`, `porned`) VALUES (1, 'jinrong', '123456', '15140617114', 'liruiyun@163.com', '李瑞云', '18210521092', 1, '1020', 1, 500, 'V7USY9', 'BME60H');
 
-
->>>>>>> 013e87392a2414857ea46ea57dca90fab7c367f0
 
 
 
