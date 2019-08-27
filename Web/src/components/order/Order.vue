@@ -40,7 +40,7 @@
             <span class="wTitle">入住时段：</span>
             <div class="date_box">
               <!-- 时间子组件，自定义时间getValue用于获取选中的入住时间段 -->
-              <laydate  @getValue="getDateValue" class="date_txt"></laydate>
+              <laydate  @getValue="getDateValue" :orderDate="order" class="date_txt"></laydate>
               <i class="iconfont icon-rili"></i>
             </div>
           </div>
@@ -210,9 +210,16 @@ export default {
       warn_phone:"",
       inputname:"",
       blurinput:["","",""],
-      orderDate:null//保存时间控件返回的对象
+      orderDate:null,//保存时间控件返回的对象
+      // order:{start:"2019-09-01",end:"2019-09-03"}
     };
   },
+  created() {
+    if(!sessionStorage.getItem("userid")){
+        this.$router.push("/Login_go");
+      }
+  },
+  props:["order"],
   components: { laydate: layDate },
   methods: {
     //获取时间控件返回的时间对象{入住时间、离开时间、天数}
@@ -326,7 +333,7 @@ export default {
         this.axios.post(url,obj).then(res=>{
           if(res.data.code==1){
             // 跳转到待支付界面
-            // this.$router.push("")
+            this.$router.push("unpaid")
           }else{
             alert("提交失败");
           }

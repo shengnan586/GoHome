@@ -9,27 +9,27 @@
         已有账号 ?
         <a @click="reg_to" href="javascript:;">登录</a>
       </div>
-      <input type="text" @blur="bluruname" v-model="username" placeholder="请填写用户名" />
+      <input type="text" @blur="bluruname" v-model="username" placeholder="请填写用户名6-12位">
       <div class="reg_code">{{spanusermsg}}</div>
 
-      <input @blur="blurphone" v-model="phone" type="text" placeholder="建议使用常用手机号" />
+      <input @blur="blurphone" v-model="phone" type="text" placeholder="建议使用常用手机号">
       <div class="reg_phone">{{spanMsg}}</div>
 
       <!-- 手机验证码一隐藏 -->
       <div style="display:none" class="reg_input">
-        <input type="text" placeholder="请输入验证码" />
+        <input type="text" placeholder="请输入验证码">
         <button>获取验证码</button>
         <div class="reg_code">请输入验证码</div>
       </div>
 
-      <input @blur="blurupwd" v-model="upwd" class="reg_upwd" type="text" placeholder="请输入6-16位密码" />
+      <input @blur="blurupwd" v-model="upwd" class="reg_upwd" type="password" placeholder="请输入6-16位密码">
       <div class="reg_up">{{divMsg}}</div>
       <!-- @blur="blurporned" -->
-      <input type="text" @blur="blurporned" v-model="porned" placeholder="请填写邀请码" />
+      <input type="text" @blur="blurporned" v-model="porned" placeholder="请填写邀请码">
       <div class="reg_code">{{spanpornedMsg}}</div>
 
       <span class="reg_span">
-        <input type="checkbox" />
+        <input type="checkbox">
         <a class="span_a" href="javascript:;">我已阅读并同意《xx用户协议》</a>
       </span>
       <button class="reg_btn" @keyup.13="reg" @click="reg">注册</button>
@@ -63,8 +63,8 @@ export default {
       this.checkupwd();
     },
     /*回车键注册*/
-    reg(){
-      this.reg()
+    reg() {
+      this.reg();
     }
   },
   methods: {
@@ -95,12 +95,12 @@ export default {
           resolve(false);
         } else {
           var url = "user/GetUsername";
-          this.axios(url, { params: { uname: this.username } }).then(res => {
+          this.axios(url, { params: { uname:this.username } }).then(res => {
             if (res.data.code == -1) {
               this.spanusermsg = "用户名已存在";
               resolve(true);
             } else {
-              this.spanusermsg = "用户名可用";
+              this.spanusermsg = "";
               resolve(false);
             }
           });
@@ -119,9 +119,9 @@ export default {
           var url = "user/reg_go";
           this.axios(url, { params: { phone: this.phone } }).then(res => {
             if (res.data.code == -1) {
-              this.spanMsg = "用户名已存在";
+              this.spanMsg = "手机号已存在";
             } else {
-              this.spanMsg = "手机号可用";
+              this.spanMsg = "";
             }
           });
         }
@@ -139,7 +139,9 @@ export default {
       if (!this.username.trim()) {
         this.spanusermsg = "用户名不能为空";
         return false;
-      }
+      }else 
+        this.spanusermsg=""
+      
     },
     checkphone() {
       var reg = /^1[3-9]\d{9}$/;
@@ -209,8 +211,8 @@ export default {
                   phone: this.phone,
                   upwd: this.upwd,
                   porn: this.porn,
-                  porned:this.porned,
-                  point:500
+                  porned: this.porned,
+                  point: 500
                 })
                 .then(res => {
                   if (res.data.code == 1) {
@@ -235,10 +237,10 @@ export default {
     document.onkeypress = function(e) {
       var keycode = document.all ? event.keyCode : e.which;
       if (keycode == 13) {
-        that.reg();// 登录方法名
-         return false;
+        that.reg(); // 登录方法名
+        return false;
       }
-    }
+    };
   }
   // mounted() {
   //   this.GetInviteCode();
@@ -247,10 +249,11 @@ export default {
 </script>
 <style scoped>
 .reg_top {
-  width:100%;
-        height:724px;
-        background:url(../assets/denglu.jpg) 0 0 no-repeat;
-         background-size:100%;
+  width: 100%;
+  height: 100%;
+  background: url(../assets/denglu.jpg) 0 0 no-repeat;
+  background-size: 100% 100%;
+  position: relative;
 }
 .reg_parent {
   width: 406px;
@@ -258,9 +261,13 @@ export default {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  background: rgba(255,255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   padding: 40px;
   padding-bottom: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .reg_parent > input {

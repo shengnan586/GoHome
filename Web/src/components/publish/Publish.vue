@@ -3,12 +3,13 @@
     <!-- 顶部 -->
     <homeheader></homeheader>
     <div class="h_top_box">
+      <div class="cc">
       <div class="content cursor" @click="tab">
         <span class="img" data-num="0"></span>
         <p data-num="0" :class="{word:word[0].isActive}">房源信息</p>
       </div>
       <span class="line" :class="{span_active:word[1].isActive}"></span>
-      <div class="content after" :class="{cursor:word[1].isActive}" @click="tab">
+      <div class="content after2" :class="{cursor:word[1].isActive}" @click="tab">
         <span
           data-num="1"
           class="img"
@@ -18,7 +19,7 @@
         <p data-num="1" :class="{word:word[1].isActive}">房源描述</p>
       </div>
       <span class="line2" :class="{span_active:word[2].isActive}"></span>
-      <div class="content after" :class="{cursor:word[2].isActive}" @click="tab">
+      <div class="content after3" :class="{cursor:word[2].isActive}" @click="tab">
         <span
           data-num="2"
           class="img"
@@ -28,7 +29,7 @@
         <p data-num="2" :class="{word:word[2].isActive}">配套设施</p>
       </div>
       <span class="line3" :class="{span_active:word[3].isActive}"></span>
-      <div class="content after" :class="{cursor:word[3].isActive}" @click="tab">
+      <div class="content after4" :class="{cursor:word[3].isActive}" @click="tab">
         <span
           data-num="3"
           class="img"
@@ -38,7 +39,7 @@
         <p data-num="3" :class="{word:word[3].isActive}">真实照片</p>
       </div>
       <span class="line4" :class="{span_active:word[4].isActive}"></span>
-      <div class="content after" :class="{cursor:word[4].isActive}" @click="tab">
+      <div class="content after5" :class="{cursor:word[4].isActive}" @click="tab">
         <span
           data-num="4"
           class="img"
@@ -46,6 +47,7 @@
           :style="{'background-position':word[4].position}"
         ></span>
         <p data-num="4" :class="{word:word[4].isActive}">价格规则</p>
+      </div>
       </div>
     </div>
     <Info :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @sendHid="sendHid"></Info>
@@ -125,6 +127,9 @@ export default {
         this.word[i].isActive = true;
         this.word[i].position = this.word[i].active;
       }
+      if(!sessionStorage.getItem("userid")){
+        this.$router.push("/Login_go");
+      }
     },
     methods: {
       //只有当字体为绿色时才能点击切换组件
@@ -173,20 +178,33 @@ export default {
   padding-left: 300px;
   position: relative;
 }
+.cc{
+  width:88%;
+  position: relative;
+  text-align: center;
+  display: flex;
+}
 .content {
   box-sizing: border-box;
   color: #959ea7;
   font-size: 14px;
   font: "Microsoft YaHei";
   font-weight: bold;
+  position: absolute;
+  top:-3%;
+  left:0;
 }
-
-
-.after{
-  /* margin-left:125px; */
-  margin-left:11%;
-
-
+.after2{
+  left:18.5%;
+}
+.after3{
+  left:36.5%;
+}
+.after4{
+  left:54.5%;
+}
+.after5{
+  left:71.5%;
 }
 p {
   margin: 0;
@@ -217,11 +235,9 @@ p.word {
   height: 2px;
   background: #eeeeee;
   position: absolute;
-
-
-  top: 40px;
+  top: 12%;
   /* left:338px; */
-  left: 23.5%;
+  left: 4%;
 
 }
 span.span_active {
@@ -232,15 +248,15 @@ span.span_active {
 span.line2{
 
   /* left:519px; */
-  left: 36%;
+  left: 22%;
 }
 span.line3 {
   /* left:700px; */
-  left: 48.6%;
+  left: 40%;
 }
 span.line4 {
   /* left:880px; */
-  left:61.3%
+  left:58.3%
 }
 .cursor {
   cursor: pointer;

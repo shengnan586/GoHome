@@ -12,7 +12,6 @@ router.get("/GetProduct", (req, res) => {
     var bigprice=req.query.bigprice;//价格区间大
     var checkinDate=req.query.checkinDate;//入住时间
     var checkoutDate=req.query.checkoutDate;//离开时间
-
     var output = {
         count: 0, //一共有多少条
         pageSize: 9,  //每个页面显示几条
@@ -86,11 +85,9 @@ router.get("/GetProduct", (req, res) => {
     // console.log(sql);
     // console.log(rentalTypeId,peopleNumber,aId,bedroom,houseDESC,smallprice,bigprice,smallprice,bigprice,smallprice,bigprice,checkinDate,checkoutDate);
     // [rentalTypeId,peopleNumber,aId,smallprice,bigprice,smallprice,bigprice,smallprice,bigprice,checkinDate,checkoutDate]
-    console.log("liry"+arr3);
     pool.query(sql, arr3, (err, result) => {
         if (err) throw err;
         output.count = result.length;
-        console.log(result.length);
         output.pageCount = Math.ceil(output.count / output.pageSize);
         sql += ` limit ?,?`;
         var arr=[output.pageSize * output.pno,output.pageSize];
@@ -126,7 +123,6 @@ router.get("/GetProduct", (req, res) => {
         }
         // arr.unshift(arr2);
         arr=arr2.concat(arr);
-        console.log(arr);
         //,,,,bigprice,smallprice,bigprice,smallprice,bigprice,checkinDate,checkoutDate
         pool.query(sql, arr, (err, result) => {
             output.data = result;

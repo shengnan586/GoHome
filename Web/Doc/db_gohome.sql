@@ -293,7 +293,10 @@ create table home_business_house_img1
 INSERT INTO `db_gohome`.`home_business_user`(`id`, `UserName`, `upwd`, `phone`, `email`, `realName`, `cardID`, `sex`, `birthday`, `isHoster`, `point`, `porn`, `porned`) VALUES (1, 'jinrong', '123456', '15140617114', 'liruiyun@163.com', '李瑞云', '18210521092', 1, '1020', 1, 500, 'V7USY9', 'BME60H');
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> aeda630c92eb83769c77d9d794d1d7725da5ff2f
 
 
 

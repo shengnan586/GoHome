@@ -25,8 +25,8 @@
       </div>
       <div class="detailContent">
         <div class="detailTitle">
-          <h1>{{title}}</h1>
-          <p>{{address}}</p>
+          <h1>{{p_detail.houseTitle}}</h1>
+          <p>{{p_detail.address}}</p>
         </div>
         <ul class="detailicon">
           <li>
@@ -35,7 +35,7 @@
           </li>
           <li>
             <span class="iconfont icon-qunzuduoren"></span>
-            <p>可住{{peopleNumber}}人</p>
+            <p>可住{{p_detail.peopleNumber}}人</p>
           </li>
           <li>
             <span class="iconfont icon-icon-test"></span>
@@ -47,13 +47,13 @@
           </li>
           <li>
             <span class="iconfont icon-biaochi"></span>
-            <p>{{roomSize}}平方木</p>
+            <p>{{p_detail.roomSize}}平方木</p>
           </li>
         </ul>
       </div>
     </div>
     <div class="right">
-      <h1>￥{{specialPrice}}/晚</h1>
+      <h1>￥{{p_detail.specialPrice}}/晚</h1>
       <div class="date_box">
         <laydate @getValue="getDateValue" class="date_txt"></laydate>
         <i class="iconfont icon-rili"></i>
@@ -65,7 +65,7 @@
         </li>
         <li>
           <span>押金</span>
-          <span>￥{{normalPrice}}</span>
+          <span>￥{{p_detail.normalPrice}}</span>
         </li>
         <li>
           <span>订单总金额</span>
@@ -84,30 +84,35 @@ export default {
       imgwidth: 724,
       index: 0,
       orderDate: null,
-      href:"javascript:;"
-    };
-  },
-  props: {
-    imgs: {
-      default: () => [
-        "/images/Carousel1.jpg",
+      href:"javascript:;",
+      imgs: [ "/images/Carousel1.jpg",
         "/images/Carousel2.jpg",
         "/images/Carousel3.jpg",
-        "/images/Carousel4.jpg",
+        "/images/Carousel4.jpg"]
+      
+       
         
-      ]
-    },
-    hid:{default:1},
-    title: { default: "【独栋老洋房】Tree 树德坊 · 小城/徐家汇/交通大学" },
-    address: { default: "上海徐汇区天平路288弄树德坊" },
-    typeName: { default: "整套出租" }, //出租类型
-    peopleNumber: { default: 4 }, //宜居人数
-    bedroom: { default: 2 }, //几室
-    bednum: { default: 2 }, //几个双人床
-    roomSize: { default: 120.0 }, //面积
-    specialPrice: { default: 799 }, //最低价格
-    normalPrice: { default: 799 } //押金
+      
+    ,
+    typeName:  "整套出租" ,
+    bedroom:  2 ,
+    bednum: 2 
+    };
   },
+  // props: {
+    
+  //   hid:{default:1},
+  //   title: { default: "【独栋老洋房】Tree 树德坊 · 小城/徐家汇/交通大学" },
+  //   address: { default: "上海徐汇区天平路288弄树德坊" },
+  //   typeName: { default: "整套出租" }, //出租类型
+  //   peopleNumber: { default: 4 }, //宜居人数
+  //   bedroom: { default: 2 }, //几室
+  //   bednum: { default: 2 }, //几个双人床
+  //   roomSize: { default: 120.0 }, //面积
+  //   specialPrice: { default: 799 }, //最低价格
+  //   normalPrice: { default: 799 } //押金
+  // },
+  props:["p_detail"],
   methods: {
     //获取时间控件返回的时间对象{入住时间、离开时间、天数}
     getDateValue(orderDate) {
@@ -128,29 +133,31 @@ export default {
   computed: {
     price() {
       if (this.orderDate) {
-        return this.orderDate.days * this.specialPrice;
+        return this.orderDate.days * this.p_detail.specialPrice;
       } else {
         return 0;
       }
     },
     totalprice() {
       if (this.orderDate) {
-        return this.orderDate.days * this.specialPrice + this.normalPrice;
+        return this.orderDate.days * this.p_detail.specialPrice + this.p_detail.cashMoney;
       } else {
         return 0;
       }
     }
   },
   created() {
-    switch(this.hid){
+     console.log(this.p_detail);
+    switch(this.p_detail.id){
       case 1:
       case 5:
-        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.hid+"&count=4";
+        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.p_detail.id+"&count=4";
+        console.log(this.p_detail.id);
         break;
       case 2:
       case 3:
       case 4:
-        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.hid+"&count=5";
+        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.p_detail.id+"&count=5";
         break;
       default:
         break;

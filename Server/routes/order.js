@@ -51,6 +51,7 @@ router.get("/searchKey",(req,res)=>{
 
 router.get("/prodetail",(req,res)=>{
     var hid=req.query.hid;
+    // console.log(hid);
     var data = [];
     var sql="SELECT * FROM home_business_house WHERE id=? "
     query(sql,[hid])
@@ -58,6 +59,7 @@ router.get("/prodetail",(req,res)=>{
         if(result.length>0){
            data = result;
            sql = "select installName from home_dic_installation where id in (select installId from home_business_house_install where hId = ? and state = 1)";
+           
            query(sql,[hid])
            .then(result=>{
                if(result.length > 0){
@@ -67,6 +69,7 @@ router.get("/prodetail",(req,res)=>{
                    }
                    data[0].installName = installName;
                    sql = "select bedType from home_dic_bed where id in (select bId from home_business_house_bed  where hId = ?)";
+                   
                    query(sql,[hid])
                    .then(result=>{
                        if(result.length > 0){
@@ -76,6 +79,7 @@ router.get("/prodetail",(req,res)=>{
                             }
                             data[0].bed = bed;
                             res.send({code:1,data:data})
+                            
                        }else{
                            res.send({code:-1})
                        }

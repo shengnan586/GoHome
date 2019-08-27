@@ -8,8 +8,12 @@ import "../../assets/laydate/laydate.js";
 export default {
   data() {
     return {
-      orderDate:null
+      orderDateNew:null,
+      value:""
     }
+  },
+  props:{
+    orderDate:{default:null}
   },
   methods: {
     formatDate(date) {
@@ -30,18 +34,26 @@ export default {
     }
   },
   mounted() {
+    // 2019-02-11 - 2019-02-15
+    var start="";
+    if(this.orderDate){
+      start=this.orderDate.start+" - "+this.orderDate.end;
+    }
+      // console.log(this.orderDate)
+      // console.log("start: "+start);
     var day = this.formatDate(new Date()).toString();
     var obj = {};
     obj[day] = "今日";
     var ins1 = laydate.render({
       elem: "#test1",
-      range: true, //默认值 false
+      value:start,
+      range: true, //默认值 false 范围选择
       min: 0,
       max: 90,
       show: false,
       calendar: true,
       showBottom: true, //底部栏显示 默认为true
-      isInitValue: false, //是否允许填充初始值，默认为 true
+      isInitValue: true, //是否允许填充初始值，默认为 true
       mark: obj,
       calendar: true,
       zIndex: 9999,
@@ -53,14 +65,14 @@ export default {
         var startTime = new Date(start); //入住时间
         var endTime = new Date(end); //离开时间
         var days = (endTime - startTime) / 1000 / 24 / 60 / 60; //入住天数
-        this.orderDate = {
+        this.orderDateNew = {
           start,
           end,
           days
         };
 
         //把选中的时间段传递给父组件
-        this.$emit("getValue",this.orderDate);
+        this.$emit("getValue",this.orderDateNew);
         //console.log(this.orderDate)
         //return orderDate;
       }

@@ -2,7 +2,7 @@
   <div class="test">
     <div id="container"></div>
     <!-- <button id="btn" @click="btnclick">Click Me!</button> -->
-    <input type="text" class="search" v-model="val" />
+    <!-- <input type="text" class="search" v-model="val" /> -->
   </div>
 </template>
 <script>
@@ -13,13 +13,12 @@ export default {
     return {
       map: null,
       AMap: null,
-      Marker: null,
-      val: "",
-     // address: {},
+      marker: null,
       lng:0,
       lat:0
     };
   },
+  props:["val"],
   methods: {
     // btnclick() {
     //   var address = {};
@@ -73,7 +72,6 @@ export default {
               });
               geocoder.getLocation(val, function(status, result) {
                 if (status === "complete" && result.info === "OK") {
-                  console.log(result.geocodes[0].location);
                   address.lng = result.geocodes[0].location.lng;
                   address.lat = result.geocodes[0].location.lat;
                 //  console.log("that p:" + address.P);
@@ -87,31 +85,24 @@ export default {
       map(val).then((address)=>{
         this.lng = address.lng;
         this.lat = address.lat;
-        console.log("this:"+this.lng);
-        console.log("this:"+this.lat);
       })
     },
 
 
     lng(){
-      console.log("进入p监控");
-      console.log(this.lng);
-     // var a = this.P;
-    //  var b = this.R;
-   //   console.log("a："+a);
-   //   console.log("b："+b);
+      if(this.marker!=null){
+        this.map.remove(this.marker);
+      }
       this.marker = new AMap.Marker({
         position: new AMap.LngLat(this.lng,this.lat), // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
           title: "北京"
       });
       this.map.add(this.marker);
-      console.log("marker:"+this.marker);
     }
   },
   mounted() {
     let that = this;
     MapLoader().then(AMap => {
-      console.log("地图加载成功111111111111");
       that.map = new AMap.Map("container", {
         //   center: [116.397428, 39.90923],
         zoom: 11,
@@ -133,8 +124,7 @@ export default {
 </script>
 <style scoped>
 #container {
-  width: 690px;
-  height: 400px;
-  margin-left:90px;
+  width: 100%;
+  height: 100%;
 }
 </style>
