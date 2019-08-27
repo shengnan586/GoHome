@@ -262,11 +262,11 @@ export default {
             for(var item of this.request){
                 if(item.isActive) pro[item.word] = 1;
             }
-            if(JSON.stringify(pro) == '{}'){
+            if(Object.keys(pro).length === 0 && pro.constructor === Object){
                 //弹出框 要改！！！
                 this.display='block'+(this.d1++);         
             }else{
-                this.$emit("step",3);
+                console.log("准备跳组件");
                 //发送ajax请求，传入房屋id和设施名字
                 this.axios.get("facility/save",{
                     params:{
@@ -274,8 +274,11 @@ export default {
                         hid:this.hid
                     }
                 }).then(res=>{
+                    console.log("跳组件成功");
+                    //跳转下一个组件     
+                        this.$emit("step",3); 
                     if(res.data.code > 0){
-                        //跳转下一个组件                   
+                                     
                     }
                 })
             }          

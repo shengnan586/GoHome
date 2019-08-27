@@ -9,7 +9,7 @@
         <p data-num="0" :class="{word:word[0].isActive}">房源信息</p>
       </div>
       <span class="line" :class="{span_active:word[1].isActive}"></span>
-      <div class="content after" :class="{cursor:word[1].isActive}" @click="tab">
+      <div class="content after2" :class="{cursor:word[1].isActive}" @click="tab">
         <span
           data-num="1"
           class="img"
@@ -19,7 +19,7 @@
         <p data-num="1" :class="{word:word[1].isActive}">房源描述</p>
       </div>
       <span class="line2" :class="{span_active:word[2].isActive}"></span>
-      <div class="content after" :class="{cursor:word[2].isActive}" @click="tab">
+      <div class="content after3" :class="{cursor:word[2].isActive}" @click="tab">
         <span
           data-num="2"
           class="img"
@@ -29,7 +29,7 @@
         <p data-num="2" :class="{word:word[2].isActive}">配套设施</p>
       </div>
       <span class="line3" :class="{span_active:word[3].isActive}"></span>
-      <div class="content after" :class="{cursor:word[3].isActive}" @click="tab">
+      <div class="content after4" :class="{cursor:word[3].isActive}" @click="tab">
         <span
           data-num="3"
           class="img"
@@ -39,7 +39,7 @@
         <p data-num="3" :class="{word:word[3].isActive}">真实照片</p>
       </div>
       <span class="line4" :class="{span_active:word[4].isActive}"></span>
-      <div class="content after" :class="{cursor:word[4].isActive}" @click="tab">
+      <div class="content after5" :class="{cursor:word[4].isActive}" @click="tab">
         <span
           data-num="4"
           class="img"
@@ -190,14 +190,21 @@ export default {
   font-size: 14px;
   font: "Microsoft YaHei";
   font-weight: bold;
+  position: absolute;
+  top:-3%;
+  left:0;
 }
-
-
-.after{
-  /* margin-left:125px; */
-  margin-left:12.6%;
-
-
+.after2{
+  left:18.5%;
+}
+.after3{
+  left:36.5%;
+}
+.after4{
+  left:54.5%;
+}
+.after5{
+  left:71.5%;
 }
 p {
   margin: 0;
