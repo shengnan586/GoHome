@@ -26,11 +26,28 @@ router.get("/save",(req,res)=>{
         for(var item of result){
             id.push(item.id);
         }
+      //  console.log("id:"+id);
         //查询设施表中是否存在该房屋id
-        sql = 'select hId from home_business_house_install where hId = ?';
+      //  sql = 'select hId from home_business_house_install where hId = ?';
+        sql = "delete from home_business_house_install where hId = ?";
         return query(sql,[hid]);
-    }) 
-    .then(result=>{
+    }).then(result=>{
+        sql = "insert into home_business_house_install (id,hId,installId,state) values";
+        for(var a of id){
+            sql += `(null,${hid},${a},1),`;
+        };
+        sql = sql.substr(0,sql.length-1);
+      //  console.log(sql);
+        return query(sql);
+    }).then(result=>{
+      //  console.log("result:"+result.affectedRows);
+        if(result.affectedRows.length > 0){
+            res.send({code:1})
+        }else{
+            res.send({code:-1})
+        }
+    })
+   /* .then(result=>{
         //如果设施表中不存在该房屋id
         if(result.length <= 0 ){
             branch = 1;
@@ -89,7 +106,7 @@ router.get("/save",(req,res)=>{
             }
         }
         
-    })
+    })*/
     
 })
 

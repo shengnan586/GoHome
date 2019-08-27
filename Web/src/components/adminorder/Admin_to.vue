@@ -121,7 +121,7 @@ export default {
           this.display='block'+(this.d1++); 
         }
          this.show = true;
-        this.msg = "编辑";
+        this.msg = "修改";
       }
         var obj = {
         UserName: this.gname
@@ -143,7 +143,7 @@ export default {
           this.display='block'+(this.d1++);  
         }
          this.word = true;
-        this.showMsg = "编辑";
+        this.showMsg = "修改";
       }
         var obj = {
         phone: this.gphone
