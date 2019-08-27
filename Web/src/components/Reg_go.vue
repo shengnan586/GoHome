@@ -9,7 +9,7 @@
         已有账号 ?
         <a @click="reg_to" href="javascript:;">登录</a>
       </div>
-      <input type="text" @blur="bluruname" v-model="username" placeholder="请填写用户名">
+      <input type="text" @blur="bluruname" v-model="username" placeholder="请填写用户名6-12位">
       <div class="reg_code">{{spanusermsg}}</div>
 
       <input @blur="blurphone" v-model="phone" type="text" placeholder="建议使用常用手机号">
@@ -22,7 +22,7 @@
         <div class="reg_code">请输入验证码</div>
       </div>
 
-      <input @blur="blurupwd" v-model="upwd" class="reg_upwd" type="text" placeholder="请输入6-16位密码">
+      <input @blur="blurupwd" v-model="upwd" class="reg_upwd" type="password" placeholder="请输入6-16位密码">
       <div class="reg_up">{{divMsg}}</div>
       <!-- @blur="blurporned" -->
       <input type="text" @blur="blurporned" v-model="porned" placeholder="请填写邀请码">
@@ -95,12 +95,12 @@ export default {
           resolve(false);
         } else {
           var url = "user/GetUsername";
-          this.axios(url, { params: { uname: this.username } }).then(res => {
+          this.axios(url, { params: { uname:this.username } }).then(res => {
             if (res.data.code == -1) {
               this.spanusermsg = "用户名已存在";
               resolve(true);
             } else {
-              this.spanusermsg = "用户名可用";
+              this.spanusermsg = "";
               resolve(false);
             }
           });
@@ -119,9 +119,9 @@ export default {
           var url = "user/reg_go";
           this.axios(url, { params: { phone: this.phone } }).then(res => {
             if (res.data.code == -1) {
-              this.spanMsg = "用户名已存在";
+              this.spanMsg = "手机号已存在";
             } else {
-              this.spanMsg = "手机号可用";
+              this.spanMsg = "";
             }
           });
         }
@@ -139,7 +139,9 @@ export default {
       if (!this.username.trim()) {
         this.spanusermsg = "用户名不能为空";
         return false;
-      }
+      }else 
+        this.spanusermsg=""
+      
     },
     checkphone() {
       var reg = /^1[3-9]\d{9}$/;
