@@ -266,6 +266,7 @@ export default {
                 //弹出框 要改！！！
                 this.display='block'+(this.d1++);         
             }else{
+                this.$emit("step",3);
                 //发送ajax请求，传入房屋id和设施名字
                 this.axios.get("facility/save",{
                     params:{
@@ -274,8 +275,7 @@ export default {
                     }
                 }).then(res=>{
                     if(res.data.code > 0){
-                        //跳转下一个组件
-                        this.$emit("step",3);
+                        //跳转下一个组件                   
                     }
                 })
             }          

@@ -3,6 +3,7 @@
     <!-- 顶部 -->
     <homeheader></homeheader>
     <div class="h_top_box">
+      <div class="cc">
       <div class="content cursor" @click="tab">
         <span class="img" data-num="0"></span>
         <p data-num="0" :class="{word:word[0].isActive}">房源信息</p>
@@ -46,6 +47,7 @@
           :style="{'background-position':word[4].position}"
         ></span>
         <p data-num="4" :class="{word:word[4].isActive}">价格规则</p>
+      </div>
       </div>
     </div>
     <Info :stepToChild="stepToChild" :hid="hid" @step="stepToParent" @sendHid="sendHid"></Info>
@@ -176,6 +178,12 @@ export default {
   padding-left: 300px;
   position: relative;
 }
+.cc{
+  width:88%;
+  position: relative;
+  text-align: center;
+  display: flex;
+}
 .content {
   box-sizing: border-box;
   color: #959ea7;
@@ -187,7 +195,7 @@ export default {
 
 .after{
   /* margin-left:125px; */
-  margin-left:11%;
+  margin-left:12.6%;
 
 
 }
@@ -220,11 +228,9 @@ p.word {
   height: 2px;
   background: #eeeeee;
   position: absolute;
-
-
-  top: 40px;
+  top: 12%;
   /* left:338px; */
-  left: 23.5%;
+  left: 4%;
 
 }
 span.span_active {
@@ -235,15 +241,15 @@ span.span_active {
 span.line2{
 
   /* left:519px; */
-  left: 36%;
+  left: 22%;
 }
 span.line3 {
   /* left:700px; */
-  left: 48.6%;
+  left: 40%;
 }
 span.line4 {
   /* left:880px; */
-  left:61.3%
+  left:58.3%
 }
 .cursor {
   cursor: pointer;

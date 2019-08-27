@@ -77,6 +77,8 @@ router.post("/",(req,res)=>{
     }).then(result=>{
         if(result.affectedRows > 0){
             res.send({code:1});
+        }else{
+            res.send({code:-1,msg:"更新失败"})
         }
     })
 })

@@ -481,9 +481,11 @@ export default {
           });
         } else {
           obj.id = this.hid;
+        //  console.log("房东"+sessionStorage.getItem("isHoster"));
           this.axios.post("/updatehouse", obj).then(result => {
             this.$emit("step",1);
             sessionStorage.setItem("isHoster",1);
+         //   console.log("房东"+sessionStorage.getItem("isHoster"));
           });
        }
       }
