@@ -482,7 +482,8 @@ export default {
         } else {
           obj.id = this.hid;
           this.axios.post("/updatehouse", obj).then(result => {
-            this.$emit("step",1)
+            this.$emit("step",1);
+            sessionStorage.setItem("isHoster",1);
           });
        }
       }
