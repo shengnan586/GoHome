@@ -88,16 +88,11 @@ export default {
       imgs: [ "/images/Carousel1.jpg",
         "/images/Carousel2.jpg",
         "/images/Carousel3.jpg",
-        "/images/Carousel4.jpg"]
-      
-       
-        
-      
-    ,
-    typeName:  "整套出租" ,
-    bedroom:  2 ,
-    bednum: 2 
-    };
+        "/images/Carousel4.jpg"],
+      typeName:  "整套出租" ,
+      bedroom:  2 ,
+      bednum: 2 
+      };
   },
   // props: {
     
@@ -128,6 +123,26 @@ export default {
       } else if (this.index >= this.imgs.length) {
         this.index = 0;
       }
+    },
+    getHref(){
+      console.log(this.p_detail);
+     console.log(6666666);
+        switch(this.p_detail.id){
+      case 1:
+      case 5:
+      
+        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.p_detail.id+"&count=4";
+       
+        break;
+      case 2:
+      case 3:
+      case 4:
+      
+        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.p_detail.id+"&count=5";
+        break;
+      default:
+        break;
+    }
     }
   },
   computed: {
@@ -146,22 +161,8 @@ export default {
       }
     }
   },
-  created() {
-     console.log(this.p_detail);
-    switch(this.p_detail.id){
-      case 1:
-      case 5:
-        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.p_detail.id+"&count=4";
-        console.log(this.p_detail.id);
-        break;
-      case 2:
-      case 3:
-      case 4:
-        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.p_detail.id+"&count=5";
-        break;
-      default:
-        break;
-    }
+  updated() {
+     this.getHref()
   },
   components: { laydate: layDate } //时间控件
 };
