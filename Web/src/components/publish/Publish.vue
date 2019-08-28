@@ -193,6 +193,7 @@ export default {
   position: absolute;
   top:-3%;
   left:0;
+  z-index: 1;
 }
 .after2{
   left:18.5%;
