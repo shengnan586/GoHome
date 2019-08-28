@@ -11,7 +11,9 @@ Vue.config.productionTip = false
 
 //引入axios模块
 import Axios from 'axios';
-Axios.defaults.baseURL="http://127.0.0.1:3003/"
+import URL from './config';
+Axios.defaults.baseURL=URL;
+//"http://127.0.0.1:3003/"
 Axios.defaults.withCredentials=true;
 Vue.prototype.axios=Axios;
 Vue.prototype.$echarts = echarts;

@@ -85,7 +85,6 @@ export default {
       this.axios
         .get(url, { params: { id: sessionStorage.getItem("userid") } })
         .then(res => {
-          console.log(res)
           this.gname = res.data.result[0].UserName;
           this.gphone = res.data.result[0].phone;
           this.guserName = res.data.result[0].realName;

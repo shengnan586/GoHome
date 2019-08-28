@@ -150,12 +150,9 @@ export default {
       } else {
         currentPage = 0;
       }
-      console.log("页码：" + currentPage);
       var obj = { id: this.userid, currentPage: currentPage };
-      console.log(this.orderStatus);
       //  http://127.0.0.1:3003/admin/GetOrderMsglist
       this.axios.get("admin/GetCollectlist", { params: obj }).then(res => {
-        console.log(res);
         this.list = res.data.data;
         this.total = res.data.count; // 记录总条数
         this.pageSize = res.data.pageSize; // 每页显示条数

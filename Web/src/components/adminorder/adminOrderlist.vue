@@ -21,7 +21,7 @@
                 <img
                   width="210"
                   height="150"
-                  :src="`http://127.0.0.1:3003/${item.ImgUrl}`"
+                  :src="`${URL+item.ImgUrl}`"
                   alt
                   class="pic"
                 />
@@ -84,9 +84,11 @@
 </template>
 <script>
 import pagination from "../page/page";
+import URL from '../../config'
 export default {
   data() {
     return {
+      URL:URL,
       userid: sessionStorage.getItem("userid"), //当前登陆的用户
       isnav: "flex",
       total: 0, // 记录总条数
@@ -125,13 +127,11 @@ export default {
       } else {
         currentPage = 0;
       }
-      console.log("页码：" + currentPage);
       var obj = {
         orderStatus: this.orderStatus,
         currentPage: currentPage,
         userid: this.userid
       };
-      console.log(this.orderStatus);
       //   http://127.0.0.1:3003/adminorder/GetOrderlist?orderStatus=
       this.axios.get("admin/GetOrderlist", { params: obj }).then(res => {
         this.list = res.data.data;
