@@ -1,4 +1,5 @@
 <template>
+  <div>
     <div class="container">
         <Header></Header>
         <Detail :p_detail="p_detail"></Detail>
@@ -80,9 +81,10 @@
 					</div>
                     <pmap :p_detail="p_detail"></pmap>
 		</div>
+        </div>
          <Footer></Footer>
-    </div>
-
+    
+  </div>  
 </template>    
 <script>
 import footer from "../index/footer.vue";
@@ -105,9 +107,9 @@ export default {
     },
     created() {
         var url="order/prodetail";
-        var hid=1 ;
+        var hid=this.$route.params.id ;
 
-        //this.$route.params.id;
+        //;
         this.axios.get(url,{params:{hid}}).then(res=>{
             this.p_detail=res.data.data[0];
             // console.log(this.p_detail.installName)
@@ -145,14 +147,17 @@ export default {
     }
     /* 配套设施 */
     .part {
-    width: 100%;
+    width: 730px;
     background: #fff;
     border-radius: 5px;
     margin-bottom: 10px;
     overflow: hidden;
+    padding-left:100px;
+   
     }
-    .container .part{
-        margin-left:400px;
+    .container{
+       width:1240px;
+       margin:auto;
     }
     .detail {
         width: 690px;
