@@ -9,7 +9,7 @@
             :key="i"
             :style="{opacity:index==i?1:0,'z-index':index==i?1:0}"
           >
-            <a :href="href"><img :src="'http://127.0.0.1:3003/'+img" /></a>
+            <a :href="href"><img :src="`${URL+img}`" /></a>
           </li>
         </ul>
         <div class="btn-left" @click="move(-1)">
@@ -78,6 +78,7 @@
 </template>
 <script>
 import layDate from "../laydate/laydate.vue";
+import URL from "../../config"
 export default {
   data() {
     return {
@@ -151,13 +152,13 @@ export default {
     switch(this.p_detail.id){
       case 1:
       case 5:
-        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.p_detail.id+"&count=4";
+        this.href=URL+"AR/ar.html?hid="+this.p_detail.id+"&count=4";
         console.log(this.p_detail.id);
         break;
       case 2:
       case 3:
       case 4:
-        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.p_detail.id+"&count=5";
+        this.href=URL+"AR/ar.html?hid="+this.p_detail.id+"&count=5";
         break;
       default:
         break;

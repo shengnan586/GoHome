@@ -3,7 +3,7 @@
     <div class="product" v-for="(p,i) of productList" :key="i">
       <div class="p-img">
         <span class="favorites iconfont icon-shoucang" @click="love" :data-hid ="p.id"></span>
-        <router-link :to="'/prodetail?hid='+p.id"><img :src="'http://127.0.0.1:3003/'+p.houseimg"></router-link>
+        <router-link :to="'/prodetail?hid='+p.id"><img :src="`${URL+p.houseimg}`"></router-link>
         <div class="price">￥<span>{{p.specialPrice}}</span>起/晚</div>
       </div>
       <div class="p-detail">
