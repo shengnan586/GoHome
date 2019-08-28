@@ -2,7 +2,7 @@
   <div class="productlist">
     <div class="product" v-for="(p,i) of productList" :key="i">
       <div class="p-img">
-        <span class="favorites iconfont icon-shoucang"></span>
+        <span class="favorites iconfont icon-shoucang" @click="love" :data-hid ="p.hid"></span>
         <router-link :to="'/prodetail?hid='+p.id"><img :src="'http://127.0.0.1:3003/'+p.houseimg"></router-link>
         <div class="price">￥<span>{{p.specialPrice}}</span>起/晚</div>
       </div>
@@ -18,7 +18,20 @@
 export default {
   props:{
     productList:{default:[]}
-  }
+  },
+  methods: {
+    love(e){
+      var hid = e.target.dataset.hid;
+      var uid = sessionStorage.getItem("userid");
+      var collectime = new Date().getTime();
+      this.axios.get("/love",{params:{
+        hid,uid,collectime
+      }}).then(result=>{
+        //if(result)
+        console.log(result);
+      })
+    }
+  },
 }
 </script>
 <style scoped>
