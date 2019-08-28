@@ -28,7 +28,6 @@
             <span>{{gpoint}}&nbsp;积分</span>
           </div>
         </div>
-         
       </div>
     </div>
     <!-- 二层 -->
@@ -49,18 +48,18 @@
         <input v-model="gcard" v-else placeholder="请输入身份证号" type="text" />
       </div>
     </div>
-  <Alert :display="display" :prompt="prompt"></Alert>
+    <Alert :display="display" :prompt="prompt"></Alert>
   </div>
 </template>
 <script>
-import Alert from "../Alert"
+import Alert from "../Alert";
 export default {
-  components:{Alert},
+  components: { Alert },
   data() {
     return {
-      display:'none',
-      prompt:'',
-      d1:0,
+      display: "none",
+      prompt: "",
+      d1: 0,
       show: true,
       word: true,
       three: true,
@@ -68,13 +67,13 @@ export default {
       showMsg: "修改",
       msg: "修改",
       canMsg: "修改",
-       realmsg:"修改",
+      realmsg: "修改",
       gname: "",
       gphone: "",
       gemail: "",
       guserName: "",
       gcard: "",
-      gpoint:""
+      gpoint: ""
     };
   },
   methods: {
@@ -90,7 +89,7 @@ export default {
           this.guserName = res.data.result[0].realName;
           this.gcard = res.data.result[0].cardID;
           this.gemail = res.data.result[0].email;
-          this.gpoint=res.data.result[0].point;
+          this.gpoint = res.data.result[0].point;
         });
     },
     // 修改数据请求服务器
@@ -110,22 +109,24 @@ export default {
     showCount() {
       if (this.show == true) {
         this.show = false;
-        this.msg = "保存";      
+        this.msg = "保存";
       } else {
-        if(this.msg == "保存"){
-        var reg = /\d{3,12}/;
-        if(reg.test(this.gname)==false){
-         // console.log("hhh");
-          this.prompt="用户名格式不正确";
-          this.display='block'+(this.d1++); 
+        if (this.msg == "保存") {
+          var reg = /^\w{3,8}$/;
+          if (reg.test(this.gname) == false) {
+            // console.log("hhh");
+            this.gname = "";
+            this.prompt = "用户名格式不正确";
+            this.display = "block" + this.d1++;
+          }else{
+            var obj = {
+              UserName: this.gname
+            };
+            this.sendRequest(obj);
+          }
+          this.show = true;
+          this.msg = "修改";
         }
-         this.show = true;
-        this.msg = "修改";
-      }
-        var obj = {
-        UserName: this.gname
-      };
-      this.sendRequest(obj);
       }
     },
     /* two的显示隐藏  手机号*/
@@ -134,21 +135,22 @@ export default {
         this.word = false;
         this.showMsg = "保存";
       } else {
-        if(this.showMsg == "保存"){
-        var reg = /^1[3-9]\d{9}$/;
-        if(reg.test(this.gphone)==false){
-           console.log("hhh");
-          this.prompt="手机号格式不正确";
-          this.display='block'+(this.d1++);  
+        if (this.showMsg == "保存") {
+          var reg = /^1[3-9]\d{9}$/;
+          if (reg.test(this.gphone) == false) {
+            this.gphone = "";
+            this.prompt = "手机号格式不正确";
+            this.display = "block" + this.d1++;
+          }else{
+            var obj = {
+              phone: this.gphone
+            };
+            this.sendRequest(obj);
+          }
+          this.word = true;
+          this.showMsg = "修改";
         }
-         this.word = true;
-        this.showMsg = "修改";
       }
-        var obj = {
-        phone: this.gphone
-      };
-      this.sendRequest(obj);
-      }  
     },
     /*three显示隐藏  //邮箱 */
     show_can() {
@@ -156,20 +158,21 @@ export default {
         this.three = false;
         this.canMsg = "保存";
       } else {
-        if(this.canMsg == "保存"){
-        var reg =/^[0-9a-z_]+@(([0-9a-z]+)[.]){1,2}[a-z]{2,3}$/;
-        if(reg.test(this.gemail)==false){
-           console.log("hhh");
-          this.prompt="邮箱格式不正确";
-          this.display='block'+(this.d1++);  
-        }
-         this.three = true;
-        this.canMsg = "修改";
-      }
-        var obj = {
-        email: this.gemail
-      };
-      this.sendRequest(obj);
+        if (this.canMsg == "保存") {
+          var reg = /^[0-9a-z_]+@(([0-9a-z]+)[.]){1,2}[a-z]{2,3}$/;
+          if (reg.test(this.gemail) == false) {
+            this.gemail = "";
+            this.prompt = "邮箱格式不正确";
+            this.display = "block" + this.d1++;
+          }else{
+            var obj = {
+              email: this.gemail
+            };
+            this.sendRequest(obj);
+          }
+          this.three = true;
+          this.canMsg = "修改";
+        }    
       }
     },
     //真实姓名 和身份证号
@@ -177,17 +180,25 @@ export default {
       // this.show_name=!this.show_name;
       if (this.two_name == true) {
         this.two_name = false;
-        this.realmsg="保存"
-      } else{
-        this.realmsg="修改"
-        this.two_name = true;
-     
-      var obj = {
-        realName: this.guserName,
-        cardID:this.gcard
-      };
-      this.sendRequest(obj)
-    }
+        this.realmsg = "保存";
+      } else {
+        if (this.realmsg == "保存") {
+          var reg = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+          if (reg.test(this.gcard) == false) {
+            this.gcard = "";
+            this.prompt = "身份证格式不正确";
+            this.display = "block" + this.d1++;
+          }else{
+            var obj = {
+              realName: this.guserName,
+              cardID: this.gcard
+            };
+            this.sendRequest(obj);
+          }
+          this.realmsg = "修改";
+          this.two_name = true;
+        }    
+      }
     }
   },
   created() {
@@ -199,9 +210,9 @@ export default {
 <!-- 以下是样式-->
 <style scoped>
 /*以下是f1的样式*/
-.jifen>span{
-  margin-left:20px;
-  color:#f05b72;
+.jifen > span {
+  margin-left: 20px;
+  color: #f05b72;
 }
 h4 {
   height: 50px;
@@ -214,16 +225,16 @@ h4 {
   display: flex;
   border-top: 1px solid #dedede;
 }
-.admin-img5{
-  width:102px;
-  height:130px;
-  font-size:14px;
+.admin-img5 {
+  width: 102px;
+  height: 130px;
+  font-size: 14px;
 }
-.admin-img5>img{
-  width:100px;
-  height:100px;
-  margin-top:10px;
-   border:1px solid #dedede;
+.admin-img5 > img {
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+  border: 1px solid #dedede;
 }
 label {
   font-size: 14px;
@@ -234,7 +245,7 @@ label {
   height: 237px;
   border: 1px solid #dedede;
   padding: 0 18px;
-   margin-left:110.7px;
+  margin-left: 110.7px;
 }
 .first,
 .two,
@@ -296,7 +307,7 @@ input {
   border: 1px solid #dedede;
   padding: 0 18px;
   margin-top: 20px;
-   margin-left:110.7px;
+  margin-left: 110.7px;
 }
 a {
   text-decoration: none;

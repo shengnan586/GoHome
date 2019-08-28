@@ -97,6 +97,7 @@ create table home_business_house
    otherAsk             varchar(200) comment '����Ҫ��',
    longitude            varchar(20) comment '经度',
    latitude             varchar(20) comment '纬度',
+   houseDESC            varchar(20) comment  '房源介绍',
    primary key (id)
 );
 
@@ -275,8 +276,8 @@ alter table home_business_house_install add state int;
 alter table home_business_house add houseDESC varchar(500);
 alter table home_business_house add uid int;
 
-alter table home_business_house add isReleaseStatus int;
-
+ALTER TABLE `home_business_house` 
+ADD COLUMN `isReleaseStatus` int(11) NULL DEFAULT 0 ;
 alter table home_business_house_collect_img add collectime varchar(20);
 alter table home_business_house_msg add msgtime varchar(20);
 

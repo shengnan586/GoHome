@@ -137,8 +137,11 @@ export default {
 </script>
 <style scoped>
 #container {
-  width: 690px;
+  width: 730px;
   height: 400px;
   margin-left:90px;
+}
+.test{
+  margin-left:-90px;
 }
 </style>
