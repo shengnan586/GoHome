@@ -2,7 +2,7 @@
   <div class="productlist">
     <div class="product" v-for="(p,i) of productList" :key="i">
       <div class="p-img">
-        <span class="favorites iconfont icon-shoucang" @click="love" :data-hid ="p.hid"></span>
+        <span class="favorites iconfont icon-shoucang" @click="love" :data-hid ="p.id"></span>
         <router-link :to="'/prodetail?hid='+p.id"><img :src="'http://127.0.0.1:3003/'+p.houseimg"></router-link>
         <div class="price">￥<span>{{p.specialPrice}}</span>起/晚</div>
       </div>
@@ -21,14 +21,17 @@ export default {
   },
   methods: {
     love(e){
+    //  console.log(this.productList);
+    //  console.log(e.target.dataset.hid);
       var hid = e.target.dataset.hid;
       var uid = sessionStorage.getItem("userid");
-      var collectime = new Date().getTime();
+      var collectime = new Date().toLocaleString();
+     // console.log(collectime);
       this.axios.get("/love",{params:{
         hid,uid,collectime
       }}).then(result=>{
-        //if(result)
-        console.log(result);
+        if(result.data.code > 0) console.log("收藏成功");
+        else console.log("收藏失败");
       })
     }
   },
@@ -103,5 +106,8 @@ font-size: 12px;
   .productlist .product .p-detail .user span{
     font-size: 16px;
     color:#39b54a;
+  }
+  span.favorites{
+    cursor: pointer;
   }
 </style>
