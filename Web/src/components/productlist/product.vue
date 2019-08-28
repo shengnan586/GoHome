@@ -39,12 +39,15 @@ export default {
   .productlist{
     width:1240px;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-wrap: wrap;
   }
   .productlist .product{
-    width:32%;
+    width: 400px;
     height:400px;
+  }
+  .productlist .product:not(:first-child){
+    margin-left: 20px;
   }
   .productlist .product .p-img{
     width:100%;

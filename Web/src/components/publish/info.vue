@@ -435,7 +435,7 @@ export default {
       } else if (!this.area) {
         this.err_area = true;
         return;
-      } else if (!this.bedTypeId) {
+      } else if (this.bed_btn.length==0) {
         this.err_bed = true;
         return;
       } else {
