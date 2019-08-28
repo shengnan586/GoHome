@@ -107,12 +107,11 @@ export default {
     },
     created() {
         var url="order/prodetail";
-        var hid=this.$route.params.id ;
-
-        //;
+        var hid= this.$route.query.hid ;
+    
         this.axios.get(url,{params:{hid}}).then(res=>{
             this.p_detail=res.data.data[0];
-            // console.log(this.p_detail.installName)
+            console.log(this.p_detail.installName)
             for(var i=0;i<this.p_detail.installName.length;i++){
                 
                 for(var j=0;j<this.arr.length;j++){

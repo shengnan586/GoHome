@@ -97,6 +97,7 @@ create table home_business_house
    otherAsk             varchar(200) comment '����Ҫ��',
    longitude            varchar(20) comment '经度',
    latitude             varchar(20) comment '纬度',
+   houseDESC            varchar(20) comment  '房源介绍',
    primary key (id)
 );
 
