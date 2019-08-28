@@ -435,7 +435,7 @@ export default {
       } else if (!this.area) {
         this.err_area = true;
         return;
-      } else if (!this.bedTypeId) {
+      } else if (this.bed_btn.length==0) {
         this.err_bed = true;
         return;
       } else {
@@ -481,8 +481,11 @@ export default {
           });
         } else {
           obj.id = this.hid;
+        //  console.log("房东"+sessionStorage.getItem("isHoster"));
           this.axios.post("/updatehouse", obj).then(result => {
-            this.$emit("step",1)
+            this.$emit("step",1);
+            sessionStorage.setItem("isHoster",1);
+         //   console.log("房东"+sessionStorage.getItem("isHoster"));
           });
        }
       }
