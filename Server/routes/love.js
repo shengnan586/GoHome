@@ -23,7 +23,6 @@ router.get("/",(req,res)=>{
     })
     .then(result=>{
         if(branch == 1){
-            console.log("成功"+result.affected)
             if(result.affectedRows > 0) res.send({code:1});
             else res.send({code:-1})
         }

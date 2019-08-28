@@ -276,7 +276,7 @@ alter table home_business_house_install add state int;
 alter table home_business_house add houseDESC varchar(500);
 alter table home_business_house add uid int;
 
-alter table home_business_house add isReleaseStatus int;
+alter table home_business_house add isReleaseStatus int DEFAULT 0 not null;
 
 alter table home_business_house_collect_img add collectime varchar(20);
 
