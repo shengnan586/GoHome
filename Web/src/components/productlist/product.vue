@@ -7,7 +7,7 @@
         <div class="price">￥<span>{{p.specialPrice}}</span>起/晚</div>
       </div>
       <div class="p-detail">
-        <p class="title"><router-link :to="'/prodetail/'+p.hid">{{p.houseTitle}}</router-link></p>
+        <p class="title"><router-link :to="'/prodetail/'+p.id">{{p.houseTitle}}</router-link></p>
         <p class="detail">{{p.typeName}}/{{p.bedcount}}张床/易住{{p.peopleNumber}}人</p>
         <div class="user"><span>{{p.UserName}}</span>的房子</div>
       </div>
