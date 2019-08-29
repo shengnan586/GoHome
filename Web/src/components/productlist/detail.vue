@@ -134,7 +134,6 @@ export default {
                 if(res.data.data.length > 0)
                 this.imgs=res.data.data;
             })
->>>>>>> 9a2efaa263cd206b5c633e8d54c83809c834bdbd
     }
   },
   computed: {
