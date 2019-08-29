@@ -285,7 +285,7 @@ export default {
     // 手机号失去焦点正则判断
     call(e){
       this.inputname="";
-      var reg=/^1(3|4|5|7|8)\d{9}$/;
+      var reg=/^1(3|4|5|7|8|9)\d{9}$/;
       if(this.phone==""){
         this.warn_phone="请填写手机号";
         this.blurinput[2]=e.target.id;

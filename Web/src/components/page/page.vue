@@ -83,9 +83,6 @@
         }
       }
     },
-    mounted () {
-      console.log("hahahha"+this.currentPage);
-    },
     watch: {
        currentPage:{
          immediate:true,

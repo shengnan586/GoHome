@@ -6,7 +6,7 @@
       </div>
       <ul class="city-area" v-show="show" @click="selectedArea">
         <li v-for="(area,i) of areaList" :key="i" :data-value="area.id" :data-text="area.aTypeName">
-          <a href="javascript:;">{{area.aTypeName}}</a>
+          <a href="javascript:;" :data-value="area.id" :data-text="area.aTypeName">{{area.aTypeName}}</a>
         </li>
       </ul>
     </div>

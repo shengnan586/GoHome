@@ -128,6 +128,7 @@
 <script>
 import header from "../index/header.vue";
 import footer from "../index/footer.vue";
+import Bus from "../../../static/utils/bus.js";
 export default {
   data() {
     return {
@@ -142,6 +143,14 @@ export default {
   components: {
     Footer: footer,
     Header: header
+  },
+  created() {},
+  mounted() {
+    var vm = this;
+    // 用$on事件来接收参数
+    Bus.$on("isAction", data => {
+      vm.isActive = data;
+    });
   }
 };
 </script>

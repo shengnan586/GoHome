@@ -9,7 +9,7 @@
             :key="i"
             :style="{opacity:index==i?1:0,'z-index':index==i?1:0}"
           >
-            <a :href="href"><img :src="'http://127.0.0.1:3003/'+img" /></a>
+            <a :href="href"><img :src="`${ URL +img}`" /></a>
           </li>
         </ul>
         <div class="btn-left" @click="move(-1)">
@@ -53,7 +53,7 @@
       </div>
     </div>
     <div class="right">
-      <h1>￥{{p_detail.specialPrice}}/晚</h1>
+      <h1>￥{{p_detail.normalPrice}}/晚</h1>
       <div class="date_box">
         <laydate @getValue="getDateValue" class="date_txt"></laydate>
         <i class="iconfont icon-rili"></i>
@@ -65,7 +65,7 @@
         </li>
         <li>
           <span>押金</span>
-          <span>￥{{p_detail.normalPrice}}</span>
+          <span>￥{{p_detail.cashMoney}}</span>
         </li>
         <li>
           <span>订单总金额</span>
@@ -78,9 +78,11 @@
 </template>
 <script>
 import layDate from "../laydate/laydate.vue";
+import URL from "../../config/index";
 export default {
   data() {
     return {
+      URL:URL,
       imgwidth: 724,
       index: 0,
       orderDate: null,
@@ -88,16 +90,11 @@ export default {
       imgs: [ "/images/Carousel1.jpg",
         "/images/Carousel2.jpg",
         "/images/Carousel3.jpg",
-        "/images/Carousel4.jpg"]
-      
-       
-        
-      
-    ,
-    typeName:  "整套出租" ,
-    bedroom:  2 ,
-    bednum: 2 
-    };
+        "/images/Carousel4.jpg"],
+      typeName:  "整套出租" ,
+      bedroom:  2 ,
+      bednum: 2 
+      };
   },
   // props: {
     
@@ -119,7 +116,7 @@ export default {
       this.orderDate = orderDate;
     },
     order(){
-      this.$router.push("/order");
+      this.$router.push({path: "/order", query: {hid: this.p_detail.id,totalprice:this.totalprice}})
     },
     move(n) {
       this.index += n;
@@ -128,36 +125,45 @@ export default {
       } else if (this.index >= this.imgs.length) {
         this.index = 0;
       }
+
+    },
+    getImgs(){
+       this.axios.get("/imgSearch",{params:{hid:this.p_detail.id}})
+            .then(res=>{
+                if(res.data.data.length > 0)
+                this.imgs=res.data.data;
+            })
     }
   },
   computed: {
     price() {
       if (this.orderDate) {
-        return this.orderDate.days * this.p_detail.specialPrice;
+        return this.orderDate.days * this.p_detail.normalPrice;
       } else {
         return 0;
       }
     },
     totalprice() {
       if (this.orderDate) {
-        return this.orderDate.days * this.p_detail.specialPrice + this.p_detail.cashMoney;
+        return this.orderDate.days * this.p_detail.normalPrice + this.p_detail.cashMoney;
       } else {
         return 0;
       }
     }
   },
-  created() {
+  updated() {
      console.log(this.p_detail);
+     this.getImgs();
     switch(this.p_detail.id){
       case 1:
       case 5:
-        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.p_detail.id+"&count=4";
+        this.href=URL+"AR/ar.html?hid="+this.p_detail.id+"&count=4";
         console.log(this.p_detail.id);
         break;
       case 2:
       case 3:
       case 4:
-        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.p_detail.id+"&count=5";
+        this.href=URL+"AR/ar.html?hid="+this.p_detail.id+"&count=5";
         break;
       default:
         break;

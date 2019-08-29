@@ -74,13 +74,14 @@ router.get("/prodetail",(req,res)=>{
     .then(result=>{
         if(result.length>0){
            data = result;
-           console.log(11111111111);
+        //    console.log(11111111111);
            sql = "select installName from home_dic_installation where id in (select installId from home_business_house_install where hId = ? and state = 1)";
-           
+           console.log(result);
            query(sql,[hid])
            .then(result=>{
                if(result.length > 0){
-                console.log(22222222222);
+                //    console.log(result);
+                // console.log(22222222222);
                    var installName = [];
                    for(var item of result){
                        installName.push(item.installName)
@@ -90,7 +91,7 @@ router.get("/prodetail",(req,res)=>{
                    
                    query(sql,[hid])
                    .then(result=>{
-                    console.log(33333333);
+                    
                        if(result.length > 0){
                             var bed = [];
                             for(var item of result){
@@ -98,7 +99,7 @@ router.get("/prodetail",(req,res)=>{
                             }
                             data[0].bed = bed;
                             res.send({code:1,data:data})
-                            
+                            // console.log(33333333);
                        }else{
                            res.send({code:-1})
                        }
