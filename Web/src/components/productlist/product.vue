@@ -15,7 +15,13 @@
   </div>
 </template>
 <script>
+import URL from "../../config/index";
 export default {
+  data() {
+    return {
+      URL:URL
+    }
+  },
   props:{
     productList:{default:[]}
   },

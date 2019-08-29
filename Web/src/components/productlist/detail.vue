@@ -82,6 +82,7 @@ import URL from "../../config/index";
 export default {
   data() {
     return {
+      URL:URL,
       imgwidth: 724,
       index: 0,
       orderDate: null,
