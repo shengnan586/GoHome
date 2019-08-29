@@ -3,8 +3,10 @@
     <!-- logo图标 -->
     <div class="logo">
       <a href="javascript:;" @click="GoRouter" data-router="index">
-        <img src="../../assets/images/WechatIMG63.png" data-router="index"/>
-        <span data-router="index" :class="{font:isIndex==0}"><span data-router="index" :class="{font:isIndex==0}" style="font-size:20px;">BUG民宿</span>  家的感觉</span>  
+        <img src="../../assets/images/WechatIMG63.png" data-router="index" />
+        <span data-router="index" :class="{font:isIndex==0}">
+          <span data-router="index" :class="{font:isIndex==0}" style="font-size:20px;">BUG民宿</span> 家的感觉
+        </span>
       </a>
     </div>
     <!-- 头部右侧导航 -->
@@ -92,6 +94,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 import Bus from "../../../static/utils/bus";
 export default {
   data() {
@@ -110,6 +113,9 @@ export default {
     isIndex: { default: 0 }
   },
   methods: {
+    ...mapActions({
+      actionGoBack: "actionGoBack"
+    }),
     // 登录
     login() {
       this.$router.push("/Login_go");
@@ -136,19 +142,23 @@ export default {
     },
     //菜单中路由跳转
     GoRouter(e) {
-      var router = e.target.dataset.router;
-      var isa = e.target.dataset.isaictivea;
-      if (router == "close") {
-        sessionStorage.clear();
-        this.UserName = "";
-        this.$router.push("/index");
-      } else {
-        if (isa && isa !== undefined) {
-          this.$router.push({ path: "/" + router, query: { key: isa } });
-          Bus.$emit("isAction", isa);
+      if (e.target.nodeName == "A") {
+        var router = e.target.dataset.router;
+        var isa = e.target.dataset.isaictivea;
+        if (router == "close") {
+          sessionStorage.clear();
+          this.UserName = "";
+          this.$router.push("/index");
         } else {
-          if (router) {
-            this.$router.push("/" + router);
+          if (isa && isa !== undefined) {
+            this.$router.push({ path: "/" + router, query: { key: isa } });
+            this.actionGoBack(isa);
+            // this.$bus.emit("isAction", isa);
+            // Bus.$emit("isAction", isa);
+          } else {
+            if (router) {
+              this.$router.push("/" + router);
+            }
           }
         }
       }

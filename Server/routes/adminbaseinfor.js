@@ -4,7 +4,6 @@ const pool = require("../pool");
 
 router.get("/GethouseList", (req, res) => {
     var id = req.query.userid;
-    console.log(req.query);
     var output = {
         count: 0, //一共有多少条
         pageSize: 10,  //每个页面显示几条
