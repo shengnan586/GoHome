@@ -162,11 +162,7 @@ export default {
       }
     }
   },
-<<<<<<< HEAD
-  updated() {
-     this.getHref()
-=======
-  created() {
+  updated(){
      console.log(this.p_detail);
     switch(this.p_detail.id){
       case 1:
@@ -182,7 +178,6 @@ export default {
       default:
         break;
     }
->>>>>>> e7a65fd22a762059a158c863d48afee167592c12
   },
   components: { laydate: layDate } //时间控件
 };
