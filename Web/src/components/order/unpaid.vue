@@ -48,15 +48,44 @@ export default {
       time: 5,
       tit: "正在支付，请您稍等...",
       isShow: false,
-      colorShow:true
+      colorShow:true,
+      payStatus:1,
+      orderStatus:2,
+      id:null,
     };
   },
   created() {
-    this.timer();
+    this.id = this.$route.query.key;
+    this.timer()
+    .then(
+          ()=>{
+              this.isShow = true;
+              var t = setInterval(() => { //支付成功等待3秒跳转
+              this.time--;
+          if (this.time == 0) {
+            clearInterval(t);
+            t = null;
+            
+          }
+        }, 1000);
+          }
+      )
+    .then(
+        this.axios.post('/order/unpaid',{payStatus:this.payStatus,orderStatus:this.orderStatus,id:this.id}).then(res=>{
+          if(res.data.code==1){
+            // 跳转到待支付界面
+            this.$router.push("adminorder/list")
+          }else{
+            alert("请求超时");
+          }
+        })
+      )
+  },
+  mounted() {
   },
   methods: {
     timer() {
-      var p = new Promise((resolve,reject)=> {  //正在支付等待5秒
+      return new Promise((resolve,reject)=> {  //正在支付等待5秒
         var t = setInterval(() => {
           this.time--;
           if (this.time == 0) {
@@ -69,19 +98,7 @@ export default {
             resolve();
           }
         }, 1000);
-      }).then(
-          ()=>{
-              this.isShow = true;
-              var t = setInterval(() => { //支付成功等待3秒跳转
-              this.time--;
-          if (this.time == 0) {
-            clearInterval(t);
-            t = null;
-            console.log("跳转")
-          }
-        }, 1000);
-          }
-      )
+      })
     }
   }
 };

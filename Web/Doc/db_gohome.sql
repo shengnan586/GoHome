@@ -276,8 +276,8 @@ alter table home_business_house_install add state int;
 alter table home_business_house add houseDESC varchar(500);
 alter table home_business_house add uid int;
 
-ALTER TABLE `home_business_house` 
-ADD COLUMN `isReleaseStatus` int(11) NULL DEFAULT 0 ;
+ALTER TABLE `home_business_house` ADD COLUMN `isReleaseStatus` int(11);
+ALTER TABLE `home_business_house` CHANGE `isReleaseStatus` `isReleaseStatus` INT(11) NULL DEFAULT '0';
 alter table home_business_house_collect_img add collectime varchar(20);
 alter table home_business_house_msg add msgtime varchar(20);
 

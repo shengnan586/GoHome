@@ -23,6 +23,9 @@ Axios.defaults.baseURL = URL;
 //"http://127.0.0.1:3003/"
 Axios.defaults.withCredentials = true;
 Vue.prototype.axios = Axios;
+Axios.defaults.baseURL=URL;
+Axios.defaults.withCredentials=true;
+Vue.prototype.axios=Axios;
 Vue.prototype.$echarts = echarts;
 
 import homeheader from "./components/index/header.vue";

@@ -99,7 +99,7 @@ export default {
             ["牙具","toothbrush.png"],["香皂","soap.png"],["拖鞋","shoes.png"],
             ["手纸","papper.png"],["毛巾","tower.png"],["沐浴用品","acne.png"],
             ["无线网络","wify.png"],["有线网络","network.png"],
-            ["暖气","heater.png"],["电梯","lift.png"],["门禁系统","door.png"],["停车位","park.png"],["允许做饭","cook.png"],["允许带宠物","animal.png"],["允许聚会","party"]],
+            ["暖气","heater.png"],["电梯","lift.png"],["门禁系统","door.png"],["停车位","park.png"],["允许做饭","cook.png"],["允许带宠物","animal.png"],["允许聚会","party.png"]],
             p_detail:[],
             arr1:[]
             

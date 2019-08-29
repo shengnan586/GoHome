@@ -9,12 +9,28 @@ router.post("/order",(req,res)=>{
     pool.query(sql,[obj.realName,obj.cardID,obj.phone,obj.peopleNumber,obj.checkinDate,obj.checkoutDate,obj.days,obj.orderId,obj.id,obj.hid,obj.payStatus,obj.payTime,obj.orderPrice,obj.orderStatus,obj.uid],(err,result)=>{
         if(err) throw err;
         if(result.affectedRows>0){
-            res.send({code:1,msg:"提交成功"})
+            id = result.insertId;	
+            res.send({code:1,data:id})
         }else{
             res.send({code:-1,msg:"提交失败"})
         }
     })
 })
+
+router.post('/unpaid',(req,res)=>{
+    var obj=req.body;
+    console.log(obj);
+    var sql='update home_business_orderList set payStatus=?,orderStatus=? where id=?';
+    pool.query(sql,[obj.payStatus,obj.orderStatus,obj.id],(err,result)=>{
+        if(err) throw err;
+        if(result.affectedRows>0){
+            res.send({code:1,msg:"支付成功"})
+        }else{
+            res.send({code:-1,msg:"支付失败"})
+        }
+    })
+})
+
 router.get("/productlist",(req,res)=>{
     var start=req.query.start;
     var  count=req.query.count;
@@ -58,13 +74,14 @@ router.get("/prodetail",(req,res)=>{
     .then(result=>{
         if(result.length>0){
            data = result;
-           console.log(11111111111);
+        //    console.log(11111111111);
            sql = "select installName from home_dic_installation where id in (select installId from home_business_house_install where hId = ? and state = 1)";
-           
+           console.log(result);
            query(sql,[hid])
            .then(result=>{
                if(result.length > 0){
-                console.log(22222222222);
+                //    console.log(result);
+                // console.log(22222222222);
                    var installName = [];
                    for(var item of result){
                        installName.push(item.installName)
@@ -74,7 +91,7 @@ router.get("/prodetail",(req,res)=>{
                    
                    query(sql,[hid])
                    .then(result=>{
-                    console.log(33333333);
+                    
                        if(result.length > 0){
                             var bed = [];
                             for(var item of result){
@@ -82,7 +99,7 @@ router.get("/prodetail",(req,res)=>{
                             }
                             data[0].bed = bed;
                             res.send({code:1,data:data})
-                            
+                            // console.log(33333333);
                        }else{
                            res.send({code:-1})
                        }
