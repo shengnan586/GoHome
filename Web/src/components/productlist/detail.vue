@@ -124,26 +124,6 @@ export default {
       } else if (this.index >= this.imgs.length) {
         this.index = 0;
       }
-    },
-    getHref(){
-      console.log(this.p_detail);
-     console.log(6666666);
-        switch(this.p_detail.id){
-      case 1:
-      case 5:
-      
-        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.p_detail.id+"&count=4";
-       
-        break;
-      case 2:
-      case 3:
-      case 4:
-      
-        this.href="http://127.0.0.1:3003/AR/ar.html?hid="+this.p_detail.id+"&count=5";
-        break;
-      default:
-        break;
-    }
     }
   },
   computed: {
