@@ -1,2 +1,2 @@
 
-export default 'http://web1904bugapp.applinzi.com/'
+export default 'https://web1904bugapp.applinzi.com/'

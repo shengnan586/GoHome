@@ -90,10 +90,7 @@ export default {
         "/images/Carousel2.jpg",
         "/images/Carousel3.jpg",
         "/images/Carousel4.jpg"]
-      
-       
-        
-      
+
     ,
     typeName:  "整套出租" ,
     bedroom:  2 ,
