@@ -125,8 +125,7 @@ export default {
       } else if (this.index >= this.imgs.length) {
         this.index = 0;
       }
-<<<<<<< HEAD
-=======
+
     },
     getImgs(){
        this.axios.get("/imgSearch",{params:{hid:this.p_detail.id}})
