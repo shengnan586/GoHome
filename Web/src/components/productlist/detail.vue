@@ -53,7 +53,7 @@
       </div>
     </div>
     <div class="right">
-      <h1>￥{{p_detail.specialPrice}}/晚</h1>
+      <h1>￥{{p_detail.normalPrice}}/晚</h1>
       <div class="date_box">
         <laydate @getValue="getDateValue" class="date_txt"></laydate>
         <i class="iconfont icon-rili"></i>
@@ -65,7 +65,7 @@
         </li>
         <li>
           <span>押金</span>
-          <span>￥{{p_detail.normalPrice}}</span>
+          <span>￥{{p_detail.cashMoney}}</span>
         </li>
         <li>
           <span>订单总金额</span>
@@ -114,7 +114,7 @@ export default {
       this.orderDate = orderDate;
     },
     order(){
-      this.$router.push("/order");
+      this.$router.push({path: "/order", query: {hid: this.p_detail.id,totalprice:this.totalprice}})
     },
     move(n) {
       this.index += n;
@@ -148,14 +148,14 @@ export default {
   computed: {
     price() {
       if (this.orderDate) {
-        return this.orderDate.days * this.p_detail.specialPrice;
+        return this.orderDate.days * this.p_detail.normalPrice;
       } else {
         return 0;
       }
     },
     totalprice() {
       if (this.orderDate) {
-        return this.orderDate.days * this.p_detail.specialPrice + this.p_detail.cashMoney;
+        return this.orderDate.days * this.p_detail.normalPrice + this.p_detail.cashMoney;
       } else {
         return 0;
       }
