@@ -198,6 +198,7 @@ import layDate from "../laydate/laydate.vue";
 export default {
   data() {
     return {
+      hid: 0,
       ischecked:false,
       uname: "", //姓名
       id_card: "", //身份证号
@@ -212,12 +213,16 @@ export default {
       blurinput:["","",""],
       orderDate:null,//保存时间控件返回的对象
       // order:{start:"2019-09-01",end:"2019-09-03"}
+      orderPrice:0
     };
   },
   created() {
     if(!sessionStorage.getItem("userid")){
         this.$router.push("/Login_go");
-      }
+    }
+    if(!this.$route.query.key) this.hid = 0;//如果没传hid hid则为0
+    else{this.hid = this.$route.query.key}
+    this.orderPrice = this.$route.query.key;
   },
   props:["order"],
   components: { laydate: layDate },
@@ -311,20 +316,35 @@ export default {
     },
     // 提交数据
     submit(){
+      Date.prototype.Format = function (fmt) {
+        var o = {
+          "M+": this.getMonth() + 1, //月份 
+          "d+": this.getDate(), //日 
+          "H+": this.getHours(), //小时 
+          "m+": this.getMinutes(), //分 
+          "s+": this.getSeconds(), //秒 
+          "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+          "S": this.getMilliseconds() //毫秒 
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+      }
       // 订单编号  getDate
       var getDate=this.getDateString();
       // ID
       var id=null;
       // 用户id
-      var uid=1
+      var uid=sessionStorage.getItem("userid")
       // 房屋编号
-      var hid=1;
+      var hid=this.hid;
       // 付款状态
       var payStatus=0;
       // 付款时间
-      var payTime="";
+      var payTime=new Date().Format("yyyy-MM-dd HH:mm:ss");
       // 订单价格
-      var orderPrice=1200;
+      var orderPrice=this.orderPrice;
       // 订单状态
       var orderStatus=1;
       if(this.ischecked){
@@ -332,8 +352,10 @@ export default {
         var obj = {realName:this.uname,cardID:this.id_card,phone:this.phone,peopleNumber:this.val,checkinDate:this.orderDate.start,checkoutDate:this.orderDate.end,days:this.orderDate.days,orderId:getDate,id:id,hid:hid,payStatus:payStatus,payTime:payTime,orderPrice:orderPrice,orderStatus:orderStatus,uid:uid};
         this.axios.post(url,obj).then(res=>{
           if(res.data.code==1){
+            id = res.data.data;
+            console.log('获取到的'+id);
             // 跳转到待支付界面
-            this.$router.push("unpaid")
+            this.$router.push({path: "/unpaid", query: {key: id}})
           }else{
             alert("提交失败");
           }
@@ -352,3 +374,5 @@ export default {
 @import url("../../assets/css/order.css");
 
 </style>
+
+

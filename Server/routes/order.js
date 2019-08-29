@@ -9,12 +9,28 @@ router.post("/order",(req,res)=>{
     pool.query(sql,[obj.realName,obj.cardID,obj.phone,obj.peopleNumber,obj.checkinDate,obj.checkoutDate,obj.days,obj.orderId,obj.id,obj.hid,obj.payStatus,obj.payTime,obj.orderPrice,obj.orderStatus,obj.uid],(err,result)=>{
         if(err) throw err;
         if(result.affectedRows>0){
-            res.send({code:1,msg:"提交成功"})
+            id = result.insertId;	
+            res.send({code:1,data:id})
         }else{
             res.send({code:-1,msg:"提交失败"})
         }
     })
 })
+
+router.post('/unpaid',(req,res)=>{
+    var obj=req.body;
+    console.log(obj);
+    var sql='update home_business_orderList set payStatus=?,orderStatus=? where id=?';
+    pool.query(sql,[obj.payStatus,obj.orderStatus,obj.id],(err,result)=>{
+        if(err) throw err;
+        if(result.affectedRows>0){
+            res.send({code:1,msg:"支付成功"})
+        }else{
+            res.send({code:-1,msg:"支付失败"})
+        }
+    })
+})
+
 router.get("/productlist",(req,res)=>{
     var start=req.query.start;
     var  count=req.query.count;
