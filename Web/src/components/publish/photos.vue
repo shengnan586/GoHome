@@ -26,7 +26,7 @@
                                     <i class="edit_pencil" :data-index="i"></i>
                                     <p class="pictureDel" readonly="readonly" style="z-index:10" :data-index="i">删除</p>
                                 </div>
-                                <img :src="`${URL}+item`" style="width:180px;height:185px;cursor:pointer">
+                                <img :src="`${URL+item}`" style="width:180px;height:185px;cursor:pointer">
                             </div>
                         </li>
                         <li class="fileNow">
@@ -43,6 +43,7 @@
     </div>
 </template>
 <script>
+import URL from '../../config'
 export default {
     data() {
         return {
