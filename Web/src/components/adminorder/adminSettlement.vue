@@ -109,7 +109,6 @@ export default {
     load() {
       var uid = this.userid;
       var year = this.selvalue;
-      console.log(year);
       var obj = { uid, year };
       this.axios.get("admin/GetEarcharts", { params: obj }).then(res => {
         if (res.data.code == 1) {
@@ -126,6 +125,7 @@ export default {
     }
   },
   mounted: function() {
+      console.log(this.$route.query);
     this.load();
   },
   created: function() {}

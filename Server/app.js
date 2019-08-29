@@ -27,7 +27,7 @@ const adminsettlement=require("./routes/adminsettlement.js");
 const adminfavorites=require("./routes/adminfavorites.js");
 const adminbaseinfor=require("./routes/adminbaseinfor.js");
 const productlist=require("./routes/productlist.js");
-
+const love = require("./routes/love.js");
 
 
 var app = express();
@@ -73,4 +73,5 @@ app.use("/admin",adminsettlement);
 app.use("/admin",adminfavorites);
 app.use("/admin",adminbaseinfor);
 app.use("/productlist",productlist);
+app.use("/love",love);
 

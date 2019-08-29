@@ -96,6 +96,7 @@ export default {
             //6.获取服务器返回的结果
 
             if (res.data.code == -1) {
+              alert("用户名密码错误");
               //6.1登录失败 提示
               //6.2登陆成功 跳转商品首页
             } else {

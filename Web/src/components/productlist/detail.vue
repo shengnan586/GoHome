@@ -9,7 +9,7 @@
             :key="i"
             :style="{opacity:index==i?1:0,'z-index':index==i?1:0}"
           >
-            <a :href="href"><img :src="'http://127.0.0.1:3003/'+img" /></a>
+            <a :href="href"><img :src="`${URL+img}`" /></a>
           </li>
         </ul>
         <div class="btn-left" @click="move(-1)">
@@ -78,6 +78,7 @@
 </template>
 <script>
 import layDate from "../laydate/laydate.vue";
+import URL from "../../config"
 export default {
   data() {
     return {
@@ -161,8 +162,27 @@ export default {
       }
     }
   },
+<<<<<<< HEAD
   updated() {
      this.getHref()
+=======
+  created() {
+     console.log(this.p_detail);
+    switch(this.p_detail.id){
+      case 1:
+      case 5:
+        this.href=URL+"AR/ar.html?hid="+this.p_detail.id+"&count=4";
+        console.log(this.p_detail.id);
+        break;
+      case 2:
+      case 3:
+      case 4:
+        this.href=URL+"AR/ar.html?hid="+this.p_detail.id+"&count=5";
+        break;
+      default:
+        break;
+    }
+>>>>>>> e7a65fd22a762059a158c863d48afee167592c12
   },
   components: { laydate: layDate } //时间控件
 };
