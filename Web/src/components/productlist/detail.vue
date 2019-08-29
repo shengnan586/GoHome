@@ -167,7 +167,6 @@ export default {
       default:
         break;
     }
-
   },
   components: { laydate: layDate } //时间控件
 };
