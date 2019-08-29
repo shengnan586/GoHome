@@ -24,7 +24,8 @@
                   :data-value="area.id"
                   :data-text="area.aTypeName"
                 >
-                  <a href="javascript:;">{{area.aTypeName}}</a>
+                  <a href="javascript:;" :data-value="area.id"
+                  :data-text="area.aTypeName">{{area.aTypeName}}</a>
                 </li>
               </ul>
             </div>
@@ -226,7 +227,6 @@ export default {
         checkoutDate: this.orderDate.end
       };
       this.axios.get(url, { params }).then(res=>{
-        console.log(res.data.data);
         this.productList=this.productList.concat(res.data.data);
       }).catch(err=>console.log(err));
     },

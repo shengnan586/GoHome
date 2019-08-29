@@ -9,7 +9,7 @@
             :key="i"
             :style="{opacity:index==i?1:0,'z-index':index==i?1:0}"
           >
-            <a :href="href"><img :src="`${URL+img}`" /></a>
+            <a :href="href"><img :src="`${ URL +img}`" /></a>
           </li>
         </ul>
         <div class="btn-left" @click="move(-1)">
@@ -78,10 +78,11 @@
 </template>
 <script>
 import layDate from "../laydate/laydate.vue";
-import URL from "../../config"
+import URL from "../../config/index";
 export default {
   data() {
     return {
+      URL:URL,
       imgwidth: 724,
       index: 0,
       orderDate: null,
@@ -124,6 +125,16 @@ export default {
       } else if (this.index >= this.imgs.length) {
         this.index = 0;
       }
+<<<<<<< HEAD
+=======
+    },
+    getImgs(){
+       this.axios.get("/imgSearch",{params:{hid:this.p_detail.id}})
+            .then(res=>{
+                if(res.data.data.length > 0)
+                this.imgs=res.data.data;
+            })
+>>>>>>> 9a2efaa263cd206b5c633e8d54c83809c834bdbd
     }
   },
   computed: {
@@ -142,8 +153,9 @@ export default {
       }
     }
   },
-  updated(){
+  updated() {
      console.log(this.p_detail);
+     this.getImgs();
     switch(this.p_detail.id){
       case 1:
       case 5:
