@@ -48,11 +48,18 @@ export default {
       time: 5,
       tit: "正在支付，请您稍等...",
       isShow: false,
-      colorShow:true
+      colorShow:true,
+      payStatus:1,
+      orderStatus:2,
+      id:null
     };
   },
   created() {
     this.timer();
+  },
+  mounted() {
+    this.id = this.$route.query.key;
+    console.log('页面加载'+this.id);
   },
   methods: {
     timer() {
@@ -77,10 +84,21 @@ export default {
           if (this.time == 0) {
             clearInterval(t);
             t = null;
-            console.log("跳转")
+            
           }
         }, 1000);
+        this.id=this.id;
+        console.log(this.id);
           }
+      ).then(
+        this.axios.post('/order/unpaid',{payStatus:this.payStatus,orderStatus:this.orderStatus,id:this.id}).then(res=>{
+          if(res.data.code==1){
+            // 跳转到待支付界面
+            this.$router.push("adminorder/list")
+          }else{
+            alert("请求超时");
+          }
+        })
       )
     }
   }
