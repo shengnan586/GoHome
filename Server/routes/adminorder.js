@@ -5,7 +5,6 @@ const pool = require("../pool");
 //删除订单列表
 router.post("/DelOrder", (req, res) => {
     var id = req.body.id;
-    console.log(req.body);
     var sql = " delete from home_business_orderlist where id=? "
     pool.query(sql, [id], (err, result) => {
         if (err) throw err;
@@ -21,7 +20,6 @@ router.post("/DelOrder", (req, res) => {
 router.get("/GetOrderlist", (req, res) => {
     var orderStatus = req.query.orderStatus;
     var id = req.query.userid;
-    console.log(orderStatus);
     var output = {
         count: 0, //一共有多少条
         pageSize: req.query.pageSize || 10,  //每个页面显示几条
@@ -68,7 +66,6 @@ router.get("/GetOrderlist", (req, res) => {
             arr2.push(id);
         }
         arr = arr2.concat(arr);
-        console.log(arr);
         pool.query(sql, arr, (err, result) => {
             output.data = result;
             res.send(output);

@@ -74,7 +74,6 @@ router.get("/GetBedByhid", (req, res) => {
     pool.query(sql, [hid], (err, result) => {
         if (err) throw err;
         if (result.length > 0) {
-            console.log(result);
             res.send({ code: 1, data: result });
         } else {
             res.send({ code: -1, msg: "暂无设施" });
@@ -85,7 +84,6 @@ router.get("/GetBedByhid", (req, res) => {
 //删除订单列表
 router.post("/DelCollectByid", (req, res) => {
     var id = req.body.id;
-    console.log(req.body);
     var sql = " delete from home_business_house_collect_img where id=? "
     pool.query(sql, [id], (err, result) => {
         if (err) throw err;

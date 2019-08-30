@@ -125,7 +125,6 @@ export default {
     }
   },
   mounted: function() {
-      console.log(this.$route.query);
     this.load();
   },
   created: function() {}
