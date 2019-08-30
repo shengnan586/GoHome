@@ -7,6 +7,7 @@
     <div class="spots-list">
       <ul>
         <li>
+                  <router-link to="/productlist?selectedText=东城区&selectedAreaId=2">
           <img src="../../assets/images/gugong.jpg" :class="{imgscale:id=='1'&&isShow}" />
           <div :class="{'font-color':id=='1'&&isShow}">
             <h1>故宫</h1>
@@ -14,8 +15,10 @@
           </div>
           <div :class="{height:id=='1'&&isShow}"></div>
           <div id="1" class="mask" @mouseenter="enter" @mouseleave="leave"></div>
+           </router-link>
         </li>
         <li>
+                  <router-link to="/productlist?selectedText=东城区&selectedAreaId=2">
           <img src="../../assets/images/tiantan.jpeg" :class="{imgscale:id=='2'&&isShow}" />
           <div :class="{'font-color':id=='2'&&isShow}">
             <h1>天坛</h1>
@@ -23,8 +26,10 @@
           </div>
           <div :class="{height:id=='2'&&isShow}"></div>
           <div id="2" class="mask" @mouseenter="enter" @mouseleave="leave"></div>
+           </router-link>
         </li>
         <li>
+                  <router-link to="/productlist?selectedText=昌平区&selectedAreaId=12">
           <img src="../../assets/images/changcheng.jpg" :class="{imgscale:id=='3'&&isShow}" />
           <div :class="{'font-color':id=='3'&&isShow}">
             <h1>长城</h1>
@@ -32,8 +37,10 @@
           </div>
           <div :class="{height:id=='3'&&isShow}"></div>
           <div id="3" class="mask" @mouseenter="enter" @mouseleave="leave"></div>
+           </router-link>
         </li>
         <li>
+                  <router-link to="/productlist?selectedText=海淀区&selectedAreaId=4">
           <img src="../../assets/images/yiheyuan.jpg" :class="{imgscale:id=='4'&&isShow}" />
           <div :class="{'font-color':id=='4'&&isShow}">
             <h1>颐和园</h1>
@@ -41,6 +48,7 @@
           </div>
           <div :class="{height:id=='4'&&isShow}"></div>
           <div id="4" class="mask" @mouseenter="enter" @mouseleave="leave"></div>
+           </router-link>
         </li>
       </ul>
     </div>

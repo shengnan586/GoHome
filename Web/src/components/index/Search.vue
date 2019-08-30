@@ -104,9 +104,13 @@ export default {
   color:#bbb;
 }
 .city .city-area{
+  width: 99%;
+  height:200px;
   background-color: #fff;
   padding-top:5px;
   margin-top:-5px;
+  border:1px solid #eee;
+  overflow-y: scroll;
 }
 .city .city-area li{
   height:40px;

@@ -89,23 +89,20 @@ export default {
     },
     //检测用户名是否重复
     bluruname() {
-      return new Promise((resolve, reject) => {
         if (this.username.trim() == "") {
           this.spanusermsg = "用户名不能为空";
-          resolve(false);
+          // resolve(false);
         } else {
           var url = "user/GetUsername";
           this.axios(url, { params: { uname:this.username } }).then(res => {
             if (res.data.code == -1) {
               this.spanusermsg = "用户名已存在";
-              resolve(true);
             } else {
               this.spanusermsg = "";
-              resolve(false);
             }
           });
         }
-      });
+      
     },
     reg_to() {
       this.$router.push("/Login_go");

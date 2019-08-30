@@ -212,7 +212,7 @@ export default {
       inputname:"",
       blurinput:["","",""],
       orderDate:null,//保存时间控件返回的对象
-      // order:{start:"2019-09-01",end:"2019-09-03"}
+      // order:{start:"2019-09-01",end:"2019-09-03"},
       orderPrice:0
     };
   },
@@ -347,13 +347,31 @@ export default {
       var orderPrice=this.orderPrice;
       // 订单状态
       var orderStatus=1;
+      if(!this.orderDate){
+        alert('请选择入住时间')
+        return;
+      }
       if(this.ischecked){
         var url="/order/order";
-        var obj = {realName:this.uname,cardID:this.id_card,phone:this.phone,peopleNumber:this.val,checkinDate:this.orderDate.start,checkoutDate:this.orderDate.end,days:this.orderDate.days,orderId:getDate,id:id,hid:hid,payStatus:payStatus,payTime:payTime,orderPrice:orderPrice,orderStatus:orderStatus,uid:uid};
+        var obj = {
+          realName:this.uname,
+          cardID:this.id_card,
+          phone:this.phone,
+          peopleNumber:this.val,
+          checkinDate:this.orderDate.start,
+          checkoutDate:this.orderDate.end,
+          days:this.orderDate.days,
+          orderId:getDate,
+          id:id,
+          hid:hid,
+          payStatus:payStatus,
+          payTime:payTime,
+          orderPrice:orderPrice,
+          orderStatus:orderStatus,
+          uid:uid};
         this.axios.post(url,obj).then(res=>{
           if(res.data.code==1){
             id = res.data.data;
-            console.log('获取到的'+id);
             // 跳转到待支付界面
             this.$router.push({path: "/unpaid", query: {key: id}})
           }else{
