@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-import URL from "../../config/index";
+import URL from "../../config";
 export default {
   data() {
     return {

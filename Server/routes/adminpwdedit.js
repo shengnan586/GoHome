@@ -4,7 +4,7 @@ const pool = require("../pool");
 
 //修改密码
 router.post("/EditUpwd", (req, res) => {
-    var id = req.body.userid;
+    var id = req.body.id;
     var upwd = req.body.upwd;
     var sql = " update home_business_user set upwd=? where id=? "
     pool.query(sql, [upwd, id], (err, result) => {
@@ -30,7 +30,6 @@ router.get("/GetUpwd", (req, res) => {
     pool.query(sql, [upwd,uid], (err, result) => {
         if (err) throw err;
         if (result.length > 0) {
-            console.log(result);
             res.send({ code: 1, msg: "查询成功" });
         } else {
             res.send({ code: -1, msg: "查询失败" });

@@ -1,7 +1,14 @@
 import Vue from 'vue'
+import Vuex from 'vuex';
+import store from './store'
+import VueBus from 'vue-bus';
 import App from './App.vue'
 import router from './router'
 import echarts from 'echarts'
+
+
+Vue.use(VueBus);
+Vue.use(Vuex);
 
 Vue.config.productionTip = false
 //5: 设置请求的根路径 
@@ -12,6 +19,10 @@ Vue.config.productionTip = false
 //引入axios模块
 import Axios from 'axios';
 import URL from './config';
+Axios.defaults.baseURL = URL;
+//"http://127.0.0.1:3003/"
+Axios.defaults.withCredentials = true;
+Vue.prototype.axios = Axios;
 Axios.defaults.baseURL=URL;
 Axios.defaults.withCredentials=true;
 Vue.prototype.axios=Axios;
@@ -20,13 +31,14 @@ Vue.prototype.$echarts = echarts;
 import homeheader from "./components/index/header.vue";
 import homefooter from "./components/index/footer.vue";
 
-Vue.component("homeheader",homeheader);
-Vue.component("homefooter",homefooter);
+Vue.component("homeheader", homeheader);
+Vue.component("homefooter", homefooter);
 // 路由变化跳转页面回到顶部
-router.afterEach((to,from,next) => {
-  window.scrollTo(0,0);
+router.afterEach((to, from, next) => {
+  window.scrollTo(0, 0);
 })
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

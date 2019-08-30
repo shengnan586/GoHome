@@ -20,79 +20,44 @@
         <aside class="el-aside" style="float:left">
           <div class="menu_web">
             <ul role="menubar" class="el-menu" @click="changestyle">
-              <li
-                data-id="1"
-                role="menuitem"
-                class="el-menu-item"
-                :class="{'is-active':isActive=='1'}"
-              >
+              <li data-id="1" role="menuitem" class="el-menu-item" :class="{'is-active':flag=='1'}">
                 <router-link to="/adminorder/list" data-id="1">
                   <i class="iconfont icon-dingdanguanli" data-id="1"></i>
                   <span class="title" data-id="1">订单管理</span>
                 </router-link>
               </li>
-              <li
-                data-id="2"
-                role="menuitem"
-                class="el-menu-item"
-                :class="{'is-active':isActive=='2'}"
-              >
+              <li data-id="2" role="menuitem" class="el-menu-item" :class="{'is-active':flag=='2'}">
                 <router-link to="/adminorder/settlement" data-id="2">
                   <i class="iconfont icon-line-chart_icon" data-id="2"></i>
                   <span class="title" data-id="2">结算统计</span>
                 </router-link>
               </li>
-              <li
-                data-id="3"
-                role="menuitem"
-                class="el-menu-item"
-                :class="{'is-active':isActive=='3'}"
-              >
+              <li data-id="3" role="menuitem" class="el-menu-item" :class="{'is-active':flag=='3'}">
                 <router-link to="/adminorder/msg" data-id="3">
                   <i class="iconfont icon-tongzhi1" data-id="3"></i>
                   <span class="title" data-id="3">通知</span>
                 </router-link>
               </li>
-              <li
-                data-id="4"
-                role="menuitem"
-                class="el-menu-item"
-                :class="{'is-active':isActive=='4'}"
-              >
+              <li data-id="4" role="menuitem" class="el-menu-item" :class="{'is-active':flag=='4'}">
                 <router-link to="/adminorder/pwdedit" data-id="4">
                   <i class="iconfont icon-mima1" data-id="4"></i>
                   <span class="title" data-id="4">密码设置</span>
                 </router-link>
               </li>
-              <li
-                data-id="5"
-                role="menuitem"
-                class="el-menu-item"
-                :class="{'is-active':isActive=='5'}"
-              >
+              <li data-id="5" role="menuitem" class="el-menu-item" :class="{'is-active':flag=='5'}">
                 <router-link to="/adminorder/favorites" data-id="5">
                   <i class="iconfont icon-wodeshoucang" data-id="5"></i>
                   <span class="title" data-id="5">我的收藏</span>
                 </router-link>
               </li>
-              <li
-                data-id="6"
-                role="menuitem"
-                class="el-menu-item"
-                :class="{'is-active':isActive=='6'}"
-              >
+              <li data-id="6" role="menuitem" class="el-menu-item" :class="{'is-active':flag=='6'}">
                 <router-link to="/adminorder/baseinfor" data-id="6">
                   <i class="iconfont icon-jibenxinxi" data-id="6"></i>
                   <span class="title" data-id="6">房源信息</span>
                 </router-link>
               </li>
               <!---邀请码-->
-              <li
-                data-id="7"
-                role="menuitem"
-                class="el-menu-item"
-                :class="{'is-active':isActive=='7'}"
-              >
+              <li data-id="7" role="menuitem" class="el-menu-item" :class="{'is-active':flag=='7'}">
                 <router-link to="/adminorder/Admin_to" data-id="7">
                   <i class="iconfont icon-gerenziliao1" data-id="7"></i>
                   <span class="title" data-id="7">个人资料</span>
@@ -100,12 +65,7 @@
               </li>
               <!--sdf-->
               <!-- 个人资料 -->
-              <li
-                data-id="8"
-                role="menuitem"
-                class="el-menu-item"
-                :class="{'is-active':isActive=='8'}"
-              >
+              <li data-id="8" role="menuitem" class="el-menu-item" :class="{'is-active':flag=='8'}">
                 <router-link to="/adminorder/Admin_go" data-id="8">
                   <i class="iconfont icon-gerenziliao1" data-id="8"></i>
                   <span class="title" data-id="8">邀请码</span>
@@ -129,6 +89,7 @@
 import header from "../index/header.vue";
 import footer from "../index/footer.vue";
 import Bus from "../../../static/utils/bus.js";
+import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -136,22 +97,23 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      actionGoBack: "actionGoBack"
+    }),
     changestyle(e) {
-      this.isActive = e.target.dataset.id;
+      this.actionGoBack(e.target.dataset.id);
     }
+  },
+  computed: {
+    ...mapState({
+      flag: state => state.isAction
+    })
   },
   components: {
     Footer: footer,
     Header: header
   },
-  created() {},
-  mounted() {
-    var vm = this;
-    // 用$on事件来接收参数
-    Bus.$on("isAction", data => {
-      vm.isActive = data;
-    });
-  }
+  mounted() {}
 };
 </script>
 <style scoped>

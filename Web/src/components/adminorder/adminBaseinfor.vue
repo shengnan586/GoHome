@@ -10,7 +10,7 @@
                 <img
                   width="210"
                   height="150"
-                  :src="`http://127.0.0.1:3003/${item.houseimgmd}`"
+                  :src="`${URL+item.houseimgmd}`"
                   alt
                   class="pic"
                 />
@@ -52,9 +52,11 @@
 </template>
 <script>
 import pagination from "../page/page";
+import URL from '../../config'
 export default {
   data() {
     return {
+      URL:URL,
       userid: sessionStorage.getItem("userid"), //当前登陆的用户
       isnav: "flex",
       total: 0, // 记录总条数
