@@ -152,13 +152,11 @@ export default {
     }
   },
   updated() {
-     console.log(this.p_detail);
      this.getImgs();
     switch(this.p_detail.id){
       case 1:
       case 5:
         this.href=URL+"AR/ar.html?hid="+this.p_detail.id+"&count=4";
-        console.log(this.p_detail.id);
         break;
       case 2:
       case 3:

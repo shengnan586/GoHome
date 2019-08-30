@@ -85,7 +85,7 @@
         </div>
       </div>
       <!-- 发布房源 -->
-      <div class="release">
+      <div class="release" @click="GoRouter" data-router="publish">
         <a href="javascript:;" @click="GoRouter" data-router="publish">发布房源</a>
       </div>
     </div>
@@ -208,6 +208,7 @@ export default {
   background-color: rgb(57, 181, 71, 0.8);
   border-radius: 5px;
   text-align: center;
+  cursor: pointer;
 }
 .nav .release a {
   color: #fff;
