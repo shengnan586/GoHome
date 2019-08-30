@@ -65,7 +65,8 @@
                 <div>
                   <!-- total -->
                   订单总额：
-                  <em class="price" v-if="item!=[]?`￥{{item.orderPrice.toFixed(2)}}`:0"></em>
+                  <!-- <em class="price" v-if="item!=[]?`￥{{item.orderPrice}}`:0"></em> -->
+                  <em class="price">￥{{item.orderPrice.toFixed(2)}}</em>
                 </div>
               </div>
             </div>
@@ -260,13 +261,12 @@ i {
 }
 .order_item .total .price {
   color: #ff4081;
-  float: none;
+  float: left;;
   font-style: normal;
 }
 .price {
   color: #f26522;
   font-weight: bold;
-  float: right;
 }
 .order_item .content {
   display: -webkit-flex;

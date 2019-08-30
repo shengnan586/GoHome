@@ -213,28 +213,31 @@ export default {
       blurinput:["","",""],
       orderDate:null,//保存时间控件返回的对象
       order:{},
-      totalprice:0,
+      // totalprice:0,
       price:0,
       cashMoney:0,
     };
   },
-  computed: {
-    totalprice() {
-      if (this.orderDate) {
-        return this.orderDate.days * this.price + this.cashMoney;
-      } else {
-        return 0;
-      }
-    }
-  },
+  // computed: {
+  //   totalprice() {
+  //     if (this.orderDate) {
+  //       return this.orderDate.days * this.price + this.cashMoney;
+  //     } else {
+  //       return 0;
+  //     }
+  //   }
+  // },
   created() {
     if(!sessionStorage.getItem("userid")){
         this.$router.push("/Login_go");
     }
-    if(!this.$route.query.key) this.hid = 0;//如果没传hid hid则为0
-    else{this.hid = this.$route.query.key}
-    this.totalprice = this.$route.query.price;
+    if(!this.$route.query.hid) this.hid = 0;//如果没传hid hid则为0
+    else{this.hid = this.$route.query.hid}
+    this.price = this.$route.query.price;
     this.order = this.$route.query.orderDate;
+    if(this.order){
+      this.orderDate=this.order 
+    }
   },
   // props:["order"],
   components: { laydate: layDate },
@@ -354,24 +357,25 @@ export default {
       // 付款状态
       var payStatus=0;
       // 付款时间
-      var payTime=new Date().Format("yyyy-MM-dd HH:mm:ss");
+      var payTime=new Date().Format("yyyyMMdd HH:mm:ss");
       // 订单总价格
-      var totalprice=this.totalprice;
+      var totalprice=this.orderDate.days * this.price + this.cashMoney;
       // 订单状态
       var orderStatus=1;
-      if(!this.orderDate){
+      if(!this.orderDate&&!this.order){
         alert('请选择入住时间')
         return;
       }
       if(this.ischecked){
         var url="/order/order";
+        
         var obj = {
           realName:this.uname,
           cardID:this.id_card,
           phone:this.phone,
           peopleNumber:this.val,
-          checkinDate:this.orderDate.start,
-          checkoutDate:this.orderDate.end,
+          checkinDate:this.orderDate.start.replace('-',''),
+          checkoutDate:this.orderDate.end.replace('-',''),
           days:this.orderDate.days,
           orderId:getDate,
           id:id,
@@ -380,7 +384,8 @@ export default {
           payTime:payTime,
           orderPrice:totalprice,
           orderStatus:orderStatus,
-          uid:uid};
+          uid:uid
+          };
         this.axios.post(url,obj).then(res=>{
           if(res.data.code==1){
             id = res.data.data;

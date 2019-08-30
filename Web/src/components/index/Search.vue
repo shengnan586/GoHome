@@ -68,7 +68,7 @@ export default {
         .get("area", { params: { aParentId: 1, aType: 0 } })
         .then(result => {
           this.areaList = result.data;
-          this.selectedAreaId = result.data[0].id;
+          //this.selectedAreaId = result.data[0].id;
         });
     },
   },

@@ -226,6 +226,8 @@ export default {
         checkinDat: this.orderDate.start,//
         checkoutDate: this.orderDate.end
       };
+      console.log("11111111111");
+      console.log(params.aId);
       this.axios.get(url, { params }).then(res=>{
         this.productList=this.productList.concat(res.data.data);
       }).catch(err=>console.log(err));

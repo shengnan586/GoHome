@@ -19,7 +19,8 @@ router.get("/GetProduct", (req, res) => {
         pno: req.query.currentPage || 0, //返回的当前是第几页
         data: []
     };
-    var sql = `  select house.id,house.houseTitle,house.specialPrice,house.normalPrice,house.festivalPrice,user.UserName,
+    
+    var sql=sql1 = `  select house.id,house.houseTitle,house.specialPrice,house.normalPrice,house.festivalPrice,user.UserName,
     user.phone,user.email,user.realName,user.cardID,
     case user.sex  when  0 then '女' else '男' end sex,
     dictype.typeName,house.peopleNumber,apartment.bedroom,
@@ -36,40 +37,36 @@ router.get("/GetProduct", (req, res) => {
     inner join home_dic_type dictype on house.rentalTypeId=dictype.id 
     -- inner join home_dic_area area on house.aId=area.id 
 
-    inner join home_dic_apartment apartment on house.houseTypeId=apartment.id and user.isHoster=1 `;
-    
-    // rentalTypeId: this.chuzuid, //不选择默认0
-    //     peopleNumber: this.peopleNumber, //不选择默认undefined
-    //     aId: this.selectedAreaId, //不选择默认空
-    //     bedroom: this.apartment.toString(), //默认值""
-    //     houseDESC: this.searchKey,//默认值空
-    //     smallprice: this.priceid * 300,//默认值0
-    //     bigprice: (this.priceid + 1) * 300,//默认值300
-    //     checkinDat: this.orderDate.start,//默认值undefined
-    //     checkoutDate: this.orderDate.end//同上
+    inner join home_dic_apartment apartment on house.daId=apartment.id  `;
     var arr3=[];
     if (rentalTypeId!="0") {
         sql += " and house.rentalTypeId=?  "; //出租类型
+        sql1 += " and house.rentalTypeId="+rentalTypeId; //出租类型
         arr3.push(rentalTypeId);
     }
     if(peopleNumber){
         sql +=" and house.peopleNumber=?  "; //人数
+        sql1 +=" and house.peopleNumber="+peopleNumber; //人数
         arr3.push(peopleNumber);
     }
     if(aId){
         sql +=" and house.aId=? "; //地区
+        sql1 +=" and house.aId="+aId; //地区
         arr3.push(aId);
     }
     if(bedroom){
         sql +=" and apartment.bedroom in("+bedroom+") "; //几居室
+        sql1 +=" and apartment.bedroom in("+bedroom+") "; //几居室
         arr3.push(bedroom);
     }
     if(houseDESC){
         sql +=" and house.houseDESC like CONCAT('%',houseDESC,'%')"; //房源介绍--关键字
+        sql1 +=" and house.houseDESC like CONCAT('%',houseDESC,'%')"; //房源介绍--关键字
         // sql +=" and house.houseDESC like %"+houseDESC+"%"; //房源介绍--关键字
     }
     if(smallprice&&bigprice){
         sql +=" and ((house.specialPrice between ? and ?) or (house.normalPrice between ? and ?) or (house.festivalPrice between ? and ?)) "; //价格
+        sql1 +=" and ((house.specialPrice between "+smallprice+" and "+bigprice+") or (house.normalPrice between "+smallprice+" and "+bigprice+") or (house.festivalPrice  between "+smallprice+" and "+bigprice+")) "; //价格
         arr3.push(smallprice);
         arr3.push(bigprice);
         arr3.push(smallprice);
@@ -79,13 +76,13 @@ router.get("/GetProduct", (req, res) => {
     }
     if(checkinDate&&checkoutDate){
         sql +=" and house.id not in (select hid from home_business_orderList where checkinDate>=? and checkoutDate<=?)  "; //时间
+        sql1 +=" and house.id not in (select hid from home_business_orderList where checkinDate>="+checkinDate+" and checkoutDate<="+checkoutDate+")  "; //时间
         arr3.push(checkinDate);
         arr3.push(checkoutDate);
     }
-    // console.log(sql);
-    // console.log(rentalTypeId,peopleNumber,aId,bedroom,houseDESC,smallprice,bigprice,smallprice,bigprice,smallprice,bigprice,checkinDate,checkoutDate);
-    // [rentalTypeId,peopleNumber,aId,smallprice,bigprice,smallprice,bigprice,smallprice,bigprice,checkinDate,checkoutDate]
-    pool.query(sql, arr3, (err, result) => {
+    console.log(arr3);//arr3
+    console.log(sql1);
+    pool.query(sql1, [], (err, result) => {
         if (err) throw err;
         output.count = result.length;
         output.pageCount = Math.ceil(output.count / output.pageSize);
@@ -124,7 +121,7 @@ router.get("/GetProduct", (req, res) => {
         // arr.unshift(arr2);
         arr=arr2.concat(arr);
         //,,,,bigprice,smallprice,bigprice,smallprice,bigprice,checkinDate,checkoutDate
-        pool.query(sql, arr, (err, result) => {
+        pool.query(sql1, arr, (err, result) => {
             output.data = result;
             res.send(output);
         })
@@ -190,21 +187,3 @@ router.get("/GetProduct", (req, res) => {
 
 module.exports = router;
 
-
-// select A.*,(select sum(dicbed.num) from home_business_house house1 
-// inner join home_business_house_bed housebed on house1.id=housebed.hid 
-// inner join home_dic_bed dicbed on housebed.bid=dicbed.id  
-// where house1.id=A.id GROUP BY  A.id) bedcount 
-// from (
-// 	select house.id,house.houseTitle,house.specialPrice,house.normalPrice,house.festivalPrice,user.UserName,
-// user.phone,user.email,user.realName,user.cardID,
-// case user.sex  when  0 then '女' else '男' end sex,
-// dictype.typeName,house.peopleNumber,apartment.bedroom 
-
-
-// from home_business_house house 
-// inner join home_business_User user on house.uid=user.id 
-// inner join home_dic_type dictype on house.rentalTypeId=dictype.id 
-// -- inner join home_dic_area area on house.aId=area.id 
-// inner join home_dic_apartment apartment on house.houseTypeId=apartment.id 
-// ) A 
