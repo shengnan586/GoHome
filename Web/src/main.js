@@ -1,13 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex';
 import store from './store'
-import VueBus from 'vue-bus';
 import App from './App.vue'
 import router from './router'
 import echarts from 'echarts'
 
 
-Vue.use(VueBus);
 Vue.use(Vuex);
 
 Vue.config.productionTip = false
