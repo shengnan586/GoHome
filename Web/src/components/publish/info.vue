@@ -110,7 +110,7 @@
               <!-- 地图 -->
               <!--  -->
               <div style="width:700px;height:360px;background:#e8e8e8">
-                <pmap style="width:100%;height:100%;" :val="val"></pmap>
+                <pmap style="width:100%;height:100%;" :val="val"  @returnMap="mapreturn"></pmap>
               </div>
               <!-- 按钮 -->
               <div style="text-align: center;">
@@ -297,7 +297,9 @@ export default {
       err_num: false, //门牌号提示信息
       err_area: false, //出租面积为空提示
       err_bed: false, //床铺类型为空提示,
-      val:""
+      val:"",
+      lng:0,
+      lat:0
     };
   },
   props: ["stepToChild","hid"],
@@ -365,6 +367,10 @@ export default {
       this.err_num = false;
       this.err_address = false;
     },
+    mapreturn(lng,lat){
+      this.lng = lng;
+      this.lat = lat;
+    },
     // 弹出框信息
     submit() {
       if (!this.details_address) {
@@ -385,6 +391,7 @@ export default {
         this.isShow = false;
         this.details_address = this.house_num = "";
       }
+      
     },
     // 删除所选床铺信息
     cancle() {
@@ -471,7 +478,9 @@ export default {
           kitchen: this.kitchen,
           balcony: this.balcony,
           bId: this.bed_btn,
-          uid:this.uid
+          uid:this.uid,
+          longitude:this.lng,
+          latitude:this.lat
         };
         if (this.hid==0) {
           this.axios.post("/addhouse/addhouse", obj).then(result => {
