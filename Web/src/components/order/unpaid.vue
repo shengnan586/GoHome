@@ -58,18 +58,20 @@ export default {
     this.id = this.$route.query.key;
     this.timer()
     .then(
-          ()=>{
+      ()=>{
+        return new Promise((resolve,reject)=>{
               this.isShow = true;
               var t = setInterval(() => { //支付成功等待3秒跳转
               this.time--;
           if (this.time == 0) {
             clearInterval(t);
             t = null;
-            
+            resolve();
           }
         }, 1000);
-          }
-      )
+          })
+      }
+    )
     .then(
         this.axios.post('/order/unpaid',{payStatus:this.payStatus,orderStatus:this.orderStatus,id:this.id}).then(res=>{
           if(res.data.code==1){
