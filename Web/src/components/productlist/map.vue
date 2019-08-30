@@ -98,6 +98,7 @@ export default {
           title: "北京"
       });
       this.map.add(this.marker);
+      
     }
   },
   mounted() {

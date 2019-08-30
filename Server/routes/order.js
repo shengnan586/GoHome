@@ -19,7 +19,6 @@ router.post("/order",(req,res)=>{
 
 router.post('/unpaid',(req,res)=>{
     var obj=req.body;
-    console.log(obj);
     var sql='update home_business_orderList set payStatus=?,orderStatus=? where id=?';
     pool.query(sql,[obj.payStatus,obj.orderStatus,obj.id],(err,result)=>{
         if(err) throw err;
