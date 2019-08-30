@@ -212,14 +212,16 @@ export default {
       inputname:"",
       blurinput:["","",""],
       orderDate:null,//保存时间控件返回的对象
-      // order:{start:"2019-09-01",end:"2019-09-03"},
-      totalprice:0
+      order:{},
+      totalprice:0,
+      price:0,
+      cashMoney:0,
     };
   },
   computed: {
     totalprice() {
       if (this.orderDate) {
-        return this.orderDate.days * this.p_detail.normalPrice + this.p_detail.cashMoney;
+        return this.orderDate.days * this.price + this.cashMoney;
       } else {
         return 0;
       }
@@ -231,9 +233,10 @@ export default {
     }
     if(!this.$route.query.key) this.hid = 0;//如果没传hid hid则为0
     else{this.hid = this.$route.query.key}
-    this.totalprice = this.$route.query.key;
+    this.totalprice = this.$route.query.price;
+    this.order = this.$route.query.orderDate;
   },
-  props:["order"],
+  // props:["order"],
   components: { laydate: layDate },
   methods: {
     //获取时间控件返回的时间对象{入住时间、离开时间、天数}
