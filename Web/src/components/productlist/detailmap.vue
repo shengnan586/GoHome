@@ -118,7 +118,7 @@ export default {
         resizeEnable: true
       });
       that.marker = new AMap.Marker({
-        position: new AMap.LngLat(this.p_detail.latitude, this.p_detail.longitude), // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+        position: new AMap.LngLat(that.p_detail.longitude, that.p_detail.latitude), // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
           title: "北京"
       });
           that.map.add(that.marker);//点标记
