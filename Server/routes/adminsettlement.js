@@ -59,9 +59,9 @@ router.get("/GetEarcharts", (req, res) => {
         else '十二月' end name from (
 	select orderPrice,substring(checkinDate,5,2) as name,substring(checkinDate,1,4) nian,orderlist.uid 
 from home_business_orderList orderlist 
-inner join home_business_house house on orderlist.uId=house.id 
+inner join home_business_house house on orderlist.hId=house.id 
 inner join home_business_User user on house.uid=user.id 
-and user.isHoster=1  and  orderlist.orderStatus=4
+and user.isHoster=1  and  orderlist.orderStatus=2 
 )A where a.nian=? GROUP BY name   `
     var arr=[year];
     if (uid) {
