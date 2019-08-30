@@ -216,6 +216,15 @@ export default {
       orderPrice:0
     };
   },
+  // computed: {
+  //   totalprice() {
+  //     if (this.orderDate) {
+  //       return this.orderDate.days * this.p_detail.normalPrice + this.p_detail.cashMoney;
+  //     } else {
+  //       return 0;
+  //     }
+  //   }
+  // },
   created() {
     if(!sessionStorage.getItem("userid")){
         this.$router.push("/Login_go");

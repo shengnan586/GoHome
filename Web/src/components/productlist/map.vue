@@ -85,6 +85,9 @@ export default {
       map(val).then((address)=>{
         this.lng = address.lng;
         this.lat = address.lat;
+        // console.log(this.lng)
+        // console.log(this.lat)
+        this.$emit('returnMap',address.lng,address.lat);
       })
     },
 
