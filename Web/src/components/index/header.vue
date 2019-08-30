@@ -142,7 +142,6 @@ export default {
     },
     //菜单中路由跳转
     GoRouter(e) {
-      if (e.target.nodeName == "A") {
         var router = e.target.dataset.router;
         var isa = e.target.dataset.isaictivea;
         if (router == "close") {
@@ -161,7 +160,7 @@ export default {
             }
           }
         }
-      }
+      
     }
   }
 };
