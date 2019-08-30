@@ -116,7 +116,16 @@ export default {
       this.orderDate = orderDate;
     },
     order(){
-      this.$router.push({path: "/order", query: {hid: this.p_detail.id,totalprice:this.totalprice}})
+      this.$router.push({
+        path: "/order", 
+        query: {
+          hid: this.p_detail.id,//房屋id
+          price:this.p_detail.normalPrice,//单价
+          cashMoney:this.p_detail.cashMoney,//押金
+          totalprice:this.totalprice,//总价
+          orderDate:this.orderDate//入住时间
+          }
+        })
     },
     move(n) {
       this.index += n;

@@ -212,9 +212,20 @@ export default {
       inputname:"",
       blurinput:["","",""],
       orderDate:null,//保存时间控件返回的对象
-      // order:{start:"2019-09-01",end:"2019-09-03"},
-      orderPrice:0
+      order:{},
+      totalprice:0,
+      price:0,
+      cashMoney:0,
     };
+  },
+  computed: {
+    totalprice() {
+      if (this.orderDate) {
+        return this.orderDate.days * this.price + this.cashMoney;
+      } else {
+        return 0;
+      }
+    }
   },
   created() {
     if(!sessionStorage.getItem("userid")){
@@ -222,9 +233,10 @@ export default {
     }
     if(!this.$route.query.key) this.hid = 0;//如果没传hid hid则为0
     else{this.hid = this.$route.query.key}
-    this.orderPrice = this.$route.query.key;
+    this.totalprice = this.$route.query.price;
+    this.order = this.$route.query.orderDate;
   },
-  props:["order"],
+  // props:["order"],
   components: { laydate: layDate },
   methods: {
     //获取时间控件返回的时间对象{入住时间、离开时间、天数}
@@ -343,8 +355,8 @@ export default {
       var payStatus=0;
       // 付款时间
       var payTime=new Date().Format("yyyy-MM-dd HH:mm:ss");
-      // 订单价格
-      var orderPrice=this.orderPrice;
+      // 订单总价格
+      var totalprice=this.totalprice;
       // 订单状态
       var orderStatus=1;
       if(!this.orderDate){
@@ -366,7 +378,7 @@ export default {
           hid:hid,
           payStatus:payStatus,
           payTime:payTime,
-          orderPrice:orderPrice,
+          orderPrice:totalprice,
           orderStatus:orderStatus,
           uid:uid};
         this.axios.post(url,obj).then(res=>{

@@ -240,7 +240,7 @@ export default {
                 this.axios.post("/infoSave",obj)
                 .then(result=>{
                     if(result.data.code==1){
-                        this.$router.push("/adminorder/list")
+                        this.$router.push({ path: "/adminorder/baseinfor", query: { key: 6 } });
                     }else{
                         alert("系统错误，万分抱歉")
                     }

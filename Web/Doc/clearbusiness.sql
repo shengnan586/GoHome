@@ -5,5 +5,5 @@ truncate table home_business_house_collect_img;
 truncate table home_business_house_img;
 truncate table home_business_house_install;
 truncate table home_business_house_msg;
-truncate table home_business_house_orderList;
-truncate table home_business_user;
+truncate table home_business_orderList;
+truncate table home_business_User;

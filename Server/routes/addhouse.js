@@ -19,8 +19,8 @@ router.post("/addhouse", (req, res) => {
                 if (result.length > 0) {
                     daId = result[0].id;
                     //插入主表house
-                    var sqlhouse = " INSERT into home_business_house (houseTypeId,rentalTypeId,daId,roomSize,toiletId,peopleNumber,aId,address,uid) VALUES(?,?,?,?,?,?,?,?,?) ";
-                    pool.query(sqlhouse, [obj.houseTypeId, obj.rentalTypeId, daId, obj.roomSize, obj.toiletId, obj.peopleNumber, obj.aId, obj.address, obj.uid], (err, houseresult) => {
+                    var sqlhouse = " INSERT into home_business_house (houseTypeId,rentalTypeId,daId,roomSize,toiletId,peopleNumber,aId,address,uid,longitude,latitude) VALUES(?,?,?,?,?,?,?,?,?,?,?) ";
+                    pool.query(sqlhouse, [obj.houseTypeId, obj.rentalTypeId, daId, obj.roomSize, obj.toiletId, obj.peopleNumber, obj.aId, obj.address, obj.uid,obj.longitude,obj.latitude], (err, houseresult) => {
                         if (err) throw err;
                         //添加床铺表
                         if (houseresult.affectedRows > 0) {
@@ -53,8 +53,8 @@ router.post("/addhouse", (req, res) => {
                         daId = result.insertId;
                         if (err) throw err;
                         //插入主表house
-                        var sqlhouse = " INSERT into home_business_house (houseTypeId,rentalTypeId,daId,roomSize,toiletId,peopleNumber,aId,address,uid) VALUES(?,?,?,?,?,?,?,?,?) ";
-                        pool.query(sqlhouse, [obj.houseTypeId, obj.rentalTypeId, daId, obj.roomSize, obj.toiletId, obj.peopleNumber, obj.aId, obj.address, obj.uid], (err, houseresult) => {
+                        var sqlhouse = " INSERT into home_business_house (houseTypeId,rentalTypeId,daId,roomSize,toiletId,peopleNumber,aId,address,uid,longitude,latitude) VALUES(?,?,?,?,?,?,?,?,?,?,?) ";
+                        pool.query(sqlhouse, [obj.houseTypeId, obj.rentalTypeId, daId, obj.roomSize, obj.toiletId, obj.peopleNumber, obj.aId, obj.address, obj.uid,obj.longitude,obj.latitude], (err, houseresult) => {
                             if (err) throw err;
                             if (houseresult.affectedRows > 0) {
                                 houseid = houseresult.insertId;

@@ -119,7 +119,7 @@
       <product :productList="productList"></product>
       <div class="more"><a href="javascript:;" @click="getmore">加载更多...</a></div>
     </div>
-    <homefooter></homefooter>
+    <homefooter class="footer"></homefooter>
   </div>
 </template>
 <script>
@@ -276,11 +276,14 @@ export default {
   color: #bbb;
 }
 .city .city-area {
+  height:200px;
   background-color: #fff;
   padding-top: 5px;
   margin-top: -5px;
   position: relative;
   z-index: 1;
+  overflow-y: scroll;
+  border:1px solid #eee;
 }
 .city .city-area li {
   height: 40px;
