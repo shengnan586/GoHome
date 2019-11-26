@@ -103,9 +103,11 @@ export default {
     changestyle(e) {
       this.actionGoBack(e.target.dataset.id);
     }
+
+
   },
   computed: {
-    ...mapState({
+    ...mapState({ 
       flag: state => state.isAction
     })
   },
