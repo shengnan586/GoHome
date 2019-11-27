@@ -3,7 +3,7 @@
       <!-- :style="{display:stepToChild==3?'block':'none'}" -->
       <!-- ==3 表示头部点击了第三步 该组件显示 -->
     <div class="h_wrap">
-      <h4 class="h_tit">配套设施</h4>
+      <h4 class="h_tit">配套设施aa</h4>
       <div class="sb_box">
         <h4>卫浴：</h4>
         <ul class="sb_list" @click="tab">
