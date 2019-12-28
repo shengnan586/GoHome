@@ -3,9 +3,9 @@
       <!-- :style="{display:stepToChild==3?'block':'none'}" -->
       <!-- ==3 表示头部点击了第三步 该组件显示 -->
     <div class="h_wrap">
-      <h4 class="h_tit">配套设施123</h4>
+      <h4 class="h_tit">配套设施呀</h4>
       <div class="sb_box">
-        <h4>卫浴67：</h4>
+        <h4>卫浴：</h4>
         <ul class="sb_list" @click="tab">
           <li v-for="(item,i) of weiyu" :key="i">
             <span :class="{s_active:item.isActive}" data-fname="weiyu" :data-index="i" class="checkbox"></span>
