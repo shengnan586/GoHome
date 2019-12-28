@@ -5,7 +5,7 @@
     <div class="h_wrap">
       <h4 class="h_tit">配套设施123</h4>
       <div class="sb_box">
-        <h4>卫浴：</h4>
+        <h4>卫浴22：</h4>
         <ul class="sb_list" @click="tab">
           <li v-for="(item,i) of weiyu" :key="i">
             <span :class="{s_active:item.isActive}" data-fname="weiyu" :data-index="i" class="checkbox"></span>
